@@ -17,13 +17,17 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("Delegate = \(delegate) from ViewDidLoad in MainVC")
+        print("ViewDidLoad in MainVC was called")
     }
 
     @IBAction func menuBarButtonItemAction(_ sender: UIBarButtonItem) {
         delegate?.toggleMenu()
 //        print("Menu Tapped")
 //        print(print("Delegate = \(delegate) from menuBarButtonItemAction in MainVC"))
+    }
+    
+    deinit {
+        print("\(type(of: self)) has been deellocated")
     }
 }
 

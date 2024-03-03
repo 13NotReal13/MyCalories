@@ -15,16 +15,18 @@ final class ContainerViewController: UIViewController, MainViewControllerDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         configureMainViewController()
+        print("ViewDidLoad in ContainerVC was called")
     }
     
     func configureMainViewController() {
         let navigationVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
-        let mainVC = navigationVC?.viewControllers.first as? MainViewController
+        let mainVC = navigationVC?.viewControllers.first as! MainViewController
         
-        mainVC?.delegate = self
+        mainVC.delegate = self
         controller = mainVC
         view.addSubview(controller.view)
         addChild(controller)
+        print("configureMainViewController() was called")
     }
 
     func configureMenuViewController() {
@@ -32,13 +34,17 @@ final class ContainerViewController: UIViewController, MainViewControllerDelegat
             menuViewController = MenuViewController()
             view.insertSubview(menuViewController.view, at: 0)
             addChild(menuViewController)
-            print("Added MainVC")
+            print("configureMenuViewController() was called")
         }
     }
     
     // MARK: - MainViewControllerDelegate
     func toggleMenu() {
         configureMenuViewController()
-        print("toggleMenu()")
+        print("toggleMenu() was called")
+    }
+    
+    deinit {
+        print("\(type(of: self)) has been deellocated")
     }
 }
