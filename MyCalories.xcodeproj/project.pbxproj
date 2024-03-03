@@ -56,15 +56,39 @@
 		794A7C6F2B9389F4002BA1B5 /* MyCalories */ = {
 			isa = PBXGroup;
 			children = (
-				794A7C702B9389F4002BA1B5 /* AppDelegate.swift */,
-				794A7C722B9389F4002BA1B5 /* SceneDelegate.swift */,
-				794A7C742B9389F4002BA1B5 /* ViewController.swift */,
-				794A7C762B9389F4002BA1B5 /* Main.storyboard */,
+				79561EF92B9470080040B00B /* ViewControllers */,
+				79561EFA2B94701A0040B00B /* Storyboards */,
+				79561EF82B946FEA0040B00B /* Configurations */,
 				794A7C792B9389F6002BA1B5 /* Assets.xcassets */,
-				794A7C7B2B9389F6002BA1B5 /* LaunchScreen.storyboard */,
-				794A7C7E2B9389F6002BA1B5 /* Info.plist */,
 			);
 			path = MyCalories;
+			sourceTree = "<group>";
+		};
+		79561EF82B946FEA0040B00B /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				794A7C702B9389F4002BA1B5 /* AppDelegate.swift */,
+				794A7C722B9389F4002BA1B5 /* SceneDelegate.swift */,
+				794A7C7E2B9389F6002BA1B5 /* Info.plist */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		79561EF92B9470080040B00B /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				794A7C742B9389F4002BA1B5 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		79561EFA2B94701A0040B00B /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				794A7C762B9389F4002BA1B5 /* Main.storyboard */,
+				794A7C7B2B9389F6002BA1B5 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,7 +318,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyCalories/Info.plist;
+				INFOPLIST_FILE = MyCalories/Configurations/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Мои Калории";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -329,7 +353,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyCalories/Info.plist;
+				INFOPLIST_FILE = MyCalories/Configurations/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Мои Калории";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
