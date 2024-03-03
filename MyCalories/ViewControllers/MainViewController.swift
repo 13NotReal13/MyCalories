@@ -17,11 +17,13 @@ final class MainViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("Delegate in ViewDidLoad() in MainVC = \(delegate)")
         print("ViewDidLoad in MainVC was called")
     }
 
     @IBAction func menuBarButtonItemAction(_ sender: UIBarButtonItem) {
         delegate?.toggleMenu()
+        print("Delegate in menuBarButtonAction() = \(delegate)")
 //        print("Menu Tapped")
 //        print(print("Delegate = \(delegate) from menuBarButtonItemAction in MainVC"))
     }

@@ -20,12 +20,13 @@ final class ContainerViewController: UIViewController, MainViewControllerDelegat
     
     func configureMainViewController() {
         let navigationVC = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as? UINavigationController
-        let mainVC = navigationVC?.viewControllers.first as! MainViewController
+        let mainVC = navigationVC?.viewControllers.first as? MainViewController
         
-        mainVC.delegate = self
+        mainVC?.delegate = self
         controller = mainVC
         view.addSubview(controller.view)
         addChild(controller)
+        print("Delegate in CongigVC() = \(mainVC?.delegate)")
         print("configureMainViewController() was called")
     }
 
