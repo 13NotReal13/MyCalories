@@ -7,19 +7,23 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		791D2E7B2B94757E0024C847 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791D2E7A2B94757E0024C847 /* ContainerViewController.swift */; };
+		791D2E7D2B9475850024C847 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791D2E7C2B9475850024C847 /* MenuViewController.swift */; };
 		794A7C712B9389F4002BA1B5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794A7C702B9389F4002BA1B5 /* AppDelegate.swift */; };
 		794A7C732B9389F4002BA1B5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794A7C722B9389F4002BA1B5 /* SceneDelegate.swift */; };
-		794A7C752B9389F4002BA1B5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794A7C742B9389F4002BA1B5 /* ViewController.swift */; };
+		794A7C752B9389F4002BA1B5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 794A7C742B9389F4002BA1B5 /* MainViewController.swift */; };
 		794A7C782B9389F4002BA1B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794A7C762B9389F4002BA1B5 /* Main.storyboard */; };
 		794A7C7A2B9389F6002BA1B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 794A7C792B9389F6002BA1B5 /* Assets.xcassets */; };
 		794A7C7D2B9389F6002BA1B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 794A7C7B2B9389F6002BA1B5 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		791D2E7A2B94757E0024C847 /* ContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
+		791D2E7C2B9475850024C847 /* MenuViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		794A7C6D2B9389F4002BA1B5 /* MyCalories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		794A7C702B9389F4002BA1B5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		794A7C722B9389F4002BA1B5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		794A7C742B9389F4002BA1B5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		794A7C742B9389F4002BA1B5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		794A7C772B9389F4002BA1B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		794A7C792B9389F6002BA1B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		794A7C7C2B9389F6002BA1B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -77,7 +81,9 @@
 		79561EF92B9470080040B00B /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				794A7C742B9389F4002BA1B5 /* ViewController.swift */,
+				791D2E7A2B94757E0024C847 /* ContainerViewController.swift */,
+				794A7C742B9389F4002BA1B5 /* MainViewController.swift */,
+				791D2E7C2B9475850024C847 /* MenuViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -162,8 +168,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				794A7C752B9389F4002BA1B5 /* ViewController.swift in Sources */,
+				794A7C752B9389F4002BA1B5 /* MainViewController.swift in Sources */,
+				791D2E7D2B9475850024C847 /* MenuViewController.swift in Sources */,
 				794A7C712B9389F4002BA1B5 /* AppDelegate.swift in Sources */,
+				791D2E7B2B94757E0024C847 /* ContainerViewController.swift in Sources */,
 				794A7C732B9389F4002BA1B5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
