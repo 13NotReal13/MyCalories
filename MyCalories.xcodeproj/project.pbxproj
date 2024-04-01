@@ -56,15 +56,39 @@
 		792DB1892BBADF4800209193 /* MyCalories */ = {
 			isa = PBXGroup;
 			children = (
-				792DB18A2BBADF4800209193 /* AppDelegate.swift */,
-				792DB18C2BBADF4800209193 /* SceneDelegate.swift */,
-				792DB18E2BBADF4800209193 /* ViewController.swift */,
-				792DB1902BBADF4800209193 /* Main.storyboard */,
+				792DB19F2BBADFE300209193 /* ViewControllers */,
+				792DB1A02BBADFEE00209193 /* Storyboards */,
+				792DB19E2BBADFDC00209193 /* App */,
 				792DB1932BBADF4900209193 /* Assets.xcassets */,
-				792DB1952BBADF4900209193 /* LaunchScreen.storyboard */,
-				792DB1982BBADF4900209193 /* Info.plist */,
 			);
 			path = MyCalories;
+			sourceTree = "<group>";
+		};
+		792DB19E2BBADFDC00209193 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				792DB18A2BBADF4800209193 /* AppDelegate.swift */,
+				792DB18C2BBADF4800209193 /* SceneDelegate.swift */,
+				792DB1982BBADF4900209193 /* Info.plist */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		792DB19F2BBADFE300209193 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				792DB18E2BBADF4800209193 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		792DB1A02BBADFEE00209193 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				792DB1902BBADF4800209193 /* Main.storyboard */,
+				792DB1952BBADF4900209193 /* LaunchScreen.storyboard */,
+			);
+			path = Storyboards;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,22 +318,29 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyCalories/Info.plist;
+				INFOPLIST_FILE = MyCalories/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Мои калории";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -322,22 +353,29 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyCalories/Info.plist;
+				INFOPLIST_FILE = MyCalories/App/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Мои калории";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 0.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
