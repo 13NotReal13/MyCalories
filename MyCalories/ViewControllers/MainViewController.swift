@@ -7,13 +7,86 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
-
+final class MainViewController: UIViewController {
+    
+    @IBOutlet var menuView: UIView!
+    private var menuIsVisible = false
+    
+    @IBOutlet var menuLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet var menuTrailingConstraint: NSLayoutConstraint!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        menuView.layer.cornerRadius = 20
+        setupNavigationBar()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        menuLeadingConstraint.constant = -menuView.frame.size.width
+        menuTrailingConstraint.constant = view.frame.width
+        view.layoutIfNeeded()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        toogleMenu()
+    }
+    
+    @IBAction func menuUIButtonAction() {
+        toogleMenu()
+    }
+    
+    @IBAction func menuBarButtonItemAction(_ sender: UIBarButtonItem) {
+        toogleMenu()
+    }
+    
+    private func toogleMenu() {
+        UIView.animate(withDuration: 0.3) { [unowned self] in
+            if menuIsVisible {
+                menuLeadingConstraint.constant = -menuView.frame.size.width
+                menuTrailingConstraint.constant = view.frame.width
+            } else {
+                menuLeadingConstraint.constant = 0
+                menuTrailingConstraint.constant = 80
+            }
+            view.layoutIfNeeded()
+        }
+        
+        menuIsVisible.toggle()
+    }
+    
+//    let animation = CASpringAnimation(keyPath: "position.x")
+//    animation.fromValue = -menuView.frame.size.width
+//    animation.toValue = 0
+//    animation.duration = animation.settlingDuration // Установка длительности анимации на основе параметров пружины
+//    menuView.layer.add(animation, forKey: "positionXAnimation")
+    
+//    extension UIButton {
+//        func pulsate() {
+//            let pulse = CASpringAnimation(keyPath: "transform.scale")
+//            pulse.fromValue = 0.95
+//            pulse.toValue = 1
+//            pulse.autoreverses = true // повтор анимации
+//            pulse.repeatCount = 2 // количество повторов
+//            pulse.initialVelocity = 0.5 // ускорение
+//            pulse.damping = 0.7 // затянутое торможение
+//            pulse.duration = 0.6 // время итерации одной анимации
+//            
+//            layer.add(pulse, forKey: nil) // forKey - для того, чтобы потом влиять на анимацию или отслеживать её
+//        }
+//    }
 
 }
 
+private extension MainViewController {
+    func setupNavigationBar() {
+        let navBarAppearance = UINavigationBarAppearance()
+        navBarAppearance.backgroundColor = .colorApp
+        navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        
+        navigationController?.navigationBar.standardAppearance = navBarAppearance
+        navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        navigationController?.navigationBar.tintColor = .white
+    }
+}
