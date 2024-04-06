@@ -55,27 +55,6 @@ final class MainViewController: UIViewController {
         
         menuIsVisible.toggle()
     }
-    
-//    let animation = CASpringAnimation(keyPath: "position.x")
-//    animation.fromValue = -menuView.frame.size.width
-//    animation.toValue = 0
-//    animation.duration = animation.settlingDuration // Установка длительности анимации на основе параметров пружины
-//    menuView.layer.add(animation, forKey: "positionXAnimation")
-    
-//    extension UIButton {
-//        func pulsate() {
-//            let pulse = CASpringAnimation(keyPath: "transform.scale")
-//            pulse.fromValue = 0.95
-//            pulse.toValue = 1
-//            pulse.autoreverses = true // повтор анимации
-//            pulse.repeatCount = 2 // количество повторов
-//            pulse.initialVelocity = 0.5 // ускорение
-//            pulse.damping = 0.7 // затянутое торможение
-//            pulse.duration = 0.6 // время итерации одной анимации
-//            
-//            layer.add(pulse, forKey: nil) // forKey - для того, чтобы потом влиять на анимацию или отслеживать её
-//        }
-//    }
 
 }
 
