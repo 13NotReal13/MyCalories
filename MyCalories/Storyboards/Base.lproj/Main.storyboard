@@ -234,7 +234,7 @@
                                 <rect key="frame" x="0.0" y="103" width="393" height="715"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hh4-7p-QAM">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="830.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="715"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="s4J-YN-l7z">
                                                 <rect key="frame" x="16" y="40" width="361" height="142"/>
@@ -243,7 +243,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="361" height="56.666666666666664"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Использовать рекомендуемое значение килокалорий:" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zaH-UC-hP5">
-                                                                <rect key="frame" x="16" y="15.999999999999996" width="266" height="40.666666666666657"/>
+                                                                <rect key="frame" x="16" y="16" width="266" height="40.666666666666657"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="StZ-ZH-Ybd"/>
                                                                 </constraints>
@@ -259,7 +259,7 @@
                                                                 <color key="onTintColor" name="colorApp"/>
                                                                 <color key="thumbTintColor" systemColor="systemGray6Color"/>
                                                                 <connections>
-                                                                    <action selector="caloriesSwitchAction" destination="Bt2-HL-I35" eventType="valueChanged" id="1m3-rR-IGp"/>
+                                                                    <action selector="swithesActions:" destination="Bt2-HL-I35" eventType="valueChanged" id="3IX-uh-Riv"/>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
@@ -277,13 +277,13 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" enabled="NO" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10000" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HK8-kz-F4M">
+                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" enabled="NO" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HK8-kz-F4M">
                                                                 <rect key="frame" x="221" y="20.666666666666686" width="66" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="66" id="pSZ-yb-Rfu"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ккал." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slL-G7-u3R">
                                                                 <rect key="frame" x="297" y="27.666666666666686" width="48" height="20.333333333333329"/>
@@ -330,7 +330,7 @@
                                                                 </constraints>
                                                                 <color key="onTintColor" name="colorApp"/>
                                                                 <connections>
-                                                                    <action selector="bguSwitchAction" destination="Bt2-HL-I35" eventType="valueChanged" id="fLL-lz-Paz"/>
+                                                                    <action selector="swithesActions:" destination="Bt2-HL-I35" eventType="valueChanged" id="Xpt-tr-36B"/>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
@@ -361,14 +361,14 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="proteins" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="999" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lkW-MT-zie">
+                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="proteins" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lkW-MT-zie">
                                                                 <rect key="frame" x="41" y="0.0" width="56" height="34"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="proteins"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="56" id="kmo-TU-Sje"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="г." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PWS-va-Qpp">
                                                                 <rect key="frame" x="106.33333333333333" y="0.0" width="10.666666666666671" height="34"/>
@@ -382,14 +382,14 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" alpha="0.30000001192092896" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="fats" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="999" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vae-De-gQw">
+                                                            <textField opaque="NO" alpha="0.30000001192092896" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="fats" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vae-De-gQw">
                                                                 <rect key="frame" x="158.33333333333334" y="0.0" width="56" height="34"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="fats"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="56" id="vKA-Zl-mSm"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="г." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AGj-Cq-sP1">
                                                                 <rect key="frame" x="223.66666666666666" y="0.0" width="10.666666666666657" height="34"/>
@@ -403,14 +403,14 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" alpha="0.30000001192092896" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="carbohydrates" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="999" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZT8-0V-9gb">
+                                                            <textField opaque="NO" alpha="0.30000001192092896" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="carbohydrates" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZT8-0V-9gb">
                                                                 <rect key="frame" x="269" y="0.0" width="56" height="34"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="carbohydrates"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="56" id="aL8-ht-kuF"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="г." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OAc-Rq-TIP">
                                                                 <rect key="frame" x="334.33333333333331" y="0.0" width="10.666666666666686" height="34"/>
@@ -455,7 +455,7 @@
                                                                 <color key="onTintColor" name="colorApp"/>
                                                                 <color key="thumbTintColor" systemColor="systemGray6Color"/>
                                                                 <connections>
-                                                                    <action selector="waterSwitchAction" destination="Bt2-HL-I35" eventType="valueChanged" id="OnA-SB-4qS"/>
+                                                                    <action selector="swithesActions:" destination="Bt2-HL-I35" eventType="valueChanged" id="tft-3m-e4h"/>
                                                                 </connections>
                                                             </switch>
                                                         </subviews>
@@ -473,13 +473,13 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" enabled="NO" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10000" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mgi-gz-g93">
+                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" enabled="NO" selected="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mgi-gz-g93">
                                                                 <rect key="frame" x="242.33333333333331" y="20.666666666666629" width="66" height="34"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="66" id="Kh4-LT-jRg"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                                <textInputTraits key="textInputTraits"/>
+                                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" enablesReturnKeyAutomatically="YES" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                             </textField>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="мл." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" enabled="NO" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ff-gB-pyl">
                                                                 <rect key="frame" x="318.33333333333331" y="27.666666666666629" width="26.666666666666686" height="20.333333333333329"/>
@@ -510,7 +510,7 @@
                                             <constraint firstAttribute="trailing" secondItem="Axg-8u-Fxw" secondAttribute="trailing" constant="16" id="1Lu-le-5Za"/>
                                             <constraint firstAttribute="trailing" secondItem="s4J-YN-l7z" secondAttribute="trailing" constant="16" id="3j6-EP-mbU"/>
                                             <constraint firstAttribute="trailing" secondItem="MgV-3T-DDx" secondAttribute="trailing" constant="16" id="4Vd-SW-S3Q"/>
-                                            <constraint firstAttribute="bottom" secondItem="MgV-3T-DDx" secondAttribute="bottom" constant="300" id="5af-gg-Csc"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="MgV-3T-DDx" secondAttribute="bottom" constant="16" id="5af-gg-Csc"/>
                                             <constraint firstItem="Axg-8u-Fxw" firstAttribute="leading" secondItem="Hh4-7p-QAM" secondAttribute="leading" constant="16" id="Kiu-w2-ni5"/>
                                             <constraint firstItem="Axg-8u-Fxw" firstAttribute="top" secondItem="s4J-YN-l7z" secondAttribute="bottom" constant="20" id="Ttq-yX-hDT"/>
                                             <constraint firstItem="MgV-3T-DDx" firstAttribute="top" secondItem="Axg-8u-Fxw" secondAttribute="bottom" constant="20" id="dyV-y0-3gr"/>
@@ -599,7 +599,7 @@
             <color red="0.17647058823529413" green="0.58431372549019611" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colorAppAlpha">
-            <color red="0.17647058823529413" green="0.58431372549019611" blue="0.58823529411764708" alpha="0.070000000000000007" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.17647058823529413" green="0.58431372549019611" blue="0.58823529411764708" alpha="0.070000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

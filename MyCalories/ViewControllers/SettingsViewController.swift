@@ -9,6 +9,8 @@ import UIKit
 
 final class SettingsViewController: UIViewController {
     
+    private let storageManager = StorageManager.shared
+    
     @IBOutlet var caloriesSwitch: UISwitch!
     @IBOutlet var caloriesTF: UITextField!
     @IBOutlet var caloriesOnLabel: UILabel!
@@ -26,23 +28,44 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    @IBAction func caloriesSwitchAction() {
+        fetchSettings()
         setupCalories()
-    }
-    
-    @IBAction func bguSwitchAction() {
         setupBgu()
-    }
-    
-    @IBAction func waterSwitchAction() {
         setupWater()
     }
+    
+    @IBAction func swithesActions(_ sender: UISwitch) {
+        switch sender {
+        case caloriesSwitch:
+            setupCalories()
+        case bguSwitch: 
+            setupBgu()
+        default:
+            setupWater()
+        }
+    }
+    
 }
 
 // MARK: - Setup On/Off settings
 extension SettingsViewController {
+    private func fetchSettings() {
+        let settings = storageManager.fetchSettings()
+        caloriesSwitch.isOn = settings.caloriesEnabled
+        bguSwitch.isOn = settings.bguEnabled
+        waterSwitch.isOn = settings.waterEnabled
+    }
+    
+    private func saveSettings() {
+        storageManager.saveSettings(
+            Settings(
+                caloriesEnabled: caloriesSwitch.isOn,
+                bguEnabled: bguSwitch.isOn,
+                waterEnabled: waterSwitch.isOn
+            )
+        )
+    }
+    
     private func setupCalories() {
         if caloriesSwitch.isOn {
             caloriesTF.isEnabled = false
