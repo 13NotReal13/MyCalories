@@ -22,6 +22,7 @@
 		7946F8362BC2ACF0005C3F33 /* UITextField + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8352BC2ACF0005C3F33 /* UITextField + Ext.swift */; };
 		7946F8392BC2B0BE005C3F33 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7946F8382BC2B0BE005C3F33 /* Realm */; };
 		7946F83B2BC2B0BE005C3F33 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7946F83A2BC2B0BE005C3F33 /* RealmSwift */; };
+		7946F8412BC2F914005C3F33 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		7946F8302BC27E30005C3F33 /* AlertControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertControllerFactory.swift; sourceTree = "<group>"; };
 		7946F8332BC28E60005C3F33 /* UIScrollView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Ext.swift"; sourceTree = "<group>"; };
 		7946F8352BC2ACF0005C3F33 /* UITextField + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Ext.swift"; sourceTree = "<group>"; };
+		7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 		792DB1892BBADF4800209193 /* MyCalories */ = {
 			isa = PBXGroup;
 			children = (
+				7946F83F2BC2F904005C3F33 /* Views */,
 				7946F8322BC28E49005C3F33 /* Extensions */,
 				7946F82F2BC27E1C005C3F33 /* Factories */,
 				7946F82C2BC1F6A1005C3F33 /* Services */,
@@ -146,6 +149,14 @@
 				7946F8352BC2ACF0005C3F33 /* UITextField + Ext.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7946F83F2BC2F904005C3F33 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -231,6 +242,7 @@
 				792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */,
 				7946F8312BC27E30005C3F33 /* AlertControllerFactory.swift in Sources */,
 				7946F7EE2BBB1B58005C3F33 /* ProfileViewController.swift in Sources */,
+				7946F8412BC2F914005C3F33 /* CircularProgressBar.swift in Sources */,
 				7946F8282BC068C8005C3F33 /* SettingsViewController.swift in Sources */,
 				7946F8342BC28E60005C3F33 /* UIScrollView + Ext.swift in Sources */,
 				7946F82E2BC1F6AF005C3F33 /* StorageManager.swift in Sources */,

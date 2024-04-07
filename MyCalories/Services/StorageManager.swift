@@ -57,9 +57,17 @@ final class StorageManager {
     
     // MARK: - Realm
     func fetchUserProgramm() -> UserProgramm {
-        let userProgramm = realm.objects(UserProgramm.self).first!
+        var userProgramm = realm.objects(UserProgramm.self).first
         
-        return userProgramm
+        if userProgramm == nil {
+            write {
+                realm.add(UserProgramm())
+            }
+        }
+        
+        userProgramm = realm.objects(UserProgramm.self).first
+        
+        return userProgramm ?? UserProgramm()
     }
     
     func saveUserProgramm(nutrition: Nutrition, newValue: Int) {
