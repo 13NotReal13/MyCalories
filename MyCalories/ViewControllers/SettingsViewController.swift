@@ -139,6 +139,7 @@ extension SettingsViewController {
     }
 }
 
+// MARK: - UITextFieldDelegate
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text, text.count <= 5 else {
