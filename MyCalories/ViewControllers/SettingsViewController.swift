@@ -10,6 +10,7 @@ import UIKit
 final class SettingsViewController: UIViewController {
     
     private let storageManager = StorageManager.shared
+    private var userProgramm: UserProgramm!
     
     @IBOutlet var caloriesSwitch: UISwitch!
     @IBOutlet var caloriesTF: UITextField!
@@ -17,7 +18,10 @@ final class SettingsViewController: UIViewController {
     @IBOutlet var caloriesOffLabels: [UILabel]!
     
     @IBOutlet var bguSwitch: UISwitch!
-    @IBOutlet var bguTFs: [UITextField]!
+    @IBOutlet var proteinsTF: UITextField!
+    @IBOutlet var fatsTF: UITextField!
+    @IBOutlet var carbohydratesTF: UITextField!
+    
     @IBOutlet var bguOnLabel: UILabel!
     @IBOutlet var bguOffLabels: [UILabel]!
     
@@ -36,10 +40,11 @@ final class SettingsViewController: UIViewController {
         setupWater()
         
         caloriesTF.delegate = self
-        bguTFs.forEach { textField in
-            textField.delegate = self
-        }
+        proteinsTF.delegate = self
+        fatsTF.delegate = self
+        carbohydratesTF.delegate = self
         waterTF.delegate = self
+        userProgramm = storageManager.fetchUserProgramm()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -61,7 +66,7 @@ final class SettingsViewController: UIViewController {
     
 }
 
-// MARK: - Setup On/Off settings
+// MARK: - Private Methods
 extension SettingsViewController {
     private func fetchSettings() {
         let settings = storageManager.fetchSettings()
@@ -100,19 +105,23 @@ extension SettingsViewController {
     
     private func setupBgu() {
         if bguSwitch.isOn {
-            bguTFs.forEach { textField in
-                textField.isEnabled = false
-                textField.alpha = 0.3
-            }
+            proteinsTF.isEnabled = false
+            fatsTF.isEnabled = false
+            carbohydratesTF.isEnabled = false
+            proteinsTF.alpha = 0.3
+            fatsTF.alpha = 0.3
+            carbohydratesTF.alpha = 0.3
             bguOnLabel.isEnabled = true
             bguOffLabels.forEach { label in
                 label.isEnabled = false
             }
         } else {
-            bguTFs.forEach { textField in
-                textField.isEnabled = true
-                textField.alpha = 1
-            }
+            proteinsTF.isEnabled = true
+            fatsTF.isEnabled = true
+            carbohydratesTF.isEnabled = true
+            proteinsTF.alpha = 1
+            fatsTF.alpha = 1
+            carbohydratesTF.alpha = 1
             bguOnLabel.isEnabled = false
             bguOffLabels.forEach { label in
                 label.isEnabled = true
@@ -142,7 +151,13 @@ extension SettingsViewController {
 // MARK: - UITextFieldDelegate
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text, text.count <= 5 else {
+        print("did end editing")
+        guard let text = textField.text, text.count <= 4 else {
+            showAlert(
+                withTitle: "Упс..",
+                andMessage: "Превышено допустимое значение",
+                textField: textField
+            )
             return
         }
     }
@@ -150,7 +165,6 @@ extension SettingsViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         if textField == waterTF {
             scrollView.scrollToBottom(animated: true)
-            print("ghdjk")
         }
         
         let keyboardToolbar = UIToolbar()
@@ -174,9 +188,24 @@ extension SettingsViewController: UITextFieldDelegate {
     }
 }
 
-extension UIScrollView {
-    func scrollToBottom(animated: Bool) {
-        let bottomOffset = CGPoint(x: 0, y: contentSize.height - bounds.size.height + contentInset.bottom)
-        setContentOffset(bottomOffset, animated: animated)
+// MARK: - Show Alert
+extension SettingsViewController {
+    func showAlert(withTitle title: String, andMessage message: String, textField: UITextField) {
+        let alertFactory = AlertControllerFactory(title: title, message: message)
+        let alert = alertFactory.createAlert { [unowned self] in
+            switch textField {
+            case self.caloriesTF:
+                self.caloriesTF.text = String(userProgramm.calories)
+            case self.proteinsTF:
+                self.proteinsTF.text = String(userProgramm.proteins)
+            case self.fatsTF:
+                self.fatsTF.text = String(userProgramm.fats)
+            case self.carbohydratesTF:
+                self.carbohydratesTF.text = String(userProgramm.fats)
+            default:
+                self.waterTF.text = "120"
+            }
+        }
+        present(alert, animated: true)
     }
 }

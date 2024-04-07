@@ -16,9 +16,11 @@ final class AlertControllerFactory {
         self.message = message
     }
     
-    func createAlert() -> UIAlertController {
+    func createAlert(completion: @escaping() -> Void) -> UIAlertController {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default)
+        let okButton = UIAlertAction(title: "OK", style: .default) { _ in
+            completion()
+        }
         alert.addAction(okButton)
         
         return alert
