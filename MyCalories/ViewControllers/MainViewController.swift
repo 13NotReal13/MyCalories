@@ -9,12 +9,12 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    @IBOutlet var progressView: UIView!
-    private var progressLabel = UILabel()
     
     @IBOutlet var menuView: UIView!
     @IBOutlet var menuLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var menuTrailingConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var progressView: UIView!
     
     private var menuIsVisible = false
     
@@ -59,74 +59,9 @@ final class MainViewController: UIViewController {
         
         menuIsVisible.toggle()
     }
-    
-    func createProgressBar() {
-        let widthOfView = view.frame.width
-        
-        let circularProgressBar = CircularProgressBar(
-            frame: CGRect(
-                x: widthOfView / 2 - 27,
-                y: progressView.frame.height / 2 - 40,
-                width: 55,
-                height: 55
-            ),
-            progressColor: .cyan
-        )
-        circularProgressBar.progress = 0.62 // Пример значения прогресса
-        progressView.addSubview(circularProgressBar)
-
-        
-        let circularProgressBarTwo = CircularProgressBar(
-            frame: CGRect(
-                x: circularProgressBar.frame.minX - widthOfView / 5 + 5,
-                y: progressView.frame.height / 2 - 40,
-                width: 55,
-                height: 55
-            ),
-            progressColor: .brown
-        )
-        circularProgressBarTwo.progress = 0.48 // Пример значения прогресса
-        progressView.addSubview(circularProgressBarTwo)
-        
-        let circularProgressBarThree = CircularProgressBar(
-            frame: CGRect(
-                x: circularProgressBarTwo.frame.minX - widthOfView / 5 + 5,
-                y: progressView.frame.height / 2 - 40,
-                width: 55,
-                height: 55
-            ),
-            progressColor: .yellow
-        )
-        circularProgressBarThree.progress = 0.51 // Пример значения прогресса
-        progressView.addSubview(circularProgressBarThree)
-        
-        let circularProgressBarFour = CircularProgressBar(
-            frame: CGRect(
-                x: circularProgressBar.frame.minX + widthOfView / 5 - 5,
-                y: progressView.frame.height / 2 - 40,
-                width: 55,
-                height: 55
-            ),
-            progressColor: .magenta
-        )
-        circularProgressBarFour.progress = 0.52 // Пример значения прогресса
-        progressView.addSubview(circularProgressBarFour)
-        
-        let circularProgressBarFive = CircularProgressBar(
-            frame: CGRect(
-                x: circularProgressBarFour.frame.minX + widthOfView / 5 - 5,
-                y: progressView.frame.height / 2 - 40,
-                width: 55,
-                height: 55
-            ),
-            progressColor: .systemBlue
-        )
-        circularProgressBarFive.progress = 0.83 // Пример значения прогресса
-        progressView.addSubview(circularProgressBarFive)
-    }
-
 }
 
+// MARK: - Private Methods
 private extension MainViewController {
     func setupNavigationBar() {
         let navBarAppearance = UINavigationBarAppearance()
@@ -136,5 +71,73 @@ private extension MainViewController {
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         navigationController?.navigationBar.tintColor = .white
+    }
+    
+    func createProgressBar() {
+        let midWidth = Int(view.frame.width / 2)
+        let frameY = Int(progressView.frame.height / 2 - 40)
+        
+        let proteinProgress = CircularProgressBar(
+            frame: CGRect(
+                x: midWidth - 171,
+                y: frameY,
+                width: 55,
+                height: 55
+            ),
+            progressColor: .green
+        )
+        
+        let fatsProgress = CircularProgressBar(
+            frame: CGRect(
+                x: midWidth - 99,
+                y: frameY,
+                width: 55,
+                height: 55
+            ),
+            progressColor: .orange
+        )
+        
+        let carbohydratesProgress = CircularProgressBar(
+            frame: CGRect(
+                x: midWidth - 27,
+                y: frameY,
+                width: 55,
+                height: 55
+            ),
+            progressColor: .cyan
+        )
+        
+        let caloriesProgress = CircularProgressBar(
+            frame: CGRect(
+                x: midWidth + 45,
+                y: frameY,
+                width: 55,
+                height: 55
+            ),
+            progressColor: .yellow
+        )
+        
+        let waterProgress = CircularProgressBar(
+            frame: CGRect(
+                x: midWidth + 117,
+                y: frameY,
+                width: 55,
+                height: 55
+            ),
+            progressColor: .blue
+        )
+        
+        progressView.addSubview(proteinProgress)
+        progressView.addSubview(fatsProgress)
+        progressView.addSubview(carbohydratesProgress)
+        progressView.addSubview(caloriesProgress)
+        progressView.addSubview(waterProgress)
+        
+        // Set Progress
+        proteinProgress.progress = 0.51
+        fatsProgress.progress = 0.64
+        carbohydratesProgress.progress = 0.71
+        caloriesProgress.progress = 0.51
+        waterProgress.progress = 0.87
     }
 }
