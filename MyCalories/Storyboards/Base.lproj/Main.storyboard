@@ -547,6 +547,7 @@
                         <outlet property="caloriesOnLabel" destination="zaH-UC-hP5" id="09m-Lc-4u0"/>
                         <outlet property="caloriesSwitch" destination="HR9-ry-gRP" id="C5v-Qg-B9b"/>
                         <outlet property="caloriesTF" destination="HK8-kz-F4M" id="G3h-Eo-XdT"/>
+                        <outlet property="scrollView" destination="csu-md-feh" id="cKH-up-vbD"/>
                         <outlet property="waterOnLabel" destination="Ad7-Ej-25X" id="60u-G1-thE"/>
                         <outlet property="waterSwitch" destination="dns-1b-NK6" id="jHC-Su-6GG"/>
                         <outlet property="waterTF" destination="mgi-gz-g93" id="vKq-LE-AMt"/>

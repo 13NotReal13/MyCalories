@@ -37,4 +37,18 @@ final class StorageManager {
         userDefaults.setValue(settings.bguEnabled, forKey: bguKey)
         userDefaults.setValue(settings.waterEnabled, forKey: waterKey)
     }
+    
+    func fetchUserProgramm() -> UserProgramm {
+        UserProgramm(
+            calories: 2480,
+            proteins: 220,
+            fats: 129,
+            carbohydrates: 310,
+            water: 1980
+        )
+    }
+    
+    func saveUserProgramm(_ programm: UserProgramm) {
+        
+    }
 }

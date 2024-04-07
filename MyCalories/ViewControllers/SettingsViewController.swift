@@ -26,12 +26,26 @@ final class SettingsViewController: UIViewController {
     @IBOutlet var waterOnLabel: UILabel!
     @IBOutlet var waterOffLabels: [UILabel]!
     
+    @IBOutlet var scrollView: UIScrollView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchSettings()
         setupCalories()
         setupBgu()
         setupWater()
+        
+        caloriesTF.delegate = self
+        bguTFs.forEach { textField in
+            textField.delegate = self
+        }
+        waterTF.delegate = self
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+        print("keyboard hide")
     }
     
     @IBAction func swithesActions(_ sender: UISwitch) {
@@ -122,5 +136,46 @@ extension SettingsViewController {
                 label.isEnabled = true
             }
         }
+    }
+}
+
+extension SettingsViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        guard let text = textField.text, text.count <= 5 else {
+            return
+        }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == waterTF {
+            scrollView.scrollToBottom(animated: true)
+            print("ghdjk")
+        }
+        
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        textField.inputAccessoryView = keyboardToolbar
+        
+        let saveButton = UIBarButtonItem(
+            title: "Сохранить",
+            style: .done,
+            target: textField,
+            action: #selector(resignFirstResponder)
+        )
+        
+        let flexButton = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
+        
+        keyboardToolbar.items = [flexButton, saveButton]
+    }
+}
+
+extension UIScrollView {
+    func scrollToBottom(animated: Bool) {
+        let bottomOffset = CGPoint(x: 0, y: contentSize.height - bounds.size.height + contentInset.bottom)
+        setContentOffset(bottomOffset, animated: animated)
     }
 }
