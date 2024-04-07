@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class SettingsViewController: UIViewController {
     
@@ -34,13 +35,14 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchSettings()
-        setupCalories()
-        setupBgu()
-        setupWater()
-        setTextFields()
-        
         userProgramm = storageManager.fetchUserProgramm()
+        
+        fetchSettings()
+        setCalories()
+        setBgu()
+        setWater()
+        setTextFields()
+        setUserProgramm()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -52,14 +54,15 @@ final class SettingsViewController: UIViewController {
     @IBAction func swithesActions(_ sender: UISwitch) {
         switch sender {
         case caloriesSwitch:
-            setupCalories()
+            setCalories()
         case bguSwitch: 
-            setupBgu()
+            setBgu()
         default:
-            setupWater()
+            setWater()
         }
+        
+        saveSettings()
     }
-    
 }
 
 // MARK: - Private Methods
@@ -83,6 +86,8 @@ extension SettingsViewController {
         caloriesSwitch.isOn = settings.caloriesEnabled
         bguSwitch.isOn = settings.bguEnabled
         waterSwitch.isOn = settings.waterEnabled
+        
+        print(settings)
     }
     
     private func saveSettings() {
@@ -95,7 +100,15 @@ extension SettingsViewController {
         )
     }
     
-    private func setupCalories() {
+    private func setUserProgramm() {
+        caloriesTF.text = String(userProgramm.calories)
+        proteinsTF.text = String(userProgramm.proteins)
+        fatsTF.text = String(userProgramm.fats)
+        carbohydratesTF.text = String(userProgramm.carbohydrates)
+        waterTF.text = String(userProgramm.water)
+    }
+    
+    private func setCalories() {
         if caloriesSwitch.isOn {
             caloriesTF.isEnabled = false
             caloriesTF.alpha = 0.3
@@ -113,7 +126,7 @@ extension SettingsViewController {
         }
     }
     
-    private func setupBgu() {
+    private func setBgu() {
         if bguSwitch.isOn {
             proteinsTF.isEnabled = false
             fatsTF.isEnabled = false
@@ -139,7 +152,7 @@ extension SettingsViewController {
         }
     }
     
-    private func setupWater() {
+    private func setWater() {
         if waterSwitch.isOn {
             waterTF.isEnabled = false
             waterTF.alpha = 0.3
@@ -156,6 +169,21 @@ extension SettingsViewController {
             }
         }
     }
+    
+    private func getNutrition(fromTextField textField: UITextField) -> Nutrition {
+        switch textField {
+        case caloriesTF:
+            return .calories
+        case proteinsTF:
+            return .proteins
+        case fatsTF:
+            return .fats
+        case carbohydratesTF:
+            return .carbohydrates
+        default:
+            return .water
+        }
+    }
 }
 
 // MARK: - UITextFieldDelegate
@@ -168,6 +196,12 @@ extension SettingsViewController: UITextFieldDelegate {
                 textField: textField
             )
             return
+        }
+        
+        if let newValue = Int(text) {
+            textField.text = String(newValue)
+            let nutrition = getNutrition(fromTextField: textField)
+            storageManager.saveUserProgramm(nutrition: nutrition, newValue: newValue)
         }
         
         if textField == waterTF {
@@ -209,15 +243,15 @@ extension SettingsViewController {
         let alert = alertFactory.createAlert { [unowned self] in
             switch textField {
             case self.caloriesTF:
-                self.caloriesTF.text = String(userProgramm.calories)
+                self.caloriesTF.text = String(userProgramm?.calories ?? 0)
             case self.proteinsTF:
-                self.proteinsTF.text = String(userProgramm.proteins)
+                self.proteinsTF.text = String(userProgramm?.proteins ?? 0)
             case self.fatsTF:
-                self.fatsTF.text = String(userProgramm.fats)
+                self.fatsTF.text = String(userProgramm?.fats ?? 0)
             case self.carbohydratesTF:
-                self.carbohydratesTF.text = String(userProgramm.fats)
+                self.carbohydratesTF.text = String(userProgramm?.fats ?? 0)
             default:
-                self.waterTF.text = String(userProgramm.water)
+                self.waterTF.text = String(userProgramm?.water ?? 0)
                 scrollView.scrollToTop(animated: true)
             }
         }

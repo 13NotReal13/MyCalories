@@ -69,3 +69,70 @@ private extension MainViewController {
         navigationController?.navigationBar.tintColor = .white
     }
 }
+
+
+
+class CircularProgressBar: UIView {
+    private let progressLayer = CAShapeLayer()
+    private let trackLayer = CAShapeLayer()
+    
+    var progressColor: UIColor = .green {
+        didSet {
+            progressLayer.strokeColor = progressColor.cgColor
+        }
+    }
+    
+    var trackColor: UIColor = .lightGray {
+        didSet {
+            trackLayer.strokeColor = trackColor.cgColor
+        }
+    }
+    
+    var lineWidth: CGFloat = 10 {
+        didSet {
+            progressLayer.lineWidth = lineWidth
+            trackLayer.lineWidth = lineWidth
+        }
+    }
+    
+    var progress: CGFloat = 0 {
+        didSet {
+            updateProgress()
+        }
+    }
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupLayers()
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        setupLayers()
+    }
+    
+    private func setupLayers() {
+        let center = CGPoint(x: bounds.midX, y: bounds.midY)
+        let circularPath = UIBezierPath(arcCenter: center, radius: bounds.width/2 - lineWidth/2, startAngle: -CGFloat.pi / 2, endAngle: 2 * CGFloat.pi - CGFloat.pi / 2, clockwise: true)
+        
+        trackLayer.path = circularPath.cgPath
+        trackLayer.fillColor = UIColor.clear.cgColor
+        trackLayer.strokeColor = trackColor.cgColor
+        trackLayer.lineWidth = lineWidth
+        trackLayer.lineCap = .round
+        
+        progressLayer.path = circularPath.cgPath
+        progressLayer.fillColor = UIColor.clear.cgColor
+        progressLayer.strokeColor = progressColor.cgColor
+        progressLayer.lineWidth = lineWidth
+        progressLayer.lineCap = .round
+        progressLayer.strokeEnd = 0
+        
+        layer.addSublayer(trackLayer)
+        layer.addSublayer(progressLayer)
+    }
+    
+    private func updateProgress() {
+        progressLayer.strokeEnd = progress
+    }
+}
