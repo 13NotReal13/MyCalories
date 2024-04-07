@@ -38,12 +38,8 @@ final class SettingsViewController: UIViewController {
         setupCalories()
         setupBgu()
         setupWater()
+        setTextFields()
         
-        caloriesTF.delegate = self
-        proteinsTF.delegate = self
-        fatsTF.delegate = self
-        carbohydratesTF.delegate = self
-        waterTF.delegate = self
         userProgramm = storageManager.fetchUserProgramm()
     }
     
@@ -68,6 +64,20 @@ final class SettingsViewController: UIViewController {
 
 // MARK: - Private Methods
 extension SettingsViewController {
+    private func setTextFields() {
+        caloriesTF.delegate = self
+        proteinsTF.delegate = self
+        fatsTF.delegate = self
+        carbohydratesTF.delegate = self
+        waterTF.delegate = self
+        
+        caloriesTF.setCornerRadius()
+        proteinsTF.setCornerRadius()
+        fatsTF.setCornerRadius()
+        carbohydratesTF.setCornerRadius()
+        waterTF.setCornerRadius()
+    }
+    
     private func fetchSettings() {
         let settings = storageManager.fetchSettings()
         caloriesSwitch.isOn = settings.caloriesEnabled
@@ -151,15 +161,19 @@ extension SettingsViewController {
 // MARK: - UITextFieldDelegate
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        print("did end editing")
         guard let text = textField.text, text.count <= 4 else {
             showAlert(
                 withTitle: "Упс..",
-                andMessage: "Превышено допустимое значение",
+                andMessage: "Максимально допустимое значение: 9999",
                 textField: textField
             )
             return
         }
+        
+        if textField == waterTF {
+            scrollView.scrollToTop(animated: true)
+        }
+        
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -203,7 +217,8 @@ extension SettingsViewController {
             case self.carbohydratesTF:
                 self.carbohydratesTF.text = String(userProgramm.fats)
             default:
-                self.waterTF.text = "120"
+                self.waterTF.text = String(userProgramm.water)
+                scrollView.scrollToTop(animated: true)
             }
         }
         present(alert, animated: true)
