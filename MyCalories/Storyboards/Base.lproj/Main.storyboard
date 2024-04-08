@@ -231,6 +231,13 @@
                                                 <constraint firstAttribute="bottom" secondItem="c8q-7l-AKT" secondAttribute="bottom" id="n4r-D0-ni5"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="caloriesProductLabel" destination="FgY-v1-oAg" id="0Bj-T2-H3y"/>
+                                            <outlet property="carbohydratesProductLabel" destination="xAB-QI-u3h" id="VR4-Mg-oJt"/>
+                                            <outlet property="fatsProductLabel" destination="PNC-oY-jAP" id="9so-Mv-D1g"/>
+                                            <outlet property="productNameLabel" destination="7JG-lx-O9x" id="4Ov-Gx-vNH"/>
+                                            <outlet property="proteinProductLabel" destination="DP1-nz-aL3" id="Mc3-MN-Cvp"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>

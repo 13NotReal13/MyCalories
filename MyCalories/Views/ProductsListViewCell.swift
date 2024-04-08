@@ -9,6 +9,12 @@ import UIKit
 
 final class ProductsListViewCell: UITableViewCell {
 
+    @IBOutlet var productNameLabel: UILabel!
+    @IBOutlet var proteinProductLabel: UILabel!
+    @IBOutlet var fatsProductLabel: UILabel!
+    @IBOutlet var carbohydratesProductLabel: UILabel!
+    @IBOutlet var caloriesProductLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
