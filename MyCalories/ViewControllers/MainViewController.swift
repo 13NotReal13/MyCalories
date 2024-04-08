@@ -16,6 +16,17 @@ final class MainViewController: UIViewController {
     @IBOutlet var progressView: UIView!
     
     private var menuIsVisible = false
+    private var products: [Product] = [
+        Product(value: ["Арбуз", 13, 21, 11, 120,]),
+        Product(value: ["Сметана из магазина", 12, 124, 32, 76,]),
+        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+        Product(value: ["Крыжовник", 35, 7, 21, 240,])
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -139,5 +150,27 @@ private extension MainViewController {
         carbohydratesProgress.progress = 0.71
         caloriesProgress.progress = 0.51
         waterProgress.progress = 0.87
+    }
+}
+
+extension MainViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        products.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "productsCell",
+            for: indexPath
+        ) as? ProductsListViewCell
+        
+        let product = products[indexPath.row]
+        cell?.productNameLabel.text = product.title
+        cell?.proteinProductLabel.text = "БЕЛКИ: \(product.protein)"
+        cell?.fatsProductLabel.text = "ЖИРЫ: \(product.fats)"
+        cell?.carbohydratesProductLabel.text = "УГЛЕВОДЫ: \(product.carbohydrates)"
+        cell?.caloriesProductLabel.text = "ККАЛ: \(product.calories) НА 100 Г."
+        
+        return cell ?? UITableViewCell()
     }
 }
