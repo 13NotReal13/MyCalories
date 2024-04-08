@@ -23,6 +23,7 @@
 		7946F8392BC2B0BE005C3F33 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7946F8382BC2B0BE005C3F33 /* Realm */; };
 		7946F83B2BC2B0BE005C3F33 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7946F83A2BC2B0BE005C3F33 /* RealmSwift */; };
 		7946F8412BC2F914005C3F33 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */; };
+		7946F8432BC44B61005C3F33 /* ProductsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		7946F8332BC28E60005C3F33 /* UIScrollView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Ext.swift"; sourceTree = "<group>"; };
 		7946F8352BC2ACF0005C3F33 /* UITextField + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Ext.swift"; sourceTree = "<group>"; };
 		7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
+		7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +157,7 @@
 			isa = PBXGroup;
 			children = (
 				7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */,
+				7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -241,6 +244,7 @@
 				792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */,
 				792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */,
 				7946F8312BC27E30005C3F33 /* AlertControllerFactory.swift in Sources */,
+				7946F8432BC44B61005C3F33 /* ProductsListViewCell.swift in Sources */,
 				7946F7EE2BBB1B58005C3F33 /* ProfileViewController.swift in Sources */,
 				7946F8412BC2F914005C3F33 /* CircularProgressBar.swift in Sources */,
 				7946F8282BC068C8005C3F33 /* SettingsViewController.swift in Sources */,

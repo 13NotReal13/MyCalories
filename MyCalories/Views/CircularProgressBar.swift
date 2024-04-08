@@ -87,7 +87,6 @@ final class CircularProgressBar: UIView {
     private func updateProgress() {
         progressLayer.strokeEnd = progress
         progressLabel.text = "\(Int(progress * 100))%"
-//        progressLabel.text = "100%"
     }
 }
 

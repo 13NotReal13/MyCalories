@@ -9,7 +9,6 @@ import UIKit
 
 final class MainViewController: UIViewController {
     
-    
     @IBOutlet var menuView: UIView!
     @IBOutlet var menuLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var menuTrailingConstraint: NSLayoutConstraint!
@@ -45,6 +44,10 @@ final class MainViewController: UIViewController {
         toogleMenu()
     }
     
+}
+
+// MARK: - Private Methods
+private extension MainViewController {
     private func toogleMenu() {
         UIView.animate(withDuration: 0.3) { [unowned self] in
             if menuIsVisible {
@@ -59,10 +62,7 @@ final class MainViewController: UIViewController {
         
         menuIsVisible.toggle()
     }
-}
-
-// MARK: - Private Methods
-private extension MainViewController {
+    
     func setupNavigationBar() {
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.backgroundColor = .colorApp
