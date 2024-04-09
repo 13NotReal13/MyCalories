@@ -13,9 +13,10 @@ final class ProductsList: Object {
 }
 
 final class Product: Object {
-    @Persisted var title = ""
+    @Persisted var name = ""
     @Persisted var protein = 0.0
     @Persisted var fats = 0.0
     @Persisted var carbohydrates = 0.0
     @Persisted var calories = 0.0
+    @Persisted var color = ".colorApp"
 }

@@ -32,6 +32,8 @@ final class StorageManager {
         } catch {
             fatalError("Failed to initialize Realm: \(error)")
         }
+        
+        print("Realm database path: \(realm.configuration.fileURL?.path ?? "Unknown")")
     }
     
     //  MARK: - UserDefaults

@@ -165,7 +165,8 @@ extension MainViewController: UITableViewDataSource {
         ) as? ProductsListViewCell
         
         let product = products[indexPath.row]
-        cell?.productNameLabel.text = product.title
+        cell?.productNameLabel.text = product.name
+        cell?.productNameLabel.textColor = .textColorApp
         cell?.proteinProductLabel.text = "БЕЛКИ: \(product.protein)"
         cell?.fatsProductLabel.text = "ЖИРЫ: \(product.fats)"
         cell?.carbohydratesProductLabel.text = "УГЛЕВОДЫ: \(product.carbohydrates)"
