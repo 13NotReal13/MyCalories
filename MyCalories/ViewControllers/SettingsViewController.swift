@@ -35,7 +35,7 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userProgramm = storageManager.fetchUserProgramm()
+        userProgramm = storageManager.fetchUserProgrammFromDeviceRealm()
         
         fetchSettings()
         setCalories()

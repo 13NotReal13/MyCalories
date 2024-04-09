@@ -88,7 +88,7 @@
 				7946F82F2BC27E1C005C3F33 /* Factories */,
 				7946F8322BC28E49005C3F33 /* Extensions */,
 				792DB19E2BBADFDC00209193 /* App */,
-				792DB1932BBADF4900209193 /* Assets.xcassets */,
+				7946F84B2BC5AE6C005C3F33 /* Resources */,
 			);
 			path = MyCalories;
 			sourceTree = "<group>";
@@ -163,6 +163,14 @@
 				7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		7946F84B2BC5AE6C005C3F33 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				792DB1932BBADF4900209193 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

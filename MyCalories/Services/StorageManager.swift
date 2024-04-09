@@ -24,17 +24,19 @@ final class StorageManager {
     private let bguKey = "bguEnabled"
     private let waterKey = "waterEnabled"
     
-    private let realm: Realm
-    
-    private init() {
-        do {
-            realm = try Realm()
-        } catch {
-            fatalError("Failed to initialize Realm: \(error)")
-        }
-        
-        print("Realm database path: \(realm.configuration.fileURL?.path ?? "Unknown")")
+    private var projectRealmConfiguration: Realm.Configuration {
+        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let projectRealmURL = documentsDirectoryURL.appendingPathComponent("userProducts.realm")
+        return Realm.Configuration(fileURL: projectRealmURL)
     }
+    
+    private var deviceRealmConfiguration: Realm.Configuration {
+        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("default.realm")
+        return Realm.Configuration(fileURL: deviceRealmURL)
+    }
+    
+    private init() {}
     
     //  MARK: - UserDefaults
     func fetchSettings() -> Settings {
@@ -58,11 +60,42 @@ final class StorageManager {
     }
     
     // MARK: - Realm
-    func fetchUserProgramm() -> UserProgramm {
+    // Метод для получения пути к базе данных Realm на устройстве пользователя
+    private func getDeviceRealmURL() -> URL {
+        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return documentsDirectoryURL.appendingPathComponent("default.realm")
+    }
+    
+    // Метод для получения базы данных Realm проекта
+    private func getProjectRealm() -> Realm {
+        let realm: Realm
+        do {
+            realm = try Realm(configuration: projectRealmConfiguration)
+        } catch {
+            fatalError("Failed to initialize Project Realm: \(error)")
+        }
+        
+        return realm
+    }
+    
+    // Метод для получения базы данных Realm на устройстве пользователя
+    private func getDeviceRealm() -> Realm {
+        let realm: Realm
+        do {
+            realm = try Realm(configuration: deviceRealmConfiguration)
+        } catch {
+            fatalError("Failed to initialize Device Realm: \(error)")
+        }
+        
+        return realm
+    }
+    
+    func fetchUserProgrammFromDeviceRealm() -> UserProgramm {
+        let realm = getDeviceRealm()
         var userProgramm = realm.objects(UserProgramm.self).first
         
         if userProgramm == nil {
-            write {
+            writeDeviceRealm {
                 realm.add(UserProgramm())
             }
         }
@@ -73,9 +106,9 @@ final class StorageManager {
     }
     
     func saveUserProgramm(nutrition: Nutrition, newValue: Int) {
-        let userProgramm = fetchUserProgramm()
+        let userProgramm = fetchUserProgrammFromDeviceRealm()
         
-        write {
+        writeDeviceRealm {
             switch nutrition {
             case .calories:
                 userProgramm.calories = newValue
@@ -90,9 +123,20 @@ final class StorageManager {
             }
         }
     }
-
     
-    private func write(completion: () -> Void) {
+    private func writeDeviceRealm(completion: () -> Void) {
+        let realm = getDeviceRealm()
+        do {
+            try realm.write {
+                completion()
+            }
+        } catch {
+            print(error)
+        }
+    }
+    
+    private func writeProjectRealm(completion: () -> Void) {
+        let realm = getProjectRealm()
         do {
             try realm.write {
                 completion()
