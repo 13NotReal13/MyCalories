@@ -25,9 +25,10 @@ final class StorageManager {
     private let waterKey = "waterEnabled"
     
     private var projectRealmConfiguration: Realm.Configuration {
-        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let projectRealmURL = documentsDirectoryURL.appendingPathComponent("userProducts.realm")
-        return Realm.Configuration(fileURL: projectRealmURL)
+        let resourcesURL = Bundle.main.resourceURL!
+        let realmFilename = "userProducts.realm"
+        let realmFileURL = resourcesURL.appendingPathComponent(realmFilename)
+        return Realm.Configuration(fileURL: realmFileURL)
     }
     
     private var deviceRealmConfiguration: Realm.Configuration {
@@ -60,10 +61,42 @@ final class StorageManager {
     }
     
     // MARK: - Realm
-    // Метод для получения пути к базе данных Realm на устройстве пользователя
-    private func getDeviceRealmURL() -> URL {
-        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        return documentsDirectoryURL.appendingPathComponent("default.realm")
+    func fetchProductsFromProjectRealm(completion: @escaping((Results<Product>) -> Void)) {
+        let realm = getProjectRealm()
+        completion(realm.objects(Product.self))
+    }
+    
+    func fetchUserProgrammFromDeviceRealm() -> UserProgramm {
+        let realm = getDeviceRealm()
+        var userProgramm = realm.objects(UserProgramm.self).first
+        
+        if userProgramm == nil {
+            writeDeviceRealm {
+                realm.add(UserProgramm())
+            }
+        }
+        
+        userProgramm = realm.objects(UserProgramm.self).first
+        return userProgramm ?? UserProgramm()
+    }
+    
+    func saveUserProgramm(nutrition: Nutrition, newValue: Int) {
+        let userProgramm = fetchUserProgrammFromDeviceRealm()
+        
+        writeDeviceRealm {
+            switch nutrition {
+            case .calories:
+                userProgramm.calories = newValue
+            case .proteins:
+                userProgramm.proteins = newValue
+            case .fats:
+                userProgramm.fats = newValue
+            case .carbohydrates:
+                userProgramm.carbohydrates = newValue
+            case .water:
+                userProgramm.water = newValue
+            }
+        }
     }
     
     // Метод для получения базы данных Realm проекта
@@ -90,40 +123,6 @@ final class StorageManager {
         return realm
     }
     
-    func fetchUserProgrammFromDeviceRealm() -> UserProgramm {
-        let realm = getDeviceRealm()
-        var userProgramm = realm.objects(UserProgramm.self).first
-        
-        if userProgramm == nil {
-            writeDeviceRealm {
-                realm.add(UserProgramm())
-            }
-        }
-        
-        userProgramm = realm.objects(UserProgramm.self).first
-        
-        return userProgramm ?? UserProgramm()
-    }
-    
-    func saveUserProgramm(nutrition: Nutrition, newValue: Int) {
-        let userProgramm = fetchUserProgrammFromDeviceRealm()
-        
-        writeDeviceRealm {
-            switch nutrition {
-            case .calories:
-                userProgramm.calories = newValue
-            case .proteins:
-                userProgramm.proteins = newValue
-            case .fats:
-                userProgramm.fats = newValue
-            case .carbohydrates:
-                userProgramm.carbohydrates = newValue
-            case .water:
-                userProgramm.water = newValue
-            }
-        }
-    }
-    
     private func writeDeviceRealm(completion: () -> Void) {
         let realm = getDeviceRealm()
         do {
@@ -135,14 +134,28 @@ final class StorageManager {
         }
     }
     
-    private func writeProjectRealm(completion: () -> Void) {
-        let realm = getProjectRealm()
-        do {
-            try realm.write {
-                completion()
-            }
-        } catch {
-            print(error)
-        }
-    }
+    //    func createRealmDatabaseInResourcesFolder() {
+    //        // Получаем путь к папке Resources внутри проекта
+    //        guard let resourcesURL = Bundle.main.resourceURL else {
+    //            print("Ошибка: не удалось найти папку Resources")
+    //            return
+    //        }
+    //
+    //        // Определяем URL для файла базы данных в папке Resources
+    //        let realmFileURL = resourcesURL.appendingPathComponent("userProducts.realm")
+    //
+    //        // Создаем объект Realm.Configuration с указанным путем к файлу базы данных
+    //        let config = Realm.Configuration(fileURL: realmFileURL)
+    //
+    //        do {
+    //            // Пытаемся открыть Realm с использованием нашей конфигурации
+    //            let realm = try Realm(configuration: config)
+    //            // Realm успешно создан в папке Resources
+    //            print(realm.configuration.fileURL)
+    //            print("База данных Realm успешно создана в папке Resources")
+    //        } catch {
+    //            // В случае ошибки выводим сообщение об ошибке
+    //            print("Ошибка при создании базы данных Realm: \(error)")
+    //        }
+    //    }
 }

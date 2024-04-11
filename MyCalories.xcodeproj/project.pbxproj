@@ -25,6 +25,11 @@
 		7946F8412BC2F914005C3F33 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */; };
 		7946F8432BC44B61005C3F33 /* ProductsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */; };
 		7946F8492BC455F9005C3F33 /* ProductsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8482BC455F9005C3F33 /* ProductsList.swift */; };
+		7946F8902BC71BBC005C3F33 /* userProducts.realm in Resources */ = {isa = PBXBuildFile; fileRef = 7946F88A2BC71BBC005C3F33 /* userProducts.realm */; };
+		7946F8912BC71BBC005C3F33 /* access_control.control.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F88B2BC71BBC005C3F33 /* access_control.control.mx */; };
+		7946F8922BC71BBC005C3F33 /* access_control.versions.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F88C2BC71BBC005C3F33 /* access_control.versions.mx */; };
+		7946F8932BC71BBC005C3F33 /* access_control.write.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F88D2BC71BBC005C3F33 /* access_control.write.mx */; };
+		7946F8942BC71BBC005C3F33 /* userProducts.realm.lock in Resources */ = {isa = PBXBuildFile; fileRef = 7946F88F2BC71BBC005C3F33 /* userProducts.realm.lock */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +51,11 @@
 		7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListViewCell.swift; sourceTree = "<group>"; };
 		7946F8482BC455F9005C3F33 /* ProductsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsList.swift; sourceTree = "<group>"; };
+		7946F88A2BC71BBC005C3F33 /* userProducts.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = userProducts.realm; sourceTree = "<group>"; };
+		7946F88B2BC71BBC005C3F33 /* access_control.control.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.control.mx; sourceTree = "<group>"; };
+		7946F88C2BC71BBC005C3F33 /* access_control.versions.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.versions.mx; sourceTree = "<group>"; };
+		7946F88D2BC71BBC005C3F33 /* access_control.write.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.write.mx; sourceTree = "<group>"; };
+		7946F88F2BC71BBC005C3F33 /* userProducts.realm.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = userProducts.realm.lock; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,9 +178,22 @@
 		7946F84B2BC5AE6C005C3F33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7946F88A2BC71BBC005C3F33 /* userProducts.realm */,
+				7946F88F2BC71BBC005C3F33 /* userProducts.realm.lock */,
+				7946F88E2BC71BBC005C3F33 /* userProducts.realm.management */,
 				792DB1932BBADF4900209193 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		7946F88E2BC71BBC005C3F33 /* userProducts.realm.management */ = {
+			isa = PBXGroup;
+			children = (
+				7946F88B2BC71BBC005C3F33 /* access_control.control.mx */,
+				7946F88C2BC71BBC005C3F33 /* access_control.versions.mx */,
+				7946F88D2BC71BBC005C3F33 /* access_control.write.mx */,
+			);
+			path = userProducts.realm.management;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,8 +261,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7946F8942BC71BBC005C3F33 /* userProducts.realm.lock in Resources */,
+				7946F8922BC71BBC005C3F33 /* access_control.versions.mx in Resources */,
+				7946F8902BC71BBC005C3F33 /* userProducts.realm in Resources */,
+				7946F8912BC71BBC005C3F33 /* access_control.control.mx in Resources */,
 				792DB1942BBADF4900209193 /* Assets.xcassets in Resources */,
 				792DB1972BBADF4900209193 /* Base in Resources */,
+				7946F8932BC71BBC005C3F33 /* access_control.write.mx in Resources */,
 				792DB1922BBADF4800209193 /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

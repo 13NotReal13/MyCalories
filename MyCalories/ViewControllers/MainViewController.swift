@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 final class MainViewController: UIViewController {
     
@@ -13,26 +14,35 @@ final class MainViewController: UIViewController {
     @IBOutlet var menuLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var menuTrailingConstraint: NSLayoutConstraint!
     
+    @IBOutlet var tableView: UITableView!
     @IBOutlet var progressView: UIView!
     
+    private let storageManager = StorageManager.shared
+    private var products: Results<Product>!
+    
     private var menuIsVisible = false
-    private var products: [Product] = [
-        Product(value: ["Арбуз", 13, 21, 11, 120,]),
-        Product(value: ["Сметана из магазина", 12, 124, 32, 76,]),
-        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-        Product(value: ["Крыжовник", 35, 7, 21, 240,])
-    ]
+//    private var products: [Product] = [
+//        Product(value: ["Арбуз", 13, 21, 11, 120,]),
+//        Product(value: ["Сметана из магазина", 12, 124, 32, 76,]),
+//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
+//        Product(value: ["Крыжовник", 35, 7, 21, 240,])
+//    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         menuView.layer.cornerRadius = 20
         setupNavigationBar()
         createProgressBar()
+        storageManager.fetchProductsFromProjectRealm { [unowned self] productsList in
+            products = productsList
+            tableView.reloadData()
+            print(products.count)
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
