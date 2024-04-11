@@ -43,12 +43,13 @@ final class MainViewController: UIViewController {
         storageManager.fetchProductsFromProjectRealm { [unowned self] productsList in
             products = productsList
             tableView.reloadData()
-            print(products.count)
         }
         
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
+        searchController.searchBar.searchTextField.textColor = .white
+        searchController.searchBar.barTintColor = .white
         navigationItem.searchController = searchController
         definesPresentationContext = true
     }

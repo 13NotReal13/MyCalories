@@ -8,10 +8,6 @@
 import Foundation
 import RealmSwift
 
-final class ProductsList: Object {
-    @Persisted var products = List<Product>()
-}
-
 final class Product: Object {
     @Persisted var name = ""
     @Persisted var protein = 0.0

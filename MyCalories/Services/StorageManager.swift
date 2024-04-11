@@ -24,17 +24,37 @@ final class StorageManager {
     private let bguKey = "bguEnabled"
     private let waterKey = "waterEnabled"
     
-    private var projectRealmConfiguration: Realm.Configuration {
+    private var realmFromProject: Realm {
         let resourcesURL = Bundle.main.resourceURL!
-        let realmFilename = "userProducts.realm"
+        let realmFilename = "productsFromProject.realm"
         let realmFileURL = resourcesURL.appendingPathComponent(realmFilename)
-        return Realm.Configuration(fileURL: realmFileURL)
+        let realmConfig = Realm.Configuration(fileURL: realmFileURL)
+        
+        let realm: Realm
+        do {
+            realm = try Realm(configuration: realmConfig)
+        } catch {
+            fatalError("Failed to initialize Project Realm: \(error)")
+        }
+//        print("Realm from project: \(realm.configuration.fileURL)")
+        
+        return realm
     }
     
-    private var deviceRealmConfiguration: Realm.Configuration {
+    private var realmFromUser: Realm {
         let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("default.realm")
-        return Realm.Configuration(fileURL: deviceRealmURL)
+        let realmConfig = Realm.Configuration(fileURL: deviceRealmURL)
+        
+        let realm: Realm
+        do {
+            realm = try Realm(configuration: realmConfig)
+        } catch {
+            fatalError("Failed to initialize Device Realm: \(error)")
+        }
+//        print("Realm from user: \(realm.configuration.fileURL)")
+        
+        return realm
     }
     
     private init() {}
@@ -62,26 +82,24 @@ final class StorageManager {
     
     // MARK: - Realm
     func fetchProductsFromProjectRealm(completion: @escaping((Results<Product>) -> Void)) {
-        let realm = getProjectRealm()
-        completion(realm.objects(Product.self))
+        completion(realmFromProject.objects(Product.self))
     }
     
-    func fetchUserProgrammFromDeviceRealm() -> UserProgramm {
-        let realm = getDeviceRealm()
-        var userProgramm = realm.objects(UserProgramm.self).first
+    func fetchUserProgrammFromUserRealm() -> UserProgramm {
+        var userProgramm = realmFromUser.objects(UserProgramm.self).first
         
         if userProgramm == nil {
             writeDeviceRealm {
-                realm.add(UserProgramm())
+                realmFromUser.add(UserProgramm())
             }
         }
         
-        userProgramm = realm.objects(UserProgramm.self).first
+        userProgramm = realmFromUser.objects(UserProgramm.self).first
         return userProgramm ?? UserProgramm()
     }
     
     func saveUserProgramm(nutrition: Nutrition, newValue: Int) {
-        let userProgramm = fetchUserProgrammFromDeviceRealm()
+        let userProgramm = fetchUserProgrammFromUserRealm()
         
         writeDeviceRealm {
             switch nutrition {
@@ -99,34 +117,9 @@ final class StorageManager {
         }
     }
     
-    // Метод для получения базы данных Realm проекта
-    private func getProjectRealm() -> Realm {
-        let realm: Realm
-        do {
-            realm = try Realm(configuration: projectRealmConfiguration)
-        } catch {
-            fatalError("Failed to initialize Project Realm: \(error)")
-        }
-        
-        return realm
-    }
-    
-    // Метод для получения базы данных Realm на устройстве пользователя
-    private func getDeviceRealm() -> Realm {
-        let realm: Realm
-        do {
-            realm = try Realm(configuration: deviceRealmConfiguration)
-        } catch {
-            fatalError("Failed to initialize Device Realm: \(error)")
-        }
-        
-        return realm
-    }
-    
     private func writeDeviceRealm(completion: () -> Void) {
-        let realm = getDeviceRealm()
         do {
-            try realm.write {
+            try realmFromUser.write {
                 completion()
             }
         } catch {
@@ -134,28 +127,28 @@ final class StorageManager {
         }
     }
     
-    //    func createRealmDatabaseInResourcesFolder() {
-    //        // Получаем путь к папке Resources внутри проекта
-    //        guard let resourcesURL = Bundle.main.resourceURL else {
-    //            print("Ошибка: не удалось найти папку Resources")
-    //            return
-    //        }
-    //
-    //        // Определяем URL для файла базы данных в папке Resources
-    //        let realmFileURL = resourcesURL.appendingPathComponent("userProducts.realm")
-    //
-    //        // Создаем объект Realm.Configuration с указанным путем к файлу базы данных
-    //        let config = Realm.Configuration(fileURL: realmFileURL)
-    //
-    //        do {
-    //            // Пытаемся открыть Realm с использованием нашей конфигурации
-    //            let realm = try Realm(configuration: config)
-    //            // Realm успешно создан в папке Resources
-    //            print(realm.configuration.fileURL)
-    //            print("База данных Realm успешно создана в папке Resources")
-    //        } catch {
-    //            // В случае ошибки выводим сообщение об ошибке
-    //            print("Ошибка при создании базы данных Realm: \(error)")
-    //        }
-    //    }
+//    func createRealmDatabaseInResourcesFolder() {
+//        // Получаем путь к папке Resources внутри проекта
+//        guard let resourcesURL = Bundle.main.resourceURL else {
+//            print("Ошибка: не удалось найти папку Resources")
+//            return
+//        }
+//        
+//        // Определяем URL для файла базы данных в папке Resources
+//        let realmFileURL = resourcesURL.appendingPathComponent("productsFromProject.realm")
+//        
+//        // Создаем объект Realm.Configuration с указанным путем к файлу базы данных
+//        let config = Realm.Configuration(fileURL: realmFileURL)
+//        
+//        do {
+//            // Пытаемся открыть Realm с использованием нашей конфигурации
+//            let realm = try Realm(configuration: config)
+//            // Realm успешно создан в папке Resources
+//            print(realm.configuration.fileURL)
+//            print("База данных Realm успешно создана в папке Resources")
+//        } catch {
+//            // В случае ошибки выводим сообщение об ошибке
+//            print("Ошибка при создании базы данных Realm: \(error)")
+//        }
+//    }
 }
