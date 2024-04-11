@@ -257,10 +257,10 @@
                                 <rect key="frame" x="0.0" y="103" width="313" height="749"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="7P2-Kk-QIh">
-                                        <rect key="frame" x="16" y="25" width="148" height="271.66666666666669"/>
+                                        <rect key="frame" x="16" y="35" width="281" height="255"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeN-0J-aHE">
-                                                <rect key="frame" x="0.0" y="0.0" width="123.66666666666667" height="34.333333333333336"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="123.66666666666667" height="3"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
                                                 <state key="normal" title="Главная" image="list.bullet" catalog="system"/>
@@ -269,8 +269,20 @@
                                                     <action selector="menuUIButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="Cyz-Mx-b1v"/>
                                                 </connections>
                                             </button>
+                                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2i1-L8-GEN">
+                                                <rect key="frame" x="0.0" y="28" width="281" height="3"/>
+                                                <color key="backgroundColor" name="colorApp"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="3" id="OVa-mq-DHo"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2iQ-jW-k1c">
-                                                <rect key="frame" x="0.0" y="59.333333333333343" width="130" height="34.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="56" width="130" height="3"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="person" catalog="system" title="Профиль" imagePadding="10"/>
@@ -278,14 +290,38 @@
                                                     <segue destination="3C5-33-jXe" kind="show" id="Hge-9V-WHE"/>
                                                 </connections>
                                             </button>
+                                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOZ-HY-Ajw">
+                                                <rect key="frame" x="0.0" y="84" width="281" height="3"/>
+                                                <color key="backgroundColor" name="colorApp"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="3" id="CGY-N2-r24"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gqm-0R-mCd">
-                                                <rect key="frame" x="0.0" y="118.66666666666664" width="129" height="34.333333333333329"/>
+                                                <rect key="frame" x="0.0" y="112" width="129" height="3"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="clock.arrow.circlepath" catalog="system" title="История" imagePadding="10"/>
                                             </button>
+                                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnE-1D-OlL">
+                                                <rect key="frame" x="0.0" y="140" width="281" height="3"/>
+                                                <color key="backgroundColor" name="colorApp"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="3" id="cgq-H0-IkJ"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rn3-Yb-udI">
-                                                <rect key="frame" x="0.0" y="178" width="148" height="34.333333333333343"/>
+                                                <rect key="frame" x="0.0" y="168" width="148" height="3"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="gearshape" catalog="system" title="Настройки" imagePadding="10"/>
@@ -293,19 +329,51 @@
                                                     <segue destination="Bt2-HL-I35" kind="show" id="Nfr-Uf-IAU"/>
                                                 </connections>
                                             </button>
+                                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dgt-ha-Ird">
+                                                <rect key="frame" x="0.0" y="196" width="281" height="3"/>
+                                                <color key="backgroundColor" name="colorApp"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="3" id="tsn-v0-2Lw"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5ch-zA-BZT">
-                                                <rect key="frame" x="0.0" y="237.33333333333331" width="103.66666666666667" height="34.333333333333314"/>
+                                                <rect key="frame" x="0.0" y="224" width="103.66666666666667" height="3"/>
                                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="info.circle" catalog="system" title="F.A.Q." imagePadding="10"/>
                                             </button>
+                                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CvF-SI-HQk">
+                                                <rect key="frame" x="0.0" y="252" width="281" height="3"/>
+                                                <color key="backgroundColor" name="colorApp"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="3" id="YhJ-CN-qky"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstItem="jnE-1D-OlL" firstAttribute="centerX" secondItem="7P2-Kk-QIh" secondAttribute="centerX" id="1FW-uy-Yes"/>
+                                            <constraint firstItem="Dgt-ha-Ird" firstAttribute="centerX" secondItem="7P2-Kk-QIh" secondAttribute="centerX" id="hH9-1P-OeM"/>
+                                            <constraint firstItem="CvF-SI-HQk" firstAttribute="centerX" secondItem="7P2-Kk-QIh" secondAttribute="centerX" id="hJv-Rw-yzv"/>
+                                            <constraint firstItem="2i1-L8-GEN" firstAttribute="centerX" secondItem="7P2-Kk-QIh" secondAttribute="centerX" id="pJE-dK-cxz"/>
+                                            <constraint firstItem="gOZ-HY-Ajw" firstAttribute="centerX" secondItem="7P2-Kk-QIh" secondAttribute="centerX" id="y6C-mA-3q7"/>
+                                        </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.91503845184584331" green="0.997000533380627" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="7P2-Kk-QIh" firstAttribute="top" secondItem="La2-79-89M" secondAttribute="top" constant="25" id="KuE-0Z-M4q"/>
-                                    <constraint firstItem="7P2-Kk-QIh" firstAttribute="leading" secondItem="La2-79-89M" secondAttribute="leading" constant="16" id="iDz-49-RLH"/>
+                                    <constraint firstItem="7P2-Kk-QIh" firstAttribute="leading" secondItem="La2-79-89M" secondAttribute="leading" constant="16" id="6mz-xo-mO2"/>
+                                    <constraint firstAttribute="trailing" secondItem="7P2-Kk-QIh" secondAttribute="trailing" constant="16" id="NnV-Dq-lA0"/>
+                                    <constraint firstItem="7P2-Kk-QIh" firstAttribute="top" secondItem="La2-79-89M" secondAttribute="top" constant="35" id="bBR-dC-I66"/>
                                 </constraints>
                             </view>
                         </subviews>
