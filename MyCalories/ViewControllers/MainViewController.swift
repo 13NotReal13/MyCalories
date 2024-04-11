@@ -16,42 +16,29 @@ final class MainViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var progressView: UIView!
+    @IBOutlet var searchBar: UISearchBar!
     
+    // MARK: - Private Properties
     private let storageManager = StorageManager.shared
-    private var products: Results<Product>!
     
-    private var searchController = UISearchController(searchResultsController: nil)
-    private var filteredProducts: [Product] = []
-    private var searchBarIsEmpty: Bool {
-        guard let text = searchController.searchBar.text else {
-            return false
-        }
-        
-        return text.isEmpty
-    }
-    private var isFiltering: Bool {
-        searchController.isActive && !searchBarIsEmpty
-    }
+    private var products: Results<Product>!
+    private var filteredProducts: Results<Product>!
     
     private var menuIsVisible = false
+    private var overlayView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        menuView.layer.cornerRadius = 20
         setupNavigationBar()
         createProgressBar()
+        addOverlayView()
+        roundMenuCorners()
+        
         storageManager.fetchProductsFromProjectRealm { [unowned self] productsList in
             products = productsList
+            filteredProducts = products
             tableView.reloadData()
         }
-        
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Поиск"
-        searchController.searchBar.searchTextField.textColor = .white
-        searchController.searchBar.barTintColor = .white
-        navigationItem.searchController = searchController
-        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -78,19 +65,51 @@ final class MainViewController: UIViewController {
 
 // MARK: - Private Methods
 private extension MainViewController {
+    func roundMenuCorners() {
+        // Создаем маску для скругления углов
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = menuView.bounds
+        
+        // Создаем путь для скругления углов
+        let roundedRect = CGRect(
+            origin: CGPoint(x: 0, y: 0),
+            size: CGSize(width: menuView.bounds.width, height: menuView.bounds.height)
+        )
+        let path = UIBezierPath(
+            roundedRect: roundedRect,
+            byRoundingCorners: [.topRight, .bottomRight],
+            cornerRadii: CGSize(width: 20, height: 20) // Радиус скругления
+        )
+        maskLayer.path = path.cgPath
+        
+        // Устанавливаем маску для меню
+        menuView.layer.mask = maskLayer
+    }
+    
     private func toogleMenu() {
         UIView.animate(withDuration: 0.3) { [unowned self] in
             if menuIsVisible {
                 menuLeadingConstraint.constant = -menuView.frame.size.width
                 menuTrailingConstraint.constant = view.frame.width
+                overlayView.alpha = 0
             } else {
                 menuLeadingConstraint.constant = 0
                 menuTrailingConstraint.constant = 80
+                overlayView.alpha = 1
             }
             view.layoutIfNeeded()
         }
         
         menuIsVisible.toggle()
+    }
+    
+    func addOverlayView() {
+        overlayView = UIView(frame: view.bounds)
+        overlayView.backgroundColor = UIColor.black.withAlphaComponent(0.5)
+        overlayView.alpha = 0
+        view.addSubview(overlayView)
+        view.bringSubviewToFront(overlayView)
+        view.bringSubviewToFront(menuView)
     }
     
     func setupNavigationBar() {
@@ -175,7 +194,7 @@ private extension MainViewController {
 // MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        products.count
+        filteredProducts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -184,9 +203,9 @@ extension MainViewController: UITableViewDataSource {
             for: indexPath
         ) as? ProductsListViewCell
         
-        let product = products[indexPath.row]
+        let product = filteredProducts[indexPath.row]
         cell?.productNameLabel.text = product.name
-        cell?.productNameLabel.textColor = .textColorApp
+        cell?.productNameLabel.textColor = UIColor(named: product.color)
         cell?.proteinProductLabel.text = "БЕЛКИ: \(product.protein)"
         cell?.fatsProductLabel.text = "ЖИРЫ: \(product.fats)"
         cell?.carbohydratesProductLabel.text = "УГЛЕВОДЫ: \(product.carbohydrates)"
@@ -196,17 +215,11 @@ extension MainViewController: UITableViewDataSource {
     }
 }
 
-// MARK: - UISearchResultsUpdating
-extension MainViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-    }
-    
-    private func filterContentForSearchText(_ searchText: String) {
-        
-        filteredProducts = products.filter({ (products: Product) -> Bool in
-            return products.name.lowercased().contains(searchText.lowercased())
-        })
+// MARK: - UISearchBarDelegate
+extension MainViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        let predicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
+        filteredProducts = searchText.isEmpty ? products : products.filter(predicate)
         tableView.reloadData()
     }
 }
