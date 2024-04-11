@@ -20,18 +20,20 @@ final class MainViewController: UIViewController {
     private let storageManager = StorageManager.shared
     private var products: Results<Product>!
     
+    private var searchController = UISearchController(searchResultsController: nil)
+    private var filteredProducts: [Product] = []
+    private var searchBarIsEmpty: Bool {
+        guard let text = searchController.searchBar.text else {
+            return false
+        }
+        
+        return text.isEmpty
+    }
+    private var isFiltering: Bool {
+        searchController.isActive && !searchBarIsEmpty
+    }
+    
     private var menuIsVisible = false
-//    private var products: [Product] = [
-//        Product(value: ["Арбуз", 13, 21, 11, 120,]),
-//        Product(value: ["Сметана из магазина", 12, 124, 32, 76,]),
-//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-//        Product(value: ["Крыжовник", 35, 7, 21, 240,]),
-//        Product(value: ["Крыжовник", 35, 7, 21, 240,])
-//    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +45,12 @@ final class MainViewController: UIViewController {
             tableView.reloadData()
             print(products.count)
         }
+        
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = searchController
+        definesPresentationContext = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -163,6 +171,7 @@ private extension MainViewController {
     }
 }
 
+// MARK: - UITableViewDataSource
 extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         products.count
@@ -183,5 +192,20 @@ extension MainViewController: UITableViewDataSource {
         cell?.caloriesProductLabel.text = "ККАЛ: \(product.calories) НА 100 Г."
         
         return cell ?? UITableViewCell()
+    }
+}
+
+// MARK: - UISearchResultsUpdating
+extension MainViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+    }
+    
+    private func filterContentForSearchText(_ searchText: String) {
+        
+        filteredProducts = products.filter({ (products: Product) -> Bool in
+            return products.name.lowercased().contains(searchText.lowercased())
+        })
+        tableView.reloadData()
     }
 }
