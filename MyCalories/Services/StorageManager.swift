@@ -28,7 +28,7 @@ final class StorageManager {
         let resourcesURL = Bundle.main.resourceURL!
         let realmFilename = "productsFromProject.realm"
         let realmFileURL = resourcesURL.appendingPathComponent(realmFilename)
-        let realmConfig = Realm.Configuration(fileURL: realmFileURL)
+        let realmConfig = Realm.Configuration(fileURL: realmFileURL, readOnly: true)
         
         let realm: Realm
         do {
