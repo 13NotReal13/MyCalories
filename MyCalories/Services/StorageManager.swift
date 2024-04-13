@@ -24,7 +24,7 @@ final class StorageManager {
     private let bguKey = "bguEnabled"
     private let waterKey = "waterEnabled"
     
-    private var realmFromProject: Realm {
+    private var realmProject: Realm {
         let resourcesURL = Bundle.main.resourceURL!
         let realmFilename = "productsFromProject.realm"
         let realmFileURL = resourcesURL.appendingPathComponent(realmFilename)
@@ -41,7 +41,7 @@ final class StorageManager {
         return realm
     }
     
-    private var realmFromDevice: Realm {
+    private var realmDevice: Realm {
         let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("default.realm")
         let realmConfig = Realm.Configuration(fileURL: deviceRealmURL)
@@ -83,24 +83,24 @@ final class StorageManager {
     // MARK: - Realm
     // User Programm
     func fetchProductsFromProjectRealm(completion: @escaping((Results<Product>) -> Void)) {
-        completion(realmFromProject.objects(Product.self))
+        completion(realmProject.objects(Product.self))
     }
     
-    func fetchUserProgrammFromUserRealm() -> UserProgramm {
-        var userProgramm = realmFromDevice.objects(UserProgramm.self).first
+    func fetchUserProgramm() -> UserProgramm {
+        var userProgramm = realmDevice.objects(UserProgramm.self).first
         
         if userProgramm == nil {
             writeDeviceRealm {
-                realmFromDevice.add(UserProgramm())
+                realmDevice.add(UserProgramm())
             }
         }
         
-        userProgramm = realmFromDevice.objects(UserProgramm.self).first
+        userProgramm = realmDevice.objects(UserProgramm.self).first
         return userProgramm ?? UserProgramm()
     }
     
     func saveUserProgramm(nutrition: Nutrition, newValue: Int) {
-        let userProgramm = fetchUserProgrammFromUserRealm()
+        let userProgramm = fetchUserProgramm()
         
         writeDeviceRealm {
             switch nutrition {
@@ -120,7 +120,7 @@ final class StorageManager {
     
     // Person
     func fetchPerson() -> Person? {
-        realmFromDevice.objects(Person.self).first
+        realmDevice.objects(Person.self).first
     }
     
     func savePerson(_ person: Person) {
@@ -132,14 +132,14 @@ final class StorageManager {
                 existingPerson.activity = person.activity
                 existingPerson.goal = person.goal
             } else {
-                realmFromDevice.add(person)
+                realmDevice.add(person)
             }
         }
     }
     
     private func writeDeviceRealm(completion: () -> Void) {
         do {
-            try realmFromDevice.write {
+            try realmDevice.write {
                 completion()
             }
         } catch {
