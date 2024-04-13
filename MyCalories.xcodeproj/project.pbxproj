@@ -30,6 +30,7 @@
 		7946F8C92BCA7140005C3F33 /* access_control.control.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C32BCA7140005C3F33 /* access_control.control.mx */; };
 		7946F8CA2BCA7140005C3F33 /* access_control.versions.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C42BCA7140005C3F33 /* access_control.versions.mx */; };
 		7946F8CB2BCA7140005C3F33 /* access_control.write.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C52BCA7140005C3F33 /* access_control.write.mx */; };
+		7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CC2BCA9904005C3F33 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		7946F8C32BCA7140005C3F33 /* access_control.control.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.control.mx; sourceTree = "<group>"; };
 		7946F8C42BCA7140005C3F33 /* access_control.versions.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.versions.mx; sourceTree = "<group>"; };
 		7946F8C52BCA7140005C3F33 /* access_control.write.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.write.mx; sourceTree = "<group>"; };
+		7946F8CC2BCA9904005C3F33 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +139,7 @@
 			children = (
 				7946F82A2BC1F630005C3F33 /* Settings.swift */,
 				7946F8482BC455F9005C3F33 /* ProductsList.swift */,
+				7946F8CC2BCA9904005C3F33 /* Person.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -283,6 +286,7 @@
 				792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */,
 				792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */,
 				7946F8312BC27E30005C3F33 /* AlertControllerFactory.swift in Sources */,
+				7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */,
 				7946F8432BC44B61005C3F33 /* ProductsListViewCell.swift in Sources */,
 				7946F8492BC455F9005C3F33 /* ProductsList.swift in Sources */,
 				7946F7EE2BBB1B58005C3F33 /* ProfileViewController.swift in Sources */,
