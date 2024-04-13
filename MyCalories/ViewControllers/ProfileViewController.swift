@@ -16,4 +16,22 @@ final class ProfileViewController: UIViewController {
     @IBOutlet var activity: UITextField!
     @IBOutlet var goal: UITextField!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        initTextFields()
+    }
+}
+
+private extension ProfileViewController {
+    func initTextFields() {
+        dateOfBirthday.delegate = self
+        height.delegate = self
+        weight.delegate = self
+        activity.delegate = self
+        goal.delegate = self
+    }
+}
+
+extension ProfileViewController: UITextFieldDelegate {
+    
 }

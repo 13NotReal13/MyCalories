@@ -41,7 +41,7 @@ final class SettingsViewController: UIViewController {
         setCalories()
         setBgu()
         setWater()
-        setTextFields()
+        initTextFieldsDelegate()
         setUserProgramm()
     }
     
@@ -67,18 +67,12 @@ final class SettingsViewController: UIViewController {
 
 // MARK: - Private Methods
 extension SettingsViewController {
-    private func setTextFields() {
+    private func initTextFieldsDelegate() {
         caloriesTF.delegate = self
         proteinsTF.delegate = self
         fatsTF.delegate = self
         carbohydratesTF.delegate = self
         waterTF.delegate = self
-        
-        caloriesTF.setCornerRadius()
-        proteinsTF.setCornerRadius()
-        fatsTF.setCornerRadius()
-        carbohydratesTF.setCornerRadius()
-        waterTF.setCornerRadius()
     }
     
     private func fetchSettings() {

@@ -486,27 +486,27 @@
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="выбрать дату" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbr-q3-beH">
                                                 <rect key="frame" x="16" y="67" width="135.33333333333334" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="рост" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDI-vA-5sW">
                                                 <rect key="frame" x="16" y="121" width="135.33333333333334" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="вес" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mdB-2L-v33">
                                                 <rect key="frame" x="16" y="175" width="135.33333333333334" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="выбрать активность" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U9h-t0-fdM">
                                                 <rect key="frame" x="16" y="229" width="135.33333333333334" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="выбрать цель" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ueP-x3-FgP">
                                                 <rect key="frame" x="16" y="283" width="135.33333333333334" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                         </subviews>
                                         <edgeInsets key="layoutMargins" top="16" left="16" bottom="16" right="16"/>
@@ -599,9 +599,8 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HK8-kz-F4M">
+                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HK8-kz-F4M">
                                                                 <rect key="frame" x="221" y="21.333333333333343" width="66" height="30"/>
-                                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="erv-Zq-UdH"/>
                                                                     <constraint firstAttribute="width" constant="66" id="pSZ-yb-Rfu"/>
@@ -682,9 +681,8 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="proteins" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lkW-MT-zie">
+                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="proteins" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lkW-MT-zie">
                                                                 <rect key="frame" x="37.666666666666657" y="0.0" width="66" height="30"/>
-                                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="proteins"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="66" id="kmo-TU-Sje"/>
@@ -705,9 +703,8 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" alpha="0.30000001192092896" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="fats" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vae-De-gQw">
+                                                            <textField opaque="NO" alpha="0.30000001192092896" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="fats" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vae-De-gQw">
                                                                 <rect key="frame" x="153.66666666666666" y="0.0" width="66" height="30"/>
-                                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="fats"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="U84-1A-qgH"/>
@@ -733,9 +730,8 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" alpha="0.30000001192092896" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="carbohydrates" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZT8-0V-9gb">
+                                                            <textField opaque="NO" alpha="0.30000001192092896" tag="2" contentMode="scaleToFill" horizontalHuggingPriority="248" restorationIdentifier="carbohydrates" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZT8-0V-9gb">
                                                                 <rect key="frame" x="263" y="0.0" width="66" height="30"/>
-                                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                                 <accessibility key="accessibilityConfiguration" identifier="carbohydrates"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="Id4-xI-3wc"/>
@@ -802,9 +798,8 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mgi-gz-g93">
+                                                            <textField opaque="NO" alpha="0.30000001192092896" contentMode="scaleToFill" horizontalHuggingPriority="248" horizontalCompressionResistancePriority="749" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="0" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mgi-gz-g93">
                                                                 <rect key="frame" x="242.33333333333331" y="21.333333333333371" width="66" height="30"/>
-                                                                <color key="backgroundColor" systemColor="systemGray6Color"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="30" id="9ut-Nj-0Gl"/>
                                                                     <constraint firstAttribute="width" constant="66" id="Kh4-LT-jRg"/>
