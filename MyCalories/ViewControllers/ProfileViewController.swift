@@ -75,11 +75,36 @@ final class ProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTextFields()
+        getPerson()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
+        doneButtonPressed()
     }
     
     @IBAction func saveBarButtonItemAtion(_ sender: UIBarButtonItem) {
+        guard let height = heightTF.text, let weight = weightTF.text,
+        let activity = activityTF.text, let goal = goalTF.text else { return }
+        guard let heightInDouble = Double(height), let weightInDouble = Double(weight) else { return }
         saveButton.isEnabled.toggle()
-        print(datePicker.date)
+        storageManager.savePerson(
+            Person(value:
+                    [
+                        genderSegmentedControl.selectedSegmentIndex == 0 ? "Мужчина" : "Женщина",
+                        datePicker.date,
+                        heightInDouble,
+                        weightInDouble,
+                        activity,
+                        goal
+                    ]
+                  )
+        )
+    }
+    
+    @IBAction func segmentedControlAction() {
+        checkForSavePerson()
     }
     
 }
@@ -118,16 +143,13 @@ private extension ProfileViewController {
         
         switch textField {
         case dateOfBirthdayTF:
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "dd.MM.yyyy"
-            
-            let selectedDate = datePicker.date
-            dateOfBirthdayTF.text = dateFormatter.string(from: selectedDate)
-            
+            dateOfBirthdayTF.text = dateToString(datePicker.date)
             dateOfBirthdayTF.resignFirstResponder()
         case heightTF:
+            checkTextOfTextField(heightTF)
             heightTF.resignFirstResponder()
         case weightTF:
+            checkTextOfTextField(weightTF)
             weightTF.resignFirstResponder()
         case activityTF:
             activityTF.text = activities[selectedRow].title
@@ -137,6 +159,10 @@ private extension ProfileViewController {
             goalTF.resignFirstResponder()
         }
         
+        checkForSavePerson()
+    }
+    
+    func checkForSavePerson() {
         guard let dateOfBirthday = dateOfBirthdayTF.text,
               let height = heightTF.text,
               let weight = weightTF.text,
@@ -162,14 +188,44 @@ private extension ProfileViewController {
     
     func getPerson() {
         guard let person = storageManager.fetchPerson() else { return }
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
         
-        dateOfBirthdayTF.text = dateFormatter.string(from: person.dateOfBirthday)
+        genderSegmentedControl.selectedSegmentIndex = person.gender == "Мужчина" ? 0 : 1
+        dateOfBirthdayTF.text = dateToString(person.dateOfBirthday)
         heightTF.text = String(person.height)
         weightTF.text = String(person.weight)
         activityTF.text = person.activity
         goalTF.text = person.goal
+    }
+    
+    func dateToString(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        let dateInString = dateFormatter.string(from: date)
+        return dateInString
+    }
+    
+    func checkTextOfTextField(_ textField: UITextField) {
+        print("yes")
+        guard let text = textField.text else { return }
+        if text.filter({ $0 == ","}).count > 1 || text.filter({ $0 == "."}).count > 1 {
+            showAlert(fromTextField: textField)
+        } else if text.hasPrefix(",") || text.hasSuffix(",") {
+            showAlert(fromTextField: textField)
+        } else if text.hasPrefix(".") || text.hasSuffix(".") {
+            showAlert(fromTextField: textField)
+        } else if text.contains(",") {
+            textField.text = text.replacingOccurrences(of: ",", with: ".")
+        }
+    }
+    
+    func showAlert(fromTextField textField: UITextField) {
+        let alert = UIAlertController(title: "Упс..", message: "Неверный формат", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default) { _ in
+            textField.text = ""
+            alert.dismiss(animated: true)
+        }
+        alert.addAction(okButton)
+        present(alert, animated: true)
     }
 }
 
@@ -181,11 +237,7 @@ extension ProfileViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == dateOfBirthdayTF {
-            
-        } else {
-            
-        }
+        doneButtonPressed()
     }
 }
 

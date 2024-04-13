@@ -81,6 +81,7 @@ final class StorageManager {
     }
     
     // MARK: - Realm
+    // User Programm
     func fetchProductsFromProjectRealm(completion: @escaping((Results<Product>) -> Void)) {
         completion(realmFromProject.objects(Product.self))
     }
@@ -117,12 +118,23 @@ final class StorageManager {
         }
     }
     
+    // Person
     func fetchPerson() -> Person? {
         realmFromDevice.objects(Person.self).first
     }
     
-    func savePerson(_person: Person) {
-        
+    func savePerson(_ person: Person) {
+        writeDeviceRealm {
+            if let existingPerson = fetchPerson() {
+                existingPerson.dateOfBirthday = person.dateOfBirthday
+                existingPerson.height = person.height
+                existingPerson.weight = person.weight
+                existingPerson.activity = person.activity
+                existingPerson.goal = person.goal
+            } else {
+                realmFromDevice.add(person)
+            }
+        }
     }
     
     private func writeDeviceRealm(completion: () -> Void) {

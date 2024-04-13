@@ -482,6 +482,9 @@
                                                     <segment title="Муж."/>
                                                     <segment title="Жен."/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="segmentedControlAction" destination="3C5-33-jXe" eventType="valueChanged" id="1tz-C7-Kay"/>
+                                                </connections>
                                             </segmentedControl>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="выбрать дату" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fbr-q3-beH">
                                                 <rect key="frame" x="16" y="67" width="135.33333333333334" height="34"/>
