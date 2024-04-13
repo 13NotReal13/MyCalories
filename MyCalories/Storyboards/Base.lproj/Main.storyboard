@@ -491,12 +491,12 @@
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="рост" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UDI-vA-5sW">
                                                 <rect key="frame" x="16" y="121" width="135.33333333333334" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="вес" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mdB-2L-v33">
                                                 <rect key="frame" x="16" y="175" width="135.33333333333334" height="34"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
+                                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="выбрать активность" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U9h-t0-fdM">
                                                 <rect key="frame" x="16" y="229" width="135.33333333333334" height="34"/>
@@ -529,15 +529,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Профиль" id="AVw-UN-fWX">
-                        <barButtonItem key="rightBarButtonItem" title="Сохранить" id="FEt-XD-tSq"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Сохранить" id="FEt-XD-tSq">
+                            <connections>
+                                <action selector="saveBarButtonItemAtion:" destination="3C5-33-jXe" id="BhU-vx-jMU"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="activity" destination="U9h-t0-fdM" id="pH0-p4-qxS"/>
-                        <outlet property="dateOfBirthday" destination="fbr-q3-beH" id="WLe-ZS-UEE"/>
-                        <outlet property="gender" destination="fCC-di-l88" id="wqn-ex-OFG"/>
-                        <outlet property="goal" destination="ueP-x3-FgP" id="BKf-MU-3Mk"/>
-                        <outlet property="height" destination="UDI-vA-5sW" id="1HQ-RQ-mar"/>
-                        <outlet property="weight" destination="mdB-2L-v33" id="0LS-7z-amE"/>
+                        <outlet property="activityTF" destination="U9h-t0-fdM" id="pH0-p4-qxS"/>
+                        <outlet property="dateOfBirthdayTF" destination="fbr-q3-beH" id="WLe-ZS-UEE"/>
+                        <outlet property="genderSegmentedControl" destination="fCC-di-l88" id="wqn-ex-OFG"/>
+                        <outlet property="goalTF" destination="ueP-x3-FgP" id="BKf-MU-3Mk"/>
+                        <outlet property="heightTF" destination="UDI-vA-5sW" id="1HQ-RQ-mar"/>
+                        <outlet property="saveButton" destination="FEt-XD-tSq" id="Wts-jp-qqy"/>
+                        <outlet property="weightTF" destination="mdB-2L-v33" id="0LS-7z-amE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ge7-SR-O3U" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

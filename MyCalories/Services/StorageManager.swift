@@ -41,7 +41,7 @@ final class StorageManager {
         return realm
     }
     
-    private var realmFromUser: Realm {
+    private var realmFromDevice: Realm {
         let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("default.realm")
         let realmConfig = Realm.Configuration(fileURL: deviceRealmURL)
@@ -86,15 +86,15 @@ final class StorageManager {
     }
     
     func fetchUserProgrammFromUserRealm() -> UserProgramm {
-        var userProgramm = realmFromUser.objects(UserProgramm.self).first
+        var userProgramm = realmFromDevice.objects(UserProgramm.self).first
         
         if userProgramm == nil {
             writeDeviceRealm {
-                realmFromUser.add(UserProgramm())
+                realmFromDevice.add(UserProgramm())
             }
         }
         
-        userProgramm = realmFromUser.objects(UserProgramm.self).first
+        userProgramm = realmFromDevice.objects(UserProgramm.self).first
         return userProgramm ?? UserProgramm()
     }
     
@@ -117,9 +117,17 @@ final class StorageManager {
         }
     }
     
+    func fetchPerson() -> Person? {
+        realmFromDevice.objects(Person.self).first
+    }
+    
+    func savePerson(_person: Person) {
+        
+    }
+    
     private func writeDeviceRealm(completion: () -> Void) {
         do {
-            try realmFromUser.write {
+            try realmFromDevice.write {
                 completion()
             }
         } catch {
