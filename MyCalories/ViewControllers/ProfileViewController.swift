@@ -53,6 +53,7 @@ enum Goal {
 
 final class ProfileViewController: UIViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet var genderSegmentedControl: UISegmentedControl!
     @IBOutlet var dateOfBirthdayTF: UITextField!
     @IBOutlet var heightTF: UITextField!
@@ -62,6 +63,7 @@ final class ProfileViewController: UIViewController {
     
     @IBOutlet var saveButton: UIBarButtonItem!
     
+    // MARK: - Private Properties
     private let storageManager = StorageManager.shared
     private var person: Person?
     
@@ -76,6 +78,8 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setTextFields()
         getPerson()
+        
+        pickerView.delegate = self
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -84,11 +88,11 @@ final class ProfileViewController: UIViewController {
         doneButtonPressed()
     }
     
-    @IBAction func saveBarButtonItemAtion(_ sender: UIBarButtonItem) {
+    @IBAction func savePersonBarButtonItem(_ sender: UIBarButtonItem) {
         guard let height = heightTF.text, let weight = weightTF.text,
-        let activity = activityTF.text, let goal = goalTF.text else { return }
-        guard let heightInDouble = Double(height), let weightInDouble = Double(weight) else { return }
-        saveButton.isEnabled.toggle()
+              let activity = activityTF.text, let goal = goalTF.text,
+              let heightInDouble = Double(height), let weightInDouble = Double(weight) else { return }
+        
         storageManager.savePerson(
             Person(value:
                     [
@@ -101,6 +105,8 @@ final class ProfileViewController: UIViewController {
                     ]
                   )
         )
+        
+        saveButton.isEnabled.toggle()
     }
     
     @IBAction func segmentedControlAction() {
@@ -112,9 +118,6 @@ final class ProfileViewController: UIViewController {
 // MARK: - Private Methods
 private extension ProfileViewController {
     func setTextFields() {
-        getPerson()
-        pickerView.delegate = self
-        
         dateOfBirthdayTF.delegate = self
         heightTF.delegate = self
         weightTF.delegate = self
@@ -144,21 +147,15 @@ private extension ProfileViewController {
         switch textField {
         case dateOfBirthdayTF:
             dateOfBirthdayTF.text = dateToString(datePicker.date)
-            dateOfBirthdayTF.resignFirstResponder()
-        case heightTF:
-            checkTextOfTextField(heightTF)
-            heightTF.resignFirstResponder()
-        case weightTF:
-            checkTextOfTextField(weightTF)
-            weightTF.resignFirstResponder()
+        case heightTF, weightTF:
+            checkTextOfTextField(textField)
         case activityTF:
             activityTF.text = activities[selectedRow].title
-            activityTF.resignFirstResponder()
         default:
             goalTF.text = goals[selectedRow].title
-            goalTF.resignFirstResponder()
         }
         
+        textField.resignFirstResponder()
         checkForSavePerson()
     }
     
@@ -179,10 +176,19 @@ private extension ProfileViewController {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
         
-        let doneButton = UIBarButtonItem(title: "Готово", style: .done, target: self, action: #selector(doneButtonPressed))
-        let flexButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        toolbar.setItems([flexButton, doneButton], animated: true)
+        let doneButton = UIBarButtonItem(
+            title: "Готово",
+            style: .done,
+            target: self,
+            action: #selector(doneButtonPressed)
+        )
+        let flexButton = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
         
+        toolbar.setItems([flexButton, doneButton], animated: true)
         return toolbar
     }
     
