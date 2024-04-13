@@ -10,9 +10,6 @@ import RealmSwift
 
 final class SettingsViewController: UIViewController {
     
-    private let storageManager = StorageManager.shared
-    private var userProgramm: UserProgramm!
-    
     @IBOutlet var caloriesSwitch: UISwitch!
     @IBOutlet var caloriesTF: UITextField!
     @IBOutlet var caloriesOnLabel: UILabel!
@@ -33,6 +30,9 @@ final class SettingsViewController: UIViewController {
     
     @IBOutlet var scrollView: UIScrollView!
     
+    private let storageManager = StorageManager.shared
+    private var userProgramm: UserProgramm!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userProgramm = storageManager.fetchUserProgramm()
@@ -43,12 +43,6 @@ final class SettingsViewController: UIViewController {
         setWater()
         initTextFieldsDelegate()
         setUserProgramm()
-    }
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        view.endEditing(true)
-        print("keyboard hide")
     }
     
     @IBAction func swithesActions(_ sender: UISwitch) {
@@ -80,8 +74,6 @@ extension SettingsViewController {
         caloriesSwitch.isOn = settings.caloriesEnabled
         bguSwitch.isOn = settings.bguEnabled
         waterSwitch.isOn = settings.waterEnabled
-        
-        print(settings)
     }
     
     private func saveSettings() {
