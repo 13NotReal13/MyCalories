@@ -24,15 +24,14 @@
 		7946F8412BC2F914005C3F33 /* CircularProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */; };
 		7946F8432BC44B61005C3F33 /* ProductsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */; };
 		7946F8492BC455F9005C3F33 /* ProductsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8482BC455F9005C3F33 /* ProductsList.swift */; };
-		7946F8C72BCA7140005C3F33 /* productsFromProject.realm.lock in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C12BCA7140005C3F33 /* productsFromProject.realm.lock */; };
-		7946F8C82BCA7140005C3F33 /* productsFromProject.realm in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C22BCA7140005C3F33 /* productsFromProject.realm */; };
-		7946F8C92BCA7140005C3F33 /* access_control.control.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C32BCA7140005C3F33 /* access_control.control.mx */; };
-		7946F8CA2BCA7140005C3F33 /* access_control.versions.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C42BCA7140005C3F33 /* access_control.versions.mx */; };
-		7946F8CB2BCA7140005C3F33 /* access_control.write.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C52BCA7140005C3F33 /* access_control.write.mx */; };
 		7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CC2BCA9904005C3F33 /* Person.swift */; };
 		7946F8CF2BCBD712005C3F33 /* UsedProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */; };
 		7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */; };
-		7946F8D32BCC0132005C3F33 /* HistoryOfProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8D22BCC0132005C3F33 /* HistoryOfProducts.swift */; };
+		7946F8E52BCC1A1C005C3F33 /* productsFromProject.realm in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8DF2BCC1A1B005C3F33 /* productsFromProject.realm */; };
+		7946F8E62BCC1A1C005C3F33 /* productsFromProject.realm.lock in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8E02BCC1A1C005C3F33 /* productsFromProject.realm.lock */; };
+		7946F8E72BCC1A1C005C3F33 /* access_control.control.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8E12BCC1A1C005C3F33 /* access_control.control.mx */; };
+		7946F8E82BCC1A1C005C3F33 /* access_control.versions.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8E22BCC1A1C005C3F33 /* access_control.versions.mx */; };
+		7946F8E92BCC1A1C005C3F33 /* access_control.write.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8E32BCC1A1C005C3F33 /* access_control.write.mx */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,15 +52,14 @@
 		7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListViewCell.swift; sourceTree = "<group>"; };
 		7946F8482BC455F9005C3F33 /* ProductsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsList.swift; sourceTree = "<group>"; };
-		7946F8C12BCA7140005C3F33 /* productsFromProject.realm.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsFromProject.realm.lock; sourceTree = "<group>"; };
-		7946F8C22BCA7140005C3F33 /* productsFromProject.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsFromProject.realm; sourceTree = "<group>"; };
-		7946F8C32BCA7140005C3F33 /* access_control.control.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.control.mx; sourceTree = "<group>"; };
-		7946F8C42BCA7140005C3F33 /* access_control.versions.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.versions.mx; sourceTree = "<group>"; };
-		7946F8C52BCA7140005C3F33 /* access_control.write.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.write.mx; sourceTree = "<group>"; };
 		7946F8CC2BCA9904005C3F33 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedProductViewController.swift; sourceTree = "<group>"; };
 		7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDatePicker + Ext.swift"; sourceTree = "<group>"; };
-		7946F8D22BCC0132005C3F33 /* HistoryOfProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOfProducts.swift; sourceTree = "<group>"; };
+		7946F8DF2BCC1A1B005C3F33 /* productsFromProject.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsFromProject.realm; sourceTree = "<group>"; };
+		7946F8E02BCC1A1C005C3F33 /* productsFromProject.realm.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsFromProject.realm.lock; sourceTree = "<group>"; };
+		7946F8E12BCC1A1C005C3F33 /* access_control.control.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.control.mx; sourceTree = "<group>"; };
+		7946F8E22BCC1A1C005C3F33 /* access_control.versions.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.versions.mx; sourceTree = "<group>"; };
+		7946F8E32BCC1A1C005C3F33 /* access_control.write.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.write.mx; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +143,6 @@
 				7946F82A2BC1F630005C3F33 /* Settings.swift */,
 				7946F8482BC455F9005C3F33 /* ProductsList.swift */,
 				7946F8CC2BCA9904005C3F33 /* Person.swift */,
-				7946F8D22BCC0132005C3F33 /* HistoryOfProducts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -187,20 +184,20 @@
 		7946F84B2BC5AE6C005C3F33 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				7946F8C22BCA7140005C3F33 /* productsFromProject.realm */,
-				7946F8C12BCA7140005C3F33 /* productsFromProject.realm.lock */,
-				7946F8C62BCA7140005C3F33 /* productsFromProject.realm.management */,
+				7946F8DF2BCC1A1B005C3F33 /* productsFromProject.realm */,
+				7946F8E02BCC1A1C005C3F33 /* productsFromProject.realm.lock */,
+				7946F8E42BCC1A1C005C3F33 /* productsFromProject.realm.management */,
 				792DB1932BBADF4900209193 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		7946F8C62BCA7140005C3F33 /* productsFromProject.realm.management */ = {
+		7946F8E42BCC1A1C005C3F33 /* productsFromProject.realm.management */ = {
 			isa = PBXGroup;
 			children = (
-				7946F8C32BCA7140005C3F33 /* access_control.control.mx */,
-				7946F8C42BCA7140005C3F33 /* access_control.versions.mx */,
-				7946F8C52BCA7140005C3F33 /* access_control.write.mx */,
+				7946F8E12BCC1A1C005C3F33 /* access_control.control.mx */,
+				7946F8E22BCC1A1C005C3F33 /* access_control.versions.mx */,
+				7946F8E32BCC1A1C005C3F33 /* access_control.write.mx */,
 			);
 			path = productsFromProject.realm.management;
 			sourceTree = "<group>";
@@ -271,13 +268,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				792DB1942BBADF4900209193 /* Assets.xcassets in Resources */,
-				7946F8CA2BCA7140005C3F33 /* access_control.versions.mx in Resources */,
+				7946F8E82BCC1A1C005C3F33 /* access_control.versions.mx in Resources */,
 				792DB1972BBADF4900209193 /* Base in Resources */,
 				792DB1922BBADF4800209193 /* Base in Resources */,
-				7946F8C92BCA7140005C3F33 /* access_control.control.mx in Resources */,
-				7946F8CB2BCA7140005C3F33 /* access_control.write.mx in Resources */,
-				7946F8C72BCA7140005C3F33 /* productsFromProject.realm.lock in Resources */,
-				7946F8C82BCA7140005C3F33 /* productsFromProject.realm in Resources */,
+				7946F8E72BCC1A1C005C3F33 /* access_control.control.mx in Resources */,
+				7946F8E92BCC1A1C005C3F33 /* access_control.write.mx in Resources */,
+				7946F8E62BCC1A1C005C3F33 /* productsFromProject.realm.lock in Resources */,
+				7946F8E52BCC1A1C005C3F33 /* productsFromProject.realm in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -301,7 +298,6 @@
 				7946F8CF2BCBD712005C3F33 /* UsedProductViewController.swift in Sources */,
 				7946F8282BC068C8005C3F33 /* SettingsViewController.swift in Sources */,
 				7946F8342BC28E60005C3F33 /* UIScrollView + Ext.swift in Sources */,
-				7946F8D32BCC0132005C3F33 /* HistoryOfProducts.swift in Sources */,
 				7946F82E2BC1F6AF005C3F33 /* StorageManager.swift in Sources */,
 				792DB18D2BBADF4800209193 /* SceneDelegate.swift in Sources */,
 			);

@@ -36,7 +36,6 @@ final class StorageManager {
         } catch {
             fatalError("Failed to initialize Project Realm: \(error)")
         }
-//        print("Realm from project: \(realm.configuration.fileURL)")
         
         return realm
     }
@@ -137,6 +136,46 @@ final class StorageManager {
         }
     }
     
+    // Used Products
+    func fetchUsedProducts() -> List<Product> {
+        let usedProductsList = realmDevice.objects(UsedProductsList.self).first
+        return usedProductsList?.usedProducts ?? List<Product>()
+    }
+
+    func fetchHistoryOfProducts() -> Results<HistoryOfProducts> {
+        realmDevice.objects(HistoryOfProducts.self)
+    }
+    
+    func saveUsedProduct(_ product: Product) {
+        writeDeviceRealm {
+            if let usedProductsList = realmDevice.objects(UsedProductsList.self).first {
+                if !usedProductsList.usedProducts.contains(where: { $0.name == product.name }) {
+                    usedProductsList.usedProducts.append(product)
+                }
+            } else {
+                let newUsedProductsList = UsedProductsList()
+                newUsedProductsList.usedProducts.append(product)
+                realmDevice.add(newUsedProductsList)
+            }
+        }
+    }
+    
+    func saveProductToHistory(_ product: Product) {
+        let productDate = Calendar.current.startOfDay(for: product.date)
+        
+        writeDeviceRealm {
+            if let historyOfProducts = realmDevice.objects(HistoryOfProducts.self).filter("date == %@", productDate).first {
+                historyOfProducts.usedProducts.append(product)
+            } else {
+                let newHistoryOfProducts = HistoryOfProducts()
+                newHistoryOfProducts.date = productDate
+                newHistoryOfProducts.usedProducts.append(product)
+                realmDevice.add(newHistoryOfProducts)
+            }
+        }
+        saveUsedProduct(product)
+    }
+
     private func writeDeviceRealm(completion: () -> Void) {
         do {
             try realmDevice.write {
@@ -148,27 +187,15 @@ final class StorageManager {
     }
     
 //    func createRealmDatabaseInResourcesFolder() {
-//        // Получаем путь к папке Resources внутри проекта
-//        guard let resourcesURL = Bundle.main.resourceURL else {
-//            print("Ошибка: не удалось найти папку Resources")
-//            return
-//        }
+//        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//        let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("productsFromProject.realm")
+//        let realmConfig = Realm.Configuration(fileURL: deviceRealmURL)
 //        
-//        // Определяем URL для файла базы данных в папке Resources
-//        let realmFileURL = resourcesURL.appendingPathComponent("productsFromProject.realm")
-//        
-//        // Создаем объект Realm.Configuration с указанным путем к файлу базы данных
-//        let config = Realm.Configuration(fileURL: realmFileURL)
-//        
+//        let realm: Realm
 //        do {
-//            // Пытаемся открыть Realm с использованием нашей конфигурации
-//            let realm = try Realm(configuration: config)
-//            // Realm успешно создан в папке Resources
-//            print(realm.configuration.fileURL)
-//            print("База данных Realm успешно создана в папке Resources")
+//            realm = try Realm(configuration: realmConfig)
 //        } catch {
-//            // В случае ошибки выводим сообщение об ошибке
-//            print("Ошибка при создании базы данных Realm: \(error)")
+//            fatalError("Failed to initialize Device Realm: \(error)")
 //        }
 //    }
 }
