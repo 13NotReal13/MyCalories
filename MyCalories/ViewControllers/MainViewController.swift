@@ -55,8 +55,9 @@ final class MainViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        print("fjd")
-        view.endEditing(true)
+        if menuIsVisible {
+            toogleMenu()
+        }
     }
     
     @IBAction func menuUIButtonAction() {
@@ -201,7 +202,7 @@ private extension MainViewController {
     }
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - UITableViewDataSource, UITableViewDelegate
 extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         filteredProducts.count

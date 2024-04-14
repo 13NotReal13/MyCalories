@@ -30,6 +30,7 @@
 		7946F8CA2BCA7140005C3F33 /* access_control.versions.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C42BCA7140005C3F33 /* access_control.versions.mx */; };
 		7946F8CB2BCA7140005C3F33 /* access_control.write.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C52BCA7140005C3F33 /* access_control.write.mx */; };
 		7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CC2BCA9904005C3F33 /* Person.swift */; };
+		7946F8CF2BCBD712005C3F33 /* UsedProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		7946F8C42BCA7140005C3F33 /* access_control.versions.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.versions.mx; sourceTree = "<group>"; };
 		7946F8C52BCA7140005C3F33 /* access_control.write.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.write.mx; sourceTree = "<group>"; };
 		7946F8CC2BCA9904005C3F33 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedProductViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -119,6 +121,7 @@
 				792DB18E2BBADF4800209193 /* MainViewController.swift */,
 				7946F7ED2BBB1B58005C3F33 /* ProfileViewController.swift */,
 				7946F8272BC068C8005C3F33 /* SettingsViewController.swift */,
+				7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -288,6 +291,7 @@
 				7946F8492BC455F9005C3F33 /* ProductsList.swift in Sources */,
 				7946F7EE2BBB1B58005C3F33 /* ProfileViewController.swift in Sources */,
 				7946F8412BC2F914005C3F33 /* CircularProgressBar.swift in Sources */,
+				7946F8CF2BCBD712005C3F33 /* UsedProductViewController.swift in Sources */,
 				7946F8282BC068C8005C3F33 /* SettingsViewController.swift in Sources */,
 				7946F8342BC28E60005C3F33 /* UIScrollView + Ext.swift in Sources */,
 				7946F82E2BC1F6AF005C3F33 /* StorageManager.swift in Sources */,
