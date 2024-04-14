@@ -31,6 +31,7 @@
 		7946F8CB2BCA7140005C3F33 /* access_control.write.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8C52BCA7140005C3F33 /* access_control.write.mx */; };
 		7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CC2BCA9904005C3F33 /* Person.swift */; };
 		7946F8CF2BCBD712005C3F33 /* UsedProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */; };
+		7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,6 +59,7 @@
 		7946F8C52BCA7140005C3F33 /* access_control.write.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.write.mx; sourceTree = "<group>"; };
 		7946F8CC2BCA9904005C3F33 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedProductViewController.swift; sourceTree = "<group>"; };
+		7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDatePicker + Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 			isa = PBXGroup;
 			children = (
 				7946F8332BC28E60005C3F33 /* UIScrollView + Ext.swift */,
+				7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -286,6 +289,7 @@
 				792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */,
 				792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */,
 				7946F8312BC27E30005C3F33 /* AlertControllerFactory.swift in Sources */,
+				7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */,
 				7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */,
 				7946F8432BC44B61005C3F33 /* ProductsListViewCell.swift in Sources */,
 				7946F8492BC455F9005C3F33 /* ProductsList.swift in Sources */,

@@ -146,7 +146,7 @@ private extension ProfileViewController {
         
         switch textField {
         case dateOfBirthdayTF:
-            dateOfBirthdayTF.text = dateToString(datePicker.date)
+            dateOfBirthdayTF.text = datePicker.dateToString(datePicker.date)
         case heightTF, weightTF:
             checkTextOfTextField(textField)
         case activityTF:
@@ -196,18 +196,11 @@ private extension ProfileViewController {
         guard let person = storageManager.fetchPerson() else { return }
         
         genderSegmentedControl.selectedSegmentIndex = person.gender == "Мужчина" ? 0 : 1
-        dateOfBirthdayTF.text = dateToString(person.dateOfBirthday)
+        dateOfBirthdayTF.text = datePicker.dateToString(person.dateOfBirthday)
         heightTF.text = String(person.height)
         weightTF.text = String(person.weight)
         activityTF.text = person.activity
         goalTF.text = person.goal
-    }
-    
-    func dateToString(_ date: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        let dateInString = dateFormatter.string(from: date)
-        return dateInString
     }
     
     func checkTextOfTextField(_ textField: UITextField) {

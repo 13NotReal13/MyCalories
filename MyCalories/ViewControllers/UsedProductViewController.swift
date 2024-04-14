@@ -13,14 +13,16 @@ final class UsedProductViewController: UIViewController {
     @IBOutlet var dateTF: UITextField!
     @IBOutlet var addBarButtonItem: UIBarButtonItem!
     
+    private let datePicker = UIDatePicker()
+    private var activeTextField: UITextField?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        weightTF.delegate = self
-        dateTF.delegate = self
-        weightTF.becomeFirstResponder()
+        setTextFields()
     }
     
     @objc func doneButtonPressed() {
+        guard let textField = activeTextField else { return }
         guard let text = weightTF.text, let textInDouble = Double(text), textInDouble != 0 else {
             showAlert(fromTextField: weightTF)
             return
@@ -38,11 +40,20 @@ final class UsedProductViewController: UIViewController {
         alert.addAction(okButton)
         present(alert, animated: true)
     }
-}
-
-// MARK: - UITextFieldDelegate
-extension UsedProductViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
+    
+    private func setTextFields() {
+        weightTF.delegate = self
+        weightTF.becomeFirstResponder()
+        
+        dateTF.delegate = self
+        dateTF.inputAccessoryView = createToolbar()
+        dateTF.inputView = datePicker
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.locale = Locale(identifier: "ru_RU")
+    }
+    
+    private func createToolbar() -> UIToolbar {
         let keyboardTolbar = UIToolbar()
         keyboardTolbar.sizeToFit()
         
@@ -58,6 +69,14 @@ extension UsedProductViewController: UITextFieldDelegate {
             action: nil
         )
         keyboardTolbar.setItems([flexButton, doneButton], animated: true)
-        weightTF.inputAccessoryView = keyboardTolbar
+        return keyboardTolbar
+    }
+}
+
+// MARK: - UITextFieldDelegate
+extension UsedProductViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+        weightTF.inputAccessoryView = createToolbar()
     }
 }
