@@ -32,6 +32,7 @@
 		7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CC2BCA9904005C3F33 /* Person.swift */; };
 		7946F8CF2BCBD712005C3F33 /* UsedProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */; };
 		7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */; };
+		7946F8D32BCC0132005C3F33 /* HistoryOfProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8D22BCC0132005C3F33 /* HistoryOfProducts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -60,6 +61,7 @@
 		7946F8CC2BCA9904005C3F33 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedProductViewController.swift; sourceTree = "<group>"; };
 		7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDatePicker + Ext.swift"; sourceTree = "<group>"; };
+		7946F8D22BCC0132005C3F33 /* HistoryOfProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryOfProducts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +145,7 @@
 				7946F82A2BC1F630005C3F33 /* Settings.swift */,
 				7946F8482BC455F9005C3F33 /* ProductsList.swift */,
 				7946F8CC2BCA9904005C3F33 /* Person.swift */,
+				7946F8D22BCC0132005C3F33 /* HistoryOfProducts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				7946F8CF2BCBD712005C3F33 /* UsedProductViewController.swift in Sources */,
 				7946F8282BC068C8005C3F33 /* SettingsViewController.swift in Sources */,
 				7946F8342BC28E60005C3F33 /* UIScrollView + Ext.swift in Sources */,
+				7946F8D32BCC0132005C3F33 /* HistoryOfProducts.swift in Sources */,
 				7946F82E2BC1F6AF005C3F33 /* StorageManager.swift in Sources */,
 				792DB18D2BBADF4800209193 /* SceneDelegate.swift in Sources */,
 			);

@@ -118,7 +118,7 @@ private extension UsedProductViewController {
             return
         }
         
-        guard let date = dateTF.text else { return }
+        guard let date = dateTF.text, !date.isEmpty else { return }
         addBarButtonItem.isEnabled = true
     }
 }

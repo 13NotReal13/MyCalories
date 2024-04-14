@@ -31,7 +31,7 @@ final class SettingsViewController: UIViewController {
     @IBOutlet var scrollView: UIScrollView!
     
     private let storageManager = StorageManager.shared
-    private var userProgramm: UserProgramm!
+    private var userProgramm: UserProgramm?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,6 +87,7 @@ extension SettingsViewController {
     }
     
     private func setUserProgramm() {
+        guard let userProgramm = userProgramm else { return }
         caloriesTF.text = String(userProgramm.calories)
         proteinsTF.text = String(userProgramm.proteins)
         fatsTF.text = String(userProgramm.fats)
