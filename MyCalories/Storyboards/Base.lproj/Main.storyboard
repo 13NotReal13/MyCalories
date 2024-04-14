@@ -906,7 +906,7 @@
         <!--Продукт-->
         <scene sceneID="fs8-Uc-IZC">
             <objects>
-                <viewController id="eMX-iu-XcX" customClass="AddProductToHistory" customModule="MyCalories" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="eMX-iu-XcX" customClass="UsedProductViewController" customModule="MyCalories" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oN2-VT-aVn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1021,8 +1021,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Продукт" id="qwu-Ly-e75">
-                        <barButtonItem key="rightBarButtonItem" title="Добавить" id="T60-aV-gJo"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Добавить" id="T60-aV-gJo"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addBarButtonItem" destination="T60-aV-gJo" id="8OH-It-yfI"/>
+                        <outlet property="dateTF" destination="Y1w-lQ-tPB" id="Uys-ie-hIe"/>
+                        <outlet property="weightTF" destination="uMt-kF-gBy" id="ZkY-so-S0m"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MQq-41-fT6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -211,7 +211,6 @@ private extension ProfileViewController {
     }
     
     func checkTextOfTextField(_ textField: UITextField) {
-        print("yes")
         guard let text = textField.text else { return }
         if text.filter({ $0 == ","}).count > 1 || text.filter({ $0 == "."}).count > 1 {
             showAlert(fromTextField: textField)
