@@ -39,15 +39,16 @@ final class UsedProductViewController: UIViewController {
     
     @IBAction func addBarButtonItemAction(_ sender: UIBarButtonItem) {
         storageManager.saveProductToHistory(
-            Product(value: [
-                selectedProduct.name,
-                selectedProduct.protein,
-                selectedProduct.fats,
-                selectedProduct.carbohydrates,
-                selectedProduct.calories,
-                datePicker.date,
-                Double(weightTF.text ?? "0") ?? 0.0
-            ]
+            Product(value: 
+                        [
+                            selectedProduct.name,
+                            selectedProduct.protein,
+                            selectedProduct.fats,
+                            selectedProduct.carbohydrates,
+                            selectedProduct.calories,
+                            datePicker.date,
+                            Double(weightTF.text ?? "0") ?? 0.0
+                        ]
                    )
         )
         

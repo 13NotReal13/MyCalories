@@ -146,7 +146,7 @@ final class StorageManager {
         realmDevice.objects(HistoryOfProducts.self)
     }
     
-    func saveUsedProduct(_ product: Product) {
+    func saveNewProduct(_ product: Product) {
         writeDeviceRealm {
             if let usedProductsList = realmDevice.objects(UsedProductsList.self).first {
                 if !usedProductsList.usedProducts.contains(where: { $0.name == product.name }) {
@@ -173,7 +173,7 @@ final class StorageManager {
                 realmDevice.add(newHistoryOfProducts)
             }
         }
-        saveUsedProduct(product)
+        saveNewProduct(product)
     }
 
     private func writeDeviceRealm(completion: () -> Void) {
