@@ -53,6 +53,12 @@ final class MainViewController: UIViewController {
         toogleMenu()
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        print("fjd")
+        view.endEditing(true)
+    }
+    
     @IBAction func menuUIButtonAction() {
         toogleMenu()
     }
@@ -189,10 +195,14 @@ private extension MainViewController {
         caloriesProgress.progress = 0.51
         waterProgress.progress = 0.87
     }
+    
+    @objc func doneButtonPressed() {
+        searchBar.resignFirstResponder()
+    }
 }
 
 // MARK: - UITableViewDataSource
-extension MainViewController: UITableViewDataSource {
+extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         filteredProducts.count
     }
@@ -213,6 +223,10 @@ extension MainViewController: UITableViewDataSource {
         
         return cell ?? UITableViewCell()
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 }
 
 // MARK: - UISearchBarDelegate
@@ -221,5 +235,20 @@ extension MainViewController: UISearchBarDelegate {
         let predicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
         filteredProducts = searchText.isEmpty ? products : products.filter(predicate)
         tableView.reloadData()
+    }
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        let keyboardToolbar = UIToolbar()
+        keyboardToolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(
+            title: "Готово",
+            style: .done,
+            target: self,
+            action: #selector(doneButtonPressed)
+        )
+        let flexButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+        keyboardToolbar.setItems([flexButton, doneButton], animated: true)
+        searchBar.inputAccessoryView = keyboardToolbar
     }
 }
