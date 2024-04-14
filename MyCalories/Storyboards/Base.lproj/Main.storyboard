@@ -1048,7 +1048,7 @@
         <!--Новый продукт-->
         <scene sceneID="irk-fw-5YJ">
             <objects>
-                <viewController id="hJI-KT-rZ1" sceneMemberID="viewController">
+                <viewController id="hJI-KT-rZ1" customClass="AddNewProductViewController" customModule="MyCalories" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uIo-fY-bXN">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1230,8 +1230,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Новый продукт" id="Igk-jL-08R">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Добавить" id="k0R-kf-ctf"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Добавить" id="k0R-kf-ctf">
+                            <connections>
+                                <action selector="addBarButtonItemAction:" destination="hJI-KT-rZ1" id="lkI-4s-ydv"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="addBarButtonItem" destination="k0R-kf-ctf" id="3Rw-9s-6lh"/>
+                        <outlet property="caloriesTF" destination="ofC-8A-LxZ" id="SOk-Nt-wgk"/>
+                        <outlet property="carbohydratesTF" destination="JYL-qj-11U" id="0Kb-u3-ibS"/>
+                        <outlet property="fatsTF" destination="czP-3V-CMy" id="RIC-jg-cGs"/>
+                        <outlet property="nameTF" destination="qLk-4G-uCu" id="2Y0-Y4-rEI"/>
+                        <outlet property="proteinTF" destination="AXO-yT-lxp" id="twV-Be-azV"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="84K-jk-Pw3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
