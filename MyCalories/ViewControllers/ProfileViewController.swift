@@ -140,7 +140,7 @@ private extension ProfileViewController {
         goalTF.inputAccessoryView = createToolbar()
     }
     
-    @objc func doneButtonPressed() {
+    @objc private func doneButtonPressed() {
         guard let textField = activeTextField else { return }
         let selectedRow = pickerView.selectedRow(inComponent: 0)
         

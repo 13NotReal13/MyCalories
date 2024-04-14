@@ -236,7 +236,7 @@
                                             <outlet property="fatsProductLabel" destination="PNC-oY-jAP" id="9so-Mv-D1g"/>
                                             <outlet property="productNameLabel" destination="7JG-lx-O9x" id="4Ov-Gx-vNH"/>
                                             <outlet property="proteinProductLabel" destination="DP1-nz-aL3" id="Mc3-MN-Cvp"/>
-                                            <segue destination="b2H-42-Ytx" kind="presentation" id="Ypb-ke-f40"/>
+                                            <segue destination="b2H-42-Ytx" kind="presentation" identifier="usedProductVC" id="Ypb-ke-f40"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -906,7 +906,7 @@
         <!--Продукт-->
         <scene sceneID="fs8-Uc-IZC">
             <objects>
-                <viewController id="eMX-iu-XcX" customClass="UsedProductViewController" customModule="MyCalories" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UsedProductViewController" id="eMX-iu-XcX" customClass="UsedProductViewController" customModule="MyCalories" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oN2-VT-aVn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -920,23 +920,23 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="hlv-7P-3zt">
-                                        <rect key="frame" x="24.666666666666657" y="46.333333333333329" width="312" height="13.333333333333336"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="hlv-7P-3zt">
+                                        <rect key="frame" x="34.666666666666657" y="46.333333333333329" width="292" height="13.333333333333336"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="БЕЛКИ: 100г." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tx-gg-HdD">
-                                                <rect key="frame" x="0.0" y="0.0" width="72.666666666666671" height="13.333333333333334"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="БЕЛКИ: 100г." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5Tx-gg-HdD">
+                                                <rect key="frame" x="0.0" y="0.0" width="97.333333333333329" height="13.333333333333334"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                                 <color key="textColor" systemColor="systemGrayColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ЖИРЫ: 100г." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qd2-Ng-OkJ">
-                                                <rect key="frame" x="107.66666666666669" y="0.0" width="72" height="13.333333333333334"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ЖИРЫ: 100г." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qd2-Ng-OkJ">
+                                                <rect key="frame" x="97.333333333333343" y="0.0" width="97.333333333333343" height="13.333333333333334"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                                 <color key="textColor" systemColor="systemGrayColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="УГЛЕВОДЫ: 100г." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6af-MO-ozV">
-                                                <rect key="frame" x="214.66666666666671" y="0.0" width="97.333333333333343" height="13.333333333333334"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="УГЛЕВОДЫ: 100г." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6af-MO-ozV">
+                                                <rect key="frame" x="194.66666666666669" y="0.0" width="97.333333333333314" height="13.333333333333334"/>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="11"/>
                                                 <color key="textColor" systemColor="systemGrayColor"/>
                                                 <nil key="highlightedColor"/>
@@ -989,7 +989,7 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cdd-gs-kRr">
-                                <rect key="frame" x="122.33333333333333" y="249" width="148.33333333333337" height="34"/>
+                                <rect key="frame" x="110.00000000000001" y="249" width="173.33333333333337" height="34"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Дата:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OYK-LR-9b1">
                                         <rect key="frame" x="0.0" y="0.0" width="43.333333333333336" height="34"/>
@@ -998,9 +998,9 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="СЕГОДНЯ" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y1w-lQ-tPB">
-                                        <rect key="frame" x="48.333333333333329" y="0.0" width="99.999999999999986" height="34"/>
+                                        <rect key="frame" x="48.333333333333343" y="0.0" width="125" height="34"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="100" id="g0p-kB-kP8"/>
+                                            <constraint firstAttribute="width" constant="125" id="g0p-kB-kP8"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -1021,11 +1021,20 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Продукт" id="qwu-Ly-e75">
-                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Добавить" id="T60-aV-gJo"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Добавить" id="T60-aV-gJo">
+                            <connections>
+                                <action selector="addBarButtonItemAction:" destination="eMX-iu-XcX" id="2Bv-LL-292"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addBarButtonItem" destination="T60-aV-gJo" id="8OH-It-yfI"/>
+                        <outlet property="caloriesProductLabel" destination="Y6r-sz-VmS" id="idz-3U-OxC"/>
+                        <outlet property="carbohydratesProductLabel" destination="6af-MO-ozV" id="ALy-RN-FLw"/>
                         <outlet property="dateTF" destination="Y1w-lQ-tPB" id="Uys-ie-hIe"/>
+                        <outlet property="fatsProductLabel" destination="Qd2-Ng-OkJ" id="V2p-v8-a1A"/>
+                        <outlet property="nameProductLabel" destination="l9Q-nH-gsc" id="ehN-TX-gOg"/>
+                        <outlet property="proteinProductLabel" destination="5Tx-gg-HdD" id="ILl-jP-W2b"/>
                         <outlet property="weightTF" destination="uMt-kF-gBy" id="ZkY-so-S0m"/>
                     </connections>
                 </viewController>

@@ -9,39 +9,45 @@ import UIKit
 
 final class UsedProductViewController: UIViewController {
     
+    
+    @IBOutlet var nameProductLabel: UILabel!
+    @IBOutlet var proteinProductLabel: UILabel!
+    @IBOutlet var fatsProductLabel: UILabel!
+    @IBOutlet var carbohydratesProductLabel: UILabel!
+    @IBOutlet var caloriesProductLabel: UILabel!
+    
     @IBOutlet var weightTF: UITextField!
     @IBOutlet var dateTF: UITextField!
     @IBOutlet var addBarButtonItem: UIBarButtonItem!
     
+    var selectedProduct: Product!
+    
+    private let storageManager = StorageManager.shared
     private let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTextFields()
+        setLabels()
     }
     
-    @objc func doneButtonPressed() {
-        guard let textField = activeTextField else { return }
-        guard let text = weightTF.text, let textInDouble = Double(text), textInDouble != 0 else {
-            showAlert(fromTextField: weightTF)
-            return
-        }
-        weightTF.resignFirstResponder()
-        addBarButtonItem.isEnabled = true
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        checkForAddProduct()
     }
     
-    private func showAlert(fromTextField textField: UITextField) {
-        let alert = UIAlertController(title: "Упс...", message: "Введите вес продукта", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "ОК", style: .default) { _ in
-            textField.text = ""
-            alert.dismiss(animated: true)
-        }
-        alert.addAction(okButton)
-        present(alert, animated: true)
+    @IBAction func addBarButtonItemAction(_ sender: UIBarButtonItem) {
     }
     
-    private func setTextFields() {
+    deinit {
+        print("UsedProductVC deinit")
+    }
+}
+
+// MARK: - Private Methods
+private extension UsedProductViewController {
+    func setTextFields() {
         weightTF.delegate = self
         weightTF.becomeFirstResponder()
         
@@ -53,7 +59,30 @@ final class UsedProductViewController: UIViewController {
         datePicker.locale = Locale(identifier: "ru_RU")
     }
     
-    private func createToolbar() -> UIToolbar {
+    func setLabels() {
+        nameProductLabel.text = selectedProduct.name
+        proteinProductLabel.text = "БЕЛКИ: \(selectedProduct.protein) Г."
+        fatsProductLabel.text = "ЖИРЫ: \(selectedProduct.fats) Г."
+        carbohydratesProductLabel.text = "УГЛЕВОДЫ: \(selectedProduct.carbohydrates) Г."
+        caloriesProductLabel.text = "ККАЛ: \(selectedProduct.calories) НА 100 Г."
+    }
+    
+    func showAlert(fromTextField textField: UITextField) {
+        let alert = UIAlertController(
+            title: "Упс...",
+            message: "Введите вес продукта",
+            preferredStyle: .alert
+        )
+        let okButton = UIAlertAction(title: "ОК", style: .default) { _ in
+            textField.text = ""
+            textField.becomeFirstResponder()
+            alert.dismiss(animated: true)
+        }
+        alert.addAction(okButton)
+        present(alert, animated: true)
+    }
+    
+    func createToolbar() -> UIToolbar {
         let keyboardTolbar = UIToolbar()
         keyboardTolbar.sizeToFit()
         
@@ -70,6 +99,27 @@ final class UsedProductViewController: UIViewController {
         )
         keyboardTolbar.setItems([flexButton, doneButton], animated: true)
         return keyboardTolbar
+    }
+    
+    @objc private func doneButtonPressed() {
+        guard let textField = activeTextField else { return }
+        
+        if textField == dateTF {
+            dateTF.text = (Calendar.current.isDateInToday(datePicker.date)) ? "СЕГОДНЯ" : datePicker.dateToString(datePicker.date)
+        }
+        
+        textField.resignFirstResponder()
+        checkForAddProduct()
+    }
+    
+    func checkForAddProduct() {
+        guard let text = weightTF.text, let textInDouble = Double(text), textInDouble != 0 else {
+            showAlert(fromTextField: weightTF)
+            return
+        }
+        
+        guard let date = dateTF.text else { return }
+        addBarButtonItem.isEnabled = true
     }
 }
 

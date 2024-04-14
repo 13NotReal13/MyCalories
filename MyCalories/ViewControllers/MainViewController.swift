@@ -60,12 +60,26 @@ final class MainViewController: UIViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "usedProductVC" {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            guard let navigationVC = segue.destination as? UINavigationController else { return }
+            guard let usedProductVC = navigationVC.topViewController as? UsedProductViewController else { return }
+            let product = products[indexPath.row]
+            usedProductVC.selectedProduct = product
+        }
+    }
+    
     @IBAction func menuUIButtonAction() {
         toogleMenu()
     }
     
     @IBAction func menuBarButtonItemAction(_ sender: UIBarButtonItem) {
         toogleMenu()
+    }
+    
+    deinit {
+        print("MainVC deinit")
     }
     
 }
