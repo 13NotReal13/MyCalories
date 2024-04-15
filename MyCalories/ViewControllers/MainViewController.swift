@@ -145,7 +145,7 @@ private extension MainViewController {
     
     func createProgressBar() {
         let midWidth = Int(view.frame.width / 2)
-        let frameY = Int(progressView.frame.height / 2 - 40)
+        let frameY = Int(progressView.frame.height / 2 - 45)
         
         let proteinProgress = CircularProgressBar(
             frame: CGRect(
