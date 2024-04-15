@@ -64,8 +64,8 @@ final class MainViewController: UIViewController {
         if segue.identifier == "usedProductVC" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             guard let navigationVC = segue.destination as? UINavigationController else { return }
-            guard let usedProductVC = navigationVC.topViewController as? UsedProductViewController else { return }
-            let product = products[indexPath.row]
+            guard let usedProductVC = navigationVC.topViewController as? AddProductToHistoryViewController else { return }
+            let product = filteredProducts[indexPath.row]
             usedProductVC.selectedProduct = product
         }
     }

@@ -575,7 +575,7 @@
                                 </segments>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tUl-rZ-hiT">
-                                <rect key="frame" x="0.0" y="174" width="393" height="644"/>
+                                <rect key="frame" x="0.0" y="195" width="393" height="623"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
@@ -605,25 +605,41 @@
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="lEy-vN-tmZ" id="oQY-lR-fxY"/>
+                                    <outlet property="delegate" destination="lEy-vN-tmZ" id="C6g-qh-qqX"/>
+                                </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Б / Ж / У   Ккал" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEC-nW-scK">
+                                <rect key="frame" x="256" y="174" width="117" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
+                                <color key="textColor" name="textColorApp"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8Ol-An-WVm"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
-                            <constraint firstItem="tUl-rZ-hiT" firstAttribute="top" secondItem="FS6-Xi-Pcw" secondAttribute="bottom" constant="20" id="0lh-wH-mfN"/>
+                            <constraint firstItem="8Ol-An-WVm" firstAttribute="trailing" secondItem="dEC-nW-scK" secondAttribute="trailing" constant="20" id="06f-Kf-TZS"/>
                             <constraint firstItem="tUl-rZ-hiT" firstAttribute="leading" secondItem="8Ol-An-WVm" secondAttribute="leading" id="2ky-In-Zsr"/>
                             <constraint firstItem="8Ol-An-WVm" firstAttribute="trailing" secondItem="FS6-Xi-Pcw" secondAttribute="trailing" constant="100" id="7U7-vG-kUo"/>
                             <constraint firstItem="FS6-Xi-Pcw" firstAttribute="leading" secondItem="8Ol-An-WVm" secondAttribute="leading" constant="100" id="JcS-EA-6Q1"/>
+                            <constraint firstItem="dEC-nW-scK" firstAttribute="top" secondItem="FS6-Xi-Pcw" secondAttribute="bottom" constant="20" id="NMc-he-S2o"/>
                             <constraint firstItem="FS6-Xi-Pcw" firstAttribute="top" secondItem="8Ol-An-WVm" secondAttribute="top" constant="20" id="Ufe-ks-8Rk"/>
+                            <constraint firstItem="dEC-nW-scK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Ol-An-WVm" secondAttribute="leading" symbolic="YES" id="Uy3-N1-bdD"/>
                             <constraint firstItem="8Ol-An-WVm" firstAttribute="trailing" secondItem="tUl-rZ-hiT" secondAttribute="trailing" id="diE-Dj-brX"/>
+                            <constraint firstItem="tUl-rZ-hiT" firstAttribute="top" secondItem="dEC-nW-scK" secondAttribute="bottom" id="nwB-NO-RzA"/>
                             <constraint firstItem="8Ol-An-WVm" firstAttribute="bottom" secondItem="tUl-rZ-hiT" secondAttribute="bottom" id="w1Y-9k-3T4"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="История" id="Mvy-gW-c16"/>
+                    <connections>
+                        <outlet property="tableView" destination="tUl-rZ-hiT" id="V07-IP-gHf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JUy-Hy-Atz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-253" y="732"/>
+            <point key="canvasLocation" x="-254.19847328244273" y="731.69014084507046"/>
         </scene>
         <!--Настройки-->
         <scene sceneID="ncl-uc-bWK">
@@ -978,7 +994,7 @@
         <!--Продукт-->
         <scene sceneID="fs8-Uc-IZC">
             <objects>
-                <viewController storyboardIdentifier="UsedProductViewController" id="eMX-iu-XcX" customClass="UsedProductViewController" customModule="MyCalories" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UsedProductViewController" id="eMX-iu-XcX" customClass="AddProductToHistoryViewController" customModule="MyCalories" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oN2-VT-aVn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1047,7 +1063,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="64" id="Fuh-sD-O0C"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="г." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="al1-OK-XIg">
@@ -1378,6 +1394,9 @@
         </namedColor>
         <namedColor name="colorAppAlpha">
             <color red="0.17647058823529413" green="0.58431372549019611" blue="0.58823529411764708" alpha="0.070000000298023224" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="textColorApp">
+            <color red="0.090196078431372548" green="0.36862745098039218" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

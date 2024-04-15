@@ -7,8 +7,7 @@
 
 import UIKit
 
-final class UsedProductViewController: UIViewController {
-    
+final class AddProductToHistoryViewController: UIViewController {
     
     @IBOutlet var nameProductLabel: UILabel!
     @IBOutlet var proteinProductLabel: UILabel!
@@ -38,18 +37,26 @@ final class UsedProductViewController: UIViewController {
     }
     
     @IBAction func addBarButtonItemAction(_ sender: UIBarButtonItem) {
+        let weight = Double(weightTF.text ?? "0") ?? 0.0
+        let weightRatio = weight / 100.0
+        
+        let adjustedProtein = (selectedProduct.protein * weightRatio * 100).rounded() / 100
+        let adjustedFats = (selectedProduct.fats * weightRatio * 100).rounded() / 100
+        let adjustedCarbohydrates = (selectedProduct.carbohydrates * weightRatio * 100).rounded() / 100
+        let adjustedCalories = (selectedProduct.calories * weightRatio * 100).rounded() / 100
+        
         storageManager.saveProductToHistory(
-            Product(value: 
-                        [
-                            selectedProduct.name,
-                            selectedProduct.protein,
-                            selectedProduct.fats,
-                            selectedProduct.carbohydrates,
-                            selectedProduct.calories,
-                            datePicker.date,
-                            Double(weightTF.text ?? "0") ?? 0.0
-                        ]
-                   )
+            Product(
+                value: [
+                    selectedProduct.name,
+                    adjustedProtein,
+                    adjustedFats,
+                    adjustedCarbohydrates,
+                    adjustedCalories,
+                    datePicker.date,
+                    weight
+                ]
+            )
         )
         
         dismiss(animated: true)
@@ -61,7 +68,7 @@ final class UsedProductViewController: UIViewController {
 }
 
 // MARK: - Private Methods
-private extension UsedProductViewController {
+private extension AddProductToHistoryViewController {
     func setTextFields() {
         weightTF.delegate = self
         weightTF.becomeFirstResponder()
@@ -139,7 +146,7 @@ private extension UsedProductViewController {
 }
 
 // MARK: - UITextFieldDelegate
-extension UsedProductViewController: UITextFieldDelegate {
+extension AddProductToHistoryViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
         weightTF.inputAccessoryView = createToolbar()

@@ -142,8 +142,8 @@ final class StorageManager {
         return usedProductsList?.usedProducts ?? List<Product>()
     }
 
-    func fetchHistoryOfProducts() -> Results<HistoryOfProducts> {
-        realmDevice.objects(HistoryOfProducts.self)
+    func fetchHistoryOfProducts(completion: @escaping(Results<HistoryOfProducts>) -> Void) {
+        completion(realmDevice.objects(HistoryOfProducts.self))
     }
     
     func saveNewProduct(_ product: Product) {

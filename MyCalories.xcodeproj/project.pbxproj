@@ -25,7 +25,7 @@
 		7946F8432BC44B61005C3F33 /* ProductsListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */; };
 		7946F8492BC455F9005C3F33 /* ProductsList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8482BC455F9005C3F33 /* ProductsList.swift */; };
 		7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CC2BCA9904005C3F33 /* Person.swift */; };
-		7946F8CF2BCBD712005C3F33 /* UsedProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */; };
+		7946F8CF2BCBD712005C3F33 /* AddProductToHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CE2BCBD712005C3F33 /* AddProductToHistoryViewController.swift */; };
 		7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */; };
 		7946F8E52BCC1A1C005C3F33 /* productsFromProject.realm in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8DF2BCC1A1B005C3F33 /* productsFromProject.realm */; };
 		7946F8E62BCC1A1C005C3F33 /* productsFromProject.realm.lock in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8E02BCC1A1C005C3F33 /* productsFromProject.realm.lock */; };
@@ -34,6 +34,7 @@
 		7946F8E92BCC1A1C005C3F33 /* access_control.write.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7946F8E32BCC1A1C005C3F33 /* access_control.write.mx */; };
 		7946F8EB2BCC2DF2005C3F33 /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */; };
 		7946F8ED2BCD50E4005C3F33 /* HistroryProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EC2BCD50E4005C3F33 /* HistroryProductsViewController.swift */; };
+		7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +56,7 @@
 		7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListViewCell.swift; sourceTree = "<group>"; };
 		7946F8482BC455F9005C3F33 /* ProductsList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsList.swift; sourceTree = "<group>"; };
 		7946F8CC2BCA9904005C3F33 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
-		7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsedProductViewController.swift; sourceTree = "<group>"; };
+		7946F8CE2BCBD712005C3F33 /* AddProductToHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductToHistoryViewController.swift; sourceTree = "<group>"; };
 		7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDatePicker + Ext.swift"; sourceTree = "<group>"; };
 		7946F8DF2BCC1A1B005C3F33 /* productsFromProject.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsFromProject.realm; sourceTree = "<group>"; };
 		7946F8E02BCC1A1C005C3F33 /* productsFromProject.realm.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsFromProject.realm.lock; sourceTree = "<group>"; };
@@ -64,6 +65,7 @@
 		7946F8E32BCC1A1C005C3F33 /* access_control.write.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.write.mx; sourceTree = "<group>"; };
 		7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
 		7946F8EC2BCD50E4005C3F33 /* HistroryProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistroryProductsViewController.swift; sourceTree = "<group>"; };
+		7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +130,7 @@
 				7946F7ED2BBB1B58005C3F33 /* ProfileViewController.swift */,
 				7946F8EC2BCD50E4005C3F33 /* HistroryProductsViewController.swift */,
 				7946F8272BC068C8005C3F33 /* SettingsViewController.swift */,
-				7946F8CE2BCBD712005C3F33 /* UsedProductViewController.swift */,
+				7946F8CE2BCBD712005C3F33 /* AddProductToHistoryViewController.swift */,
 				7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */,
 			);
 			path = ViewControllers;
@@ -174,6 +176,7 @@
 			children = (
 				7946F8332BC28E60005C3F33 /* UIScrollView + Ext.swift */,
 				7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */,
+				7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -298,10 +301,11 @@
 				7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */,
 				7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */,
 				7946F8432BC44B61005C3F33 /* ProductsListViewCell.swift in Sources */,
+				7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */,
 				7946F8492BC455F9005C3F33 /* ProductsList.swift in Sources */,
 				7946F7EE2BBB1B58005C3F33 /* ProfileViewController.swift in Sources */,
 				7946F8412BC2F914005C3F33 /* CircularProgressBar.swift in Sources */,
-				7946F8CF2BCBD712005C3F33 /* UsedProductViewController.swift in Sources */,
+				7946F8CF2BCBD712005C3F33 /* AddProductToHistoryViewController.swift in Sources */,
 				7946F8282BC068C8005C3F33 /* SettingsViewController.swift in Sources */,
 				7946F8ED2BCD50E4005C3F33 /* HistroryProductsViewController.swift in Sources */,
 				7946F8342BC28E60005C3F33 /* UIScrollView + Ext.swift in Sources */,
