@@ -35,27 +35,31 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "historyProductsCell", for: indexPath)
-        var content = cell.defaultContentConfiguration()
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: "historyProductsCell",
+            for: indexPath
+        ) as? HistoryProductViewCell
         let product = historyProducts[indexPath.section].usedProducts[indexPath.row]
         
-        content.text = product.name
-        content.secondaryText = "\(Int(product.protein)) / \(Int(product.fats)) / \(Int(product.carbohydrates))   \(Int(product.calories))"
-        cell.contentConfiguration = content
+        cell?.productNameLabel.text = product.name
+        cell?.proteinLabel.text = String(Int(product.protein))
+        cell?.fatsLabel.text = String(Int(product.fats))
+        cell?.carbohydratesLabel.text = String(Int(product.carbohydrates))
+        cell?.caloriesLabel.text = String(Int(product.calories))
         
-        return cell
+        return cell ?? UITableViewCell()
     }
     
     // Header
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        Date.dateToString(historyProducts[section].date)
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.font = .boldSystemFont(ofSize: 18)
-        header.layer.cornerRadius = 5
-        header.textLabel?.textColor = .colorApp
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let header = UIView()
+        header.backgroundColor = .systemGray6
+        let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: 25))
+        label.font = .boldSystemFont(ofSize: 18)
+        label.textColor = .colorApp
+        label.text = Date.dateToString(historyProducts[section].date)
+        header.addSubview(label)
+        return header
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -88,5 +92,4 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-    
 }

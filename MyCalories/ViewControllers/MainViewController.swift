@@ -258,7 +258,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter { (searchText).contains($0.name) }
+        filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter { $0.name.contains(searchText) }
         tableView.reloadData()
     }
     

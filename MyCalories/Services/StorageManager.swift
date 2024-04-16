@@ -140,7 +140,6 @@ final class StorageManager {
     // Used Products
     func fetchUsedProducts(completion: @escaping([Product]) -> Void) {
         let products = realmDevice.objects(UsedProductsList.self).first?.usedProducts ?? List<Product>()
-        print(products)
         completion(Array(products))
     }
 
