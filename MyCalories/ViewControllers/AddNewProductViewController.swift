@@ -32,7 +32,7 @@ final class AddNewProductViewController: UIViewController {
     }
     
     @IBAction func addBarButtonItemAction(_ sender: UIBarButtonItem) {
-        storageManager.saveNewProduct(
+        storageManager.saveNewProductToUsedProducts(
             Product(value:
                         [
                             nameTF.text ?? "",

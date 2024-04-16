@@ -81,8 +81,9 @@ final class StorageManager {
     
     // MARK: - Realm
     // User Programm
-    func fetchProductsFromProjectRealm(completion: @escaping((Results<Product>) -> Void)) {
-        completion(realmProject.objects(Product.self))
+    func fetchProjectProducts(completion: @escaping([Product]) -> Void) {
+        let products = realmProject.objects(Product.self)
+        completion(Array(products))
     }
     
     func fetchUserProgramm() -> UserProgramm {
@@ -137,24 +138,35 @@ final class StorageManager {
     }
     
     // Used Products
-    func fetchUsedProducts() -> List<Product> {
-        let usedProductsList = realmDevice.objects(UsedProductsList.self).first
-        return usedProductsList?.usedProducts ?? List<Product>()
+    func fetchUsedProducts(completion: @escaping([Product]) -> Void) {
+        let products = realmDevice.objects(UsedProductsList.self).first?.usedProducts ?? List<Product>()
+        print(products)
+        completion(Array(products))
     }
 
     func fetchHistoryOfProducts(completion: @escaping(Results<HistoryOfProducts>) -> Void) {
         completion(realmDevice.objects(HistoryOfProducts.self))
     }
     
-    func saveNewProduct(_ product: Product) {
+    func saveNewProductToUsedProducts(_ product: Product) {
+        let productForAdd = Product(value:
+                                        [
+                                            product.name,
+                                            product.protein,
+                                            product.fats,
+                                            product.carbohydrates,
+                                            product.calories
+                                        ]
+                                    )
+        
         writeDeviceRealm {
             if let usedProductsList = realmDevice.objects(UsedProductsList.self).first {
-                if !usedProductsList.usedProducts.contains(where: { $0.name == product.name }) {
-                    usedProductsList.usedProducts.append(product)
+                if !usedProductsList.usedProducts.contains(where: { $0.name == productForAdd.name }) {
+                    usedProductsList.usedProducts.append(productForAdd)
                 }
             } else {
                 let newUsedProductsList = UsedProductsList()
-                newUsedProductsList.usedProducts.append(product)
+                newUsedProductsList.usedProducts.append(productForAdd)
                 realmDevice.add(newUsedProductsList)
             }
         }
@@ -162,7 +174,7 @@ final class StorageManager {
     
     func saveProductToHistory(_ product: Product) {
         let productDate = Calendar.current.startOfDay(for: product.date)
-        
+
         writeDeviceRealm {
             if let historyOfProducts = realmDevice.objects(HistoryOfProducts.self).filter("date == %@", productDate).first {
                 historyOfProducts.usedProducts.append(product)
@@ -173,7 +185,6 @@ final class StorageManager {
                 realmDevice.add(newHistoryOfProducts)
             }
         }
-        saveNewProduct(product)
     }
 
     private func writeDeviceRealm(completion: () -> Void) {

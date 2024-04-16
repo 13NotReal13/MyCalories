@@ -25,5 +25,5 @@ final class Product: Object {
     @Persisted var calories = 0.0
     @Persisted var date = Date()
     @Persisted var weight = 0.0
-    @Persisted var color = ".colorApp"
+    @Persisted var color = "colorApp"
 }

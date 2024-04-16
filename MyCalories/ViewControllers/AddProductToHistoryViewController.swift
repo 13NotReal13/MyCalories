@@ -45,6 +45,8 @@ final class AddProductToHistoryViewController: UIViewController {
         let adjustedCarbohydrates = (selectedProduct.carbohydrates * weightRatio * 100).rounded() / 100
         let adjustedCalories = (selectedProduct.calories * weightRatio * 100).rounded() / 100
         
+        storageManager.saveNewProductToUsedProducts(selectedProduct)
+        
         storageManager.saveProductToHistory(
             Product(
                 value: [

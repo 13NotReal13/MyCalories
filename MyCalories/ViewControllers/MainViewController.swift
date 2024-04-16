@@ -21,8 +21,10 @@ final class MainViewController: UIViewController {
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared
     
-    private var products: Results<Product>!
-    private var filteredProducts: Results<Product>!
+//    private var products: Results<Product>!
+    private var allProducts: [Product] = []
+    private var filteredProducts: [Product] = []
+//    private var filteredProducts: Results<Product>!
     
     private var menuIsVisible = false
     private var overlayView: UIView!
@@ -34,10 +36,19 @@ final class MainViewController: UIViewController {
         addOverlayView()
         roundMenuCorners()
         
-        storageManager.fetchProductsFromProjectRealm { [unowned self] productsList in
-            products = productsList
-            filteredProducts = products
-            tableView.reloadData()
+        storageManager.fetchUsedProducts { [unowned self] usedProducts in
+            usedProducts.forEach { allProducts.append($0) }
+
+            storageManager.fetchProjectProducts { [unowned self] projectProducts in
+                // Фильтруем projectProducts, чтобы оставить только те продукты, которых нет в allProducts
+                let newProjectProducts = projectProducts.filter { projectProduct in
+                    !allProducts.contains { $0.name == projectProduct.name }
+                }
+                allProducts.append(contentsOf: newProjectProducts)
+                
+                filteredProducts = allProducts
+                tableView.reloadData()
+            }
         }
     }
     
@@ -247,8 +258,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        let predicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
-        filteredProducts = searchText.isEmpty ? products : products.filter(predicate)
+        filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter { (searchText).contains($0.name) }
         tableView.reloadData()
     }
     
