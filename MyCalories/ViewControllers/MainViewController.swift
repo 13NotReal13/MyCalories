@@ -89,10 +89,30 @@ final class MainViewController: UIViewController {
         toogleMenu()
     }
     
-    deinit {
-        print("MainVC deinit")
+    @IBAction func waterButtonAction() {
+        showAlert()
     }
-    
+
+    private func showAlert() {
+        let alert = UIAlertController(
+            title: "Сколько воды вы выпили?",
+            message: "",
+            preferredStyle: .alert
+        )
+        
+        let okButton = UIAlertAction(title: "Сохранить", style: .default) { _ in
+            guard let text = alert.textFields?.first?.text, let waterML = Double(text) else { return }
+        }
+        let cancelButton = UIAlertAction(title: "Отмена", style: .destructive)
+        
+        alert.addAction(okButton)
+        alert.addAction(cancelButton)
+        alert.addTextField { textField in
+            textField.placeholder = "мл."
+            textField.keyboardType = .numberPad
+        }
+        present(alert, animated: true)
+    }
 }
 
 // MARK: - Private Methods

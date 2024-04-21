@@ -165,7 +165,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gDL-dZ-72b">
-                                <rect key="frame" x="0.0" y="152" width="393" height="550"/>
+                                <rect key="frame" x="0.0" y="155" width="393" height="547"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
@@ -253,6 +253,20 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="gpn-Bc-wAz"/>
                                 </connections>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfG-hZ-WcI">
+                                <rect key="frame" x="297" y="606" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="729-1K-I8z"/>
+                                    <constraint firstAttribute="width" constant="80" id="HXF-ys-jlI"/>
+                                </constraints>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" image="waterButton">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="waterButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="92A-mq-iOQ"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="La2-79-89M">
                                 <rect key="frame" x="0.0" y="103" width="313" height="749"/>
                                 <subviews>
@@ -388,15 +402,17 @@
                         <constraints>
                             <constraint firstItem="gDL-dZ-72b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="4bc-Xp-g4s"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="La2-79-89M" secondAttribute="trailing" constant="80" id="5ai-no-ql2"/>
-                            <constraint firstItem="gDL-dZ-72b" firstAttribute="top" secondItem="OMz-5R-Q5X" secondAttribute="bottom" constant="5" id="Ajx-26-gmC"/>
+                            <constraint firstItem="gDL-dZ-72b" firstAttribute="top" secondItem="OMz-5R-Q5X" secondAttribute="bottom" constant="8" id="AQV-WO-wKc"/>
                             <constraint firstItem="T03-XA-YfC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="C6d-ja-d2O"/>
                             <constraint firstItem="La2-79-89M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Dge-AY-yrY"/>
                             <constraint firstItem="gDL-dZ-72b" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="EVl-6d-UxF"/>
+                            <constraint firstAttribute="trailing" secondItem="PfG-hZ-WcI" secondAttribute="trailing" constant="16" id="LAu-BK-ypO"/>
                             <constraint firstAttribute="bottom" secondItem="T03-XA-YfC" secondAttribute="bottom" id="OeL-5V-BwL"/>
                             <constraint firstAttribute="bottom" secondItem="La2-79-89M" secondAttribute="bottom" id="S0D-YH-sQr"/>
                             <constraint firstItem="T03-XA-YfC" firstAttribute="top" secondItem="gDL-dZ-72b" secondAttribute="bottom" id="baK-9F-JM1"/>
                             <constraint firstItem="T03-XA-YfC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="it4-zl-6vd"/>
                             <constraint firstItem="La2-79-89M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tSM-6h-dcq"/>
+                            <constraint firstItem="T03-XA-YfC" firstAttribute="top" secondItem="PfG-hZ-WcI" secondAttribute="bottom" constant="16" id="uAf-hP-IA6"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Мои калории" id="fZN-1a-zcP">
@@ -1372,13 +1388,23 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="esd-oN-8cb" customClass="BottleView" customModule="MyCalories" customModuleProvider="target">
+                                <rect key="frame" x="176.66666666666666" y="381" width="40" height="80"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="1qt-b6-L5v"/>
+                                    <constraint firstAttribute="width" constant="40" id="Bhc-JX-asp"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qMm-cF-gHG"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="qwx-8e-4wK" firstAttribute="centerX" secondItem="uIo-fY-bXN" secondAttribute="centerX" id="EUf-5b-mZV"/>
+                            <constraint firstItem="esd-oN-8cb" firstAttribute="centerY" secondItem="uIo-fY-bXN" secondAttribute="centerY" id="JU9-3s-PgA"/>
                             <constraint firstItem="Yby-Qt-i3I" firstAttribute="top" secondItem="qMm-cF-gHG" secondAttribute="top" constant="20" id="TR3-Kf-0rl"/>
                             <constraint firstItem="qMm-cF-gHG" firstAttribute="trailing" secondItem="Yby-Qt-i3I" secondAttribute="trailing" constant="16" id="WeY-M2-5Nc"/>
+                            <constraint firstItem="esd-oN-8cb" firstAttribute="centerX" secondItem="uIo-fY-bXN" secondAttribute="centerX" id="ghs-CF-PGK"/>
                             <constraint firstItem="Yby-Qt-i3I" firstAttribute="leading" secondItem="qMm-cF-gHG" secondAttribute="leading" constant="16" id="vMt-s2-4eg"/>
                             <constraint firstItem="qwx-8e-4wK" firstAttribute="top" secondItem="Yby-Qt-i3I" secondAttribute="bottom" constant="20" id="x8B-gK-1sj"/>
                         </constraints>
@@ -1392,6 +1418,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addBarButtonItem" destination="k0R-kf-ctf" id="3Rw-9s-6lh"/>
+                        <outlet property="bottleView" destination="esd-oN-8cb" id="wj4-aw-dUW"/>
                         <outlet property="caloriesTF" destination="ofC-8A-LxZ" id="SOk-Nt-wgk"/>
                         <outlet property="carbohydratesTF" destination="JYL-qj-11U" id="0Kb-u3-ibS"/>
                         <outlet property="fatsTF" destination="czP-3V-CMy" id="RIC-jg-cGs"/>
@@ -1464,6 +1491,7 @@
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <image name="waterButton" width="80" height="80"/>
         <namedColor name="colorApp">
             <color red="0.17647058823529413" green="0.58431372549019611" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1473,6 +1501,9 @@
         <namedColor name="textColorApp">
             <color red="0.090196078431372548" green="0.36862745098039218" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemGray4Color">
             <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
