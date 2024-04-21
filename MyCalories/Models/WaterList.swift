@@ -8,11 +8,12 @@
 import Foundation
 import RealmSwift
 
-final class WaterHistoryList: Object {
+final class HistoryOfWater: Object {
     @Persisted var date = Date()
     @Persisted var waterList = List<Water>()
 }
 
 final class Water: Object {
+    @Persisted var date = Date()
     @Persisted var ml = 0
 }

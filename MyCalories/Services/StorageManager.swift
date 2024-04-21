@@ -186,6 +186,26 @@ final class StorageManager {
         }
     }
 
+    // Used Water
+    func fetchWaterList(completion: @escaping(Results<HistoryOfWater>) -> Void) {
+        completion(realmDevice.objects(HistoryOfWater.self))
+    }
+    
+    func saveWaterToHistory(_ water: Water) {
+        let waterDate = Calendar.current.startOfDay(for: water.date)
+        
+        writeDeviceRealm {
+            if let historyOfWater = realmDevice.objects(HistoryOfWater.self).filter("date == %@", waterDate).first {
+                historyOfWater.waterList.append(water)
+            } else {
+                let newHistoryOFWater = HistoryOfWater()
+                newHistoryOFWater.date = waterDate
+                newHistoryOFWater.waterList.append(water)
+                realmDevice.add(newHistoryOFWater)
+            }
+        }
+    }
+    
     private func writeDeviceRealm(completion: () -> Void) {
         do {
             try realmDevice.write {
