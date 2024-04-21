@@ -13,4 +13,6 @@ final class HistoryProductViewCell: UITableViewCell {
     @IBOutlet var fatsLabel: UILabel!
     @IBOutlet var carbohydratesLabel: UILabel!
     @IBOutlet var caloriesLabel: UILabel!
+    @IBOutlet var separatorOne: UILabel!
+    @IBOutlet var separatorTwo: UILabel!
 }

@@ -15,4 +15,11 @@ extension Date {
         let dateInString = dateFormatter.string(from: date)
         return dateInString
     }
+    
+    static func timeToString(_ date: Date) -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "HH:mm"
+        let timeInString = dateFormatter.string(from: date)
+        return timeInString
+    }
 }
