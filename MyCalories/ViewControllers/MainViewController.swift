@@ -100,8 +100,12 @@ final class MainViewController: UIViewController {
             preferredStyle: .alert
         )
         
-        let okButton = UIAlertAction(title: "Сохранить", style: .default) { _ in
-            guard let text = alert.textFields?.first?.text, let waterML = Double(text) else { return }
+        let okButton = UIAlertAction(title: "Сохранить", style: .default) { [unowned self] _ in
+            guard let text = alert.textFields?.first?.text, let waterML = Int(text) else { return }
+            let water = Water()
+            water.date = Date()
+            water.ml = waterML
+            storageManager.saveWaterToHistory(water)
         }
         let cancelButton = UIAlertAction(title: "Отмена", style: .destructive)
         
