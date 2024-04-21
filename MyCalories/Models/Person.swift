@@ -15,14 +15,4 @@ final class Person: Object {
     @Persisted var weight: Double
     @Persisted var activity: String
     @Persisted var goal: String
-    
-    var age: Int {
-        let currentDate = Date()
-        let calendar = Calendar.current
-        
-        let ageComponents = calendar.dateComponents([.year], from: dateOfBirthday, to: currentDate)
-        
-        return ageComponents.year ?? 0
-    }
-
 }

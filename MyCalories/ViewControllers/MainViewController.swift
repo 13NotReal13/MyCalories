@@ -32,7 +32,7 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let person = storageManager.fetchPerson() {
+        if storageManager.fetchPerson() != nil {
             progressIsBlock.isHidden = true
         }
         

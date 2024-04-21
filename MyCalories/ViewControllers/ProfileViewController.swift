@@ -64,7 +64,6 @@ final class ProfileViewController: UIViewController {
     @IBOutlet var goalTF: UITextField!
     
     @IBOutlet var recommendedProgrammView: UIView!
-    
     @IBOutlet var proteinPerDayLabel: UILabel!
     @IBOutlet var fatsPerDayLabel: UILabel!
     @IBOutlet var carbohydratesPerDayLabel: UILabel!
@@ -86,6 +85,7 @@ final class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setTextFields()
         getPerson()
+        setRecommendedProgramm()
         
         pickerView.delegate = self
     }
@@ -114,11 +114,67 @@ final class ProfileViewController: UIViewController {
                   )
         )
         
+        setRecommendedProgramm()
         saveButton.isEnabled.toggle()
     }
     
     @IBAction func segmentedControlAction() {
         checkForSavePerson()
+    }
+    
+    private func setRecommendedProgramm() {
+        guard let person = storageManager.fetchPerson() else { return }
+        let personAge = Date.getAge(fromDate: person.dateOfBirthday)
+        
+        var protein: Double
+        var fats: Double
+        var carbohydrates: Double
+        var calories: Double
+        var water: Double
+        
+        calories = person.gender == "Мужчина"
+            ? (person.weight * 10.0) + (person.height * 6.25) - (personAge * 5) + 5
+            : (person.weight * 10.0) + (person.height * 6.25) - (personAge * 5) - 161
+        
+        water = person.gender == "Мужчина" ? person.weight * 30 : person.weight * 25
+        
+        switch person.activity {
+        case "Низкая":
+            calories *= 1.2
+            water += person.gender == "Мужчина" ? (0.57 * 500) : (0.57 * 400)
+        case "Средняя":
+            calories *= 1.4
+            water += person.gender == "Мужчина" ? (1.42 * 500) : (1.42 * 400)
+        default:
+            calories *= 1.8
+            water += person.gender == "Мужчина" ? (2.0 * 500) : (2.0 * 400)
+        }
+        print(person.gender)
+        print(genderSegmentedControl.selectedSegmentIndex)
+        
+        switch person.goal {
+        case "Снизить вес":
+            calories *= 0.8
+            protein = calories * 0.5 / 4
+            fats = calories * 0.2 / 9
+            carbohydrates = calories * 0.3 / 4
+        case "Удержать вес":
+            protein = calories * 0.3 / 4
+            fats = calories * 0.3 / 9
+            carbohydrates = calories * 0.4 / 4
+        default:
+            calories *= 1.25
+            protein = calories * 0.3 / 4
+            fats = calories * 0.2 / 9
+            carbohydrates = calories * 0.5 / 4
+        }
+        
+        recommendedProgrammView.isHidden = false
+        proteinPerDayLabel.text = "\(Int(protein)) г."
+        fatsPerDayLabel.text = "\(Int(fats)) г."
+        carbohydratesPerDayLabel.text = "\(Int(carbohydrates)) г."
+        caloriesPerDayLabel.text = "\(Int(calories)) кКал."
+        waterPerDayLabel.text = "\(Int(water)) мл."
     }
     
 }

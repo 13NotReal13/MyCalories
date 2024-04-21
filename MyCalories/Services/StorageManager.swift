@@ -126,6 +126,7 @@ final class StorageManager {
     func savePerson(_ person: Person) {
         writeDeviceRealm {
             if let existingPerson = fetchPerson() {
+                existingPerson.gender = person.gender
                 existingPerson.dateOfBirthday = person.dateOfBirthday
                 existingPerson.height = person.height
                 existingPerson.weight = person.weight
