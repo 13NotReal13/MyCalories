@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7904563E2BD5182D0009FA34 /* WaterList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7904563D2BD5182D0009FA34 /* WaterList.swift */; };
 		792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18A2BBADF4800209193 /* AppDelegate.swift */; };
 		792DB18D2BBADF4800209193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18C2BBADF4800209193 /* SceneDelegate.swift */; };
 		792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18E2BBADF4800209193 /* MainViewController.swift */; };
@@ -39,6 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7904563D2BD5182D0009FA34 /* WaterList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterList.swift; sourceTree = "<group>"; };
 		792DB1872BBADF4800209193 /* MyCalories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		792DB18A2BBADF4800209193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		792DB18C2BBADF4800209193 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			children = (
 				7946F82A2BC1F630005C3F33 /* Settings.swift */,
 				7946F8482BC455F9005C3F33 /* ProductsList.swift */,
+				7904563D2BD5182D0009FA34 /* WaterList.swift */,
 				7946F8CC2BCA9904005C3F33 /* Person.swift */,
 			);
 			path = Models;
@@ -314,6 +317,7 @@
 				7946F8ED2BCD50E4005C3F33 /* HistroryProductsViewController.swift in Sources */,
 				7946F8342BC28E60005C3F33 /* UIScrollView + Ext.swift in Sources */,
 				7946F8EB2BCC2DF2005C3F33 /* AddNewProductViewController.swift in Sources */,
+				7904563E2BD5182D0009FA34 /* WaterList.swift in Sources */,
 				7946F82E2BC1F6AF005C3F33 /* StorageManager.swift in Sources */,
 				792DB18D2BBADF4800209193 /* SceneDelegate.swift in Sources */,
 			);
