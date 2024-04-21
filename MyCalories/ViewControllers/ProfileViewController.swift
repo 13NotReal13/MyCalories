@@ -54,6 +54,8 @@ enum Goal {
 final class ProfileViewController: UIViewController {
     
     // MARK: - IBOutlets
+    @IBOutlet var saveButton: UIBarButtonItem!
+    
     @IBOutlet var genderSegmentedControl: UISegmentedControl!
     @IBOutlet var dateOfBirthdayTF: UITextField!
     @IBOutlet var heightTF: UITextField!
@@ -61,7 +63,13 @@ final class ProfileViewController: UIViewController {
     @IBOutlet var activityTF: UITextField!
     @IBOutlet var goalTF: UITextField!
     
-    @IBOutlet var saveButton: UIBarButtonItem!
+    @IBOutlet var recommendedProgrammView: UIView!
+    
+    @IBOutlet var proteinPerDayLabel: UILabel!
+    @IBOutlet var fatsPerDayLabel: UILabel!
+    @IBOutlet var carbohydratesPerDayLabel: UILabel!
+    @IBOutlet var caloriesPerDayLabel: UILabel!
+    @IBOutlet var waterPerDayLabel: UILabel!
     
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared

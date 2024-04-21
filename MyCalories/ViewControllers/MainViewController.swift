@@ -16,6 +16,7 @@ final class MainViewController: UIViewController {
     
     @IBOutlet var tableView: UITableView!
     @IBOutlet var progressView: UIView!
+    @IBOutlet var progressIsBlock: UIView!
     @IBOutlet var searchBar: UISearchBar!
     
     // MARK: - Private Properties
@@ -31,8 +32,12 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
+        if let person = storageManager.fetchPerson() {
+            progressIsBlock.isHidden = true
+        }
+        
         createProgressBar()
+        setupNavigationBar()
         addOverlayView()
         roundMenuCorners()
         
