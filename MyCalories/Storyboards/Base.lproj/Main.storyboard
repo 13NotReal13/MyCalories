@@ -236,7 +236,7 @@
                                             <outlet property="fatsProductLabel" destination="PNC-oY-jAP" id="9so-Mv-D1g"/>
                                             <outlet property="productNameLabel" destination="7JG-lx-O9x" id="4Ov-Gx-vNH"/>
                                             <outlet property="proteinProductLabel" destination="DP1-nz-aL3" id="Mc3-MN-Cvp"/>
-                                            <segue destination="b2H-42-Ytx" kind="presentation" identifier="usedProductVC" id="Ypb-ke-f40"/>
+                                            <segue destination="b2H-42-Ytx" kind="presentation" identifier="SegueToAddProductToHistoryVC" id="Ypb-ke-f40"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -327,7 +327,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="person" catalog="system" title="Профиль" imagePadding="10"/>
                                                 <connections>
-                                                    <segue destination="3C5-33-jXe" kind="show" id="Hge-9V-WHE"/>
+                                                    <segue destination="3C5-33-jXe" kind="show" identifier="SegueToProfileVC" id="Hge-9V-WHE"/>
                                                 </connections>
                                             </button>
                                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gOZ-HY-Ajw">
@@ -348,7 +348,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="clock.arrow.circlepath" catalog="system" title="История" imagePadding="10"/>
                                                 <connections>
-                                                    <segue destination="lEy-vN-tmZ" kind="show" id="yrR-Li-qu6"/>
+                                                    <segue destination="lEy-vN-tmZ" kind="show" identifier="SegueToHistoryProductsVC" id="yrR-Li-qu6"/>
                                                 </connections>
                                             </button>
                                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jnE-1D-OlL">
@@ -369,7 +369,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" image="gearshape" catalog="system" title="Настройки" imagePadding="10"/>
                                                 <connections>
-                                                    <segue destination="Bt2-HL-I35" kind="show" id="Nfr-Uf-IAU"/>
+                                                    <segue destination="Bt2-HL-I35" kind="show" identifier="SegueToSettingsVC" id="Nfr-Uf-IAU"/>
                                                 </connections>
                                             </button>
                                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dgt-ha-Ird">
@@ -452,18 +452,28 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="gZT-2W-iby">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="49J-jZ-JKF" kind="presentation" identifier="addNewProduct" id="obS-nR-Xi9"/>
+                                <segue destination="49J-jZ-JKF" kind="presentation" identifier="SegueToAddNewProductVC" id="obS-nR-Xi9"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="caloriesProgrammLabel" destination="rEK-I4-vgb" id="1Wj-KW-cTj"/>
+                        <outlet property="caloriesTodayLabel" destination="RpC-e5-DIQ" id="oWw-4O-aoy"/>
+                        <outlet property="carbohydratesProgrammLabel" destination="7fu-VO-U4E" id="dNx-3J-D9J"/>
+                        <outlet property="carbohydratesTodayLabel" destination="7hN-aQ-uRO" id="OZ5-Wh-ao1"/>
+                        <outlet property="fatsProgrammLabel" destination="SmI-bG-gKv" id="ykS-Df-bs5"/>
+                        <outlet property="fatsTodayLabel" destination="4da-Ra-UME" id="7Je-j1-JsX"/>
                         <outlet property="menuLeadingConstraint" destination="Dge-AY-yrY" id="niK-ED-Szv"/>
                         <outlet property="menuTrailingConstraint" destination="5ai-no-ql2" id="U3S-Zz-bwn"/>
                         <outlet property="menuView" destination="La2-79-89M" id="HQI-r9-4VI"/>
                         <outlet property="progressIsBlock" destination="INR-2c-t8t" id="ycz-gV-g6V"/>
                         <outlet property="progressView" destination="T03-XA-YfC" id="hUQ-6k-fHl"/>
+                        <outlet property="proteinProgrammLabel" destination="o7J-Jw-qD1" id="ApO-Bs-XyH"/>
+                        <outlet property="proteinTodayLabel" destination="QkO-Mh-02N" id="5qU-ch-zJ0"/>
                         <outlet property="searchBar" destination="OMz-5R-Q5X" id="9ch-4d-qLd"/>
                         <outlet property="tableView" destination="gDL-dZ-72b" id="XC7-Fg-GH0"/>
+                        <outlet property="waterProgrammLabel" destination="sB8-rb-5vd" id="67w-yW-8UC"/>
+                        <outlet property="waterTodayLabel" destination="b6u-Oz-2UA" id="e4p-CX-eiv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -730,7 +740,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tUl-rZ-hiT">
-                                <rect key="frame" x="0.0" y="194.33333333333331" width="393" height="623.66666666666674"/>
+                                <rect key="frame" x="0.0" y="194.66666666666669" width="393" height="623.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
@@ -751,7 +761,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" / " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N32-no-XvW">
-                                                    <rect key="frame" x="261" y="17.666666666666668" width="12" height="15.666666666666668"/>
+                                                    <rect key="frame" x="261" y="17.333333333333332" width="12" height="15.999999999999996"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="12" id="M1H-Jp-6IU"/>
                                                     </constraints>
@@ -760,7 +770,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EGx-xf-NGp">
-                                                    <rect key="frame" x="273" y="17.666666666666668" width="25" height="15.666666666666668"/>
+                                                    <rect key="frame" x="273" y="17.333333333333332" width="25" height="15.999999999999996"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="bsR-Iw-nPW"/>
                                                     </constraints>
@@ -769,7 +779,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" / " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mju-JE-FMD">
-                                                    <rect key="frame" x="298" y="17.666666666666668" width="12" height="15.666666666666668"/>
+                                                    <rect key="frame" x="298" y="17.333333333333332" width="12" height="15.999999999999996"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="12" id="bhS-RR-HHn"/>
                                                     </constraints>
@@ -778,7 +788,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="raj-yP-gcb">
-                                                    <rect key="frame" x="310" y="17.666666666666668" width="25" height="15.666666666666668"/>
+                                                    <rect key="frame" x="310" y="17.333333333333332" width="25" height="15.999999999999996"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="j2O-qa-6ZC"/>
                                                     </constraints>
@@ -787,7 +797,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9999" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V51-mg-3CI">
-                                                    <rect key="frame" x="340" y="17.666666666666668" width="33" height="15.666666666666668"/>
+                                                    <rect key="frame" x="340" y="17.333333333333332" width="33" height="15.999999999999996"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="33" id="fjV-7k-Vmb"/>
                                                     </constraints>
@@ -796,7 +806,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yu-ND-w6a">
-                                                    <rect key="frame" x="236" y="17.666666666666668" width="25" height="15.666666666666668"/>
+                                                    <rect key="frame" x="236" y="17.333333333333332" width="25" height="15.999999999999996"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="25" id="4xS-RW-iuq"/>
                                                     </constraints>
@@ -843,7 +853,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Б  /  Ж  /  У  Ккал" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dEC-nW-scK">
-                                <rect key="frame" x="243.33333333333337" y="174" width="129.66666666666663" height="20.333333333333343"/>
+                                <rect key="frame" x="243.66666666666663" y="174" width="129.33333333333337" height="20.666666666666657"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="17"/>
                                 <color key="textColor" name="textColorApp"/>
                                 <nil key="highlightedColor"/>

@@ -19,16 +19,23 @@ final class AddProductToHistoryViewController: UIViewController {
     @IBOutlet var dateTF: UITextField!
     @IBOutlet var addBarButtonItem: UIBarButtonItem!
     
+    weak var delegate: MainScreenDelegate?
+    
     var selectedProduct: Product!
     
     private let storageManager = StorageManager.shared
     private let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setTextFields()
         setLabels()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.setProgressBarValues()
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

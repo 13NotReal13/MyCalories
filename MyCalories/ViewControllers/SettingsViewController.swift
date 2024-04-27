@@ -33,6 +33,8 @@ final class SettingsViewController: UIViewController {
     private let storageManager = StorageManager.shared
     private var userProgramm: UserProgramm?
     
+    weak var delegate: MainScreenDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         userProgramm = storageManager.fetchUserProgramm()
@@ -57,6 +59,10 @@ final class SettingsViewController: UIViewController {
         
         saveSettings()
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.setProgressBarValues()
+    }
 }
 
 // MARK: - Private Methods
@@ -77,13 +83,13 @@ extension SettingsViewController {
     }
     
     private func saveSettings() {
-        storageManager.saveSettings(
-            Settings(
-                caloriesEnabled: caloriesSwitch.isOn,
-                bguEnabled: bguSwitch.isOn,
-                waterEnabled: waterSwitch.isOn
-            )
+        let settings = Settings(
+            caloriesEnabled: caloriesSwitch.isOn,
+            bguEnabled: bguSwitch.isOn,
+            waterEnabled: waterSwitch.isOn
         )
+        
+        storageManager.saveSettings(settings)
     }
     
     private func setUserProgramm() {

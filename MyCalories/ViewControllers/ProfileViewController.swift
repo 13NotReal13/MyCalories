@@ -34,6 +34,7 @@ enum Activity {
         }
     }
 }
+
 enum Goal {
     case downWeight
     case maintainWeight
@@ -81,8 +82,17 @@ final class ProfileViewController: UIViewController {
     private let goals: [Goal] = [.downWeight, .maintainWeight, .upWeight]
     private var activeTextField: UITextField?
     
+    weak var delegate: MainScreenDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+//        heightTF.layer.shadowColor = UIColor.black.cgColor // Цвет тени
+//        heightTF.layer.shadowOffset = CGSize(width: 0, height: 2) // Смещение тени
+//        heightTF.layer.shadowOpacity = 0.2 // Прозрачность тени
+//        heightTF.layer.shadowRadius = 5 // Радиус размытия тени
+//        heightTF.layer.masksToBounds = false
+
+        
         setTextFields()
         getPerson()
         setRecommendedProgramm()
@@ -94,6 +104,10 @@ final class ProfileViewController: UIViewController {
         super.touchesBegan(touches, with: event)
         view.endEditing(true)
         doneButtonPressed()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.setProgressBarValues()
     }
     
     @IBAction func savePersonBarButtonItem(_ sender: UIBarButtonItem) {
@@ -121,62 +135,6 @@ final class ProfileViewController: UIViewController {
     @IBAction func segmentedControlAction() {
         checkForSavePerson()
     }
-    
-    private func setRecommendedProgramm() {
-        guard let person = storageManager.fetchPerson() else { return }
-        let personAge = Date.getAge(fromDate: person.dateOfBirthday)
-        
-        var protein: Double
-        var fats: Double
-        var carbohydrates: Double
-        var calories: Double
-        var water: Double
-        
-        calories = person.gender == "Мужчина"
-            ? (person.weight * 10.0) + (person.height * 6.25) - (personAge * 5) + 5
-            : (person.weight * 10.0) + (person.height * 6.25) - (personAge * 5) - 161
-        
-        water = person.gender == "Мужчина" ? person.weight * 30 : person.weight * 25
-        
-        switch person.activity {
-        case "Низкая":
-            calories *= 1.2
-            water += person.gender == "Мужчина" ? (0.57 * 500) : (0.57 * 400)
-        case "Средняя":
-            calories *= 1.4
-            water += person.gender == "Мужчина" ? (1.42 * 500) : (1.42 * 400)
-        default:
-            calories *= 1.8
-            water += person.gender == "Мужчина" ? (2.0 * 500) : (2.0 * 400)
-        }
-        print(person.gender)
-        print(genderSegmentedControl.selectedSegmentIndex)
-        
-        switch person.goal {
-        case "Снизить вес":
-            calories *= 0.8
-            protein = calories * 0.5 / 4
-            fats = calories * 0.2 / 9
-            carbohydrates = calories * 0.3 / 4
-        case "Удержать вес":
-            protein = calories * 0.3 / 4
-            fats = calories * 0.3 / 9
-            carbohydrates = calories * 0.4 / 4
-        default:
-            calories *= 1.25
-            protein = calories * 0.3 / 4
-            fats = calories * 0.2 / 9
-            carbohydrates = calories * 0.5 / 4
-        }
-        
-        recommendedProgrammView.isHidden = false
-        proteinPerDayLabel.text = "\(Int(protein)) г."
-        fatsPerDayLabel.text = "\(Int(fats)) г."
-        carbohydratesPerDayLabel.text = "\(Int(carbohydrates)) г."
-        caloriesPerDayLabel.text = "\(Int(calories)) кКал."
-        waterPerDayLabel.text = "\(Int(water)) мл."
-    }
-    
 }
 
 // MARK: - Private Methods
@@ -288,6 +246,75 @@ private extension ProfileViewController {
         }
         alert.addAction(okButton)
         present(alert, animated: true)
+    }
+    
+    func setRecommendedProgramm() {
+        guard let person = storageManager.fetchPerson() else { return }
+        let personAge = Date.getAge(fromDate: person.dateOfBirthday)
+        
+        var protein: Double
+        var fats: Double
+        var carbohydrates: Double
+        var calories: Double
+        var water: Double
+        
+        calories = person.gender == "Мужчина"
+            ? (person.weight * 10.0) + (person.height * 6.25) - (personAge * 5) + 5
+            : (person.weight * 10.0) + (person.height * 6.25) - (personAge * 5) - 161
+        
+        water = person.gender == "Мужчина" ? person.weight * 30 : person.weight * 25
+        
+        switch person.activity {
+        case "Низкая":
+            calories *= 1.2
+            water += person.gender == "Мужчина" ? (0.57 * 500) : (0.57 * 400)
+        case "Средняя":
+            calories *= 1.4
+            water += person.gender == "Мужчина" ? (1.42 * 500) : (1.42 * 400)
+        default:
+            calories *= 1.8
+            water += person.gender == "Мужчина" ? (2.0 * 500) : (2.0 * 400)
+        }
+        
+        switch person.goal {
+        case "Снизить вес":
+            calories *= 0.8
+            protein = calories * 0.5 / 4
+            fats = calories * 0.2 / 9
+            carbohydrates = calories * 0.3 / 4
+        case "Удержать вес":
+            protein = calories * 0.3 / 4
+            fats = calories * 0.3 / 9
+            carbohydrates = calories * 0.4 / 4
+        default:
+            calories *= 1.25
+            protein = calories * 0.3 / 4
+            fats = calories * 0.2 / 9
+            carbohydrates = calories * 0.5 / 4
+        }
+        
+        recommendedProgrammView.isHidden = false
+        proteinPerDayLabel.text = "\(Int(protein)) г."
+        fatsPerDayLabel.text = "\(Int(fats)) г."
+        carbohydratesPerDayLabel.text = "\(Int(carbohydrates)) г."
+        caloriesPerDayLabel.text = "\(Int(calories)) кКал."
+        waterPerDayLabel.text = "\(Int(water)) мл."
+        
+        let recommendedProgramm = RecommendedProgramm(
+            value: [
+                Int(protein),
+                Int(fats),
+                Int(carbohydrates),
+                Int(calories),
+                Int(water)
+            ]
+        )
+        
+        saveRecommendedProgramm(recommendedProgramm)
+    }
+    
+    func saveRecommendedProgramm(_ programm: RecommendedProgramm) {
+        storageManager.saveRecommendedProgramm(programm)
     }
 }
 

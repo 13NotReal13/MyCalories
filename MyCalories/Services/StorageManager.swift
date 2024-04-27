@@ -118,6 +118,25 @@ final class StorageManager {
         }
     }
     
+    // RecommendedProgramm
+    func fetchRecommendedProgramm() -> RecommendedProgramm? {
+        return realmDevice.objects(RecommendedProgramm.self).first
+    }
+    
+    func saveRecommendedProgramm(_ programm: RecommendedProgramm) {
+        writeDeviceRealm {
+            if let existingRecommendedProgramm = fetchRecommendedProgramm() {
+                existingRecommendedProgramm.proteins = programm.proteins
+                existingRecommendedProgramm.fats = programm.fats
+                existingRecommendedProgramm.carbohydrates = programm.carbohydrates
+                existingRecommendedProgramm.calories = programm.calories
+                existingRecommendedProgramm.water = programm.water
+            } else {
+                realmDevice.add(programm)
+            }
+        }
+    }
+    
     // Person
     func fetchPerson() -> Person? {
         realmDevice.objects(Person.self).first
@@ -186,13 +205,52 @@ final class StorageManager {
             }
         }
     }
+    
+    func fetchTodayTotalNutrients() -> AllNutritions {
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
+        
+        let todaysProducts = realmDevice.objects(HistoryOfProducts.self).filter("date >= %@ AND date < %@", startOfDay, endOfDay)
+        
+        var totalProtein = 0
+        var totalFats = 0
+        var totalCarbohydrates = 0
+        var totalCalories = 0
+        var totalWater = 0
+        
+        // Перебираем все записи за сегодня и суммируем значения
+        for historyEntry in todaysProducts {
+            for product in historyEntry.usedProducts {
+                totalProtein += Int(product.protein)
+                totalFats += Int(product.fats)
+                totalCarbohydrates += Int(product.carbohydrates)
+                totalCalories += Int(product.calories)
+            }
+        }
+        
+        let todaysWater = realmDevice.objects(HistoryOfWater.self).filter("date >= %@ AND date < %@", startOfDay, endOfDay)
+        
+        for historyEntry in todaysWater {
+            for water in historyEntry.waterList {
+                totalWater += water.ml
+            }
+        }
+        
+        return AllNutritions(
+            proteins: totalProtein,
+            fats: totalFats,
+            carbohydrates: totalCarbohydrates,
+            calories: totalCalories,
+            water: totalWater
+        )
+    }
 
     // Used Water
     func fetchWaterList(completion: @escaping(Results<HistoryOfWater>) -> Void) {
         completion(realmDevice.objects(HistoryOfWater.self))
     }
     
-    func saveWaterToHistory(_ water: Water) {
+    func saveWaterToHistory(_ water: Water, completion: @escaping() -> Void) {
         let waterDate = Calendar.current.startOfDay(for: water.date)
         
         writeDeviceRealm {
@@ -205,6 +263,8 @@ final class StorageManager {
                 realmDevice.add(newHistoryOFWater)
             }
         }
+        
+        completion()
     }
     
     private func writeDeviceRealm(completion: () -> Void) {

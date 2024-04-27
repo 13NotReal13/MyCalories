@@ -17,12 +17,18 @@ final class AddNewProductViewController: UIViewController {
     @IBOutlet var carbohydratesTF: UITextField!
     @IBOutlet var caloriesTF: UITextField!
     
+    weak var delegate: MainScreenDelegate?
+    
     private let storageManager = StorageManager.shared
     private var activeTextField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setTextFields()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -100,7 +106,6 @@ private extension AddNewProductViewController {
             action: nil
         )
         keyboardToolbar.setItems([flexButton, doneButton], animated: true)
-        print("toolbar")
         return keyboardToolbar
     }
     

@@ -18,6 +18,8 @@ final class HistroryProductsViewController: UIViewController {
     private var historyProducts: Results<HistoryOfProducts>!
     private var historyOfWater: Results<HistoryOfWater>!
     
+    weak var delegate: MainScreenDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         storageManager.fetchHistoryOfProducts { [unowned self] products in
@@ -29,10 +31,13 @@ final class HistroryProductsViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        delegate?.setProgressBarValues()
+    }
+    
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         tableView.reloadData()
     }
-    
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate

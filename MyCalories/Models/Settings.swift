@@ -20,3 +20,11 @@ final class UserProgramm: Object {
     @Persisted var carbohydrates = 0
     @Persisted var water = 0
 }
+
+final class RecommendedProgramm: Object {
+    @Persisted var proteins: Int
+    @Persisted var fats: Int
+    @Persisted var carbohydrates: Int
+    @Persisted var calories: Int
+    @Persisted var water: Int
+}
