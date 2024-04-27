@@ -61,9 +61,11 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
             withIdentifier: "historyProductsCell",
             for: indexPath
         ) as? HistoryProductViewCell
+        
+        infoOfRowsInTable.text = segmentedControl.selectedSegmentIndex == 0 ? "Б  /  Ж  /  У  Ккал" : "Мл."
+        
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            infoOfRowsInTable.text = "Б  /  Ж  /  У  Ккал"
             
             let product = historyProducts[indexPath.section].usedProducts[indexPath.row]
             
@@ -72,25 +74,18 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
             cell?.fatsLabel.text = String(Int(product.fats))
             cell?.carbohydratesLabel.text = String(Int(product.carbohydrates))
             cell?.caloriesLabel.text = String(Int(product.calories))
-            
-            cell?.proteinLabel.isHidden = false
-            cell?.fatsLabel.isHidden = false
-            cell?.carbohydratesLabel.isHidden = false
-            cell?.separatorOne.isHidden = false
-            cell?.separatorTwo.isHidden = false
         default:
-            infoOfRowsInTable.text = "Мл."
-            
             let water = historyOfWater[indexPath.section].waterList[indexPath.row]
             cell?.productNameLabel.text = Date.timeToString(water.date)
             cell?.caloriesLabel.text = String(water.ml)
-            
-            cell?.proteinLabel.isHidden = true
-            cell?.fatsLabel.isHidden = true
-            cell?.carbohydratesLabel.isHidden = true
-            cell?.separatorOne.isHidden = true
-            cell?.separatorTwo.isHidden = true
         }
+        
+        let isProductInfoVisible = segmentedControl.selectedSegmentIndex == 0
+            cell?.proteinLabel.isHidden = !isProductInfoVisible
+            cell?.fatsLabel.isHidden = !isProductInfoVisible
+            cell?.carbohydratesLabel.isHidden = !isProductInfoVisible
+            cell?.separatorOne.isHidden = !isProductInfoVisible
+            cell?.separatorTwo.isHidden = !isProductInfoVisible
         
         return cell ?? UITableViewCell()
     }
@@ -111,6 +106,44 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
         }
         header.addSubview(label)
         return header
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) { [unowned self] action, view, isDone in
+            switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                let history = historyProducts[indexPath.section]
+                let productToDelete = history.usedProducts[indexPath.row]
+                if history.usedProducts.count == 1 {
+                    storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+                } else {
+                    storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+            default:
+                let history = historyOfWater[indexPath.section]
+                let waterToDelete = history.waterList[indexPath.row]
+                if history.waterList.count == 1 {
+                    storageManager.deleteWaterFromHistory(waterToDelete, fromHistory: history)
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
+                } else {
+                    storageManager.deleteWaterFromHistory(waterToDelete, fromHistory: history)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+            isDone(true)
+        }
+        deleteAction.image = UIImage(systemName: "trash.fill")
+
+        let editAction = UIContextualAction(style: .normal, title: nil) { action, view, isDone in
+            // Здесь можно добавить логику редактирования
+            isDone(true)
+        }
+        editAction.image = UIImage(systemName: "pencil")
+        editAction.backgroundColor = .lightGray
+
+        return UISwipeActionsConfiguration(actions: [editAction, deleteAction])
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -78,6 +78,7 @@ private extension AddNewProductViewController {
             checkTextOfTextField(textField)
         }
         textField.resignFirstResponder()
+        checkForAddProduct()
     }
     
     func checkForAddProduct() {
@@ -88,6 +89,8 @@ private extension AddNewProductViewController {
               let calories = caloriesTF.text else { return }
         if !name.isEmpty, !protein.isEmpty, !fats.isEmpty, !carbohydrates.isEmpty, !calories.isEmpty {
             addBarButtonItem.isEnabled = true
+        } else {
+            addBarButtonItem.isEnabled = false
         }
     }
     

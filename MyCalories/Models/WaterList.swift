@@ -16,4 +16,6 @@ final class HistoryOfWater: Object {
 final class Water: Object {
     @Persisted var date = Date()
     @Persisted var ml = 0
+    
+    let historyLink = LinkingObjects(fromType: HistoryOfWater.self, property: "waterList")
 }

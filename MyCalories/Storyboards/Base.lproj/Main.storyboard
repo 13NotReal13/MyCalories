@@ -740,7 +740,7 @@
                                 </connections>
                             </segmentedControl>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="tUl-rZ-hiT">
-                                <rect key="frame" x="0.0" y="194.66666666666669" width="393" height="623.33333333333326"/>
+                                <rect key="frame" x="0.0" y="208" width="393" height="610"/>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <color key="sectionIndexBackgroundColor" systemColor="systemGray6Color"/>
                                 <prototypes>
@@ -858,6 +858,12 @@
                                 <color key="textColor" name="textColorApp"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Потяни влево, чтобы редактировать или удалить" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UzJ-Cy-mdg">
+                                <rect key="frame" x="62.333333333333343" y="194.66666666666666" width="268.33333333333326" height="13.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" systemColor="systemGrayColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="8Ol-An-WVm"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -865,12 +871,14 @@
                             <constraint firstItem="8Ol-An-WVm" firstAttribute="trailing" secondItem="dEC-nW-scK" secondAttribute="trailing" constant="20" id="06f-Kf-TZS"/>
                             <constraint firstItem="tUl-rZ-hiT" firstAttribute="leading" secondItem="8Ol-An-WVm" secondAttribute="leading" id="2ky-In-Zsr"/>
                             <constraint firstItem="8Ol-An-WVm" firstAttribute="trailing" secondItem="FS6-Xi-Pcw" secondAttribute="trailing" constant="100" id="7U7-vG-kUo"/>
+                            <constraint firstItem="tUl-rZ-hiT" firstAttribute="top" secondItem="UzJ-Cy-mdg" secondAttribute="bottom" id="DH5-Sh-5cr"/>
                             <constraint firstItem="FS6-Xi-Pcw" firstAttribute="leading" secondItem="8Ol-An-WVm" secondAttribute="leading" constant="100" id="JcS-EA-6Q1"/>
                             <constraint firstItem="dEC-nW-scK" firstAttribute="top" secondItem="FS6-Xi-Pcw" secondAttribute="bottom" constant="20" id="NMc-he-S2o"/>
+                            <constraint firstItem="UzJ-Cy-mdg" firstAttribute="centerX" secondItem="RwD-JV-QFy" secondAttribute="centerX" id="NTR-uB-ibU"/>
                             <constraint firstItem="FS6-Xi-Pcw" firstAttribute="top" secondItem="8Ol-An-WVm" secondAttribute="top" constant="20" id="Ufe-ks-8Rk"/>
                             <constraint firstItem="dEC-nW-scK" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="8Ol-An-WVm" secondAttribute="leading" symbolic="YES" id="Uy3-N1-bdD"/>
                             <constraint firstItem="8Ol-An-WVm" firstAttribute="trailing" secondItem="tUl-rZ-hiT" secondAttribute="trailing" id="diE-Dj-brX"/>
-                            <constraint firstItem="tUl-rZ-hiT" firstAttribute="top" secondItem="dEC-nW-scK" secondAttribute="bottom" id="nwB-NO-RzA"/>
+                            <constraint firstItem="UzJ-Cy-mdg" firstAttribute="top" secondItem="dEC-nW-scK" secondAttribute="bottom" id="sP9-BC-qUc"/>
                             <constraint firstItem="8Ol-An-WVm" firstAttribute="bottom" secondItem="tUl-rZ-hiT" secondAttribute="bottom" id="w1Y-9k-3T4"/>
                         </constraints>
                     </view>

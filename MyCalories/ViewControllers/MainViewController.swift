@@ -10,7 +10,6 @@ import RealmSwift
 
 protocol MainScreenDelegate: AnyObject {
     func updateProgressBar()
-    func updateTableView()
 }
 
 final class MainViewController: UIViewController {
@@ -136,7 +135,6 @@ final class MainViewController: UIViewController {
     
     @objc private func appWillEnterForeground() {
         updateProgressBar()
-        print("gjhdk")
     }
     
     deinit {
@@ -148,10 +146,6 @@ final class MainViewController: UIViewController {
 extension MainViewController: MainScreenDelegate {
     func updateProgressBar() {
         setProgressBarValues()
-    }
-    
-    func updateTableView() {
-
     }
 }
 
