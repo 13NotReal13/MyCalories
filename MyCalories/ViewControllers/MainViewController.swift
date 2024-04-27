@@ -9,7 +9,8 @@ import UIKit
 import RealmSwift
 
 protocol MainScreenDelegate: AnyObject {
-    func setProgressBarValues()
+    func updateProgressBar()
+    func updateTableView()
 }
 
 final class MainViewController: UIViewController {
@@ -63,6 +64,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
+        setupForegroundNotification()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -133,11 +135,23 @@ final class MainViewController: UIViewController {
     }
     
     @objc private func appWillEnterForeground() {
-        setProgressBarValues()
+        updateProgressBar()
+        print("gjhdk")
     }
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+    }
+}
+
+// MARK: - MainScreenDelegate
+extension MainViewController: MainScreenDelegate {
+    func updateProgressBar() {
+        setProgressBarValues()
+    }
+    
+    func updateTableView() {
+
     }
 }
 
@@ -242,8 +256,9 @@ private extension MainViewController {
     }
 }
 
+
 // MARK: - Progress Bar
-extension MainViewController: MainScreenDelegate {
+private extension MainViewController {
     func createCircularProgress(xOffset: Int, color: UIColor, initialProgress: CGFloat) -> CircularProgressBar {
         let midWidth = Int(view.frame.width / 2)
         let frameY = Int(progressView.frame.height / 2 - 45)
@@ -297,7 +312,7 @@ extension MainViewController: MainScreenDelegate {
         fatsProgressBar?.progress = fatsToday < fatsProgramm
             ? Double(fatsToday) / Double(fatsProgramm )
             : 1.0
-        caloriesProgressBar?.progress = carbohydratesToday < carbohydratesProgramm
+        carbohydratesProgressBar?.progress = carbohydratesToday < carbohydratesProgramm
             ? Double(carbohydratesToday) / Double(carbohydratesProgramm)
             : 1.0
         caloriesProgressBar?.progress = caloriesToday < caloriesProgramm
@@ -308,10 +323,19 @@ extension MainViewController: MainScreenDelegate {
             : 1.0
         
         proteinTodayLabel.text = proteinToday.formatted()
+        proteinTodayLabel.textColor = proteinToday > proteinProgramm ? .yellow : .white
+        
         fatsTodayLabel.text = fatsToday.formatted()
+        fatsTodayLabel.textColor = fatsToday > fatsProgramm ? .yellow : .white
+        
         carbohydratesTodayLabel.text = carbohydratesToday.formatted()
+        carbohydratesTodayLabel.textColor = carbohydratesToday > carbohydratesProgramm ? .yellow : .white
+        
         caloriesTodayLabel.text = caloriesToday.formatted()
+        caloriesTodayLabel.textColor = caloriesToday > caloriesProgramm ? .yellow : .white
+        
         waterTodayLabel.text = waterToday.formatted()
+        waterTodayLabel.textColor = waterToday > waterProgramm ? .yellow : .white
     
         proteinProgrammLabel.text = proteinProgramm.formatted()
         fatsProgrammLabel.text = fatsProgramm.formatted()

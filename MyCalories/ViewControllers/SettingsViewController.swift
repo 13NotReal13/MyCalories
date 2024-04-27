@@ -61,7 +61,7 @@ final class SettingsViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        delegate?.setProgressBarValues()
+        delegate?.updateProgressBar()
     }
 }
 

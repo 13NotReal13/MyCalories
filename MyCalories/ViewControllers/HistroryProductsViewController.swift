@@ -32,7 +32,7 @@ final class HistroryProductsViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        delegate?.setProgressBarValues()
+        delegate?.updateProgressBar()
     }
     
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {

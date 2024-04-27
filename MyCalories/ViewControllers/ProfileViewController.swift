@@ -107,7 +107,7 @@ final class ProfileViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        delegate?.setProgressBarValues()
+        delegate?.updateProgressBar()
     }
     
     @IBAction func savePersonBarButtonItem(_ sender: UIBarButtonItem) {
