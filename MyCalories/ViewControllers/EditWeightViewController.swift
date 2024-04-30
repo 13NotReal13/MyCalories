@@ -39,13 +39,13 @@ final class EditWeightViewController: UIViewController {
         guard let value = weightTF.text, let doubleValue = Double(value), let intValue = Int(value) else { return }
         if let product = choosedProduct {
             storageManger.editProductFromHistory(product, withNewWeight: doubleValue)
-            navigationController?.popViewController(animated: true)
-            return
         }
         
         if let water = choosedWater {
-            return
+            storageManger.editWaterFromHistory(water, withNewML: intValue)
         }
+        
+        navigationController?.popViewController(animated: true)
     }
     
     private func createToolbar() -> UIToolbar {

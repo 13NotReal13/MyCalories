@@ -290,6 +290,12 @@ final class StorageManager {
         completion()
     }
     
+    func editWaterFromHistory(_ water: Water, withNewML ml: Int) {
+        writeDeviceRealm {
+            water.ml = ml
+        }
+    }
+    
     func deleteWaterFromHistory(_ water: Water, fromHistory history: HistoryOfWater) {
         writeDeviceRealm {
             if history.waterList.count == 1 {
