@@ -9,10 +9,6 @@ import UIKit
 
 final class HistoryProductViewCell: UITableViewCell {
     @IBOutlet var productNameLabel: UILabel!
-    @IBOutlet var proteinLabel: UILabel!
-    @IBOutlet var fatsLabel: UILabel!
-    @IBOutlet var carbohydratesLabel: UILabel!
+    @IBOutlet var bguLabel: UILabel?
     @IBOutlet var caloriesLabel: UILabel!
-    @IBOutlet var separatorOne: UILabel!
-    @IBOutlet var separatorTwo: UILabel!
 }

@@ -10,6 +10,7 @@ import RealmSwift
 
 protocol MainScreenDelegate: AnyObject {
     func updateProgressBar()
+    func setHiddenOfProgressBlock()
 }
 
 final class MainViewController: UIViewController {
@@ -147,6 +148,12 @@ extension MainViewController: MainScreenDelegate {
     func updateProgressBar() {
         setProgressBarValues()
     }
+    
+    func setHiddenOfProgressBlock() {
+        if storageManager.fetchPerson() != nil {
+            progressIsBlock.isHidden = true
+        }
+    }
 }
 
 // MARK: - Private Methods
@@ -154,6 +161,7 @@ private extension MainViewController {
     func initialSetup() {
         fetchData()
         setupNavigationBar()
+        setHiddenOfProgressBlock()
         initializeProgressBars()
         setProgressBarValues()
         setupOverlayView()
@@ -174,10 +182,6 @@ private extension MainViewController {
                 filteredProducts = allProducts
                 tableView.reloadData()
             }
-        }
-        
-        if storageManager.fetchPerson() != nil {
-            progressIsBlock.isHidden = true
         }
     }
     

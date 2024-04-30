@@ -206,6 +206,16 @@ final class StorageManager {
         }
     }
     
+    func editProductFromHistory(_ product: Product, withNewWeight weight: Double) {
+        writeDeviceRealm {
+            product.protein *= weight / 100.0
+            product.fats *= weight / 100.0
+            product.carbohydrates *= weight / 100.0
+            product.calories *= weight / 100.0
+            product.weight = weight
+        }
+    }
+    
     func deleteProductFromHistory(_ product: Product, fromHistory history: HistoryOfProducts) {
         writeDeviceRealm {
             if history.usedProducts.count == 1 {

@@ -107,6 +107,7 @@ final class ProfileViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        delegate?.setHiddenOfProgressBlock()
         delegate?.updateProgressBar()
     }
     

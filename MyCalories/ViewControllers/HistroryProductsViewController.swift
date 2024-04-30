@@ -36,6 +36,7 @@ final class HistroryProductsViewController: UIViewController {
     }
     
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
+        infoOfRowsInTable.text = sender.selectedSegmentIndex == 0 ? "Б / Ж / У  Ккал" : "Мл."
         tableView.reloadData()
     }
 }
@@ -62,30 +63,19 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
             for: indexPath
         ) as? HistoryProductViewCell
         
-        infoOfRowsInTable.text = segmentedControl.selectedSegmentIndex == 0 ? "Б  /  Ж  /  У  Ккал" : "Мл."
-        
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            
             let product = historyProducts[indexPath.section].usedProducts[indexPath.row]
             
             cell?.productNameLabel.text = product.name
-            cell?.proteinLabel.text = String(Int(product.protein))
-            cell?.fatsLabel.text = String(Int(product.fats))
-            cell?.carbohydratesLabel.text = String(Int(product.carbohydrates))
+            cell?.bguLabel?.text = "\(Int(product.protein)) / \(Int(product.fats)) / \(Int(product.carbohydrates))"
             cell?.caloriesLabel.text = String(Int(product.calories))
         default:
             let water = historyOfWater[indexPath.section].waterList[indexPath.row]
             cell?.productNameLabel.text = Date.timeToString(water.date)
+            cell?.bguLabel?.text = ""
             cell?.caloriesLabel.text = String(water.ml)
         }
-        
-        let isProductInfoVisible = segmentedControl.selectedSegmentIndex == 0
-            cell?.proteinLabel.isHidden = !isProductInfoVisible
-            cell?.fatsLabel.isHidden = !isProductInfoVisible
-            cell?.carbohydratesLabel.isHidden = !isProductInfoVisible
-            cell?.separatorOne.isHidden = !isProductInfoVisible
-            cell?.separatorTwo.isHidden = !isProductInfoVisible
         
         return cell ?? UITableViewCell()
     }
@@ -136,8 +126,15 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
         }
         deleteAction.image = UIImage(systemName: "trash.fill")
 
-        let editAction = UIContextualAction(style: .normal, title: nil) { action, view, isDone in
-            // Здесь можно добавить логику редактирования
+        let editAction = UIContextualAction(style: .normal, title: nil) { [unowned self] action, view, isDone in
+            switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                let product = historyProducts[indexPath.section].usedProducts[indexPath.row]
+                showAlert(withTitle: product.name, message: "Вес: \(product.weight) г.")
+            default:
+                let water = historyOfWater[indexPath.section].waterList[indexPath.row]
+//                showAlert(withTitle: <#T##String#>, message: <#T##String#>)
+            }
             isDone(true)
         }
         editAction.image = UIImage(systemName: "pencil")
@@ -183,5 +180,25 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+}
+
+extension HistroryProductsViewController {
+    private func showAlert(withTitle title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        let editButton = UIAlertAction(title: "Изменить вес", style: .default) { [unowned self] _ in
+            performSegue(withIdentifier: "ToEditPosition", sender: nil)
+        }
+        
+        let deleteAcrtion = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+            
+        }
+        
+        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
+        alert.addAction(editButton)
+        alert.addAction(deleteAcrtion)
+        alert.addAction(cancelButton)
+        present(alert, animated: true)
     }
 }
