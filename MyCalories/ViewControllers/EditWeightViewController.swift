@@ -21,7 +21,7 @@ final class EditWeightViewController: UIViewController {
         productNameLabel.text = choosedProduct != nil ? choosedProduct?.name : ""
         
         weightTF.text = choosedProduct != nil 
-            ? String(choosedProduct?.weight ?? 0.0)
+            ? String(Int(choosedProduct?.weight ?? 0.0))
             : String(choosedWater?.ml ?? 0)
     }
 }

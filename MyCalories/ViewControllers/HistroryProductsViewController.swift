@@ -54,6 +54,10 @@ final class HistroryProductsViewController: UIViewController {
         infoOfRowsInTable.text = sender.selectedSegmentIndex == 0 ? "Б / Ж / У  Ккал" : "Мл."
         tableView.reloadData()
     }
+    
+    deinit {
+        print("deinit")
+    }
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate
@@ -160,6 +164,7 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     }
 }
 
+// MARK: - UIAlertController
 extension HistroryProductsViewController {
     private func showAlert(withTitle title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
@@ -196,10 +201,10 @@ extension HistroryProductsViewController {
                 let productToDelete = history.usedProducts[indexPath.row]
                 if history.usedProducts.count == 1 {
                     storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
-                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
                 } else {
                     storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
                 }
             default:
                 let history = historyOfWater[indexPath.section]
