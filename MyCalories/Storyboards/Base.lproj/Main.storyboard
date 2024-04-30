@@ -730,22 +730,35 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vpX-zH-59J">
-                                <rect key="frame" x="16" y="123" width="361" height="34"/>
+                                <rect key="frame" x="16" y="163.33333333333334" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0N-Ye-oNa">
+                                <rect key="frame" x="16" y="122.99999999999999" width="361" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="62T-jk-oWY"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="vpX-zH-59J" firstAttribute="leading" secondItem="62T-jk-oWY" secondAttribute="leading" constant="16" id="FGa-tB-8KO"/>
                             <constraint firstItem="62T-jk-oWY" firstAttribute="trailing" secondItem="vpX-zH-59J" secondAttribute="trailing" constant="16" id="Fmo-16-61E"/>
-                            <constraint firstItem="vpX-zH-59J" firstAttribute="top" secondItem="62T-jk-oWY" secondAttribute="top" constant="20" id="Ra7-TI-0LK"/>
+                            <constraint firstItem="vpX-zH-59J" firstAttribute="top" secondItem="c0N-Ye-oNa" secondAttribute="bottom" constant="20" id="MFY-Px-vZf"/>
+                            <constraint firstItem="62T-jk-oWY" firstAttribute="trailing" secondItem="c0N-Ye-oNa" secondAttribute="trailing" constant="16" id="RNn-wT-77l"/>
+                            <constraint firstItem="c0N-Ye-oNa" firstAttribute="leading" secondItem="62T-jk-oWY" secondAttribute="leading" constant="16" id="UI4-lZ-ddI"/>
+                            <constraint firstItem="c0N-Ye-oNa" firstAttribute="top" secondItem="62T-jk-oWY" secondAttribute="top" constant="20" id="aRD-yF-ZLt"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="S6c-XF-k8t">
                         <barButtonItem key="rightBarButtonItem" title="Сохранить" id="mvX-q9-SVC"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="ProductNameLabel" destination="c0N-Ye-oNa" id="AYC-zg-6KD"/>
+                        <outlet property="weightTF" destination="vpX-zH-59J" id="aJX-Vq-DQS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wdw-O3-Yps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

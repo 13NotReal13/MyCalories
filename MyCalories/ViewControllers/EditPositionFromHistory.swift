@@ -9,6 +9,9 @@ import UIKit
 
 final class EditPositionFromHistory: UIViewController {
     
+    @IBOutlet var ProductNameLabel: UILabel!
+    @IBOutlet var weightTF: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
