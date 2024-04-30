@@ -22,6 +22,9 @@ final class HistroryProductsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         storageManager.fetchHistoryOfProducts { [unowned self] products in
             historyProducts = products
             tableView.reloadData()

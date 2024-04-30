@@ -732,7 +732,7 @@
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vpX-zH-59J">
                                 <rect key="frame" x="16" y="163.33333333333334" width="361" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="numberPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0N-Ye-oNa">
                                 <rect key="frame" x="16" y="122.99999999999999" width="361" height="20.333333333333329"/>
@@ -753,10 +753,15 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="S6c-XF-k8t">
-                        <barButtonItem key="rightBarButtonItem" title="Сохранить" id="mvX-q9-SVC"/>
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="Сохранить" id="mvX-q9-SVC">
+                            <connections>
+                                <action selector="saveBarButtonItemAction:" destination="K6t-5b-e37" id="uF0-a9-cVS"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="productNameLabel" destination="c0N-Ye-oNa" id="AYC-zg-6KD"/>
+                        <outlet property="saveBarButtonItem" destination="mvX-q9-SVC" id="gNm-L4-ueh"/>
                         <outlet property="weightTF" destination="vpX-zH-59J" id="aJX-Vq-DQS"/>
                     </connections>
                 </viewController>
