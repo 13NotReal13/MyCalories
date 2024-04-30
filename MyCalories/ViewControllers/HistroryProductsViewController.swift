@@ -35,6 +35,21 @@ final class HistroryProductsViewController: UIViewController {
         delegate?.updateProgressBar()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("1")
+        guard let editWeightVC = segue.destination as? EditWeightViewController else { return }
+        print("2")
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        print("3")
+        
+        switch segmentedControl.selectedSegmentIndex {
+        case 0:
+            editWeightVC.choosedProduct = historyProducts[indexPath.section].usedProducts[indexPath.row]
+        default:
+            editWeightVC.choosedWater = historyOfWater[indexPath.section].waterList[indexPath.row]
+        }
+    }
+    
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         infoOfRowsInTable.text = sender.selectedSegmentIndex == 0 ? "Б / Ж / У  Ккал" : "Мл."
         tableView.reloadData()
@@ -98,51 +113,6 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
         return header
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: nil) { [unowned self] action, view, isDone in
-            switch segmentedControl.selectedSegmentIndex {
-            case 0:
-                let history = historyProducts[indexPath.section]
-                let productToDelete = history.usedProducts[indexPath.row]
-                if history.usedProducts.count == 1 {
-                    storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
-                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
-                } else {
-                    storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                }
-            default:
-                let history = historyOfWater[indexPath.section]
-                let waterToDelete = history.waterList[indexPath.row]
-                if history.waterList.count == 1 {
-                    storageManager.deleteWaterFromHistory(waterToDelete, fromHistory: history)
-                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
-                } else {
-                    storageManager.deleteWaterFromHistory(waterToDelete, fromHistory: history)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                }
-            }
-            isDone(true)
-        }
-        deleteAction.image = UIImage(systemName: "trash.fill")
-
-        let editAction = UIContextualAction(style: .normal, title: nil) { [unowned self] action, view, isDone in
-            switch segmentedControl.selectedSegmentIndex {
-            case 0:
-                let product = historyProducts[indexPath.section].usedProducts[indexPath.row]
-                showAlert(withTitle: product.name, message: "Вес: \(product.weight) г.")
-            default:
-                let water = historyOfWater[indexPath.section].waterList[indexPath.row]
-//                showAlert(withTitle: <#T##String#>, message: <#T##String#>)
-            }
-            isDone(true)
-        }
-        editAction.image = UIImage(systemName: "pencil")
-        editAction.backgroundColor = .lightGray
-
-        return UISwipeActionsConfiguration(actions: [editAction, deleteAction])
-    }
-    
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 25
     }
@@ -187,8 +157,6 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
             let water = historyOfWater[indexPath.section].waterList[indexPath.row]
                 showAlert(withTitle: "Выберите нужный вариант", message: "")
         }
-        
-        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -200,14 +168,56 @@ extension HistroryProductsViewController {
             performSegue(withIdentifier: "ToEditPosition", sender: nil)
         }
         
-        let deleteAcrtion = UIAlertAction(title: "Удалить", style: .destructive) { _ in
-            
+        let deleteAcrtion = UIAlertAction(title: "Удалить", style: .destructive) { [unowned self] _ in
+            showAskToDeleteAlert()
         }
         
         let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
         alert.addAction(editButton)
         alert.addAction(deleteAcrtion)
         alert.addAction(cancelButton)
+        present(alert, animated: true)
+    }
+    
+    private func showAskToDeleteAlert() {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let alert = UIAlertController(
+            title: segmentedControl.selectedSegmentIndex == 0
+                ? "Вы уверены, что хотите удалить - \(historyProducts[indexPath.section].usedProducts[indexPath.row].name)?"
+                : "Вы уверены, что хотите удалить?",
+            message: "",
+            preferredStyle: .alert
+        )
+        
+        let yesButton = UIAlertAction(title: "Да", style: .destructive) { [unowned self] _ in
+            switch segmentedControl.selectedSegmentIndex {
+            case 0:
+                let history = historyProducts[indexPath.section]
+                let productToDelete = history.usedProducts[indexPath.row]
+                if history.usedProducts.count == 1 {
+                    storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .automatic)
+                } else {
+                    storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+            default:
+                let history = historyOfWater[indexPath.section]
+                let waterToDelete = history.waterList[indexPath.row]
+                if history.waterList.count == 1 {
+                    storageManager.deleteWaterFromHistory(waterToDelete, fromHistory: history)
+                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
+                } else {
+                    storageManager.deleteWaterFromHistory(waterToDelete, fromHistory: history)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                }
+            }
+        }
+        
+        let noButton = UIAlertAction(title: "Нет", style: .cancel)
+        
+        alert.addAction(yesButton)
+        alert.addAction(noButton)
         present(alert, animated: true)
     }
 }

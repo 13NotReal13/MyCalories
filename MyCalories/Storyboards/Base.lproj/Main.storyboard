@@ -721,10 +721,10 @@
             </objects>
             <point key="canvasLocation" x="-996" y="732"/>
         </scene>
-        <!--Edit Position From History-->
+        <!--Edit Weight View Controller-->
         <scene sceneID="SWW-23-us8">
             <objects>
-                <viewController id="K6t-5b-e37" customClass="EditPositionFromHistory" customModule="MyCalories" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="K6t-5b-e37" customClass="EditWeightViewController" customModule="MyCalories" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7g0-kl-cJQ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -756,7 +756,7 @@
                         <barButtonItem key="rightBarButtonItem" title="Сохранить" id="mvX-q9-SVC"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="ProductNameLabel" destination="c0N-Ye-oNa" id="AYC-zg-6KD"/>
+                        <outlet property="productNameLabel" destination="c0N-Ye-oNa" id="AYC-zg-6KD"/>
                         <outlet property="weightTF" destination="vpX-zH-59J" id="aJX-Vq-DQS"/>
                     </connections>
                 </viewController>
