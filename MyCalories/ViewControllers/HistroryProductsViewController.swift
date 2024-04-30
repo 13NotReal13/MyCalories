@@ -161,8 +161,7 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
             let product = historyProducts[indexPath.section].usedProducts[indexPath.row]
             showAlert(withTitle: product.name, message: "Вес: \(product.weight) г.")
         default:
-            let water = historyOfWater[indexPath.section].waterList[indexPath.row]
-                showAlert(withTitle: "Выберите нужный вариант", message: "")
+            showAlert(withTitle: "Выберите нужный вариант", message: "")
         }
     }
 }
