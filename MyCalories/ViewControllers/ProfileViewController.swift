@@ -86,13 +86,6 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        heightTF.layer.shadowColor = UIColor.black.cgColor // Цвет тени
-//        heightTF.layer.shadowOffset = CGSize(width: 0, height: 2) // Смещение тени
-//        heightTF.layer.shadowOpacity = 0.2 // Прозрачность тени
-//        heightTF.layer.shadowRadius = 5 // Радиус размытия тени
-//        heightTF.layer.masksToBounds = false
-
-        
         setTextFields()
         getPerson()
         setRecommendedProgramm()
@@ -146,6 +139,12 @@ private extension ProfileViewController {
         weightTF.delegate = self
         activityTF.delegate = self
         goalTF.delegate = self
+        
+        dateOfBirthdayTF.customStyle()
+        heightTF.customStyle()
+        weightTF.customStyle()
+        activityTF.customStyle()
+        goalTF.customStyle()
         
         dateOfBirthdayTF.inputAccessoryView = createToolbar()
         dateOfBirthdayTF.inputView = datePicker
