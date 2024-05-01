@@ -82,6 +82,9 @@ private extension AddProductToHistoryViewController {
         weightTF.delegate = self
         weightTF.becomeFirstResponder()
         
+        weightTF.customStyle()
+        dateTF.customStyle()
+        
         dateTF.delegate = self
         dateTF.inputAccessoryView = createToolbar()
         dateTF.inputView = datePicker
@@ -92,10 +95,10 @@ private extension AddProductToHistoryViewController {
     
     func setLabels() {
         nameProductLabel.text = selectedProduct.name
-        proteinProductLabel.text = "БЕЛКИ: \(selectedProduct.protein) Г."
-        fatsProductLabel.text = "ЖИРЫ: \(selectedProduct.fats) Г."
-        carbohydratesProductLabel.text = "УГЛЕВОДЫ: \(selectedProduct.carbohydrates) Г."
-        caloriesProductLabel.text = "ККАЛ: \(selectedProduct.calories) НА 100 Г."
+        proteinProductLabel.text = "\(selectedProduct.protein) г."
+        fatsProductLabel.text = "\(selectedProduct.fats) г."
+        carbohydratesProductLabel.text = "\(selectedProduct.carbohydrates) г."
+        caloriesProductLabel.text = "\(selectedProduct.calories) кКал на 100 г."
     }
     
     func showAlert(fromTextField textField: UITextField) {
