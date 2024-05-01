@@ -15,8 +15,7 @@ final class HistroryProductsViewController: UIViewController {
     @IBOutlet var infoOfRowsInTable: UILabel!
     
     private let storageManager = StorageManager.shared
-    private var historyProducts: Results<HistoryOfProducts>!
-    private var historyOfWater: Results<HistoryOfWater>!
+    private var history: Results<History>!
     
     weak var delegate: MainScreenDelegate?
     
@@ -25,12 +24,9 @@ final class HistroryProductsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        storageManager.fetchHistoryOfProducts { [unowned self] products in
-            historyProducts = products
+        storageManager.fetchHistory { [unowned self] historyData in
+            history = historyData
             tableView.reloadData()
-        }
-        storageManager.fetchWaterList { [unowned self] water in
-            historyOfWater = water
         }
     }
     
@@ -39,17 +35,14 @@ final class HistroryProductsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("1")
         guard let editWeightVC = segue.destination as? EditWeightViewController else { return }
-        print("2")
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        print("3")
         
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            editWeightVC.choosedProduct = historyProducts[indexPath.section].usedProducts[indexPath.row]
+            editWeightVC.choosedProduct = history[indexPath.section].productList[indexPath.row]
         default:
-            editWeightVC.choosedWater = historyOfWater[indexPath.section].waterList[indexPath.row]
+            editWeightVC.choosedWater = history[indexPath.section].waterList[indexPath.row]
         }
     }
     
@@ -66,16 +59,15 @@ final class HistroryProductsViewController: UIViewController {
 // MARK: - UITableViewDataSource, UITableViewDelegate
 extension HistroryProductsViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
-        switch segmentedControl.selectedSegmentIndex {
-        case 0: historyProducts.count
-        default: historyOfWater.count
-        }
+        history.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
-        case 0: historyProducts[section].usedProducts.count
-        default: historyOfWater[section].waterList.count
+        case 0: 
+            history[section].productList.isEmpty ? 0 : history[section].productList.count
+        default:
+            history[section].waterList.isEmpty ? 0 : history[section].waterList.count
         }
     }
     
@@ -87,13 +79,13 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
         
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            let product = historyProducts[indexPath.section].usedProducts[indexPath.row]
+            let product = history[indexPath.section].productList[indexPath.row]
             
             cell?.productNameLabel.text = product.name
             cell?.bguLabel?.text = "\(Int(product.protein)) / \(Int(product.fats)) / \(Int(product.carbohydrates))"
             cell?.caloriesLabel.text = String(Int(product.calories))
         default:
-            let water = historyOfWater[indexPath.section].waterList[indexPath.row]
+            let water = history[indexPath.section].waterList[indexPath.row]
             cell?.productNameLabel.text = Date.timeToString(water.date)
             cell?.bguLabel?.text = ""
             cell?.caloriesLabel.text = String(water.ml)
@@ -110,18 +102,16 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .colorApp
         
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            label.text = Date.dateToString(historyProducts[section].date)
-        default:
-            label.text = Date.dateToString(historyOfWater[section].date)
-        }
+        label.text = Date.dateToString(history[section].date)
         header.addSubview(label)
         return header
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 25
+        let sectionHasData = segmentedControl.selectedSegmentIndex == 0
+            ? !history[section].productList.isEmpty
+            : !history[section].waterList.isEmpty
+        return sectionHasData ? 25 : 0
     }
     
     // Footer
@@ -132,16 +122,16 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
         label.font = .boldSystemFont(ofSize: 14)
         label.textColor = .colorApp
         
+        let history = history[section]
+        
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            let history = historyProducts[section]
-            let protein = history.usedProducts.reduce(0) { $0 + $1.protein }
-            let fats = history.usedProducts.reduce(0) { $0 + $1.fats }
-            let carbohydrates = history.usedProducts.reduce(0) { $0 + $1.carbohydrates }
-            let calories = history.usedProducts.reduce(0) { $0 + $1.calories }
+            let protein = history.productList.reduce(0) { $0 + $1.protein }
+            let fats = history.productList.reduce(0) { $0 + $1.fats }
+            let carbohydrates = history.productList.reduce(0) { $0 + $1.carbohydrates }
+            let calories = history.productList.reduce(0) { $0 + $1.calories }
             label.text = "Всего:  \(Int(protein)) / \(Int(fats)) / \(Int(carbohydrates))   \(Int(calories))"
         default:
-            let history = historyOfWater[section]
             let mls = history.waterList.reduce(0) { $0 + $1.ml }
             label.text = "Всего: \(mls) мл."
         }
@@ -152,13 +142,16 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20
+        let sectionHasData = segmentedControl.selectedSegmentIndex == 0
+            ? !history[section].productList.isEmpty
+            : !history[section].waterList.isEmpty
+        return sectionHasData ? 20 : 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
-            let product = historyProducts[indexPath.section].usedProducts[indexPath.row]
+            let product = history[indexPath.section].productList[indexPath.row]
             showAlert(withTitle: product.name, message: "Вес: \(product.weight) г.")
         default:
             showAlert(withTitle: "Выберите нужный вариант", message: "")
@@ -190,7 +183,7 @@ extension HistroryProductsViewController {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         let alert = UIAlertController(
             title: segmentedControl.selectedSegmentIndex == 0
-                ? "Вы уверены, что хотите удалить - \(historyProducts[indexPath.section].usedProducts[indexPath.row].name)?"
+                ? "Вы уверены, что хотите удалить - \(history[indexPath.section].productList[indexPath.row].name)?"
                 : "Вы уверены, что хотите удалить?",
             message: "",
             preferredStyle: .alert
@@ -199,9 +192,9 @@ extension HistroryProductsViewController {
         let yesButton = UIAlertAction(title: "Да", style: .destructive) { [unowned self] _ in
             switch segmentedControl.selectedSegmentIndex {
             case 0:
-                let history = historyProducts[indexPath.section]
-                let productToDelete = history.usedProducts[indexPath.row]
-                if history.usedProducts.count == 1 {
+                let history = history[indexPath.section]
+                let productToDelete = history.productList[indexPath.row]
+                if history.productList.count == 1 && history.waterList.count == 0 {
                     storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
                     tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
                 } else {
@@ -209,9 +202,9 @@ extension HistroryProductsViewController {
                     tableView.deleteRows(at: [indexPath], with: .fade)
                 }
             default:
-                let history = historyOfWater[indexPath.section]
+                let history = history[indexPath.section]
                 let waterToDelete = history.waterList[indexPath.row]
-                if history.waterList.count == 1 {
+                if history.waterList.count == 1 && history.productList.count == 0 {
                     storageManager.deleteWaterFromHistory(waterToDelete, fromHistory: history)
                     tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
                 } else {

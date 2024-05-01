@@ -29,6 +29,7 @@ final class StorageManager {
         let realmFilename = "productsFromProject.realm"
         let realmFileURL = resourcesURL.appendingPathComponent(realmFilename)
         let realmConfig = Realm.Configuration(fileURL: realmFileURL, readOnly: true)
+//        realmConfig.schemaVersion = 1
         
         let realm: Realm
         do {
@@ -42,7 +43,8 @@ final class StorageManager {
     
     private var realmDevice: Realm {
         let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("default.realm")
+        // Можно создавать базу данных с любыим другим именем, если нужна новая
+        let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("productsFromProject.realm")
         let realmConfig = Realm.Configuration(fileURL: deviceRealmURL)
         
         let realm: Realm
@@ -51,6 +53,7 @@ final class StorageManager {
         } catch {
             fatalError("Failed to initialize Device Realm: \(error)")
         }
+        
 //        print("Realm from user: \(realm.configuration.fileURL)")
         
         return realm
@@ -80,6 +83,37 @@ final class StorageManager {
     }
     
     // MARK: - Realm
+    // All pRODUCTS
+    func fetchAllProducts(completion: @escaping (Results<Product>) -> Void) {
+        let productsInDevice = realmDevice.objects(Product.self)
+        
+        if productsInDevice.isEmpty {
+            let productsFromProject = realmProject.objects(Product.self)
+            var index = 0
+            
+            try? realmDevice.write {
+                realmDevice.add(productsFromProject.map { projectProduct in
+                    let newProduct = Product()
+                    
+                    newProduct.name = projectProduct.name
+                    newProduct.protein = projectProduct.protein
+                    newProduct.fats = projectProduct.fats
+                    newProduct.carbohydrates = projectProduct.carbohydrates
+                    newProduct.calories = projectProduct.calories
+                    newProduct.date = projectProduct.date
+                    newProduct.weight = projectProduct.weight
+                    newProduct.index = index
+                    newProduct.color = projectProduct.color
+                    
+                    index += 1
+                    return newProduct
+                })
+            }
+        }
+        
+        completion(realmDevice.objects(Product.self).sorted(byKeyPath: "index"))
+    }
+    
     // User Programm
     func fetchProjectProducts(completion: @escaping([Product]) -> Void) {
         let products = realmProject.objects(Product.self)
@@ -162,10 +196,6 @@ final class StorageManager {
         let products = realmDevice.objects(UsedProductsList.self).first?.usedProducts ?? List<Product>()
         completion(Array(products))
     }
-
-    func fetchHistoryOfProducts(completion: @escaping(Results<HistoryOfProducts>) -> Void) {
-        completion(realmDevice.objects(HistoryOfProducts.self))
-    }
     
     func saveNewProductToUsedProducts(_ product: Product) {
         let productForAdd = Product(value:
@@ -195,12 +225,12 @@ final class StorageManager {
         let productDate = Calendar.current.startOfDay(for: product.date)
 
         writeDeviceRealm {
-            if let historyOfProducts = realmDevice.objects(HistoryOfProducts.self).filter("date == %@", productDate).first {
-                historyOfProducts.usedProducts.append(product)
+            if let historyOfProducts = realmDevice.objects(History.self).filter("date == %@", productDate).first {
+                historyOfProducts.productList.append(product)
             } else {
-                let newHistoryOfProducts = HistoryOfProducts()
+                let newHistoryOfProducts = History()
                 newHistoryOfProducts.date = productDate
-                newHistoryOfProducts.usedProducts.append(product)
+                newHistoryOfProducts.productList.append(product)
                 realmDevice.add(newHistoryOfProducts)
             }
         }
@@ -218,9 +248,9 @@ final class StorageManager {
         }
     }
     
-    func deleteProductFromHistory(_ product: Product, fromHistory history: HistoryOfProducts) {
+    func deleteProductFromHistory(_ product: Product, fromHistory history: History) {
         writeDeviceRealm {
-            if history.usedProducts.count == 1 {
+            if history.productList.count == 1 && history.waterList.count == 0 {
                 realmDevice.delete(product)
                 realmDevice.delete(history)
             } else {
@@ -233,7 +263,7 @@ final class StorageManager {
         let startOfDay = Calendar.current.startOfDay(for: Date())
         let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
         
-        let todaysProducts = realmDevice.objects(HistoryOfProducts.self).filter("date >= %@ AND date < %@", startOfDay, endOfDay)
+        let history = realmDevice.objects(History.self).filter("date >= %@ AND date < %@", startOfDay, endOfDay)
         
         var totalProtein = 0
         var totalFats = 0
@@ -242,8 +272,8 @@ final class StorageManager {
         var totalWater = 0
         
         // Перебираем все записи за сегодня и суммируем значения
-        for historyEntry in todaysProducts {
-            for product in historyEntry.usedProducts {
+        for historyEntry in history {
+            for product in historyEntry.productList {
                 totalProtein += Int(product.protein)
                 totalFats += Int(product.fats)
                 totalCarbohydrates += Int(product.carbohydrates)
@@ -251,9 +281,7 @@ final class StorageManager {
             }
         }
         
-        let todaysWater = realmDevice.objects(HistoryOfWater.self).filter("date >= %@ AND date < %@", startOfDay, endOfDay)
-        
-        for historyEntry in todaysWater {
+        for historyEntry in history {
             for water in historyEntry.waterList {
                 totalWater += water.ml
             }
@@ -268,19 +296,20 @@ final class StorageManager {
         )
     }
 
-    // Used Water
-    func fetchWaterList(completion: @escaping(Results<HistoryOfWater>) -> Void) {
-        completion(realmDevice.objects(HistoryOfWater.self))
+    // History
+    func fetchHistory(completion: @escaping(Results<History>) -> Void) {
+        completion(realmDevice.objects(History.self))
     }
     
+    // Used Water
     func saveWaterToHistory(_ water: Water, completion: @escaping() -> Void) {
         let waterDate = Calendar.current.startOfDay(for: water.date)
         
         writeDeviceRealm {
-            if let historyOfWater = realmDevice.objects(HistoryOfWater.self).filter("date == %@", waterDate).first {
+            if let historyOfWater = realmDevice.objects(History.self).filter("date == %@", waterDate).first {
                 historyOfWater.waterList.append(water)
             } else {
-                let newHistoryOFWater = HistoryOfWater()
+                let newHistoryOFWater = History()
                 newHistoryOFWater.date = waterDate
                 newHistoryOFWater.waterList.append(water)
                 realmDevice.add(newHistoryOFWater)
@@ -296,9 +325,9 @@ final class StorageManager {
         }
     }
     
-    func deleteWaterFromHistory(_ water: Water, fromHistory history: HistoryOfWater) {
+    func deleteWaterFromHistory(_ water: Water, fromHistory history: History) {
         writeDeviceRealm {
-            if history.waterList.count == 1 {
+            if history.waterList.count == 1 && history.productList.count == 0 {
                 realmDevice.delete(water)
                 realmDevice.delete(history)
             } else {
@@ -317,16 +346,24 @@ final class StorageManager {
         }
     }
     
-//    func createRealmDatabaseInResourcesFolder() {
-//        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-//        let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("productsFromProject.realm")
-//        let realmConfig = Realm.Configuration(fileURL: deviceRealmURL)
+//    func createRealmDatabaseWithOnlyProduct() {
+//        // Получаем путь к папке Documents
+//        guard let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
+//            fatalError("Documents directory is unavailable")
+//        }
 //        
-//        let realm: Realm
-//        do {
-//            realm = try Realm(configuration: realmConfig)
-//        } catch {
-//            fatalError("Failed to initialize Device Realm: \(error)")
+//        func createRealmDatabaseInResourcesFolder() {
+//            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+//            let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("productsFromProject.realm")
+//            let realmConfig = Realm.Configuration(fileURL: deviceRealmURL)
+//            
+//            let realm: Realm
+//            do {
+//                realm = try Realm(configuration: realmConfig)
+//            } catch {
+//                fatalError("Failed to initialize Device Realm: \(error)")
+//            }
+//            print("Realm from user: \(realm.configuration.fileURL)")
 //        }
 //    }
 }

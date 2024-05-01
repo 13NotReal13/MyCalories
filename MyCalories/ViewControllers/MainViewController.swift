@@ -43,8 +43,8 @@ final class MainViewController: UIViewController {
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared
     
-    private var allProducts: [Product] = []
-    private var filteredProducts: [Product] = []
+    private var allProducts: Results<Product>!
+    private var filteredProducts: Results<Product>!
     
     private var menuIsVisible = false
     
@@ -168,19 +168,10 @@ private extension MainViewController {
     }
     
     func fetchData() {
-        storageManager.fetchUsedProducts { [unowned self] usedProducts in
-            usedProducts.forEach { allProducts.append($0) }
-            
-            storageManager.fetchProjectProducts { [unowned self] projectProducts in
-                // Фильтруем projectProducts, чтобы оставить только те продукты, которых нет в allProducts
-                let newProjectProducts = projectProducts.filter { projectProduct in
-                    !allProducts.contains { $0.name == projectProduct.name }
-                }
-                allProducts.append(contentsOf: newProjectProducts)
-                
-                filteredProducts = allProducts
-                tableView.reloadData()
-            }
+        storageManager.fetchAllProducts { [unowned self] productsList in
+            allProducts = productsList
+            filteredProducts = allProducts
+            tableView.reloadData()
         }
     }
     
@@ -373,7 +364,12 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter { $0.name.contains(searchText) }
+        if searchText.isEmpty {
+            filteredProducts = allProducts
+        } else {
+            let predicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
+            filteredProducts = allProducts.filter(predicate)
+        }
         tableView.reloadData()
     }
     
