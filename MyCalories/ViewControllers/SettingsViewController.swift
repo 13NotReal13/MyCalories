@@ -73,6 +73,12 @@ extension SettingsViewController {
         fatsTF.delegate = self
         carbohydratesTF.delegate = self
         waterTF.delegate = self
+        
+        caloriesTF.customStyle()
+        proteinsTF.customStyle()
+        fatsTF.customStyle()
+        carbohydratesTF.customStyle()
+        waterTF.customStyle()
     }
     
     private func fetchSettings() {
