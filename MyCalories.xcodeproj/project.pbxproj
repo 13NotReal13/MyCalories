@@ -11,6 +11,7 @@
 		790456712BDD0C040009FA34 /* UIView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790456702BDD0C040009FA34 /* UIView + Ext.swift */; };
 		790456732BDD2A8B0009FA34 /* AllNutritions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790456722BDD2A8B0009FA34 /* AllNutritions.swift */; };
 		790456BF2BE193EE0009FA34 /* EditWeightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790456BE2BE193EE0009FA34 /* EditWeightViewController.swift */; };
+		790456C32BE22C290009FA34 /* UITextField + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790456C22BE22C290009FA34 /* UITextField + Ext.swift */; };
 		792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18A2BBADF4800209193 /* AppDelegate.swift */; };
 		792DB18D2BBADF4800209193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18C2BBADF4800209193 /* SceneDelegate.swift */; };
 		792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18E2BBADF4800209193 /* MainViewController.swift */; };
@@ -47,6 +48,7 @@
 		790456702BDD0C040009FA34 /* UIView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView + Ext.swift"; sourceTree = "<group>"; };
 		790456722BDD2A8B0009FA34 /* AllNutritions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllNutritions.swift; sourceTree = "<group>"; };
 		790456BE2BE193EE0009FA34 /* EditWeightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWeightViewController.swift; sourceTree = "<group>"; };
+		790456C22BE22C290009FA34 /* UITextField + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField + Ext.swift"; sourceTree = "<group>"; };
 		792DB1872BBADF4800209193 /* MyCalories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		792DB18A2BBADF4800209193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		792DB18C2BBADF4800209193 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 				7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */,
 				7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */,
 				790456702BDD0C040009FA34 /* UIView + Ext.swift */,
+				790456C22BE22C290009FA34 /* UITextField + Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */,
 				7946F8492BC455F9005C3F33 /* ProductsList.swift in Sources */,
 				790456BF2BE193EE0009FA34 /* EditWeightViewController.swift in Sources */,
+				790456C32BE22C290009FA34 /* UITextField + Ext.swift in Sources */,
 				7946F7EE2BBB1B58005C3F33 /* ProfileViewController.swift in Sources */,
 				7946F8412BC2F914005C3F33 /* CircularProgressBar.swift in Sources */,
 				7946F8CF2BCBD712005C3F33 /* AddProductToHistoryViewController.swift in Sources */,

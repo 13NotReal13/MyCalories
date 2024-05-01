@@ -63,6 +63,12 @@ private extension AddNewProductViewController {
         carbohydratesTF.delegate = self
         caloriesTF.delegate = self
         
+        nameTF.customStyle()
+        proteinTF.customStyle()
+        fatsTF.customStyle()
+        carbohydratesTF.customStyle()
+        caloriesTF.customStyle()
+        
         nameTF.inputAccessoryView = createToolbar()
         proteinTF.inputAccessoryView = createToolbar()
         fatsTF.inputAccessoryView = createToolbar()
