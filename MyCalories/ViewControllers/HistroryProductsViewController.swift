@@ -200,6 +200,7 @@ extension HistroryProductsViewController {
                 } else {
                     storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
                     tableView.deleteRows(at: [indexPath], with: .fade)
+                    tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
                 }
             default:
                 let history = history[indexPath.section]
@@ -210,6 +211,7 @@ extension HistroryProductsViewController {
                 } else {
                     storageManager.deleteWaterFromHistory(waterToDelete, fromHistory: history)
                     tableView.deleteRows(at: [indexPath], with: .fade)
+                    tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
                 }
             }
         }

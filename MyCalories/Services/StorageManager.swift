@@ -86,16 +86,14 @@ final class StorageManager {
     // MARK: - Realm
     // All pRODUCTS
     func fetchAllProducts(completion: @escaping (Results<Product>) -> Void) {
-        let productsInDevice = realmDevice.objects(Product.self)
-        
-        if productsInDevice.isEmpty {
+        guard let allProductsInDevice = realmDevice.objects(AllProducts.self).first else {
             let productsFromProject = realmProject.objects(Product.self)
-            var index = 0
             
-            try? realmDevice.write {
-                realmDevice.add(productsFromProject.map { projectProduct in
+            writeDeviceRealm {
+                let allProductsInDevice = AllProducts()
+                var allProductsInProject: [Product] = []
+                allProductsInProject.append(contentsOf: productsFromProject.map { projectProduct in
                     let newProduct = Product()
-                    
                     newProduct.name = projectProduct.name
                     newProduct.protein = projectProduct.protein
                     newProduct.fats = projectProduct.fats
@@ -103,17 +101,22 @@ final class StorageManager {
                     newProduct.calories = projectProduct.calories
                     newProduct.date = projectProduct.date
                     newProduct.weight = projectProduct.weight
-                    newProduct.index = index
+                    newProduct.index = projectProduct.index
                     newProduct.color = projectProduct.color
-                    
-                    index += 1
                     return newProduct
                 })
+                
+                allProductsInDevice.productList.append(objectsIn: allProductsInProject)
+                realmDevice.add(allProductsInDevice)
             }
+            
+            completion(realmDevice.objects(AllProducts.self).first!.productList.sorted(byKeyPath: "index"))
+            return
         }
         
-        completion(realmDevice.objects(Product.self).sorted(byKeyPath: "index"))
+        completion(allProductsInDevice.productList.sorted(byKeyPath: "index"))
     }
+
     
     // User Programm
     func fetchProjectProducts(completion: @escaping([Product]) -> Void) {
@@ -197,6 +200,20 @@ final class StorageManager {
         completion(realmDevice.objects(History.self))
     }
     
+    func changeIndexAndColor(forProduct product: Product, completion: @escaping() -> Void) {
+        writeDeviceRealm {
+            let products = realmDevice.objects(Product.self).sorted(byKeyPath: "index", ascending: true)
+            
+            for productFromBase in products {
+                productFromBase.index += 1
+            }
+            
+            product.index = 0
+            product.color = "colorApp"
+            completion()
+        }
+    }
+    
     func saveProductToHistory(_ product: Product) {
         let productDate = Calendar.current.startOfDay(for: product.date)
 
@@ -209,6 +226,7 @@ final class StorageManager {
                 newHistoryOfProducts.productList.append(product)
                 realmDevice.add(newHistoryOfProducts)
             }
+            
         }
     }
     
@@ -281,8 +299,11 @@ final class StorageManager {
                 productFromBase.index += 1
             }
             
-            product.index = 0
-            realmDevice.add(product)
+            if let allProducts = realmDevice.objects(AllProducts.self).first {
+                product.index = 0
+                allProducts.productList.append(product)
+                realmDevice.add(product)
+            }
             completion()
         }
     }
