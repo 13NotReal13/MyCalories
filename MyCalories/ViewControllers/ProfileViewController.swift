@@ -64,7 +64,8 @@ final class ProfileViewController: UIViewController {
     @IBOutlet var activityTF: UITextField!
     @IBOutlet var goalTF: UITextField!
     
-    @IBOutlet var recommendedProgrammView: UIView!
+    @IBOutlet var recommendedProgrammStackView: UIStackView!
+    @IBOutlet var titleOfProgrammLabel: UILabel!
     @IBOutlet var proteinPerDayLabel: UILabel!
     @IBOutlet var fatsPerDayLabel: UILabel!
     @IBOutlet var carbohydratesPerDayLabel: UILabel!
@@ -282,18 +283,21 @@ private extension ProfileViewController {
             protein = calories * 0.5 / 4
             fats = calories * 0.2 / 9
             carbohydrates = calories * 0.3 / 4
+            titleOfProgrammLabel.text = "Ежедневная рекомендуемая норма для снижения веса:"
         case "Удержать вес":
             protein = calories * 0.3 / 4
             fats = calories * 0.3 / 9
             carbohydrates = calories * 0.4 / 4
+            titleOfProgrammLabel.text = "Ежедневная рекомендуемая норма для поддержания веса:"
         default:
             calories *= 1.25
             protein = calories * 0.3 / 4
             fats = calories * 0.2 / 9
             carbohydrates = calories * 0.5 / 4
+            titleOfProgrammLabel.text = "Ежедневная рекомендуемая норма для набора массы:"
         }
         
-        recommendedProgrammView.isHidden = false
+        recommendedProgrammStackView.isHidden = false
         proteinPerDayLabel.text = "\(Int(protein)) г."
         fatsPerDayLabel.text = "\(Int(fats)) г."
         carbohydratesPerDayLabel.text = "\(Int(carbohydrates)) г."

@@ -71,7 +71,6 @@ final class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         menuLeadingConstraint.constant = -menuView.frame.size.width
         menuTrailingConstraint.constant = view.frame.width
-        view.layoutIfNeeded()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
