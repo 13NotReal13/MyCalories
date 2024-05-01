@@ -11,6 +11,7 @@ import RealmSwift
 protocol MainScreenDelegate: AnyObject {
     func updateProgressBar()
     func setHiddenOfProgressBlock()
+    func updateTableView()
 }
 
 final class MainViewController: UIViewController {
@@ -108,9 +109,9 @@ final class MainViewController: UIViewController {
             
             usedProductVC.delegate = self
         case "SegueToAddNewProductVC":
-            if let addNewProductVC = segue.destination as? AddNewProductViewController {
-                addNewProductVC.delegate = self
-            }
+            guard let navigationVC = segue.destination as? UINavigationController else { return }
+            guard let addNewProductVC = navigationVC.topViewController as? AddNewProductViewController else { return }
+            addNewProductVC.delegate = self
         default:
             return
         }
@@ -152,6 +153,10 @@ extension MainViewController: MainScreenDelegate {
         if storageManager.fetchPerson() != nil {
             progressIsBlock.isHidden = true
         }
+    }
+    
+    func updateTableView() {
+        tableView.reloadData()
     }
 }
 

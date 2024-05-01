@@ -8,10 +8,6 @@
 import Foundation
 import RealmSwift
 
-final class UsedProductsList: Object {
-    @Persisted var usedProducts = List<Product>()
-}
-
 final class History: Object {
     @Persisted var date = Date()
     @Persisted var productList = List<Product>()

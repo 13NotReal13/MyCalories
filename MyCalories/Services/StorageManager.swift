@@ -28,8 +28,9 @@ final class StorageManager {
         let resourcesURL = Bundle.main.resourceURL!
         let realmFilename = "productsFromProject.realm"
         let realmFileURL = resourcesURL.appendingPathComponent(realmFilename)
-        let realmConfig = Realm.Configuration(fileURL: realmFileURL, readOnly: true)
-//        realmConfig.schemaVersion = 1
+        var realmConfig = Realm.Configuration(fileURL: realmFileURL, readOnly: true)
+        // Версия файла базы данных
+        realmConfig.schemaVersion = 1
         
         let realm: Realm
         do {
@@ -44,7 +45,7 @@ final class StorageManager {
     private var realmDevice: Realm {
         let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         // Можно создавать базу данных с любыим другим именем, если нужна новая
-        let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("productsFromProject.realm")
+        let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("default.realm")
         let realmConfig = Realm.Configuration(fileURL: deviceRealmURL)
         
         let realm: Realm
@@ -191,34 +192,9 @@ final class StorageManager {
         }
     }
     
-    // Used Products
-    func fetchUsedProducts(completion: @escaping([Product]) -> Void) {
-        let products = realmDevice.objects(UsedProductsList.self).first?.usedProducts ?? List<Product>()
-        completion(Array(products))
-    }
-    
-    func saveNewProductToUsedProducts(_ product: Product) {
-        let productForAdd = Product(value:
-                                        [
-                                            product.name,
-                                            product.protein,
-                                            product.fats,
-                                            product.carbohydrates,
-                                            product.calories
-                                        ]
-                                    )
-        
-        writeDeviceRealm {
-            if let usedProductsList = realmDevice.objects(UsedProductsList.self).first {
-                if !usedProductsList.usedProducts.contains(where: { $0.name == productForAdd.name }) {
-                    usedProductsList.usedProducts.append(productForAdd)
-                }
-            } else {
-                let newUsedProductsList = UsedProductsList()
-                newUsedProductsList.usedProducts.append(productForAdd)
-                realmDevice.add(newUsedProductsList)
-            }
-        }
+    // History
+    func fetchHistory(completion: @escaping(Results<History>) -> Void) {
+        completion(realmDevice.objects(History.self))
     }
     
     func saveProductToHistory(_ product: Product) {
@@ -295,10 +271,20 @@ final class StorageManager {
             water: totalWater
         )
     }
-
-    // History
-    func fetchHistory(completion: @escaping(Results<History>) -> Void) {
-        completion(realmDevice.objects(History.self))
+    
+    // Add new product to base
+    func addNewProductToBase(_ product: Product, completion: @escaping() -> Void) {
+        writeDeviceRealm {
+            let products = realmDevice.objects(Product.self).sorted(byKeyPath: "index", ascending: true)
+            
+            for productFromBase in products {
+                productFromBase.index += 1
+            }
+            
+            product.index = 0
+            realmDevice.add(product)
+            completion()
+        }
     }
     
     // Used Water

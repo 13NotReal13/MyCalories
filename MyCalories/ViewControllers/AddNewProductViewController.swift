@@ -38,17 +38,19 @@ final class AddNewProductViewController: UIViewController {
     }
     
     @IBAction func addBarButtonItemAction(_ sender: UIBarButtonItem) {
-        storageManager.saveNewProductToUsedProducts(
-            Product(value:
-                        [
-                            nameTF.text ?? "",
-                            Double(proteinTF.text ?? "0") ?? 0.0,
-                            Double(fatsTF.text ?? "0") ?? 0.0,
-                            Double(carbohydratesTF.text ?? "0") ?? 0.0,
-                            Double(caloriesTF.text ?? "0") ?? 0.0,
-                        ]
-                   )
-        )
+        let product = Product(value:
+                                [
+                                    nameTF.text ?? "",
+                                    Double(proteinTF.text ?? "0") ?? 0.0,
+                                    Double(fatsTF.text ?? "0") ?? 0.0,
+                                    Double(carbohydratesTF.text ?? "0") ?? 0.0,
+                                    Double(caloriesTF.text ?? "0") ?? 0.0,
+                                ]
+                           )
+        
+        storageManager.addNewProductToBase(product) { [unowned self] in
+            delegate?.updateTableView()
+        }
         
         dismiss(animated: true)
     }
