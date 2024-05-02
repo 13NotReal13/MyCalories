@@ -17,6 +17,7 @@
 		790457222BE2972F0009FA34 /* access_control.write.mx in Resources */ = {isa = PBXBuildFile; fileRef = 7904571C2BE2972F0009FA34 /* access_control.write.mx */; };
 		790457232BE2972F0009FA34 /* productsFromProject.realm in Resources */ = {isa = PBXBuildFile; fileRef = 7904571E2BE2972F0009FA34 /* productsFromProject.realm */; };
 		790457242BE2972F0009FA34 /* productsFromProject.realm.lock in Resources */ = {isa = PBXBuildFile; fileRef = 7904571F2BE2972F0009FA34 /* productsFromProject.realm.lock */; };
+		790457262BE3E5AF0009FA34 /* TexturedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790457252BE3E5AF0009FA34 /* TexturedView.swift */; };
 		792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18A2BBADF4800209193 /* AppDelegate.swift */; };
 		792DB18D2BBADF4800209193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18C2BBADF4800209193 /* SceneDelegate.swift */; };
 		792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18E2BBADF4800209193 /* MainViewController.swift */; };
@@ -54,6 +55,7 @@
 		7904571C2BE2972F0009FA34 /* access_control.write.mx */ = {isa = PBXFileReference; lastKnownFileType = file; path = access_control.write.mx; sourceTree = "<group>"; };
 		7904571E2BE2972F0009FA34 /* productsFromProject.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsFromProject.realm; sourceTree = "<group>"; };
 		7904571F2BE2972F0009FA34 /* productsFromProject.realm.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsFromProject.realm.lock; sourceTree = "<group>"; };
+		790457252BE3E5AF0009FA34 /* TexturedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexturedView.swift; sourceTree = "<group>"; };
 		792DB1872BBADF4800209193 /* MyCalories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		792DB18A2BBADF4800209193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		792DB18C2BBADF4800209193 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 				7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */,
 				7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */,
 				7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */,
+				790457252BE3E5AF0009FA34 /* TexturedView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -314,6 +317,7 @@
 			files = (
 				7946F82B2BC1F631005C3F33 /* Settings.swift in Sources */,
 				792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */,
+				790457262BE3E5AF0009FA34 /* TexturedView.swift in Sources */,
 				790456732BDD2A8B0009FA34 /* AllNutritions.swift in Sources */,
 				792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */,
 				7946F8312BC27E30005C3F33 /* AlertControllerFactory.swift in Sources */,
