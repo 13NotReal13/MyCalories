@@ -18,6 +18,7 @@
 		790457232BE2972F0009FA34 /* productsFromProject.realm in Resources */ = {isa = PBXBuildFile; fileRef = 7904571E2BE2972F0009FA34 /* productsFromProject.realm */; };
 		790457242BE2972F0009FA34 /* productsFromProject.realm.lock in Resources */ = {isa = PBXBuildFile; fileRef = 7904571F2BE2972F0009FA34 /* productsFromProject.realm.lock */; };
 		790457262BE3E5AF0009FA34 /* TexturedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790457252BE3E5AF0009FA34 /* TexturedView.swift */; };
+		790457282BE4CDA60009FA34 /* LaunchAnimationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790457272BE4CDA60009FA34 /* LaunchAnimationViewController.swift */; };
 		792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18A2BBADF4800209193 /* AppDelegate.swift */; };
 		792DB18D2BBADF4800209193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18C2BBADF4800209193 /* SceneDelegate.swift */; };
 		792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18E2BBADF4800209193 /* MainViewController.swift */; };
@@ -56,6 +57,7 @@
 		7904571E2BE2972F0009FA34 /* productsFromProject.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsFromProject.realm; sourceTree = "<group>"; };
 		7904571F2BE2972F0009FA34 /* productsFromProject.realm.lock */ = {isa = PBXFileReference; lastKnownFileType = file; path = productsFromProject.realm.lock; sourceTree = "<group>"; };
 		790457252BE3E5AF0009FA34 /* TexturedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexturedView.swift; sourceTree = "<group>"; };
+		790457272BE4CDA60009FA34 /* LaunchAnimationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAnimationViewController.swift; sourceTree = "<group>"; };
 		792DB1872BBADF4800209193 /* MyCalories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		792DB18A2BBADF4800209193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		792DB18C2BBADF4800209193 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 				7946F8CE2BCBD712005C3F33 /* AddProductToHistoryViewController.swift */,
 				7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */,
 				790456BE2BE193EE0009FA34 /* EditWeightViewController.swift */,
+				790457272BE4CDA60009FA34 /* LaunchAnimationViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 				792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */,
 				790457262BE3E5AF0009FA34 /* TexturedView.swift in Sources */,
 				790456732BDD2A8B0009FA34 /* AllNutritions.swift in Sources */,
+				790457282BE4CDA60009FA34 /* LaunchAnimationViewController.swift in Sources */,
 				792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */,
 				7946F8312BC27E30005C3F33 /* AlertControllerFactory.swift in Sources */,
 				7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */,

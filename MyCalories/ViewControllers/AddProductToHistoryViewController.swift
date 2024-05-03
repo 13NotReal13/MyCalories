@@ -73,9 +73,6 @@ final class AddProductToHistoryViewController: UIViewController {
         dismiss(animated: true)
     }
     
-    deinit {
-        print("UsedProductVC deinit")
-    }
 }
 
 // MARK: - Private Methods

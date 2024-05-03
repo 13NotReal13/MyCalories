@@ -50,10 +50,6 @@ final class HistroryProductsViewController: UIViewController {
         infoOfRowsInTable.text = sender.selectedSegmentIndex == 0 ? "Б / Ж / У  Ккал" : "Мл."
         tableView.reloadData()
     }
-    
-    deinit {
-        print("deinit")
-    }
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate

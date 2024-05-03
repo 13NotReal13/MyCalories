@@ -21,7 +21,10 @@ final class MainViewController: UIViewController {
     @IBOutlet var menuLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var menuTrailingConstraint: NSLayoutConstraint!
     
+    @IBOutlet var extendingNavigationBarView: UIView!
+    @IBOutlet var shadowForTableViewView: UIView!
     @IBOutlet var tableView: UITableView!
+    @IBOutlet var shadowForProgressBarView: UIView!
     @IBOutlet var progressView: UIView!
     @IBOutlet var progressIsBlock: UIView!
     @IBOutlet var searchBar: UISearchBar!
@@ -66,6 +69,12 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         initialSetup()
         setupForegroundNotification()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupRoundedCornersForView()
+        searchBar.resignFirstResponder()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -156,6 +165,7 @@ extension MainViewController: MainScreenDelegate {
     }
     
     func updateTableView() {
+        searchBar.searchTextField.resignFirstResponder()
         tableView.reloadData()
     }
 }
@@ -164,12 +174,10 @@ extension MainViewController: MainScreenDelegate {
 private extension MainViewController {
     func initialSetup() {
         fetchData()
-        setupNavigationBar()
+        setupUIs()
         setHiddenOfProgressBlock()
         initializeProgressBars()
         setProgressBarValues()
-        setupOverlayView()
-        roundMenuCorners()
     }
     
     func fetchData() {
@@ -180,24 +188,54 @@ private extension MainViewController {
         }
     }
     
-    func setupNavigationBar() {
+    func setupUIs() {
+        // Navigation Bar
         let navBarAppearance = UINavigationBarAppearance()
         navBarAppearance.backgroundColor = .colorApp
         navBarAppearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        navBarAppearance.shadowColor = nil
         
         navigationController?.navigationBar.standardAppearance = navBarAppearance
         navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         navigationController?.navigationBar.tintColor = .white
-    }
-    
-    func setupOverlayView() {
+        
+        // MenuView + OverlayView
+        menuView.roundCorners(corners: [.topRight, .bottomRight], radius: 20)
         view.addSubview(overlayView)
         view.bringSubviewToFront(overlayView)
         view.bringSubviewToFront(menuView)
+        
+        // SearchBar Color
+        if let textField = searchBar.value(forKey: "searchField") as? UITextField {
+            textField.backgroundColor = UIColor.white // Установите нужный цвет
+        }
+        
+        // Shadows for Views
+        shadowForTableViewView.layer.cornerRadius = 15
+        shadowForTableViewView.layer.shadowColor = UIColor.black.cgColor
+        shadowForTableViewView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        shadowForTableViewView.layer.shadowRadius = 6
+        shadowForTableViewView.layer.shadowOpacity = 0.3
+        shadowForTableViewView.clipsToBounds = false
+        shadowForTableViewView.layer.masksToBounds = false
+        
+        shadowForProgressBarView.layer.cornerRadius = 40
+        shadowForProgressBarView.layer.shadowColor = UIColor.black.cgColor
+        shadowForProgressBarView.layer.shadowOffset = CGSize(width: 0, height: 2)
+        shadowForProgressBarView.layer.shadowRadius = 6
+        shadowForProgressBarView.layer.shadowOpacity = 0.6
+        shadowForProgressBarView.clipsToBounds = false
+        shadowForProgressBarView.layer.masksToBounds = false
     }
     
-    func roundMenuCorners() {
-        menuView.roundCorners(corners: [.topRight, .bottomRight], radius: 20)
+    func setupRoundedCornersForView() {
+        let maskPath = UIBezierPath(roundedRect: extendingNavigationBarView.bounds,
+                                    byRoundingCorners: [.bottomLeft, .bottomRight],
+                                    cornerRadii: CGSize(width: 50, height: 50))
+        let shape = CAShapeLayer()
+        shape.path = maskPath.cgPath
+        extendingNavigationBarView.layer.mask = shape
+        extendingNavigationBarView.layer.masksToBounds = true
     }
     
     func toogleMenu() {
@@ -248,7 +286,6 @@ private extension MainViewController {
         searchBar.resignFirstResponder()
     }
 }
-
 
 // MARK: - Progress Bar
 private extension MainViewController {
@@ -315,19 +352,29 @@ private extension MainViewController {
             ? Double(waterToday) / Double(waterProgramm)
             : 1.0
         
-        proteinTodayLabel.text = proteinToday.formatted()
+        proteinTodayLabel.text = proteinToday > proteinProgramm
+            ? "\(proteinToday.formatted()) !"
+            : proteinToday.formatted()
         proteinTodayLabel.textColor = proteinToday > proteinProgramm ? .yellow : .white
         
-        fatsTodayLabel.text = fatsToday.formatted()
+        fatsTodayLabel.text = fatsToday > fatsProgramm
+            ? "\(fatsToday.formatted()) !"
+            : fatsToday.formatted()
         fatsTodayLabel.textColor = fatsToday > fatsProgramm ? .yellow : .white
         
-        carbohydratesTodayLabel.text = carbohydratesToday.formatted()
+        carbohydratesTodayLabel.text = carbohydratesToday > carbohydratesProgramm
+            ? "\(carbohydratesToday.formatted()) !"
+            : carbohydratesToday.formatted()
         carbohydratesTodayLabel.textColor = carbohydratesToday > carbohydratesProgramm ? .yellow : .white
         
-        caloriesTodayLabel.text = caloriesToday.formatted()
+        caloriesTodayLabel.text = caloriesToday > caloriesProgramm
+            ? "\(caloriesToday.formatted()) !"
+            : caloriesToday.formatted()
         caloriesTodayLabel.textColor = caloriesToday > caloriesProgramm ? .yellow : .white
         
-        waterTodayLabel.text = waterToday.formatted()
+        waterTodayLabel.text = waterToday > waterProgramm
+            ? "\(waterToday.formatted()) !"
+            : waterToday.formatted()
         waterTodayLabel.textColor = waterToday > waterProgramm ? .yellow : .white
     
         proteinProgrammLabel.text = proteinProgramm.formatted()

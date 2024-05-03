@@ -27,7 +27,7 @@ class TexturedView: UIView {
         // Создаем путь с закругленными верхними углами
         let path = UIBezierPath(roundedRect: bounds,
                                 byRoundingCorners: [.topLeft, .topRight],
-                                cornerRadii: CGSize(width: 15, height: 15))
+                                cornerRadii: CGSize(width: 35, height: 35))
         let mask = CAShapeLayer()
         mask.path = path.cgPath
         layer.mask = mask
