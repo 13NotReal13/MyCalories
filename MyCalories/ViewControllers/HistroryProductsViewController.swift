@@ -21,6 +21,7 @@ final class HistroryProductsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.backgroundColor = .clear
     }
     
     override func viewWillAppear(_ animated: Bool) {

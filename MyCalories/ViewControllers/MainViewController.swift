@@ -73,7 +73,8 @@ final class MainViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupRoundedCornersForView()
+        setupRoundedCornersForViews()
+        menuView.roundCorners(corners: [.topRight, .bottomRight], radius: 20)
         searchBar.resignFirstResponder()
     }
     
@@ -149,6 +150,7 @@ final class MainViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
+        print("MainVC deInit")
     }
 }
 
@@ -228,14 +230,32 @@ private extension MainViewController {
         shadowForProgressBarView.layer.masksToBounds = false
     }
     
-    func setupRoundedCornersForView() {
-        let maskPath = UIBezierPath(roundedRect: extendingNavigationBarView.bounds,
-                                    byRoundingCorners: [.bottomLeft, .bottomRight],
-                                    cornerRadii: CGSize(width: 50, height: 50))
+    func setupRoundCornersForProgressIsBlock() {
+        let maskPath = UIBezierPath(roundedRect: progressIsBlock.bounds,
+                                    byRoundingCorners: [.topLeft, .topRight],
+                                    cornerRadii: CGSize(width: 35, height: 35))
         let shape = CAShapeLayer()
         shape.path = maskPath.cgPath
-        extendingNavigationBarView.layer.mask = shape
+        progressIsBlock.layer.mask = shape
+        progressIsBlock.layer.masksToBounds = true
+    }
+    
+    func setupRoundedCornersForViews() {
+        let maskPathNavigationBar = UIBezierPath(roundedRect: extendingNavigationBarView.bounds,
+                                    byRoundingCorners: [.bottomLeft, .bottomRight],
+                                    cornerRadii: CGSize(width: 50, height: 50))
+        let shapeNavigationBar = CAShapeLayer()
+        shapeNavigationBar.path = maskPathNavigationBar.cgPath
+        extendingNavigationBarView.layer.mask = shapeNavigationBar
         extendingNavigationBarView.layer.masksToBounds = true
+        
+        let maskPathProgressIsBlock = UIBezierPath(roundedRect: progressIsBlock.bounds,
+                                    byRoundingCorners: [.topLeft, .topRight],
+                                    cornerRadii: CGSize(width: 35, height: 35))
+        let shapeProgressIsBlock = CAShapeLayer()
+        shapeProgressIsBlock.path = maskPathProgressIsBlock.cgPath
+        progressIsBlock.layer.mask = shapeProgressIsBlock
+        progressIsBlock.layer.masksToBounds = true
     }
     
     func toogleMenu() {

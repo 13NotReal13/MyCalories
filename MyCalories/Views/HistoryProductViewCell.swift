@@ -11,4 +11,9 @@ final class HistoryProductViewCell: UITableViewCell {
     @IBOutlet var productNameLabel: UILabel!
     @IBOutlet var bguLabel: UILabel?
     @IBOutlet var caloriesLabel: UILabel!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.backgroundColor = .clear
+    }
 }
