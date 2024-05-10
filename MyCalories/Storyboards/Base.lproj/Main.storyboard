@@ -442,13 +442,13 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kGo-Cg-86x" secondAttribute="trailing" id="1ZJ-Nh-Cru"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eUE-0F-PXJ" secondAttribute="trailing" id="2Oc-jT-Flk"/>
                             <constraint firstAttribute="bottom" secondItem="eUE-0F-PXJ" secondAttribute="bottom" id="2ue-vd-1oQ"/>
-                            <constraint firstItem="La2-79-89M" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.813953" id="31N-rR-Gjv"/>
                             <constraint firstItem="obA-V2-FCj" firstAttribute="top" secondItem="OMz-5R-Q5X" secondAttribute="bottom" constant="6" id="6vq-xa-Qnp"/>
                             <constraint firstItem="INR-2c-t8t" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Bfl-J4-drd"/>
                             <constraint firstItem="T03-XA-YfC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="C6d-ja-d2O"/>
                             <constraint firstItem="La2-79-89M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Dge-AY-yrY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="obA-V2-FCj" secondAttribute="trailing" constant="16" id="IhK-6c-dJp"/>
                             <constraint firstAttribute="trailing" secondItem="PfG-hZ-WcI" secondAttribute="trailing" constant="16" id="LAu-BK-ypO"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="La2-79-89M" secondAttribute="trailing" constant="80" id="LEz-pA-pT5"/>
                             <constraint firstItem="eUE-0F-PXJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Nhb-vQ-mgy"/>
                             <constraint firstAttribute="bottom" secondItem="T03-XA-YfC" secondAttribute="bottom" id="OeL-5V-BwL"/>
                             <constraint firstAttribute="bottom" secondItem="INR-2c-t8t" secondAttribute="bottom" id="QGy-fW-exj"/>
@@ -487,6 +487,7 @@
                         <outlet property="fatsProgrammLabel" destination="SmI-bG-gKv" id="ykS-Df-bs5"/>
                         <outlet property="fatsTodayLabel" destination="4da-Ra-UME" id="7Je-j1-JsX"/>
                         <outlet property="menuLeadingConstraint" destination="Dge-AY-yrY" id="niK-ED-Szv"/>
+                        <outlet property="menuTrailingConstraint" destination="LEz-pA-pT5" id="BY2-di-LKc"/>
                         <outlet property="menuView" destination="La2-79-89M" id="HQI-r9-4VI"/>
                         <outlet property="progressIsBlock" destination="INR-2c-t8t" id="ycz-gV-g6V"/>
                         <outlet property="progressView" destination="T03-XA-YfC" id="hUQ-6k-fHl"/>

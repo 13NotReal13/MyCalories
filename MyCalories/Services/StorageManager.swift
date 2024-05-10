@@ -308,6 +308,14 @@ final class StorageManager {
         }
     }
     
+    // Delete product from base
+    func deleteProduct(_ product: Product, completion: @escaping() -> Void) {
+        writeDeviceRealm {
+            realmDevice.delete(product)
+            completion()
+        }
+    }
+    
     // Used Water
     func saveWaterToHistory(_ water: Water, completion: @escaping() -> Void) {
         let waterDate = Calendar.current.startOfDay(for: water.date)

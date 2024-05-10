@@ -302,6 +302,24 @@ private extension MainViewController {
         present(alert, animated: true)
     }
     
+    func showAlertForDeletingProduct(_ product: Product, indexPath: IndexPath) {
+        let alert = UIAlertController(title: "Вы уверены, что хотите удалить?", message: product.name, preferredStyle: .alert)
+        
+        let deleteButton = UIAlertAction(title: "Удалить", style: .destructive) { [unowned self] _ in
+            storageManager.deleteProduct(product) { [unowned self] in
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
+        }
+        
+        let cancelButton = UIAlertAction(title: "Отмена", style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+        
+        alert.addAction(deleteButton)
+        alert.addAction(cancelButton)
+        present(alert, animated: true)
+    }
+    
     @objc func doneButtonPressed() {
         searchBar.resignFirstResponder()
     }
@@ -430,6 +448,17 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let product = filteredProducts[indexPath.row]
+        
+        let deleteButton = UIContextualAction(style: .normal, title: "Удалить") { [unowned self] _, _, isDone in
+            showAlertForDeletingProduct(product, indexPath: indexPath)
+            isDone(true)
+        }
+        
+        return UISwipeActionsConfiguration(actions: [deleteButton])
     }
 }
 
