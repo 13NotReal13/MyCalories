@@ -192,6 +192,8 @@ private extension ProfileViewController {
         if !dateOfBirthday.isEmpty, !height.isEmpty, !weight.isEmpty,
            !activity.isEmpty, !goal.isEmpty {
             saveButton.isEnabled = true
+        } else {
+            saveButton.isEnabled = false
         }
     }
     

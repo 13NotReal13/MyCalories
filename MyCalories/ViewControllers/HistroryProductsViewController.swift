@@ -297,6 +297,8 @@ extension HistroryProductsViewController {
                     tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
                 }
             }
+            
+            updateEmptyLabel()
         }
         
         let noButton = UIAlertAction(title: "Нет", style: .cancel)

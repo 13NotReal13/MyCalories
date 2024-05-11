@@ -362,8 +362,8 @@ private extension MainViewController {
         fatsProgressBar = createCircularProgress(xOffset: -99, color: .systemOrange, initialProgress: 0.0)
         fatsProgressBar?.layer.shadowColor = UIColor.systemOrange.cgColor // systemOrange
         fatsProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
-        fatsProgressBar?.layer.shadowRadius = 2
-        fatsProgressBar?.layer.shadowOpacity = 0.8
+        fatsProgressBar?.layer.shadowRadius = 3
+        fatsProgressBar?.layer.shadowOpacity = 0.9
         fatsProgressBar?.clipsToBounds = false
         fatsProgressBar?.layer.masksToBounds = false
         
