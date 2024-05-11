@@ -21,6 +21,8 @@ final class MainViewController: UIViewController {
     @IBOutlet var menuLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var menuTrailingConstraint: NSLayoutConstraint!
     
+    @IBOutlet var waterButton: UIButton!
+    
     @IBOutlet var extendingNavigationBarView: UIView!
     @IBOutlet var shadowForTableViewView: UIView!
     @IBOutlet var tableView: UITableView!
@@ -228,6 +230,13 @@ private extension MainViewController {
         shadowForProgressBarView.layer.shadowOpacity = 0.6
         shadowForProgressBarView.clipsToBounds = false
         shadowForProgressBarView.layer.masksToBounds = false
+        
+        waterButton.layer.shadowColor = UIColor.black.cgColor
+        waterButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+        waterButton.layer.shadowRadius = 3
+        waterButton.layer.shadowOpacity = 0.1
+        waterButton.clipsToBounds = false
+        waterButton.layer.masksToBounds = false
     }
     
     func setupRoundCornersForProgressIsBlock() {

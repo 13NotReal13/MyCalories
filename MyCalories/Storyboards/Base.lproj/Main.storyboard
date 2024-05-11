@@ -462,6 +462,11 @@
                             <constraint firstItem="La2-79-89M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tSM-6h-dcq"/>
                             <constraint firstItem="T03-XA-YfC" firstAttribute="top" secondItem="PfG-hZ-WcI" secondAttribute="bottom" constant="16" id="uAf-hP-IA6"/>
                         </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="La2-79-89M"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Мои калории" id="fZN-1a-zcP">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="ZmA-h7-mrd">
@@ -497,6 +502,7 @@
                         <outlet property="shadowForProgressBarView" destination="eUE-0F-PXJ" id="S5F-pA-DRo"/>
                         <outlet property="shadowForTableViewView" destination="obA-V2-FCj" id="aTz-Jz-b1P"/>
                         <outlet property="tableView" destination="gDL-dZ-72b" id="XC7-Fg-GH0"/>
+                        <outlet property="waterButton" destination="PfG-hZ-WcI" id="P5n-j6-H8b"/>
                         <outlet property="waterProgrammLabel" destination="sB8-rb-5vd" id="67w-yW-8UC"/>
                         <outlet property="waterTodayLabel" destination="b6u-Oz-2UA" id="e4p-CX-eiv"/>
                     </connections>
