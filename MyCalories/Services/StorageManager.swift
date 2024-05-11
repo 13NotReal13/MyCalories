@@ -197,7 +197,7 @@ final class StorageManager {
     
     // History
     func fetchHistory(completion: @escaping(Results<History>) -> Void) {
-        completion(realmDevice.objects(History.self))
+        completion(realmDevice.objects(History.self).sorted(byKeyPath: "date", ascending: false))
     }
     
     func changeIndexAndColor(forProduct product: Product, completion: @escaping() -> Void) {

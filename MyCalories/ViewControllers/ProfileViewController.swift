@@ -240,9 +240,10 @@ private extension ProfileViewController {
     }
     
     func showAlert(fromTextField textField: UITextField) {
-        let alert = UIAlertController(title: "Упс..", message: "Неверный формат", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default) { _ in
+        let alert = UIAlertController(title: "Ошибка", message: "Неверный формат", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
             textField.text = ""
+            saveButton.isEnabled = false
             alert.dismiss(animated: true)
         }
         alert.addAction(okButton)

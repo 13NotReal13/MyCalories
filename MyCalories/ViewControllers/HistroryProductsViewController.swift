@@ -17,8 +17,11 @@ final class HistroryProductsViewController: UIViewController {
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
     @IBOutlet var infoOfRowsInTable: UILabel!
+    @IBOutlet var emptyLabel: UILabel!
     
     private let storageManager = StorageManager.shared
+    private let hiddenTextField = UITextField(frame: .zero)
+    private let datePicker = UIDatePicker()
     private var history: Results<History>!
     
     weak var delegate: MainScreenDelegate?
@@ -26,11 +29,15 @@ final class HistroryProductsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundColor = .clear
+        view.addSubview(hiddenTextField)
+        setDatePicker()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         storageManager.fetchHistory { [unowned self] historyData in
             history = historyData
+            emptyLabel.isHidden = history.isEmpty ? false : true
+            updateEmptyLabel()
             tableView.reloadData()
         }
     }
@@ -55,9 +62,70 @@ final class HistroryProductsViewController: UIViewController {
         editWeightVC.delegate = self
     }
     
+    @IBAction func calendarBarButtonItemAction(_ sender: UIBarButtonItem) {
+        hiddenTextField.becomeFirstResponder()
+    }
+    
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         infoOfRowsInTable.text = sender.selectedSegmentIndex == 0 ? "Б / Ж / У  Ккал" : "Мл."
+        updateEmptyLabel()
         tableView.reloadData()
+    }
+    
+    private func setDatePicker() {
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.locale = Locale(identifier: "ru_RU")
+        
+        hiddenTextField.inputView = datePicker
+        hiddenTextField.inputAccessoryView = createToolbar()
+    }
+    
+    private func createToolbar() -> UIToolbar {
+        let toolbar = UIToolbar()
+        toolbar.sizeToFit()
+        
+        let doneButton = UIBarButtonItem(
+            title: "Готово",
+            style: .done,
+            target: self,
+            action: #selector(doneButtonPressed)
+        )
+        let flexButton = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
+        
+        toolbar.setItems([flexButton, doneButton], animated: true)
+        return toolbar
+    }
+    
+    @objc private func doneButtonPressed() {
+        let choosedDate = Calendar.current.startOfDay(for: datePicker.date)
+        storageManager.fetchHistory {[unowned self] historyData in
+            history = historyData.filter("date == %@", choosedDate)
+            tableView.reloadData()
+        }
+        
+        updateEmptyLabel()
+        hiddenTextField.resignFirstResponder()
+    }
+    
+    private func updateEmptyLabel() {
+        var hasData = false
+        switch segmentedControl.selectedSegmentIndex {
+        case 0: // Питание
+            // Проверяем, есть ли продукты в любой из историй
+            hasData = history?.contains(where: { $0.productList.count > 0 }) ?? false
+        case 1: // Вода
+            // Проверяем, есть ли записи о воде в любой из историй
+            hasData = history?.contains(where: { $0.waterList.count > 0 }) ?? false
+        default:
+            break
+        }
+
+        emptyLabel.isHidden = hasData
     }
 }
 
