@@ -230,7 +230,7 @@ final class StorageManager {
         }
     }
     
-    func editProductFromHistory(_ product: Product, withNewWeight weight: Double) {
+    func editProductFromHistory(_ product: Product, withNewWeight weight: Double, completion: @escaping() -> Void) {
         writeDeviceRealm {
             let percent = weight / product.weight
             
@@ -239,6 +239,8 @@ final class StorageManager {
             product.carbohydrates *= percent
             product.calories *= percent
             product.weight = weight
+            
+            completion()
         }
     }
     
@@ -334,9 +336,10 @@ final class StorageManager {
         completion()
     }
     
-    func editWaterFromHistory(_ water: Water, withNewML ml: Int) {
+    func editWaterFromHistory(_ water: Water, withNewML ml: Int, completion: @escaping() -> Void) {
         writeDeviceRealm {
             water.ml = ml
+            completion()
         }
     }
     

@@ -275,7 +275,7 @@
                                 </connections>
                             </searchBar>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfG-hZ-WcI">
-                                <rect key="frame" x="344" y="696" width="70" height="70"/>
+                                <rect key="frame" x="340" y="696" width="70" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="729-1K-I8z"/>
                                     <constraint firstAttribute="width" secondItem="PfG-hZ-WcI" secondAttribute="height" id="Pzd-Gl-0DI"/>
@@ -440,6 +440,7 @@
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kGo-Cg-86x" secondAttribute="trailing" id="1ZJ-Nh-Cru"/>
+                            <constraint firstItem="PfG-hZ-WcI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="2Ko-hc-Wva"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eUE-0F-PXJ" secondAttribute="trailing" id="2Oc-jT-Flk"/>
                             <constraint firstAttribute="bottom" secondItem="eUE-0F-PXJ" secondAttribute="bottom" id="2ue-vd-1oQ"/>
                             <constraint firstItem="obA-V2-FCj" firstAttribute="top" secondItem="OMz-5R-Q5X" secondAttribute="bottom" constant="6" id="6vq-xa-Qnp"/>
@@ -447,7 +448,7 @@
                             <constraint firstItem="T03-XA-YfC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="C6d-ja-d2O"/>
                             <constraint firstItem="La2-79-89M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Dge-AY-yrY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="obA-V2-FCj" secondAttribute="trailing" constant="16" id="IhK-6c-dJp"/>
-                            <constraint firstAttribute="trailing" secondItem="PfG-hZ-WcI" secondAttribute="trailing" constant="16" id="LAu-BK-ypO"/>
+                            <constraint firstAttribute="trailing" secondItem="PfG-hZ-WcI" secondAttribute="trailing" constant="20" id="LAu-BK-ypO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="La2-79-89M" secondAttribute="trailing" constant="80" id="LEz-pA-pT5"/>
                             <constraint firstItem="eUE-0F-PXJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Nhb-vQ-mgy"/>
                             <constraint firstAttribute="bottom" secondItem="T03-XA-YfC" secondAttribute="bottom" id="OeL-5V-BwL"/>
@@ -462,11 +463,6 @@
                             <constraint firstItem="La2-79-89M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tSM-6h-dcq"/>
                             <constraint firstItem="T03-XA-YfC" firstAttribute="top" secondItem="PfG-hZ-WcI" secondAttribute="bottom" constant="16" id="uAf-hP-IA6"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="subviews">
-                                <exclude reference="La2-79-89M"/>
-                            </mask>
-                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Мои калории" id="fZN-1a-zcP">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="ZmA-h7-mrd">
@@ -827,7 +823,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Wdw-O3-Yps" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-254" y="1427"/>
+            <point key="canvasLocation" x="473" y="1427"/>
         </scene>
         <!--История-->
         <scene sceneID="CAw-GJ-a8g">
@@ -946,7 +942,7 @@
                         <outlet property="infoOfRowsInTable" destination="dEC-nW-scK" id="SsP-dp-6PT"/>
                         <outlet property="segmentedControl" destination="FS6-Xi-Pcw" id="XRv-gF-FK2"/>
                         <outlet property="tableView" destination="tUl-rZ-hiT" id="V07-IP-gHf"/>
-                        <segue destination="K6t-5b-e37" kind="show" identifier="ToEditPosition" id="B1u-fb-R36"/>
+                        <segue destination="k0b-fW-v6q" kind="show" identifier="ToEditPosition" id="B1u-fb-R36"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JUy-Hy-Atz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1401,6 +1397,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Продукт" id="qwu-Ly-e75">
+                        <barButtonItem key="leftBarButtonItem" title="Удалить" id="Hoa-fy-4yQ">
+                            <color key="tintColor" systemColor="systemRedColor"/>
+                            <connections>
+                                <action selector="deleteBarButtonAction:" destination="eMX-iu-XcX" id="t2y-QE-VxQ"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Добавить" id="T60-aV-gJo">
                             <connections>
                                 <action selector="addBarButtonItemAction:" destination="eMX-iu-XcX" id="2Bv-LL-292"/>
@@ -1613,6 +1615,25 @@
             </objects>
             <point key="canvasLocation" x="2856" y="729"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="0u1-ei-3JQ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k0b-fW-v6q" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="bFt-3l-109"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="cYh-a2-BIC">
+                        <rect key="frame" x="0.0" y="59" width="430" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="K6t-5b-e37" kind="relationship" relationship="rootViewController" id="oGI-ck-hAL"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FAd-gg-cim" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-255.34883720930233" y="1426.6094420600859"/>
+        </scene>
     </scenes>
     <resources>
         <image name="clock.arrow.circlepath" catalog="system" width="128" height="112"/>
@@ -1642,6 +1663,9 @@
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

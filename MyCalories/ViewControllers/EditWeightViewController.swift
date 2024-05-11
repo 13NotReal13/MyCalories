@@ -15,6 +15,8 @@ final class EditWeightViewController: UIViewController {
     
     var choosedProduct: Product?
     var choosedWater: Water?
+    weak var delegate: HistroryProductsViewControllerDelegate?
+    
     private let storageManger = StorageManager.shared
     
     override func viewDidLoad() {
@@ -38,16 +40,23 @@ final class EditWeightViewController: UIViewController {
     @IBAction func saveBarButtonItemAction(_ sender: UIBarButtonItem) {
         guard let value = weightTF.text, let doubleValue = Double(value), let intValue = Int(value) else { return }
         if let product = choosedProduct {
-            storageManger.editProductFromHistory(product, withNewWeight: doubleValue)
+            storageManger.editProductFromHistory(product, withNewWeight: doubleValue) { [unowned self] in
+                delegate?.updateTableView()
+            }
         }
         
         if let water = choosedWater {
-            storageManger.editWaterFromHistory(water, withNewML: intValue)
+            storageManger.editWaterFromHistory(water, withNewML: intValue) { [unowned self] in
+                delegate?.updateTableView()
+            }
         }
         
-        navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
     }
-    
+}
+
+// MARK: - Private Methods
+extension EditWeightViewController {
     private func createToolbar() -> UIToolbar {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
@@ -67,10 +76,6 @@ final class EditWeightViewController: UIViewController {
         
         toolbar.items = [flexButton, doneButton]
         return toolbar
-    }
-    
-     @objc private func doneButtonPressed() {
-         weightTF.resignFirstResponder()
     }
     
     private func checkValue() {
@@ -96,8 +101,13 @@ final class EditWeightViewController: UIViewController {
         alert.addAction(doneButton)
         present(alert, animated: true)
     }
+    
+    @objc private func doneButtonPressed() {
+        weightTF.resignFirstResponder()
+    }
 }
 
+// MARK: - UITextFieldDelegate
 extension EditWeightViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkValue()

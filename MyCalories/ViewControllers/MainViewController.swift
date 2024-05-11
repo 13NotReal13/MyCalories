@@ -21,15 +21,15 @@ final class MainViewController: UIViewController {
     @IBOutlet var menuLeadingConstraint: NSLayoutConstraint!
     @IBOutlet var menuTrailingConstraint: NSLayoutConstraint!
     
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var waterButton: UIButton!
     
     @IBOutlet var extendingNavigationBarView: UIView!
     @IBOutlet var shadowForTableViewView: UIView!
-    @IBOutlet var tableView: UITableView!
     @IBOutlet var shadowForProgressBarView: UIView!
     @IBOutlet var progressView: UIView!
     @IBOutlet var progressIsBlock: UIView!
-    @IBOutlet var searchBar: UISearchBar!
     
     @IBOutlet var proteinTodayLabel: UILabel!
     @IBOutlet var proteinProgrammLabel: UILabel!
@@ -67,6 +67,7 @@ final class MainViewController: UIViewController {
         return overlay
     }()
     
+    // MARK: View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
@@ -76,7 +77,6 @@ final class MainViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         setupRoundedCornersForViews()
-        menuView.roundCorners(corners: [.topRight, .bottomRight], radius: 20)
         searchBar.resignFirstResponder()
     }
     
@@ -138,7 +138,7 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction func waterButtonAction() {
-        showAlert()
+        showAlertForAddWater()
     }
     
     // Выход из фонового режима и обновление данных в прогресс баре
@@ -148,11 +148,6 @@ final class MainViewController: UIViewController {
     
     @objc private func appWillEnterForeground() {
         updateProgressBar()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-        print("MainVC deInit")
     }
 }
 
@@ -250,6 +245,8 @@ private extension MainViewController {
     }
     
     func setupRoundedCornersForViews() {
+        menuView.roundCorners(corners: [.topRight, .bottomRight], radius: 20)
+        
         let maskPathNavigationBar = UIBezierPath(roundedRect: extendingNavigationBarView.bounds,
                                     byRoundingCorners: [.bottomLeft, .bottomRight],
                                     cornerRadii: CGSize(width: 50, height: 50))
@@ -284,7 +281,7 @@ private extension MainViewController {
         menuIsVisible.toggle()
     }
     
-    func showAlert() {
+    func showAlertForAddWater() {
         let alert = UIAlertController(
             title: "Сколько воды вы выпили?",
             message: "",
@@ -332,6 +329,7 @@ private extension MainViewController {
     @objc func doneButtonPressed() {
         searchBar.resignFirstResponder()
     }
+    
 }
 
 // MARK: - Progress Bar
@@ -353,11 +351,45 @@ private extension MainViewController {
     }
     
     func initializeProgressBars() {
-        proteinProgressBar = createCircularProgress(xOffset: -171, color: .green, initialProgress: 0.0)
-        fatsProgressBar = createCircularProgress(xOffset: -99, color: .orange, initialProgress: 0.0)
+        proteinProgressBar = createCircularProgress(xOffset: -171, color: .white, initialProgress: 0.0)
+        proteinProgressBar?.layer.shadowColor = UIColor.white.cgColor
+        proteinProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
+        proteinProgressBar?.layer.shadowRadius = 2
+        proteinProgressBar?.layer.shadowOpacity = 0.8
+        proteinProgressBar?.clipsToBounds = false
+        proteinProgressBar?.layer.masksToBounds = false
+        
+        fatsProgressBar = createCircularProgress(xOffset: -99, color: .systemOrange, initialProgress: 0.0)
+        fatsProgressBar?.layer.shadowColor = UIColor.systemOrange.cgColor // systemOrange
+        fatsProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
+        fatsProgressBar?.layer.shadowRadius = 2
+        fatsProgressBar?.layer.shadowOpacity = 0.8
+        fatsProgressBar?.clipsToBounds = false
+        fatsProgressBar?.layer.masksToBounds = false
+        
         carbohydratesProgressBar = createCircularProgress(xOffset: -27, color: .cyan, initialProgress: 0.0)
+        carbohydratesProgressBar?.layer.shadowColor = UIColor.cyan.cgColor
+        carbohydratesProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
+        carbohydratesProgressBar?.layer.shadowRadius = 2
+        carbohydratesProgressBar?.layer.shadowOpacity = 0.8
+        carbohydratesProgressBar?.clipsToBounds = false
+        carbohydratesProgressBar?.layer.masksToBounds = false
+        
         caloriesProgressBar = createCircularProgress(xOffset: 45, color: .yellow, initialProgress: 0.0)
+        caloriesProgressBar?.layer.shadowColor = UIColor.yellow.cgColor
+        caloriesProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
+        caloriesProgressBar?.layer.shadowRadius = 2
+        caloriesProgressBar?.layer.shadowOpacity = 0.8
+        caloriesProgressBar?.clipsToBounds = false
+        caloriesProgressBar?.layer.masksToBounds = false
+        
         waterProgressBar = createCircularProgress(xOffset: 117, color: .blue, initialProgress: 0.0)
+        waterProgressBar?.layer.shadowColor = UIColor.blue.cgColor
+        waterProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
+        waterProgressBar?.layer.shadowRadius = 2
+        waterProgressBar?.layer.shadowOpacity = 0.8
+        waterProgressBar?.clipsToBounds = false
+        waterProgressBar?.layer.masksToBounds = false
         
         [proteinProgressBar, fatsProgressBar, carbohydratesProgressBar, caloriesProgressBar, waterProgressBar].compactMap { $0 }.forEach {
             progressView.addSubview($0)
@@ -474,12 +506,7 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        if searchText.isEmpty {
-            filteredProducts = allProducts
-        } else {
-            let predicate = NSPredicate(format: "name CONTAINS[c] %@", searchText)
-            filteredProducts = allProducts.filter(predicate)
-        }
+        filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter("name CONTAINS[c] %@", searchText)
         tableView.reloadData()
     }
     

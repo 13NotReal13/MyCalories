@@ -43,6 +43,10 @@ final class AddProductToHistoryViewController: UIViewController {
         checkForAddProduct()
     }
     
+    @IBAction func deleteBarButtonAction(_ sender: UIBarButtonItem) {
+        showAlertForDeletingProduct(selectedProduct)
+    }
+    
     @IBAction func addBarButtonItemAction(_ sender: UIBarButtonItem) {
         let weight = Double(weightTF.text ?? "0") ?? 0.0
         let weightRatio = weight / 100.0
@@ -102,12 +106,13 @@ private extension AddProductToHistoryViewController {
     
     func showAlert(fromTextField textField: UITextField) {
         let alert = UIAlertController(
-            title: "Упс...",
+            title: "Ошибка",
             message: "Введите вес продукта",
             preferredStyle: .alert
         )
-        let okButton = UIAlertAction(title: "ОК", style: .default) { _ in
+        let okButton = UIAlertAction(title: "ОК", style: .default) { [unowned self] _ in
             textField.text = ""
+            addBarButtonItem.isEnabled = false
             textField.becomeFirstResponder()
             alert.dismiss(animated: true)
         }
@@ -138,7 +143,13 @@ private extension AddProductToHistoryViewController {
         guard let textField = activeTextField else { return }
         
         if textField == dateTF {
-            dateTF.text = (Calendar.current.isDateInToday(datePicker.date)) ? "СЕГОДНЯ" : datePicker.dateToString(datePicker.date)
+            if Calendar.current.isDateInToday(datePicker.date) {
+                dateTF.text = "СЕГОДНЯ"
+            } else if Calendar.current.isDateInYesterday(datePicker.date) {
+                dateTF.text = "ВЧЕРА"
+            } else {
+                dateTF.text = datePicker.dateToString(datePicker.date)
+            }
         }
         
         textField.resignFirstResponder()
@@ -153,6 +164,25 @@ private extension AddProductToHistoryViewController {
         
         guard let date = dateTF.text, !date.isEmpty else { return }
         addBarButtonItem.isEnabled = true
+    }
+    
+    func showAlertForDeletingProduct(_ product: Product) {
+        let alert = UIAlertController(title: "Вы уверены, что хотите удалить?", message: product.name, preferredStyle: .alert)
+        
+        let deleteButton = UIAlertAction(title: "Удалить", style: .destructive) { [unowned self] _ in
+            storageManager.deleteProduct(product) { [unowned self] in
+                delegate?.updateTableView()
+                dismiss(animated: true)
+            }
+        }
+        
+        let cancelButton = UIAlertAction(title: "Отмена", style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+        
+        alert.addAction(deleteButton)
+        alert.addAction(cancelButton)
+        present(alert, animated: true)
     }
 }
 

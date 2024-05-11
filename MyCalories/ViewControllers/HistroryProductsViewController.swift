@@ -8,6 +8,10 @@
 import UIKit
 import RealmSwift
 
+protocol HistroryProductsViewControllerDelegate: AnyObject {
+    func updateTableView()
+}
+
 final class HistroryProductsViewController: UIViewController {
     
     @IBOutlet var segmentedControl: UISegmentedControl!
@@ -36,7 +40,8 @@ final class HistroryProductsViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let editWeightVC = segue.destination as? EditWeightViewController else { return }
+        guard let navigationVC = segue.destination as? UINavigationController else { return }
+        guard let editWeightVC = navigationVC.topViewController as? EditWeightViewController else { return }
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
         
         switch segmentedControl.selectedSegmentIndex {
@@ -45,10 +50,20 @@ final class HistroryProductsViewController: UIViewController {
         default:
             editWeightVC.choosedWater = history[indexPath.section].waterList[indexPath.row]
         }
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        editWeightVC.delegate = self
     }
     
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
         infoOfRowsInTable.text = sender.selectedSegmentIndex == 0 ? "Б / Ж / У  Ккал" : "Мл."
+        tableView.reloadData()
+    }
+}
+
+// MARK: - HistroryProductsViewControllerDelegate
+extension HistroryProductsViewController: HistroryProductsViewControllerDelegate {
+    func updateTableView() {
         tableView.reloadData()
     }
 }
@@ -94,7 +109,7 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     // Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
-        header.backgroundColor = .systemGray6
+        header.backgroundColor = .clear
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: 25))
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .colorApp
@@ -169,7 +184,10 @@ extension HistroryProductsViewController {
             showAskToDeleteAlert()
         }
         
-        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
+        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel) { [unowned self] _ in
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         alert.addAction(editButton)
         alert.addAction(deleteAcrtion)
         alert.addAction(cancelButton)
