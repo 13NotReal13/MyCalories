@@ -72,6 +72,8 @@ final class ProfileViewController: UIViewController {
     @IBOutlet var caloriesPerDayLabel: UILabel!
     @IBOutlet var waterPerDayLabel: UILabel!
     
+    @IBOutlet var extendingNavigationBarView: UIView!
+    
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared
     private var person: Person?
@@ -92,6 +94,11 @@ final class ProfileViewController: UIViewController {
         setRecommendedProgramm()
         
         pickerView.delegate = self
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 100)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

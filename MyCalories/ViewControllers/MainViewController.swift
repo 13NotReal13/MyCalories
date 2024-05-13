@@ -234,34 +234,10 @@ private extension MainViewController {
         waterButton.layer.masksToBounds = false
     }
     
-    func setupRoundCornersForProgressIsBlock() {
-        let maskPath = UIBezierPath(roundedRect: progressIsBlock.bounds,
-                                    byRoundingCorners: [.topLeft, .topRight],
-                                    cornerRadii: CGSize(width: 35, height: 35))
-        let shape = CAShapeLayer()
-        shape.path = maskPath.cgPath
-        progressIsBlock.layer.mask = shape
-        progressIsBlock.layer.masksToBounds = true
-    }
-    
     func setupRoundedCornersForViews() {
         menuView.roundCorners(corners: [.topRight, .bottomRight], radius: 20)
-        
-        let maskPathNavigationBar = UIBezierPath(roundedRect: extendingNavigationBarView.bounds,
-                                    byRoundingCorners: [.bottomLeft, .bottomRight],
-                                    cornerRadii: CGSize(width: 50, height: 50))
-        let shapeNavigationBar = CAShapeLayer()
-        shapeNavigationBar.path = maskPathNavigationBar.cgPath
-        extendingNavigationBarView.layer.mask = shapeNavigationBar
-        extendingNavigationBarView.layer.masksToBounds = true
-        
-        let maskPathProgressIsBlock = UIBezierPath(roundedRect: progressIsBlock.bounds,
-                                    byRoundingCorners: [.topLeft, .topRight],
-                                    cornerRadii: CGSize(width: 35, height: 35))
-        let shapeProgressIsBlock = CAShapeLayer()
-        shapeProgressIsBlock.path = maskPathProgressIsBlock.cgPath
-        progressIsBlock.layer.mask = shapeProgressIsBlock
-        progressIsBlock.layer.masksToBounds = true
+        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
+        progressIsBlock.roundCorners(corners: [.topLeft, .topRight], radius: 35)
     }
     
     func toogleMenu() {
