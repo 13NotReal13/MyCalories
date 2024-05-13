@@ -127,6 +127,14 @@ final class HistroryProductsViewController: UIViewController {
 
         emptyLabel.isHidden = hasData
     }
+    
+    private func sectionHasData(in section: Int) -> Bool {
+        if segmentedControl.selectedSegmentIndex == 0 {
+            return !history[section].productList.isEmpty
+        } else {
+            return !history[section].waterList.isEmpty
+        }
+    }
 }
 
 // MARK: - HistroryProductsViewControllerDelegate
@@ -152,32 +160,25 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: "historyProductsCell",
-            for: indexPath
-        ) as? HistoryProductViewCell
-        
-        switch segmentedControl.selectedSegmentIndex {
-        case 0:
-            let product = history[indexPath.section].productList[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "historyProductsCell", for: indexPath) as? HistoryProductViewCell else {
+                return UITableViewCell()
+            }
             
-            cell?.productNameLabel.text = product.name
-            cell?.bguLabel?.text = "\(Int(product.protein)) / \(Int(product.fats)) / \(Int(product.carbohydrates))"
-            cell?.caloriesLabel.text = String(Int(product.calories))
-        default:
-            let water = history[indexPath.section].waterList[indexPath.row]
-            cell?.productNameLabel.text = Date.timeToString(water.date)
-            cell?.bguLabel?.text = ""
-            cell?.caloriesLabel.text = String(water.ml)
-        }
-        
-        return cell ?? UITableViewCell()
+            if segmentedControl.selectedSegmentIndex == 0 {
+                let product = history[indexPath.section].productList[indexPath.row]
+                cell.configure(with: product)
+            } else {
+                let water = history[indexPath.section].waterList[indexPath.row]
+                cell.configure(with: water)
+            }
+            
+            return cell
     }
     
     // Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
-        header.backgroundColor = .clear
+        header.backgroundColor = .systemGray6
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: 25))
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .colorApp
@@ -188,16 +189,14 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        let sectionHasData = segmentedControl.selectedSegmentIndex == 0
-            ? !history[section].productList.isEmpty
-            : !history[section].waterList.isEmpty
-        return sectionHasData ? 25 : 0
+        sectionHasData(in: section) ? 25 : 0
     }
     
     // Footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width - 16, height: 30))
         let label = UILabel(frame: footerView.bounds)
+        footerView.backgroundColor = .systemGray6
         label.textAlignment = .right
         label.font = .boldSystemFont(ofSize: 14)
         label.textColor = .colorApp
@@ -222,10 +221,7 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        let sectionHasData = segmentedControl.selectedSegmentIndex == 0
-            ? !history[section].productList.isEmpty
-            : !history[section].waterList.isEmpty
-        return sectionHasData ? 20 : 0
+        sectionHasData(in: section) ? 20 : 0
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -301,7 +297,10 @@ extension HistroryProductsViewController {
             updateEmptyLabel()
         }
         
-        let noButton = UIAlertAction(title: "Нет", style: .cancel)
+        let noButton = UIAlertAction(title: "Нет", style: .cancel) { [unowned self] _ in
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
         
         alert.addAction(yesButton)
         alert.addAction(noButton)
