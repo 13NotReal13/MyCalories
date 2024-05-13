@@ -73,6 +73,7 @@ final class ProfileViewController: UIViewController {
     @IBOutlet var waterPerDayLabel: UILabel!
     
     @IBOutlet var extendingNavigationBarView: UIView!
+    @IBOutlet var profileView: UIView!
     
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared
@@ -92,6 +93,14 @@ final class ProfileViewController: UIViewController {
         setTextFields()
         getPerson()
         setRecommendedProgramm()
+        
+        profileView.setShadow(
+            cornerRadius: 15,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.3
+        )
         
         pickerView.delegate = self
     }
@@ -307,7 +316,6 @@ private extension ProfileViewController {
             titleOfProgrammLabel.text = "Ежедневная рекомендуемая норма для набора массы:"
         }
         
-        recommendedProgrammStackView.isHidden = false
         proteinPerDayLabel.text = "\(Int(protein)) г."
         fatsPerDayLabel.text = "\(Int(fats)) г."
         carbohydratesPerDayLabel.text = "\(Int(carbohydrates)) г."
