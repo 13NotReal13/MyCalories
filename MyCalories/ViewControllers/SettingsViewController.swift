@@ -10,6 +10,7 @@ import RealmSwift
 
 final class SettingsViewController: UIViewController {
     
+    // MARK: - IBOutlets
     @IBOutlet var caloriesSwitch: UISwitch!
     @IBOutlet var caloriesTF: UITextField!
     @IBOutlet var caloriesOnLabel: UILabel!
@@ -29,6 +30,11 @@ final class SettingsViewController: UIViewController {
     @IBOutlet var waterOffLabels: [UILabel]!
     
     @IBOutlet var scrollView: UIScrollView!
+    
+    @IBOutlet var extendingNavigationBarView: UIView!
+    @IBOutlet var caloriesView: UIView!
+    @IBOutlet var bguView: UIView!
+    @IBOutlet var waterView: UIView!
     
     private let storageManager = StorageManager.shared
     private var userProgramm: UserProgramm?
@@ -62,6 +68,12 @@ final class SettingsViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.updateProgressBar()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 100)
+        setShadows()
     }
 }
 
@@ -182,6 +194,32 @@ extension SettingsViewController {
         default:
             return .water
         }
+    }
+    
+    private func setShadows() {
+        caloriesView.setShadow(
+            cornerRadius: 15,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.3
+        )
+        
+        bguView.setShadow(
+            cornerRadius: 15,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.3
+        )
+        
+        waterView.setShadow(
+            cornerRadius: 15,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.3
+        )
     }
 }
 

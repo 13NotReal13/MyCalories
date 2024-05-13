@@ -64,7 +64,6 @@ final class ProfileViewController: UIViewController {
     @IBOutlet var activityTF: UITextField!
     @IBOutlet var goalTF: UITextField!
     
-    @IBOutlet var recommendedProgrammStackView: UIStackView!
     @IBOutlet var titleOfProgrammLabel: UILabel!
     @IBOutlet var proteinPerDayLabel: UILabel!
     @IBOutlet var fatsPerDayLabel: UILabel!
@@ -74,6 +73,7 @@ final class ProfileViewController: UIViewController {
     
     @IBOutlet var extendingNavigationBarView: UIView!
     @IBOutlet var profileView: UIView!
+    @IBOutlet var recommendedProgrammView: UIView!
     
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared

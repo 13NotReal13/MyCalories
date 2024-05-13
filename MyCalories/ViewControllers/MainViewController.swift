@@ -210,21 +210,21 @@ private extension MainViewController {
         }
         
         // Shadows for Views
-        shadowForTableViewView.layer.cornerRadius = 15
-        shadowForTableViewView.layer.shadowColor = UIColor.black.cgColor
-        shadowForTableViewView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        shadowForTableViewView.layer.shadowRadius = 6
-        shadowForTableViewView.layer.shadowOpacity = 0.3
-        shadowForTableViewView.clipsToBounds = false
-        shadowForTableViewView.layer.masksToBounds = false
+        shadowForTableViewView.setShadow(
+            cornerRadius: 15,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.3
+        )
         
-        shadowForProgressBarView.layer.cornerRadius = 40
-        shadowForProgressBarView.layer.shadowColor = UIColor.black.cgColor
-        shadowForProgressBarView.layer.shadowOffset = CGSize(width: 0, height: 2)
-        shadowForProgressBarView.layer.shadowRadius = 6
-        shadowForProgressBarView.layer.shadowOpacity = 0.6
-        shadowForProgressBarView.clipsToBounds = false
-        shadowForProgressBarView.layer.masksToBounds = false
+        shadowForProgressBarView.setShadow(
+            cornerRadius: 40,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.6
+        )
         
         waterButton.layer.shadowColor = UIColor.black.cgColor
         waterButton.layer.shadowOffset = CGSize(width: 0, height: 0)
