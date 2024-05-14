@@ -19,6 +19,9 @@ final class AddProductToHistoryViewController: UIViewController {
     @IBOutlet var dateTF: UITextField!
     @IBOutlet var addBarButtonItem: UIBarButtonItem!
     
+    @IBOutlet var extendingNavigationBarView: UIView!
+    @IBOutlet var productView: UIView!
+    
     weak var delegate: MainScreenDelegate?
     
     var selectedProduct: Product!
@@ -32,10 +35,23 @@ final class AddProductToHistoryViewController: UIViewController {
         super.viewDidLoad()
         setTextFields()
         setLabels()
+        
+        productView.setShadow(
+            cornerRadius: 15,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.3
+        )
     }
     
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         delegate?.updateProgressBar()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -157,8 +173,8 @@ private extension AddProductToHistoryViewController {
     }
     
     func checkForAddProduct() {
-        guard let text = weightTF.text, let textInDouble = Double(text), textInDouble != 0 else {
-            showAlert(fromTextField: weightTF)
+        guard let text = weightTF.text, let textInDouble = Double(text) else {
+            addBarButtonItem.isEnabled = false
             return
         }
         

@@ -17,6 +17,9 @@ final class AddNewProductViewController: UIViewController {
     @IBOutlet var carbohydratesTF: UITextField!
     @IBOutlet var caloriesTF: UITextField!
     
+    @IBOutlet var extendingNavigationBarView: UIView!
+    @IBOutlet var productView: UIView!
+    
     weak var delegate: MainScreenDelegate?
     
     private let storageManager = StorageManager.shared
@@ -25,10 +28,18 @@ final class AddNewProductViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setTextFields()
+        
+        productView.setShadow(
+            cornerRadius: 15,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.3
+        )
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        
+    override func viewDidLayoutSubviews() {
+        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -134,7 +145,7 @@ private extension AddNewProductViewController {
     }
     
     func showAlert(fromTextField textField: UITextField) {
-        let alert = UIAlertController(title: "Упс..", message: "Неверный формат", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Ошибка", message: "Неверный формат", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default) { _ in
             textField.text = ""
             textField.becomeFirstResponder()
