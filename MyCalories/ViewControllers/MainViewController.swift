@@ -293,7 +293,7 @@ private extension MainViewController {
             }
         }
         
-        let cancelButton = UIAlertAction(title: "Отмена", style: .default) { _ in
+        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel) { _ in
             alert.dismiss(animated: true)
         }
         

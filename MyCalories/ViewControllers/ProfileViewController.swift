@@ -107,7 +107,7 @@ final class ProfileViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 100)
+        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

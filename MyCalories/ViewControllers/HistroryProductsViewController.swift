@@ -18,6 +18,8 @@ final class HistroryProductsViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var infoOfRowsInTable: UILabel!
     @IBOutlet var emptyLabel: UILabel!
+    @IBOutlet var shadowTableViewView: UIView!
+    @IBOutlet var extendingNavigationBarView: UIView!
     
     private let storageManager = StorageManager.shared
     private let hiddenTextField = UITextField(frame: .zero)
@@ -44,6 +46,19 @@ final class HistroryProductsViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.updateProgressBar()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        shadowTableViewView.setShadow(
+            cornerRadius: 15,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.3
+        )
+        
+        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -178,8 +193,8 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     // Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
-        header.backgroundColor = .systemGray6
-        let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: 25))
+        header.backgroundColor = .white
+        let label = UILabel(frame: CGRect(x: 16, y: 0, width: tableView.bounds.width - 30, height: 16))
         label.font = .boldSystemFont(ofSize: 18)
         label.textColor = .colorApp
         
@@ -189,14 +204,14 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        sectionHasData(in: section) ? 25 : 0
+        sectionHasData(in: section) ? 20 : 0
     }
     
     // Footer
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width - 16, height: 30))
         let label = UILabel(frame: footerView.bounds)
-        footerView.backgroundColor = .systemGray6
+        footerView.backgroundColor = .white
         label.textAlignment = .right
         label.font = .boldSystemFont(ofSize: 14)
         label.textColor = .colorApp

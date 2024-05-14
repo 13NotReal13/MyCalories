@@ -72,7 +72,7 @@ final class SettingsViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 100)
+        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
         setShadows()
     }
 }
