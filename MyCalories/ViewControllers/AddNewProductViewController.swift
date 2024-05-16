@@ -82,11 +82,11 @@ private extension AddNewProductViewController {
         carbohydratesTF.customStyle()
         caloriesTF.customStyle()
         
-        nameTF.inputAccessoryView = createToolbar()
-        proteinTF.inputAccessoryView = createToolbar()
-        fatsTF.inputAccessoryView = createToolbar()
-        carbohydratesTF.inputAccessoryView = createToolbar()
-        caloriesTF.inputAccessoryView = createToolbar()
+        nameTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
+        proteinTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
+        fatsTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
+        carbohydratesTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
+        caloriesTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
         
         nameTF.becomeFirstResponder()
     }
@@ -111,24 +111,6 @@ private extension AddNewProductViewController {
         } else {
             addBarButtonItem.isEnabled = false
         }
-    }
-    
-    func createToolbar() -> UIToolbar {
-        let keyboardToolbar = UIToolbar()
-        keyboardToolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(
-            title: "Готово",
-            style: .done,
-            target: self,
-            action: #selector(doneButtonPressed)
-        )
-        let flexButton = UIBarButtonItem(
-            barButtonSystemItem: .flexibleSpace,
-            target: nil,
-            action: nil
-        )
-        keyboardToolbar.setItems([flexButton, doneButton], animated: true)
-        return keyboardToolbar
     }
     
     func checkTextOfTextField(_ textField: UITextField) {

@@ -106,7 +106,7 @@ private extension AddProductToHistoryViewController {
         dateTF.customStyle()
         
         dateTF.delegate = self
-        dateTF.inputAccessoryView = createToolbar()
+        dateTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
         dateTF.inputView = datePicker
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
@@ -135,25 +135,6 @@ private extension AddProductToHistoryViewController {
         }
         alert.addAction(okButton)
         present(alert, animated: true)
-    }
-    
-    func createToolbar() -> UIToolbar {
-        let keyboardTolbar = UIToolbar()
-        keyboardTolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(
-            title: "Готово",
-            style: .done,
-            target: self,
-            action: #selector(doneButtonPressed)
-        )
-        let flexButton = UIBarButtonItem(
-            barButtonSystemItem: .flexibleSpace,
-            target: nil,
-            action: nil
-        )
-        keyboardTolbar.setItems([flexButton, doneButton], animated: true)
-        return keyboardTolbar
     }
     
     @objc private func doneButtonPressed() {
@@ -188,6 +169,6 @@ private extension AddProductToHistoryViewController {
 extension AddProductToHistoryViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
-        weightTF.inputAccessoryView = createToolbar()
+        weightTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
     }
 }

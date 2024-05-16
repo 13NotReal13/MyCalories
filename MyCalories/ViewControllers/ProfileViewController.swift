@@ -163,20 +163,20 @@ private extension ProfileViewController {
         activityTF.customStyle()
         goalTF.customStyle()
         
-        dateOfBirthdayTF.inputAccessoryView = createToolbar()
+        dateOfBirthdayTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
         dateOfBirthdayTF.inputView = datePicker
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = Locale(identifier: "ru_RU")
         
-        heightTF.inputAccessoryView = createToolbar()
-        weightTF.inputAccessoryView = createToolbar()
+        heightTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
+        weightTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
         
         activityTF.inputView = pickerView
-        activityTF.inputAccessoryView = createToolbar()
+        activityTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
         
         goalTF.inputView = pickerView
-        goalTF.inputAccessoryView = createToolbar()
+        goalTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
     }
     
     @objc private func doneButtonPressed() {
@@ -211,26 +211,6 @@ private extension ProfileViewController {
         } else {
             saveButton.isEnabled = false
         }
-    }
-    
-    func createToolbar() -> UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(
-            title: "Готово",
-            style: .done,
-            target: self,
-            action: #selector(doneButtonPressed)
-        )
-        let flexButton = UIBarButtonItem(
-            barButtonSystemItem: .flexibleSpace,
-            target: nil,
-            action: nil
-        )
-        
-        toolbar.setItems([flexButton, doneButton], animated: true)
-        return toolbar
     }
     
     func getPerson() {

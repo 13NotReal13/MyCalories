@@ -68,7 +68,7 @@ extension EditWeightViewController {
             : String(choosedWater?.ml ?? 0)
         
         weightTF.delegate = self
-        weightTF.inputAccessoryView = createToolbar()
+        weightTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
         weightTF.becomeFirstResponder()
         
         editHeightView.setShadow(
@@ -78,27 +78,6 @@ extension EditWeightViewController {
             shadowRadius: 6,
             shadowOpacity: 0.3
         )
-    }
-    
-    private func createToolbar() -> UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(
-            title: "Готово",
-            style: .done,
-            target: self,
-            action: #selector(doneButtonPressed)
-        )
-        
-        let flexButton = UIBarButtonItem(
-            barButtonSystemItem: .flexibleSpace,
-            target: nil,
-            action: nil
-        )
-        
-        toolbar.items = [flexButton, doneButton]
-        return toolbar
     }
     
     private func checkValue() {
