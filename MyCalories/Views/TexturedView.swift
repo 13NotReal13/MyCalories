@@ -7,7 +7,7 @@
 
 import UIKit
 
-class TexturedView: UIView {
+final class TexturedView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -24,7 +24,6 @@ class TexturedView: UIView {
     }
 
     private func setupRoundedCorners() {
-        // Создаем путь с закругленными верхними углами
         let path = UIBezierPath(roundedRect: bounds,
                                 byRoundingCorners: [.topLeft, .topRight],
                                 cornerRadii: CGSize(width: 35, height: 35))
@@ -38,31 +37,58 @@ class TexturedView: UIView {
         
         guard let context = UIGraphicsGetCurrentContext() else { return }
         
-        let color = UIColor(red: 45/255.0, green: 149/255.0, blue: 150/255.0, alpha: 1)
+        // Цвет заливки
+//        let color = UIColor(red: 35/255.0, green: 139/255.0, blue: 140/255.0, alpha: 1)
+        let color = UIColor(red: 3/255.0, green: 74/255.0, blue: 70/255.0, alpha: 1)
         context.setFillColor(color.cgColor)
         context.fill(rect)
         
-        let path = CGMutablePath()
-        path.addRect(rect)
-        context.addPath(path)
-        
-        context.saveGState()
-        context.setLineWidth(2)
-        context.setLineCap(.round)
-        context.setStrokeColor(UIColor.darkGray.withAlphaComponent(0.2).cgColor)
-        
-        for y in stride(from: 0, to: rect.height, by: 5) {
-            context.move(to: CGPoint(x: 0, y: y))
-            context.addLine(to: CGPoint(x: rect.width, y: y))
+        // Генерация текстуры с шумом
+        if let noiseImage = generateNoiseTexture(size: rect.size, color: color) {
+            context.draw(noiseImage.cgImage!, in: rect)
         }
-        
-        context.strokePath()
-        context.restoreGState()
     }
-
-    // Обновляем путь маски при изменении размеров вью
+    
     override func layoutSubviews() {
         super.layoutSubviews()
         setupRoundedCorners()
+    }
+    
+    private func generateNoiseTexture(size: CGSize, color: UIColor) -> UIImage? {
+        let scale = UIScreen.main.scale
+        let width = Int(size.width * scale)
+        let height = Int(size.height * scale)
+        
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bytesPerPixel = 4
+        let bytesPerRow = bytesPerPixel * width
+        let bitsPerComponent = 8
+        var pixelData = [UInt8](repeating: 0, count: width * height * bytesPerPixel)
+        
+        for y in 0..<height {
+            for x in 0..<width {
+                let offset = (y * width + x) * bytesPerPixel
+                let noise = UInt8.random(in: 0...255)
+                let red = UInt8((color.cgColor.components?[0] ?? 0) * 255)
+                let green = UInt8((color.cgColor.components?[1] ?? 0) * 255)
+                let blue = UInt8((color.cgColor.components?[2] ?? 0) * 255)
+                
+                pixelData[offset] = red
+                pixelData[offset + 1] = green
+                pixelData[offset + 2] = blue
+                pixelData[offset + 3] = noise / 4 // уменьшение интенсивности шума
+            }
+        }
+        
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        guard let context = CGContext(data: &pixelData, width: width, height: height, bitsPerComponent: bitsPerComponent, bytesPerRow: bytesPerRow, space: colorSpace, bitmapInfo: bitmapInfo.rawValue) else {
+            return nil
+        }
+        
+        guard let cgImage = context.makeImage() else {
+            return nil
+        }
+        
+        return UIImage(cgImage: cgImage, scale: scale, orientation: .up)
     }
 }

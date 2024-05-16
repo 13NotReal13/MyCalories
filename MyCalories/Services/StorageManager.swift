@@ -84,7 +84,7 @@ final class StorageManager {
     }
     
     // MARK: - Realm
-    // All pRODUCTS
+    // All Products
     func fetchAllProducts(completion: @escaping (Results<Product>) -> Void) {
         guard let allProductsInDevice = realmDevice.objects(AllProducts.self).first else {
             let productsFromProject = realmProject.objects(Product.self)

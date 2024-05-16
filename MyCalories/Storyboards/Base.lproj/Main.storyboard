@@ -255,7 +255,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" name="textColorApp"/>
+                                <color key="backgroundColor" name="colorApp"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="rfv-dV-nGK" secondAttribute="trailing" constant="16" id="J94-Rg-3GP"/>
                                     <constraint firstAttribute="trailing" secondItem="dsm-vU-wKf" secondAttribute="trailing" constant="16" id="VUy-eu-nH5"/>
@@ -1496,10 +1496,10 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Продукт" id="qwu-Ly-e75">
-                        <barButtonItem key="leftBarButtonItem" title="Удалить" id="Hoa-fy-4yQ">
+                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="Hoa-fy-4yQ">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <action selector="deleteBarButtonAction:" destination="eMX-iu-XcX" id="t2y-QE-VxQ"/>
+                                <action selector="cancelBarButtonItem:" destination="eMX-iu-XcX" id="j1q-7M-XoY"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Добавить" id="T60-aV-gJo">
@@ -1762,7 +1762,7 @@
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="person" catalog="system" width="128" height="121"/>
-        <image name="waterButton" width="1024" height="1024"/>
+        <image name="waterButton" width="70" height="70"/>
         <namedColor name="colorApp">
             <color red="0.17647058823529413" green="0.58431372549019611" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -59,9 +59,10 @@ final class AddProductToHistoryViewController: UIViewController {
         checkForAddProduct()
     }
     
-    @IBAction func deleteBarButtonAction(_ sender: UIBarButtonItem) {
-        showAlertForDeletingProduct(selectedProduct)
+    @IBAction func cancelBarButtonItem(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
     }
+    
     
     @IBAction func addBarButtonItemAction(_ sender: UIBarButtonItem) {
         let weight = Double(weightTF.text ?? "0") ?? 0.0
@@ -173,32 +174,13 @@ private extension AddProductToHistoryViewController {
     }
     
     func checkForAddProduct() {
-        guard let text = weightTF.text, let textInDouble = Double(text) else {
+        guard let text = weightTF.text, !text.isEmpty else {
             addBarButtonItem.isEnabled = false
             return
         }
         
         guard let date = dateTF.text, !date.isEmpty else { return }
         addBarButtonItem.isEnabled = true
-    }
-    
-    func showAlertForDeletingProduct(_ product: Product) {
-        let alert = UIAlertController(title: "Вы уверены, что хотите удалить?", message: product.name, preferredStyle: .alert)
-        
-        let deleteButton = UIAlertAction(title: "Удалить", style: .destructive) { [unowned self] _ in
-            storageManager.deleteProduct(product) { [unowned self] in
-                delegate?.updateTableView()
-                dismiss(animated: true)
-            }
-        }
-        
-        let cancelButton = UIAlertAction(title: "Отмена", style: .default) { _ in
-            alert.dismiss(animated: true)
-        }
-        
-        alert.addAction(deleteButton)
-        alert.addAction(cancelButton)
-        present(alert, animated: true)
     }
 }
 

@@ -470,10 +470,17 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let product = filteredProducts[indexPath.row]
         
-        let deleteButton = UIContextualAction(style: .normal, title: "Удалить") { [unowned self] _, _, isDone in
+        let deleteButton = UIContextualAction(style: .normal, title: nil) { [unowned self] _, _, isDone in
             showAlertForDeletingProduct(product, indexPath: indexPath)
             isDone(true)
         }
+        
+        deleteButton.image = UIImage(systemName: "trash")
+        
+//        let deleteButton = UIContextualAction(style: .normal, title: "Удалить") { [unowned self] _, _, isDone in
+//            showAlertForDeletingProduct(product, indexPath: indexPath)
+//            isDone(true)
+//        }
         
         return UISwipeActionsConfiguration(actions: [deleteButton])
     }
@@ -484,9 +491,15 @@ extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter("name CONTAINS[c] %@", searchText)
         tableView.reloadData()
+        
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        let indexPath = IndexPath(row: 0, section: 0)
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
         

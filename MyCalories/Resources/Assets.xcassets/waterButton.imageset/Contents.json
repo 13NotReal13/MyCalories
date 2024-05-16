@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "istockphoto-516217842-170667a.png",
+      "filename" : "waterButton70.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "waterButton140.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "waterButton210.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
