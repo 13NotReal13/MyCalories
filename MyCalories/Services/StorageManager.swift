@@ -119,11 +119,6 @@ final class StorageManager {
 
     
     // User Programm
-    func fetchProjectProducts(completion: @escaping([Product]) -> Void) {
-        let products = realmProject.objects(Product.self)
-        completion(Array(products))
-    }
-    
     func fetchUserProgramm() -> UserProgramm {
         var userProgramm = realmDevice.objects(UserProgramm.self).first
         

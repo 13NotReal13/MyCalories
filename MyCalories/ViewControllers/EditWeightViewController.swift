@@ -13,40 +13,42 @@ final class EditWeightViewController: UIViewController {
     @IBOutlet var productNameLabel: UILabel!
     @IBOutlet var weightTF: UITextField!
     
+    @IBOutlet var extendingNavigationBarView: UIView!
+    @IBOutlet var editHeightView: UIView!
+    
     var choosedProduct: Product?
     var choosedWater: Water?
     weak var delegate: HistroryProductsViewControllerDelegate?
     
-    private let storageManger = StorageManager.shared
+    private let storageManager = StorageManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        weightTF.placeholder = choosedProduct != nil ? "г." : "мл."
-        productNameLabel.text = choosedProduct != nil ? choosedProduct?.name : ""
-        
-        weightTF.text = choosedProduct != nil 
-            ? String(Int(choosedProduct?.weight ?? 0.0))
-            : String(choosedWater?.ml ?? 0)
-        
-        weightTF.delegate = self
-        weightTF.inputAccessoryView = createToolbar()
-        weightTF.becomeFirstResponder()
+        setupUI()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         weightTF.resignFirstResponder()
     }
     
+    @IBAction func cancelBarButtonItem(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
+    
     @IBAction func saveBarButtonItemAction(_ sender: UIBarButtonItem) {
         guard let value = weightTF.text, let doubleValue = Double(value), let intValue = Int(value) else { return }
         if let product = choosedProduct {
-            storageManger.editProductFromHistory(product, withNewWeight: doubleValue) { [unowned self] in
+            storageManager.editProductFromHistory(product, withNewWeight: doubleValue) { [unowned self] in
                 delegate?.updateTableView()
             }
         }
         
         if let water = choosedWater {
-            storageManger.editWaterFromHistory(water, withNewML: intValue) { [unowned self] in
+            storageManager.editWaterFromHistory(water, withNewML: intValue) { [unowned self] in
                 delegate?.updateTableView()
             }
         }
@@ -57,6 +59,27 @@ final class EditWeightViewController: UIViewController {
 
 // MARK: - Private Methods
 extension EditWeightViewController {
+    private func setupUI() {
+        weightTF.placeholder = choosedProduct != nil ? "г." : "мл."
+        productNameLabel.text = choosedProduct != nil ? choosedProduct?.name : ""
+        
+        weightTF.text = choosedProduct != nil
+            ? String(Int(choosedProduct?.weight ?? 0.0))
+            : String(choosedWater?.ml ?? 0)
+        
+        weightTF.delegate = self
+        weightTF.inputAccessoryView = createToolbar()
+        weightTF.becomeFirstResponder()
+        
+        editHeightView.setShadow(
+            cornerRadius: 15,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.3
+        )
+    }
+    
     private func createToolbar() -> UIToolbar {
         let toolbar = UIToolbar()
         toolbar.sizeToFit()
