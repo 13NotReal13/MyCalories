@@ -73,7 +73,7 @@ final class CircularProgressBar: UIView {
     
     private func setupLabel() {
         progressLabel.textColor = .white
-        progressLabel.font = .boldSystemFont(ofSize: 17)
+        progressLabel.font = .boldSystemFont(ofSize: 16)
         progressLabel.textAlignment = .center
         progressLabel.translatesAutoresizingMaskIntoConstraints = false
         addSubview(progressLabel)

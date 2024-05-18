@@ -60,6 +60,8 @@ final class MainViewController: UIViewController {
     private var caloriesProgressBar: CircularProgressBar?
     private var waterProgressBar: CircularProgressBar?
     
+    private var initViewDidLayoutSubviews = false
+    
     private lazy var overlayView: UIView = {
         let overlay = UIView(frame: view.bounds)
         overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -76,7 +78,12 @@ final class MainViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupRoundedCornersForViews()
+        if !initViewDidLayoutSubviews {
+            setupRoundedCornersForViews()
+            initializeProgressBars()
+            setProgressBarValues()
+            initViewDidLayoutSubviews = true
+        }
         searchBar.resignFirstResponder()
     }
     
@@ -175,8 +182,6 @@ private extension MainViewController {
         fetchData()
         setupUIs()
         setHiddenOfProgressBlock()
-        initializeProgressBars()
-        setProgressBarValues()
     }
     
     func fetchData() {
@@ -273,7 +278,7 @@ private extension MainViewController {
                 setProgressBarValues()
             }
         }
-        let cancelButton = UIAlertAction(title: "Отмена", style: .destructive)
+        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
         
         alert.addAction(okButton)
         alert.addAction(cancelButton)
@@ -310,15 +315,15 @@ private extension MainViewController {
 
 // MARK: - Progress Bar
 private extension MainViewController {
-    func createCircularProgress(xOffset: Int, color: UIColor, initialProgress: CGFloat) -> CircularProgressBar {
-        let midWidth = Int(view.frame.width / 2)
-        let frameY = Int(progressView.frame.height / 2 - 45)
+    func createCircularProgress(xOffset: CGFloat, color: UIColor, initialProgress: CGFloat) -> CircularProgressBar {
+        let frameY = progressView.frame.height / 2 - 46
+        let size = CGFloat(56)
         let progressBar = CircularProgressBar(
             frame: CGRect(
-                x: midWidth + xOffset,
+                x: xOffset - size / 2,
                 y: frameY,
-                width: 55,
-                height: 55
+                width: size,
+                height: size
             ),
             progressColor: color
         )
@@ -327,45 +332,74 @@ private extension MainViewController {
     }
     
     func initializeProgressBars() {
-        proteinProgressBar = createCircularProgress(xOffset: -171, color: .white, initialProgress: 0.0)
-        proteinProgressBar?.layer.shadowColor = UIColor.white.cgColor
-        proteinProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
-        proteinProgressBar?.layer.shadowRadius = 2
-        proteinProgressBar?.layer.shadowOpacity = 0.8
-        proteinProgressBar?.clipsToBounds = false
-        proteinProgressBar?.layer.masksToBounds = false
+        let midWidth = progressView.frame.width / 2
+        let width = progressView.frame.width - 32
+        let intervalWidth = width / 10
         
-        fatsProgressBar = createCircularProgress(xOffset: -99, color: .systemOrange, initialProgress: 0.0)
-        fatsProgressBar?.layer.shadowColor = UIColor.systemOrange.cgColor // systemOrange
-        fatsProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
-        fatsProgressBar?.layer.shadowRadius = 3
-        fatsProgressBar?.layer.shadowOpacity = 0.9
-        fatsProgressBar?.clipsToBounds = false
-        fatsProgressBar?.layer.masksToBounds = false
+        proteinProgressBar = createCircularProgress(
+            xOffset: midWidth - intervalWidth * 4,
+            color: .white,
+            initialProgress: 0.0
+        )
+        proteinProgressBar?.setShadow(
+            cornerRadius: 0,
+            shadowColor: .white,
+            shadowOffset: CGSize(width: 0, height: 0),
+            shadowRadius: 2,
+            shadowOpacity: 0.8
+        )
         
-        carbohydratesProgressBar = createCircularProgress(xOffset: -27, color: .cyan, initialProgress: 0.0)
-        carbohydratesProgressBar?.layer.shadowColor = UIColor.cyan.cgColor
-        carbohydratesProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
-        carbohydratesProgressBar?.layer.shadowRadius = 2
-        carbohydratesProgressBar?.layer.shadowOpacity = 0.8
-        carbohydratesProgressBar?.clipsToBounds = false
-        carbohydratesProgressBar?.layer.masksToBounds = false
+        fatsProgressBar = createCircularProgress(
+            xOffset: midWidth - intervalWidth * 2,
+            color: .systemOrange,
+            initialProgress: 0.0
+        )
+        fatsProgressBar?.setShadow(
+            cornerRadius: 0,
+            shadowColor: .systemOrange,
+            shadowOffset: CGSize(width: 0, height: 0),
+            shadowRadius: 3,
+            shadowOpacity: 1
+        )
         
-        caloriesProgressBar = createCircularProgress(xOffset: 45, color: .yellow, initialProgress: 0.0)
-        caloriesProgressBar?.layer.shadowColor = UIColor.yellow.cgColor
-        caloriesProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
-        caloriesProgressBar?.layer.shadowRadius = 2
-        caloriesProgressBar?.layer.shadowOpacity = 0.8
-        caloriesProgressBar?.clipsToBounds = false
-        caloriesProgressBar?.layer.masksToBounds = false
+        carbohydratesProgressBar = createCircularProgress(
+            xOffset: midWidth,
+            color: .cyan,
+            initialProgress: 0.0
+        )
+        carbohydratesProgressBar?.setShadow(
+            cornerRadius: 0,
+            shadowColor: .cyan,
+            shadowOffset: CGSize(width: 0, height: 0),
+            shadowRadius: 2,
+            shadowOpacity: 0.8
+        )
         
-        waterProgressBar = createCircularProgress(xOffset: 117, color: .blue, initialProgress: 0.0)
-        waterProgressBar?.layer.shadowColor = UIColor.blue.cgColor
-        waterProgressBar?.layer.shadowOffset = CGSize(width: 0, height: 0)
-        waterProgressBar?.layer.shadowRadius = 2
-        waterProgressBar?.layer.shadowOpacity = 0.8
-        waterProgressBar?.clipsToBounds = false
-        waterProgressBar?.layer.masksToBounds = false
+        caloriesProgressBar = createCircularProgress(
+            xOffset: midWidth + intervalWidth * 2,
+            color: .yellow,
+            initialProgress: 0.0
+        )
+        caloriesProgressBar?.setShadow(
+            cornerRadius: 0,
+            shadowColor: .yellow,
+            shadowOffset: CGSize(width: 0, height: 0),
+            shadowRadius: 2,
+            shadowOpacity: 0.8
+        )
+        
+        waterProgressBar = createCircularProgress(
+            xOffset: midWidth + intervalWidth * 4,
+            color: .blue,
+            initialProgress: 0.0
+        )
+        waterProgressBar?.setShadow(
+            cornerRadius: 0,
+            shadowColor: .blue,
+            shadowOffset: CGSize(width: 0, height: 0),
+            shadowRadius: 2,
+            shadowOpacity: 0.8
+        )
         
         [proteinProgressBar, fatsProgressBar, carbohydratesProgressBar, caloriesProgressBar, waterProgressBar].compactMap { $0 }.forEach {
             progressView.addSubview($0)
@@ -476,12 +510,6 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         }
         
         deleteButton.image = UIImage(systemName: "trash")
-        
-//        let deleteButton = UIContextualAction(style: .normal, title: "Удалить") { [unowned self] _, _, isDone in
-//            showAlertForDeletingProduct(product, indexPath: indexPath)
-//            isDone(true)
-//        }
-        
         return UISwipeActionsConfiguration(actions: [deleteButton])
     }
 }

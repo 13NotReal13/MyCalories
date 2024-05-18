@@ -255,7 +255,7 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" name="colorApp"/>
+                                <color key="backgroundColor" name="backgroundProgressBar"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="rfv-dV-nGK" secondAttribute="trailing" constant="16" id="J94-Rg-3GP"/>
                                     <constraint firstAttribute="trailing" secondItem="dsm-vU-wKf" secondAttribute="trailing" constant="16" id="VUy-eu-nH5"/>
@@ -820,7 +820,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YbO-5o-wvQ">
-                                <rect key="frame" x="16" y="72" width="398" height="102.33333333333326"/>
+                                <rect key="frame" x="16" y="72" width="398" height="102.33333333333331"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c0N-Ye-oNa">
                                         <rect key="frame" x="16" y="15.999999999999998" width="366" height="20.333333333333329"/>
@@ -1769,7 +1769,6 @@
         <!--Navigation Controller-->
         <scene sceneID="0u1-ei-3JQ">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FAd-gg-cim" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="k0b-fW-v6q" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="cYh-a2-BIC">
@@ -1783,6 +1782,7 @@
                         <segue destination="K6t-5b-e37" kind="relationship" relationship="rootViewController" id="oGI-ck-hAL"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FAd-gg-cim" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-255.34883720930233" y="1426.6094420600859"/>
         </scene>
@@ -1795,6 +1795,9 @@
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="waterButton" width="70" height="70"/>
+        <namedColor name="backgroundProgressBar">
+            <color red="0.20784313725490194" green="0.48627450980392156" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="colorApp">
             <color red="0.17647058823529413" green="0.58431372549019611" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -1802,22 +1805,22 @@
             <color red="0.090196078431372548" green="0.36862745098039218" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
