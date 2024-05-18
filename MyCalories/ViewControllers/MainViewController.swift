@@ -79,11 +79,11 @@ final class MainViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if !initViewDidLayoutSubviews {
-            setupRoundedCornersForViews()
             initializeProgressBars()
             setProgressBarValues()
             initViewDidLayoutSubviews = true
         }
+        setupRoundedCornersForViews()
         searchBar.resignFirstResponder()
     }
     
