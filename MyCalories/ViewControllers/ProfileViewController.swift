@@ -75,6 +75,8 @@ final class ProfileViewController: UIViewController {
     @IBOutlet var profileView: UIView!
     @IBOutlet var recommendedProgrammView: UIView!
     
+    @IBOutlet var formulaSourceButton: UIButton!
+    
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared
     private var person: Person?
@@ -93,6 +95,7 @@ final class ProfileViewController: UIViewController {
         setTextFields()
         getPerson()
         setRecommendedProgramm()
+        setFormulaSourceButton()
         
         profileView.setShadow(
             cornerRadius: 15,
@@ -145,6 +148,12 @@ final class ProfileViewController: UIViewController {
     
     @IBAction func segmentedControlAction() {
         checkForSavePerson()
+    }
+    
+    @IBAction func formulaSourceButtonAction() {
+        if let url = URL(string: "https://en.m.wikipedia.org/wiki/Basal_metabolic_rate") {
+            UIApplication.shared.open(url)
+        }
     }
 }
 
@@ -317,6 +326,19 @@ private extension ProfileViewController {
     
     func saveRecommendedProgramm(_ programm: RecommendedProgramm) {
         storageManager.saveRecommendedProgramm(programm)
+    }
+    
+    func setFormulaSourceButton() {
+        let attributes: [NSAttributedString .Key: Any] = 
+            [
+                .font: UIFont.systemFont(ofSize: 13),
+                .foregroundColor: UIColor.link,
+                .underlineStyle: NSUnderlineStyle.single.rawValue
+            ]
+        
+        let attributedString = NSAttributedString(string: "Источник расчёта формул", attributes: attributes)
+        
+        formulaSourceButton.setAttributedTitle(attributedString, for: .normal)
     }
 }
 
