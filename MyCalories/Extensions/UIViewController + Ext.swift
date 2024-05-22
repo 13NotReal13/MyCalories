@@ -28,4 +28,16 @@ extension UIViewController {
         keyboardToolbar.setItems([flexButton, doneButton], animated: true)
         return keyboardToolbar
     }
+    
+    func checkValueForTextField(_ textField: UITextField) {
+        let alert = UIAlertController(title: "Ошибка", message: "Недопустимое значение", preferredStyle: .alert)
+        
+        let okButton = UIAlertAction(title: "OK", style: .cancel) { _ in
+            textField.text = ""
+            alert.dismiss(animated: true)
+        }
+        
+        alert.addAction(okButton)
+        present(alert, animated: true)
+    }
 }

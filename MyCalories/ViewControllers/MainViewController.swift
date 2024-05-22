@@ -171,7 +171,9 @@ extension MainViewController: MainScreenDelegate {
     }
     
     func updateTableView() {
+        searchBar.text = ""
         searchBar.searchTextField.resignFirstResponder()
+        filteredProducts = allProducts
         tableView.reloadData()
     }
 }
@@ -520,13 +522,17 @@ extension MainViewController: UISearchBarDelegate {
         filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter("name CONTAINS[c] %@", searchText)
         tableView.reloadData()
         
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if !filteredProducts.isEmpty {
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if !filteredProducts.isEmpty {
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
         
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
