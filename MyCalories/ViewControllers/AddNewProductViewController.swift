@@ -65,6 +65,11 @@ final class AddNewProductViewController: UIViewController {
         
         dismiss(animated: true)
     }
+    
+    
+    @IBAction func cancelBarButtonItem(_ sender: UIBarButtonItem) {
+        dismiss(animated: true)
+    }
 }
 
 // MARK: - Private Methods

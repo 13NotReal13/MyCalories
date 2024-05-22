@@ -1675,6 +1675,12 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Новый продукт" id="Igk-jL-08R">
+                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="Pyi-Yj-Ea5">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="cancelBarButtonItem:" destination="hJI-KT-rZ1" id="nIH-uu-hdz"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" enabled="NO" title="Добавить" id="k0R-kf-ctf">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
