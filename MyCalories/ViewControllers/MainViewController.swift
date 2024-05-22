@@ -171,7 +171,9 @@ extension MainViewController: MainScreenDelegate {
     }
     
     func updateTableView() {
+        searchBar.text = ""
         searchBar.searchTextField.resignFirstResponder()
+        filteredProducts = allProducts
         tableView.reloadData()
     }
 }
