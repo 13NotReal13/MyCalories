@@ -529,8 +529,10 @@ extension MainViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if !filteredProducts.isEmpty {
+            let indexPath = IndexPath(row: 0, section: 0)
+            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        }
         
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()

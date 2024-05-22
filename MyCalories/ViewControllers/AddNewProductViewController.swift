@@ -44,8 +44,7 @@ final class AddNewProductViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        view.endEditing(true)
-        checkForAddProduct()
+        doneButtonPressed()
     }
     
     @IBAction func addBarButtonItemAction(_ sender: UIBarButtonItem) {
@@ -121,17 +120,27 @@ private extension AddNewProductViewController {
     func checkTextOfTextField(_ textField: UITextField) {
         guard let text = textField.text else { return }
         if text.filter({ $0 == ","}).count > 1 || text.filter({ $0 == "."}).count > 1 {
-            showAlert(fromTextField: textField)
+            showAlertWrongFormat(fromTextField: textField)
+            return
         } else if text.hasPrefix(",") || text.hasSuffix(",") {
-            showAlert(fromTextField: textField)
+            showAlertWrongFormat(fromTextField: textField)
+            return
         } else if text.hasPrefix(".") || text.hasSuffix(".") {
-            showAlert(fromTextField: textField)
+            showAlertWrongFormat(fromTextField: textField)
+            return
         } else if text.contains(",") {
             textField.text = text.replacingOccurrences(of: ",", with: ".")
+            return
+        }
+        
+        guard let value = Double(text) else { return }
+        print("gfjdk")
+        if text.count > 7 || value > 5000.0 {
+            checkValueForTextField(textField)
         }
     }
     
-    func showAlert(fromTextField textField: UITextField) {
+    func showAlertWrongFormat(fromTextField textField: UITextField) {
         let alert = UIAlertController(title: "Ошибка", message: "Неверный формат", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default) { _ in
             textField.text = ""
@@ -147,6 +156,7 @@ private extension AddNewProductViewController {
 extension AddNewProductViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
+        addBarButtonItem.isEnabled = false
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

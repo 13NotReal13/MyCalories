@@ -36,10 +36,10 @@ final class SettingsViewController: UIViewController {
     @IBOutlet var bguView: UIView!
     @IBOutlet var waterView: UIView!
     
+    weak var delegate: MainScreenDelegate?
+    
     private let storageManager = StorageManager.shared
     private var userProgramm: UserProgramm?
-    
-    weak var delegate: MainScreenDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,8 +78,8 @@ final class SettingsViewController: UIViewController {
 }
 
 // MARK: - Private Methods
-extension SettingsViewController {
-    private func initTextFieldsDelegate() {
+private extension SettingsViewController {
+    func initTextFieldsDelegate() {
         caloriesTF.delegate = self
         proteinsTF.delegate = self
         fatsTF.delegate = self
@@ -93,14 +93,14 @@ extension SettingsViewController {
         waterTF.customStyle()
     }
     
-    private func fetchSettings() {
+    func fetchSettings() {
         let settings = storageManager.fetchSettings()
         caloriesSwitch.isOn = settings.caloriesEnabled
         bguSwitch.isOn = settings.bguEnabled
         waterSwitch.isOn = settings.waterEnabled
     }
     
-    private func saveSettings() {
+    func saveSettings() {
         let settings = Settings(
             caloriesEnabled: caloriesSwitch.isOn,
             bguEnabled: bguSwitch.isOn,
@@ -110,7 +110,7 @@ extension SettingsViewController {
         storageManager.saveSettings(settings)
     }
     
-    private func setUserProgramm() {
+    func setUserProgramm() {
         guard let userProgramm = userProgramm else { return }
         caloriesTF.text = String(userProgramm.calories)
         proteinsTF.text = String(userProgramm.proteins)
@@ -119,7 +119,7 @@ extension SettingsViewController {
         waterTF.text = String(userProgramm.water)
     }
     
-    private func setCalories() {
+    func setCalories() {
         if caloriesSwitch.isOn {
             caloriesTF.isEnabled = false
             caloriesTF.alpha = 0.3
@@ -137,7 +137,7 @@ extension SettingsViewController {
         }
     }
     
-    private func setBgu() {
+    func setBgu() {
         if bguSwitch.isOn {
             proteinsTF.isEnabled = false
             fatsTF.isEnabled = false
@@ -163,7 +163,7 @@ extension SettingsViewController {
         }
     }
     
-    private func setWater() {
+    func setWater() {
         if waterSwitch.isOn {
             waterTF.isEnabled = false
             waterTF.alpha = 0.3
@@ -181,7 +181,7 @@ extension SettingsViewController {
         }
     }
     
-    private func getNutrition(fromTextField textField: UITextField) -> Nutrition {
+    func getNutrition(fromTextField textField: UITextField) -> Nutrition {
         switch textField {
         case caloriesTF:
             return .calories
@@ -196,7 +196,7 @@ extension SettingsViewController {
         }
     }
     
-    private func setShadows() {
+    func setShadows() {
         caloriesView.setShadow(
             cornerRadius: 15,
             shadowColor: .black,
@@ -221,17 +221,17 @@ extension SettingsViewController {
             shadowOpacity: 0.3
         )
     }
+    
+    @objc func doneButtonPressed() {
+        
+    }
 }
 
 // MARK: - UITextFieldDelegate
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text, text.count <= 4 else {
-            showAlert(
-                withTitle: "Упс..",
-                andMessage: "Максимально допустимое значение: 9999",
-                textField: textField
-            )
+            checkValueForTextField(textField)
             return
         }
         

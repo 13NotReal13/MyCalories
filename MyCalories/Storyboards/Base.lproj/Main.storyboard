@@ -1588,32 +1588,32 @@
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" smartDashesType="no" smartQuotesType="no"/>
                                                     </textField>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="w3l-la-1Tg">
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="w3l-la-1Tg">
                                                         <rect key="frame" x="0.0" y="50" width="366" height="184"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="gn8-iW-8py">
-                                                                <rect key="frame" x="0.0" y="0.0" width="189" height="184"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="180.66666666666666" height="184"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Белки:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AWz-Am-QzZ">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="189" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="180.66666666666666" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Жиры:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rq5-yy-L7s">
-                                                                        <rect key="frame" x="0.0" y="50" width="189" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="50" width="180.66666666666666" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Углеводы:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tlg-Ia-J35">
-                                                                        <rect key="frame" x="0.0" y="100" width="189" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="100" width="180.66666666666666" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Калории:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9yN-TI-AXb">
-                                                                        <rect key="frame" x="0.0" y="150" width="189" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="150" width="180.66666666666666" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -1621,25 +1621,25 @@
                                                                 </subviews>
                                                             </stackView>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Jgj-fg-pmD">
-                                                                <rect key="frame" x="194" y="0.0" width="172" height="184"/>
+                                                                <rect key="frame" x="185.66666666666663" y="0.0" width="180.33333333333337" height="184"/>
                                                                 <subviews>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="г." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="AXO-yT-lxp">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="172" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="180.33333333333334" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="г." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="czP-3V-CMy">
-                                                                        <rect key="frame" x="0.0" y="50" width="172" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="50" width="180.33333333333334" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="г." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JYL-qj-11U">
-                                                                        <rect key="frame" x="0.0" y="100" width="172" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="100" width="180.33333333333334" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                                     </textField>
                                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="кКал." minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ofC-8A-LxZ">
-                                                                        <rect key="frame" x="0.0" y="150" width="172" height="34"/>
+                                                                        <rect key="frame" x="0.0" y="150" width="180.33333333333334" height="34"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="decimalPad" smartDashesType="no" smartInsertDeleteType="no" smartQuotesType="no"/>
                                                                     </textField>

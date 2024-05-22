@@ -56,7 +56,7 @@ final class AddProductToHistoryViewController: UIViewController {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        checkForAddProduct()
+        doneButtonPressed()
     }
     
     @IBAction func cancelBarButtonItem(_ sender: UIBarButtonItem) {
@@ -121,24 +121,8 @@ private extension AddProductToHistoryViewController {
         caloriesProductLabel.text = "\(selectedProduct.calories) кКал на 100 г."
     }
     
-    func showAlert(fromTextField textField: UITextField) {
-        let alert = UIAlertController(
-            title: "Ошибка",
-            message: "Введите вес продукта",
-            preferredStyle: .alert
-        )
-        let okButton = UIAlertAction(title: "ОК", style: .default) { [unowned self] _ in
-            textField.text = ""
-            addBarButtonItem.isEnabled = false
-            textField.becomeFirstResponder()
-            alert.dismiss(animated: true)
-        }
-        alert.addAction(okButton)
-        present(alert, animated: true)
-    }
-    
     @objc private func doneButtonPressed() {
-        guard let textField = activeTextField else { return }
+        guard let textField = activeTextField, let text = textField.text else { return }
         
         if textField == dateTF {
             if Calendar.current.isDateInToday(datePicker.date) {
@@ -150,17 +134,19 @@ private extension AddProductToHistoryViewController {
             }
         }
         
-        textField.resignFirstResponder()
-        checkForAddProduct()
-    }
-    
-    func checkForAddProduct() {
-        guard let text = weightTF.text, !text.isEmpty else {
-            addBarButtonItem.isEnabled = false
-            return
+        if textField == weightTF {
+            if text.count > 4 {
+                checkValueForTextField(textField)
+                return
+            } else if let intValue = Int(text), intValue == 0 {
+                checkValueForTextField(textField)
+            }
         }
         
-        guard let date = dateTF.text, !date.isEmpty else { return }
+        textField.resignFirstResponder()
+        
+        guard let weight = weightTF.text, let date = dateTF.text,
+                    !weight.isEmpty, !date.isEmpty else { return }
         addBarButtonItem.isEnabled = true
     }
 }
@@ -170,5 +156,6 @@ extension AddProductToHistoryViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
         weightTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
+        addBarButtonItem.isEnabled = false
     }
 }
