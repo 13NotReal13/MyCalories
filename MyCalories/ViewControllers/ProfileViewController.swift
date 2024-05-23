@@ -55,7 +55,7 @@ enum Goal {
 final class ProfileViewController: UIViewController {
     
     // MARK: - IBOutlets
-    @IBOutlet var saveButton: UIBarButtonItem!
+    @IBOutlet var saveBarButtonItem: UIBarButtonItem!
     
     @IBOutlet var genderSegmentedControl: UISegmentedControl!
     @IBOutlet var dateOfBirthdayTF: UITextField!
@@ -143,7 +143,7 @@ final class ProfileViewController: UIViewController {
         )
         
         setRecommendedProgramm()
-        saveButton.isEnabled.toggle()
+        saveBarButtonItem.isEnabled.toggle()
     }
     
     @IBAction func segmentedControlAction() {
@@ -216,9 +216,9 @@ private extension ProfileViewController {
         
         if !dateOfBirthday.isEmpty, !height.isEmpty, !weight.isEmpty,
            !activity.isEmpty, !goal.isEmpty {
-            saveButton.isEnabled = true
+            saveBarButtonItem.isEnabled = true
         } else {
-            saveButton.isEnabled = false
+            saveBarButtonItem.isEnabled = false
         }
     }
     
@@ -250,7 +250,7 @@ private extension ProfileViewController {
         let alert = UIAlertController(title: "Ошибка", message: "Неверный формат", preferredStyle: .alert)
         let okButton = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
             textField.text = ""
-            saveButton.isEnabled = false
+            saveBarButtonItem.isEnabled = false
             alert.dismiss(animated: true)
         }
         alert.addAction(okButton)
@@ -346,6 +346,7 @@ private extension ProfileViewController {
 extension ProfileViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
+        saveBarButtonItem.isEnabled = false
         pickerView.reloadAllComponents()
     }
     
