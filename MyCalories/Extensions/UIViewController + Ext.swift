@@ -8,9 +8,15 @@
 import UIKit
 
 extension UIViewController {
-    func createToolbar(title: String, selector: Selector) -> UIToolbar {
+    func createToolbar(title: String, isCancelSelector: Bool? = nil, selector: Selector) -> UIToolbar {
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
+        
+        let flexButton = UIBarButtonItem(
+            barButtonSystemItem: .flexibleSpace,
+            target: nil,
+            action: nil
+        )
         
         let doneButton = UIBarButtonItem(
             title: title,
@@ -19,14 +25,23 @@ extension UIViewController {
             action: selector
         )
         
-        let flexButton = UIBarButtonItem(
-            barButtonSystemItem: .flexibleSpace,
-            target: nil,
-            action: nil
-        )
+        if isCancelSelector != nil {
+            let cancelButton = UIBarButtonItem(
+                title: "Отмена",
+                style: .plain,
+                target: self,
+                action: #selector(cancelButtonSelector)
+            )
+            keyboardToolbar.setItems([cancelButton, flexButton, doneButton], animated: true)
+        } else {
+            keyboardToolbar.setItems([flexButton, doneButton], animated: true)
+        }
         
-        keyboardToolbar.setItems([flexButton, doneButton], animated: true)
         return keyboardToolbar
+    }
+    
+    @objc func cancelButtonSelector() {
+        view.endEditing(true)
     }
     
     func showAlertInvalidValue(_ textField: UITextField) {

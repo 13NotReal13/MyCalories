@@ -1016,7 +1016,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="История" id="Mvy-gW-c16">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="calendar" catalog="system" id="NhD-BO-c2v">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="clock.arrow.circlepath" catalog="system" id="NhD-BO-c2v">
                             <connections>
                                 <action selector="calendarBarButtonItemAction:" destination="lEy-vN-tmZ" id="SoR-V8-5BI"/>
                             </connections>
@@ -1790,7 +1790,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="clock.arrow.circlepath" catalog="system" width="128" height="112"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
