@@ -40,6 +40,7 @@ final class SettingsViewController: UIViewController {
     
     private let storageManager = StorageManager.shared
     private var userProgramm: UserProgramm?
+    private var activeTextField: UITextField?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,19 +54,6 @@ final class SettingsViewController: UIViewController {
         setUserProgramm()
     }
     
-    @IBAction func swithesActions(_ sender: UISwitch) {
-        switch sender {
-        case caloriesSwitch:
-            setCalories()
-        case bguSwitch: 
-            setBgu()
-        default:
-            setWater()
-        }
-        
-        saveSettings()
-    }
-    
     override func viewWillDisappear(_ animated: Bool) {
         delegate?.updateProgressBar()
     }
@@ -74,6 +62,19 @@ final class SettingsViewController: UIViewController {
         super.viewDidLayoutSubviews()
         extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
         setShadows()
+    }
+    
+    @IBAction func swithesActions(_ sender: UISwitch) {
+        switch sender {
+        case caloriesSwitch:
+            setCalories()
+        case bguSwitch:
+            setBgu()
+        default:
+            setWater()
+        }
+        
+        saveSettings()
     }
 }
 
@@ -91,6 +92,33 @@ private extension SettingsViewController {
         fatsTF.customStyle()
         carbohydratesTF.customStyle()
         waterTF.customStyle()
+    }
+    
+    @objc func saveButtonPressed() {
+        guard let textField = activeTextField, let text = textField.text else { return }
+        
+        if text.count > 4 {
+            let firstValue = textField.text
+            showAlertInvalidValue(textField)
+            textField.text = firstValue
+            return
+        }
+        
+        if let newValue = Int(text) {
+            textField.text = String(newValue)
+            let nutrition = getNutrition(fromTextField: textField)
+            storageManager.saveUserProgramm(nutrition: nutrition, newValue: newValue)
+        }
+        
+        if textField == waterTF {
+            scrollView.scrollToTop(animated: true)
+        }
+        
+        if text.isEmpty {
+            setUserProgramm()
+        }
+        
+        textField.resignFirstResponder()
     }
     
     func fetchSettings() {
@@ -221,77 +249,20 @@ private extension SettingsViewController {
             shadowOpacity: 0.3
         )
     }
-    
-    @objc func doneButtonPressed() {
-        
-    }
 }
 
 // MARK: - UITextFieldDelegate
 extension SettingsViewController: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let text = textField.text, text.count <= 4 else {
-            checkValueForTextField(textField)
-            return
-        }
-        
-        if let newValue = Int(text) {
-            textField.text = String(newValue)
-            let nutrition = getNutrition(fromTextField: textField)
-            storageManager.saveUserProgramm(nutrition: nutrition, newValue: newValue)
-        }
-        
-        if textField == waterTF {
-            scrollView.scrollToTop(animated: true)
-        }
-        
+        saveButtonPressed()
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        activeTextField = textField
+        textField.inputAccessoryView = createToolbar(title: "Сохранить", selector: #selector(saveButtonPressed))
+        
         if textField == waterTF {
             scrollView.scrollToBottom(animated: true)
         }
-        
-        let keyboardToolbar = UIToolbar()
-        keyboardToolbar.sizeToFit()
-        textField.inputAccessoryView = keyboardToolbar
-        
-        let saveButton = UIBarButtonItem(
-            title: "Сохранить",
-            style: .done,
-            target: textField,
-            action: #selector(resignFirstResponder)
-        )
-        
-        let flexButton = UIBarButtonItem(
-            barButtonSystemItem: .flexibleSpace,
-            target: nil,
-            action: nil
-        )
-        
-        keyboardToolbar.items = [flexButton, saveButton]
-    }
-}
-
-// MARK: - Show Alert
-extension SettingsViewController {
-    func showAlert(withTitle title: String, andMessage message: String, textField: UITextField) {
-        let alertFactory = AlertControllerFactory(title: title, message: message)
-        let alert = alertFactory.createAlert { [unowned self] in
-            switch textField {
-            case self.caloriesTF:
-                self.caloriesTF.text = String(userProgramm?.calories ?? 0)
-            case self.proteinsTF:
-                self.proteinsTF.text = String(userProgramm?.proteins ?? 0)
-            case self.fatsTF:
-                self.fatsTF.text = String(userProgramm?.fats ?? 0)
-            case self.carbohydratesTF:
-                self.carbohydratesTF.text = String(userProgramm?.fats ?? 0)
-            default:
-                self.waterTF.text = String(userProgramm?.water ?? 0)
-                scrollView.scrollToTop(animated: true)
-            }
-        }
-        present(alert, animated: true)
     }
 }

@@ -86,11 +86,11 @@ private extension AddNewProductViewController {
         carbohydratesTF.customStyle()
         caloriesTF.customStyle()
         
-        nameTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
-        proteinTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
-        fatsTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
-        carbohydratesTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
-        caloriesTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
+        nameTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        proteinTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        fatsTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        carbohydratesTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        caloriesTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
         
         nameTF.becomeFirstResponder()
     }
@@ -130,25 +130,15 @@ private extension AddNewProductViewController {
             return
         } else if text.contains(",") {
             textField.text = text.replacingOccurrences(of: ",", with: ".")
-            return
         }
         
         guard let value = Double(text) else { return }
-        print("gfjdk")
-        if text.count > 7 || value > 5000.0 {
-            checkValueForTextField(textField)
+        if text.count > 7 || value > 1500.0 {
+            showAlertInvalidValue(textField)
+            return
         }
-    }
-    
-    func showAlertWrongFormat(fromTextField textField: UITextField) {
-        let alert = UIAlertController(title: "Ошибка", message: "Неверный формат", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default) { _ in
-            textField.text = ""
-            textField.becomeFirstResponder()
-            alert.dismiss(animated: true)
-        }
-        alert.addAction(okButton)
-        present(alert, animated: true)
+        
+        textField.text = String(value)
     }
 }
 

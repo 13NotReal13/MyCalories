@@ -287,7 +287,17 @@ private extension MainViewController {
         alert.addTextField { textField in
             textField.placeholder = "мл."
             textField.keyboardType = .numberPad
+
+            // Добавим наблюдатель для ограничения ввода
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: .main) { notification in
+                if let textField = notification.object as? UITextField, let text = textField.text, let number = Int(text) {
+                    if number > 9999 { // Предположим, что максимальное значение - 5000 мл
+                        textField.text = String(text.dropLast())
+                    }
+                }
+            }
         }
+        
         present(alert, animated: true)
     }
     

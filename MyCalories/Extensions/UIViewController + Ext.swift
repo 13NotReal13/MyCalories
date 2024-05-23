@@ -8,12 +8,12 @@
 import UIKit
 
 extension UIViewController {
-    func createToolbar(withDoneButtonSelector selector: Selector) -> UIToolbar {
+    func createToolbar(title: String, selector: Selector) -> UIToolbar {
         let keyboardToolbar = UIToolbar()
         keyboardToolbar.sizeToFit()
         
         let doneButton = UIBarButtonItem(
-            title: "Готово",
+            title: title,
             style: .done,
             target: self,
             action: selector
@@ -29,14 +29,26 @@ extension UIViewController {
         return keyboardToolbar
     }
     
-    func checkValueForTextField(_ textField: UITextField) {
+    func showAlertInvalidValue(_ textField: UITextField) {
         let alert = UIAlertController(title: "Ошибка", message: "Недопустимое значение", preferredStyle: .alert)
         
-        let okButton = UIAlertAction(title: "OK", style: .cancel) { _ in
+        let okButton = UIAlertAction(title: "OK", style: .default) { _ in
             textField.text = ""
+            textField.becomeFirstResponder()
             alert.dismiss(animated: true)
         }
         
+        alert.addAction(okButton)
+        present(alert, animated: true)
+    }
+    
+    func showAlertWrongFormat(fromTextField textField: UITextField) {
+        let alert = UIAlertController(title: "Ошибка", message: "Неверный формат", preferredStyle: .alert)
+        let okButton = UIAlertAction(title: "OK", style: .default) { _ in
+            textField.text = ""
+            textField.becomeFirstResponder()
+            alert.dismiss(animated: true)
+        }
         alert.addAction(okButton)
         present(alert, animated: true)
     }

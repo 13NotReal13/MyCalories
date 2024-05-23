@@ -106,7 +106,6 @@ private extension AddProductToHistoryViewController {
         dateTF.customStyle()
         
         dateTF.delegate = self
-        dateTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
         dateTF.inputView = datePicker
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
@@ -135,12 +134,15 @@ private extension AddProductToHistoryViewController {
         }
         
         if textField == weightTF {
-            if text.count > 4 {
-                checkValueForTextField(textField)
+            guard let value = Int(text) else { return }
+            if text.count > 4 || value > 5000 {
+                showAlertInvalidValue(textField)
                 return
             } else if let intValue = Int(text), intValue == 0 {
-                checkValueForTextField(textField)
+                showAlertInvalidValue(textField)
+                return
             }
+            textField.text = String(value)
         }
         
         textField.resignFirstResponder()
@@ -155,7 +157,11 @@ private extension AddProductToHistoryViewController {
 extension AddProductToHistoryViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
-        weightTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
+        textField.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
         addBarButtonItem.isEnabled = false
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        doneButtonPressed()
     }
 }
