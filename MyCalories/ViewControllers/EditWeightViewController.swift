@@ -68,7 +68,7 @@ extension EditWeightViewController {
             : String(choosedWater?.ml ?? 0)
         
         weightTF.delegate = self
-        weightTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
+        weightTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
         weightTF.becomeFirstResponder()
         
         editHeightView.setShadow(
@@ -81,11 +81,17 @@ extension EditWeightViewController {
     }
     
     private func checkValue() {
-        guard let text = weightTF.text, let textValue = Int(text), textValue != 0 else {
+        guard let text = weightTF.text, let textValue = Int(text) else { return }
+        
+        if textValue == 0 {
             showAlert()
-            saveBarButtonItem.isEnabled = false
+            return
+        } else if textValue > 5000 {
+            showAlertInvalidValue(weightTF)
             return
         }
+        
+        weightTF.text = String(textValue)
         saveBarButtonItem.isEnabled = true
     }
     
@@ -97,6 +103,7 @@ extension EditWeightViewController {
         )
         
         let doneButton = UIAlertAction(title: "Ок", style: .default) { [unowned self] _ in
+            weightTF.text = ""
             weightTF.becomeFirstResponder()
         }
         
@@ -111,6 +118,10 @@ extension EditWeightViewController {
 
 // MARK: - UITextFieldDelegate
 extension EditWeightViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        saveBarButtonItem.isEnabled = false
+    }
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         checkValue()
     }

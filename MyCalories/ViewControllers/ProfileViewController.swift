@@ -55,7 +55,7 @@ enum Goal {
 final class ProfileViewController: UIViewController {
     
     // MARK: - IBOutlets
-    @IBOutlet var saveButton: UIBarButtonItem!
+    @IBOutlet var saveBarButtonItem: UIBarButtonItem!
     
     @IBOutlet var genderSegmentedControl: UISegmentedControl!
     @IBOutlet var dateOfBirthdayTF: UITextField!
@@ -143,7 +143,7 @@ final class ProfileViewController: UIViewController {
         )
         
         setRecommendedProgramm()
-        saveButton.isEnabled.toggle()
+        saveBarButtonItem.isEnabled.toggle()
     }
     
     @IBAction func segmentedControlAction() {
@@ -172,20 +172,13 @@ private extension ProfileViewController {
         activityTF.customStyle()
         goalTF.customStyle()
         
-        dateOfBirthdayTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
         dateOfBirthdayTF.inputView = datePicker
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = Locale(identifier: "ru_RU")
         
-        heightTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
-        weightTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
-        
         activityTF.inputView = pickerView
-        activityTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
-        
         goalTF.inputView = pickerView
-        goalTF.inputAccessoryView = createToolbar(withDoneButtonSelector: #selector(doneButtonPressed))
     }
     
     @objc private func doneButtonPressed() {
@@ -216,9 +209,9 @@ private extension ProfileViewController {
         
         if !dateOfBirthday.isEmpty, !height.isEmpty, !weight.isEmpty,
            !activity.isEmpty, !goal.isEmpty {
-            saveButton.isEnabled = true
+            saveBarButtonItem.isEnabled = true
         } else {
-            saveButton.isEnabled = false
+            saveBarButtonItem.isEnabled = false
         }
     }
     
@@ -236,27 +229,27 @@ private extension ProfileViewController {
     func checkTextOfTextField(_ textField: UITextField) {
         guard let text = textField.text else { return }
         if text.filter({ $0 == ","}).count > 1 || text.filter({ $0 == "."}).count > 1 {
-            showAlert(fromTextField: textField)
+            showAlertWrongFormat(fromTextField: textField)
+            saveBarButtonItem.isEnabled = false
+            return
         } else if text.hasPrefix(",") || text.hasSuffix(",") {
-            showAlert(fromTextField: textField)
+            showAlertWrongFormat(fromTextField: textField)
+            saveBarButtonItem.isEnabled = false
+            return
         } else if text.hasPrefix(".") || text.hasSuffix(".") {
-            showAlert(fromTextField: textField)
+            showAlertWrongFormat(fromTextField: textField)
+            saveBarButtonItem.isEnabled = false
+            return
         } else if text.contains(",") {
             textField.text = text.replacingOccurrences(of: ",", with: ".")
         }
-    }
-    
-    func showAlert(fromTextField textField: UITextField) {
-        let alert = UIAlertController(title: "Ошибка", message: "Неверный формат", preferredStyle: .alert)
-        let okButton = UIAlertAction(title: "OK", style: .default) { [unowned self] _ in
-            textField.text = ""
-            saveButton.isEnabled = false
-            alert.dismiss(animated: true)
+        
+        guard let value = Double(text) else { return }
+        if text.count > 7 || value > 600 {
+            showAlertInvalidValue(textField)
         }
-        alert.addAction(okButton)
-        present(alert, animated: true)
     }
-    
+
     func setRecommendedProgramm() {
         guard let person = storageManager.fetchPerson() else { return }
         let personAge = Date.getAge(fromDate: person.dateOfBirthday)
@@ -346,6 +339,8 @@ private extension ProfileViewController {
 extension ProfileViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
+        textField.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        saveBarButtonItem.isEnabled = false
         pickerView.reloadAllComponents()
     }
     

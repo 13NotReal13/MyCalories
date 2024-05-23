@@ -93,27 +93,11 @@ final class HistroryProductsViewController: UIViewController {
         datePicker.locale = Locale(identifier: "ru_RU")
         
         hiddenTextField.inputView = datePicker
-        hiddenTextField.inputAccessoryView = createToolbar()
-    }
-    
-    private func createToolbar() -> UIToolbar {
-        let toolbar = UIToolbar()
-        toolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(
+        hiddenTextField.inputAccessoryView = createToolbar(
             title: "Готово",
-            style: .done,
-            target: self,
-            action: #selector(doneButtonPressed)
+            isCancelSelector: true,
+            selector: #selector(doneButtonPressed)
         )
-        let flexButton = UIBarButtonItem(
-            barButtonSystemItem: .flexibleSpace,
-            target: nil,
-            action: nil
-        )
-        
-        toolbar.setItems([flexButton, doneButton], animated: true)
-        return toolbar
     }
     
     @objc private func doneButtonPressed() {

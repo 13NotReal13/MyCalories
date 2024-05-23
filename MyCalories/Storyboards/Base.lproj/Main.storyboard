@@ -790,7 +790,7 @@
                         <outlet property="profileView" destination="Avl-5I-mWx" id="bK6-mO-RS4"/>
                         <outlet property="proteinPerDayLabel" destination="DaZ-Qm-z3t" id="uqE-92-cnT"/>
                         <outlet property="recommendedProgrammView" destination="S0W-RR-xHg" id="ykc-Bj-YJS"/>
-                        <outlet property="saveButton" destination="FEt-XD-tSq" id="Wts-jp-qqy"/>
+                        <outlet property="saveBarButtonItem" destination="FEt-XD-tSq" id="Wts-jp-qqy"/>
                         <outlet property="titleOfProgrammLabel" destination="xXV-TW-x1Q" id="dte-va-koV"/>
                         <outlet property="waterPerDayLabel" destination="G7F-rB-Aff" id="QGy-oz-hI3"/>
                         <outlet property="weightTF" destination="mdB-2L-v33" id="0LS-7z-amE"/>
@@ -1016,7 +1016,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="История" id="Mvy-gW-c16">
-                        <barButtonItem key="rightBarButtonItem" title="Item" image="calendar" catalog="system" id="NhD-BO-c2v">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="clock.arrow.circlepath" catalog="system" id="NhD-BO-c2v">
                             <connections>
                                 <action selector="calendarBarButtonItemAction:" destination="lEy-vN-tmZ" id="SoR-V8-5BI"/>
                             </connections>
@@ -1055,7 +1055,7 @@
                                 <rect key="frame" x="0.0" y="103" width="430" height="795"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hh4-7p-QAM">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="795"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="878.33333333333337"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I8i-yx-DEn">
                                                 <rect key="frame" x="16" y="16.000000000000007" width="398" height="122.66666666666669"/>
@@ -1319,7 +1319,7 @@
                                             <constraint firstItem="I8i-yx-DEn" firstAttribute="top" secondItem="Hh4-7p-QAM" secondAttribute="top" constant="16" id="3EC-56-1Zu"/>
                                             <constraint firstItem="bCp-SR-wbc" firstAttribute="top" secondItem="vmy-27-9uI" secondAttribute="bottom" constant="16" id="7oX-qT-Ctg"/>
                                             <constraint firstAttribute="trailing" secondItem="vmy-27-9uI" secondAttribute="trailing" constant="16" id="FKd-KK-JEQ"/>
-                                            <constraint firstAttribute="bottom" secondItem="bCp-SR-wbc" secondAttribute="bottom" constant="236.66999999999999" id="IQ2-1j-cnQ"/>
+                                            <constraint firstAttribute="bottom" secondItem="bCp-SR-wbc" secondAttribute="bottom" constant="320" id="IQ2-1j-cnQ"/>
                                             <constraint firstAttribute="trailing" secondItem="bCp-SR-wbc" secondAttribute="trailing" constant="16" id="fL0-Z2-ZkX"/>
                                             <constraint firstItem="vmy-27-9uI" firstAttribute="top" secondItem="I8i-yx-DEn" secondAttribute="bottom" constant="16" id="fjh-zF-v1p"/>
                                             <constraint firstItem="vmy-27-9uI" firstAttribute="leading" secondItem="Hh4-7p-QAM" secondAttribute="leading" constant="16" id="lKd-pG-ims"/>
@@ -1790,14 +1790,13 @@
         </scene>
     </scenes>
     <resources>
-        <image name="calendar" catalog="system" width="128" height="107"/>
         <image name="clock.arrow.circlepath" catalog="system" width="128" height="112"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <image name="waterButton" width="70" height="70"/>
         <namedColor name="backgroundProgressBar">
-            <color red="0.20784313725490194" green="0.48627450980392156" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.48627450980392156" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="colorApp">
             <color red="0.17647058823529413" green="0.58431372549019611" blue="0.58823529411764708" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1806,22 +1805,22 @@
             <color red="0.090196078431372548" green="0.36862745098039218" blue="0.35294117647058826" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
