@@ -91,11 +91,14 @@ final class MainViewController: UIViewController {
         super.viewWillAppear(animated)
         menuLeadingConstraint.constant = -menuView.frame.size.width
         menuTrailingConstraint.constant = view.frame.width
+        overlayView.alpha = 0
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        toogleMenu()
+        if menuIsVisible {
+            toogleMenu()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -216,6 +219,11 @@ private extension MainViewController {
             textField.backgroundColor = UIColor.white // Установите нужный цвет
         }
         
+        // Tap on ProgressIsBlock
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOnBlockProgressBar))
+        progressIsBlock.isUserInteractionEnabled = true
+        progressIsBlock.addGestureRecognizer(tapGesture)
+        
         // Shadows for Views
         shadowForTableViewView.setShadow(
             cornerRadius: 15,
@@ -321,6 +329,12 @@ private extension MainViewController {
     
     @objc func doneButtonPressed() {
         searchBar.resignFirstResponder()
+    }
+    
+    @objc func handleTapOnBlockProgressBar() {
+        if storageManager.fetchPerson() == nil {
+            performSegue(withIdentifier: "SegueToProfileVC", sender: self)
+        }
     }
     
 }
