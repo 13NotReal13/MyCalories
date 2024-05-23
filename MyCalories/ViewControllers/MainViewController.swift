@@ -220,9 +220,14 @@ private extension MainViewController {
         }
         
         // Tap on ProgressIsBlock
-        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapOnBlockProgressBar))
+        let tapGestureProgressIsBlock = UITapGestureRecognizer(target: self, action: #selector(handleTapOnBlockProgressBar))
         progressIsBlock.isUserInteractionEnabled = true
-        progressIsBlock.addGestureRecognizer(tapGesture)
+        progressIsBlock.addGestureRecognizer(tapGestureProgressIsBlock)
+        
+        // Tap on ProgressIsBlock
+        let tapGestureProgressView = UITapGestureRecognizer(target: self, action: #selector(handleTapOnProgressView))
+        progressView.isUserInteractionEnabled = true
+        progressView.addGestureRecognizer(tapGestureProgressView)
         
         // Shadows for Views
         shadowForTableViewView.setShadow(
@@ -337,6 +342,11 @@ private extension MainViewController {
         }
     }
     
+    @objc func handleTapOnProgressView() {
+        if progressIsBlock.isHidden {
+            performSegue(withIdentifier: "SegueToHistoryProductsVC", sender: self)
+        }
+    }
 }
 
 // MARK: - Progress Bar
