@@ -86,12 +86,6 @@ private extension AddNewProductViewController {
         carbohydratesTF.customStyle()
         caloriesTF.customStyle()
         
-        nameTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-        proteinTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-        fatsTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-        carbohydratesTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-        caloriesTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-        
         nameTF.becomeFirstResponder()
     }
     
@@ -146,6 +140,7 @@ private extension AddNewProductViewController {
 extension AddNewProductViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
+        textField.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
         addBarButtonItem.isEnabled = false
     }
     

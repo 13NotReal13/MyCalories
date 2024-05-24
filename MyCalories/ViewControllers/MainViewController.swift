@@ -568,17 +568,6 @@ extension MainViewController: UISearchBarDelegate {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
         
-        let keyboardToolbar = UIToolbar()
-        keyboardToolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(
-            title: "Готово",
-            style: .done,
-            target: self,
-            action: #selector(doneButtonPressed)
-        )
-        let flexButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        keyboardToolbar.setItems([flexButton, doneButton], animated: true)
-        searchBar.inputAccessoryView = keyboardToolbar
+        searchBar.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
     }
 }

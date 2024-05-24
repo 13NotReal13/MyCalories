@@ -68,7 +68,6 @@ extension EditWeightViewController {
             : String(choosedWater?.ml ?? 0)
         
         weightTF.delegate = self
-        weightTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
         weightTF.becomeFirstResponder()
         
         editHeightView.setShadow(
@@ -119,6 +118,7 @@ extension EditWeightViewController {
 // MARK: - UITextFieldDelegate
 extension EditWeightViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        weightTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
         saveBarButtonItem.isEnabled = false
     }
     
