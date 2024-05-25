@@ -9,6 +9,7 @@ import UIKit
 import FirebaseCore
 import UserNotifications
 import FirebaseMessaging
+import FirebaseCrashlytics
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -35,6 +36,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
     }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        Crashlytics.crashlytics().record(error: error)
+    }
 
     // MARK: UISceneSession Lifecycle
 
@@ -43,6 +48,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
 
     func application(_ application: UIApplication, didDiscardSceneSessions sceneSessions: Set<UISceneSession>) {
+    }
+    
+    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
+        if let token = fcmToken {
+            Crashlytics.crashlytics().log("Firebase registration token: \(token)")
+        } else {
+            Crashlytics.crashlytics().log("Firebase registration token is not available.")
+        }
     }
 }
 

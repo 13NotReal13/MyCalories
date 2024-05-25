@@ -41,6 +41,7 @@
 		7946F8ED2BCD50E4005C3F33 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */; };
 		7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */; };
 		7946F8F12BCE7C78005C3F33 /* HistoryProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */; };
+		795D99BA2C02774E009AC9CA /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 795D99B92C02774E009AC9CA /* FirebaseCrashlytics */; };
 		79658B3F2C02338A000BD566 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79658B3E2C02338A000BD566 /* GoogleService-Info.plist */; };
 		79658B422C0235D8000BD566 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B412C0235D8000BD566 /* FirebaseAnalytics */; };
 		79658B442C0235D8000BD566 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B432C0235D8000BD566 /* FirebaseAnalyticsSwift */; };
@@ -84,6 +85,8 @@
 		7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Ext.swift"; sourceTree = "<group>"; };
 		7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryProductViewCell.swift; sourceTree = "<group>"; };
+		795D99B72C027418009AC9CA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
+		795D99B82C027418009AC9CA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		79658B3D2C021100000BD566 /* MyCalories.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCalories.entitlements; sourceTree = "<group>"; };
 		79658B3E2C02338A000BD566 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
@@ -97,6 +100,7 @@
 				79658B492C0240E8000BD566 /* FirebaseMessaging in Frameworks */,
 				79658B442C0235D8000BD566 /* FirebaseAnalyticsSwift in Frameworks */,
 				7946F83B2BC2B0BE005C3F33 /* RealmSwift in Frameworks */,
+				795D99BA2C02774E009AC9CA /* FirebaseCrashlytics in Frameworks */,
 				7946F8392BC2B0BE005C3F33 /* Realm in Frameworks */,
 				79658B462C0235D8000BD566 /* FirebaseAppCheck in Frameworks */,
 				79658B422C0235D8000BD566 /* FirebaseAnalytics in Frameworks */,
@@ -268,6 +272,7 @@
 				79658B432C0235D8000BD566 /* FirebaseAnalyticsSwift */,
 				79658B452C0235D8000BD566 /* FirebaseAppCheck */,
 				79658B482C0240E8000BD566 /* FirebaseMessaging */,
+				795D99B92C02774E009AC9CA /* FirebaseCrashlytics */,
 			);
 			productName = MyCalories;
 			productReference = 792DB1872BBADF4800209193 /* MyCalories.app */;
@@ -295,6 +300,7 @@
 			knownRegions = (
 				en,
 				Base,
+				ru,
 			);
 			mainGroup = 792DB17E2BBADF4800209193;
 			packageReferences = (
@@ -369,6 +375,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				792DB1912BBADF4800209193 /* Base */,
+				795D99B72C027418009AC9CA /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -377,6 +384,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				792DB1962BBADF4900209193 /* Base */,
+				795D99B82C027418009AC9CA /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -389,6 +397,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -452,6 +461,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
@@ -641,6 +651,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7946F8372BC2B0BE005C3F33 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		795D99B92C02774E009AC9CA /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
 		};
 		79658B412C0235D8000BD566 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
