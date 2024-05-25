@@ -38,7 +38,7 @@
 		7946F8CF2BCBD712005C3F33 /* AddProductToHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8CE2BCBD712005C3F33 /* AddProductToHistoryViewController.swift */; };
 		7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */; };
 		7946F8EB2BCC2DF2005C3F33 /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */; };
-		7946F8ED2BCD50E4005C3F33 /* HistroryProductsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EC2BCD50E4005C3F33 /* HistroryProductsViewController.swift */; };
+		7946F8ED2BCD50E4005C3F33 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */; };
 		7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */; };
 		7946F8F12BCE7C78005C3F33 /* HistoryProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */; };
 		79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD10552BF69B20005C049A /* UIViewController + Ext.swift */; };
@@ -76,7 +76,7 @@
 		7946F8CE2BCBD712005C3F33 /* AddProductToHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddProductToHistoryViewController.swift; sourceTree = "<group>"; };
 		7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDatePicker + Ext.swift"; sourceTree = "<group>"; };
 		7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
-		7946F8EC2BCD50E4005C3F33 /* HistroryProductsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistroryProductsViewController.swift; sourceTree = "<group>"; };
+		7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Ext.swift"; sourceTree = "<group>"; };
 		7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryProductViewCell.swift; sourceTree = "<group>"; };
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
@@ -151,7 +151,7 @@
 			children = (
 				792DB18E2BBADF4800209193 /* MainViewController.swift */,
 				7946F7ED2BBB1B58005C3F33 /* ProfileViewController.swift */,
-				7946F8EC2BCD50E4005C3F33 /* HistroryProductsViewController.swift */,
+				7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */,
 				7946F8272BC068C8005C3F33 /* SettingsViewController.swift */,
 				7946F8CE2BCBD712005C3F33 /* AddProductToHistoryViewController.swift */,
 				7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */,
@@ -327,7 +327,7 @@
 				79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */,
 				7946F8CF2BCBD712005C3F33 /* AddProductToHistoryViewController.swift in Sources */,
 				7946F8282BC068C8005C3F33 /* SettingsViewController.swift in Sources */,
-				7946F8ED2BCD50E4005C3F33 /* HistroryProductsViewController.swift in Sources */,
+				7946F8ED2BCD50E4005C3F33 /* HistoryViewController.swift in Sources */,
 				7946F8342BC28E60005C3F33 /* UIScrollView + Ext.swift in Sources */,
 				7946F8EB2BCC2DF2005C3F33 /* AddNewProductViewController.swift in Sources */,
 				7946F82E2BC1F6AF005C3F33 /* StorageManager.swift in Sources */,

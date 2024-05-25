@@ -18,7 +18,7 @@ final class EditWeightViewController: UIViewController {
     
     var choosedProduct: Product?
     var choosedWater: Water?
-    weak var delegate: HistroryProductsViewControllerDelegate?
+    weak var delegate: HistoryViewControllerDelegate?
     
     private let storageManager = StorageManager.shared
     
@@ -86,7 +86,7 @@ extension EditWeightViewController {
             showAlert()
             return
         } else if textValue > 5000 {
-            showAlertInvalidValue(weightTF)
+            showAlertError(textField: weightTF, type: .invalidValue)
             return
         }
         

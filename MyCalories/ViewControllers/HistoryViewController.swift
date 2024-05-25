@@ -1,5 +1,5 @@
 //
-//  HistroryProductsViewController.swift
+//  HistoryViewController.swift
 //  MyCalories
 //
 //  Created by Иван Семикин on 15/04/2024.
@@ -8,11 +8,11 @@
 import UIKit
 import RealmSwift
 
-protocol HistroryProductsViewControllerDelegate: AnyObject {
+protocol HistoryViewControllerDelegate: AnyObject {
     func updateTableView()
 }
 
-final class HistroryProductsViewController: UIViewController {
+final class HistoryViewController: UIViewController {
     
     @IBOutlet var segmentedControl: UISegmentedControl!
     @IBOutlet var tableView: UITableView!
@@ -50,15 +50,7 @@ final class HistroryProductsViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        shadowTableViewView.setShadow(
-            cornerRadius: 15,
-            shadowColor: .black,
-            shadowOffset: CGSize(width: 0, height: 2),
-            shadowRadius: 6,
-            shadowOpacity: 0.3
-        )
-        
-        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
+        setupUI()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -86,8 +78,23 @@ final class HistroryProductsViewController: UIViewController {
         updateEmptyLabel()
         tableView.reloadData()
     }
+}
+
+// MARK: - Private Methods
+private extension HistoryViewController {
+    func setupUI() {
+        shadowTableViewView.setShadow(
+            cornerRadius: 15,
+            shadowColor: .black,
+            shadowOffset: CGSize(width: 0, height: 2),
+            shadowRadius: 6,
+            shadowOpacity: 0.3
+        )
+        
+        extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
+    }
     
-    private func setDatePicker() {
+    func setDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.locale = Locale(identifier: "ru_RU")
@@ -100,7 +107,7 @@ final class HistroryProductsViewController: UIViewController {
         )
     }
     
-    @objc private func doneButtonPressed() {
+    @objc func doneButtonPressed() {
         let choosedDate = Calendar.current.startOfDay(for: datePicker.date)
         storageManager.fetchHistory {[unowned self] historyData in
             history = historyData.filter("date == %@", choosedDate)
@@ -111,7 +118,7 @@ final class HistroryProductsViewController: UIViewController {
         hiddenTextField.resignFirstResponder()
     }
     
-    private func updateEmptyLabel() {
+    func updateEmptyLabel() {
         var hasData = false
         switch segmentedControl.selectedSegmentIndex {
         case 0: // Питание
@@ -123,11 +130,11 @@ final class HistroryProductsViewController: UIViewController {
         default:
             break
         }
-
+        
         emptyLabel.isHidden = hasData
     }
     
-    private func sectionHasData(in section: Int) -> Bool {
+    func sectionHasData(in section: Int) -> Bool {
         if segmentedControl.selectedSegmentIndex == 0 {
             return !history[section].productList.isEmpty
         } else {
@@ -137,14 +144,14 @@ final class HistroryProductsViewController: UIViewController {
 }
 
 // MARK: - HistroryProductsViewControllerDelegate
-extension HistroryProductsViewController: HistroryProductsViewControllerDelegate {
+extension HistoryViewController: HistoryViewControllerDelegate {
     func updateTableView() {
         tableView.reloadData()
     }
 }
 
 // MARK: - UITableViewDataSource, UITableViewDelegate
-extension HistroryProductsViewController: UITableViewDataSource, UITableViewDelegate {
+extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {
         history.count
     }
@@ -235,74 +242,69 @@ extension HistroryProductsViewController: UITableViewDataSource, UITableViewDele
 }
 
 // MARK: - UIAlertController
-extension HistroryProductsViewController {
-    private func showAlert(withTitle title: String, message: String) {
+private extension HistoryViewController {
+    func showAlert(withTitle title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
         let editButton = UIAlertAction(title: "Изменить вес", style: .default) { [unowned self] _ in
             performSegue(withIdentifier: "ToEditPosition", sender: nil)
         }
         
-        let deleteAcrtion = UIAlertAction(title: "Удалить", style: .destructive) { [unowned self] _ in
-            showAskToDeleteAlert()
+        let deleteButton = UIAlertAction(title: "Удалить", style: .destructive) { [unowned self] _ in
+            handleDeleteAction()
         }
         
         let cancelButton = UIAlertAction(title: "Отмена", style: .cancel) { [unowned self] _ in
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            tableView.deselectRow(at: indexPath, animated: true)
+            handleCancelAction()
         }
+        
         alert.addAction(editButton)
-        alert.addAction(deleteAcrtion)
+        alert.addAction(deleteButton)
         alert.addAction(cancelButton)
         present(alert, animated: true)
     }
     
-    private func showAskToDeleteAlert() {
+    func handleDeleteAction() {
         guard let indexPath = tableView.indexPathForSelectedRow else { return }
-        let alert = UIAlertController(
-            title: segmentedControl.selectedSegmentIndex == 0
-                ? "Вы уверены, что хотите удалить - \(history[indexPath.section].productList[indexPath.row].name)?"
-                : "Вы уверены, что хотите удалить?",
-            message: "",
-            preferredStyle: .alert
-        )
+        let historyItem = history[indexPath.section]
         
-        let yesButton = UIAlertAction(title: "Да", style: .destructive) { [unowned self] _ in
-            switch segmentedControl.selectedSegmentIndex {
-            case 0:
-                let history = history[indexPath.section]
-                let productToDelete = history.productList[indexPath.row]
-                if history.productList.count == 1 && history.waterList.count == 0 {
-                    storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
-                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
-                } else {
-                    storageManager.deleteProductFromHistory(productToDelete, fromHistory: history)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
-                }
-            default:
-                let history = history[indexPath.section]
-                let waterToDelete = history.waterList[indexPath.row]
-                if history.waterList.count == 1 && history.productList.count == 0 {
-                    storageManager.deleteWaterFromHistory(waterToDelete, fromHistory: history)
-                    tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
-                } else {
-                    storageManager.deleteWaterFromHistory(waterToDelete, fromHistory: history)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
-                }
+        if segmentedControl.selectedSegmentIndex == 0 {
+            let productToDelete = historyItem.productList[indexPath.row]
+            showAlertDelete(for: productToDelete.name, inTableView: tableView) { [unowned self] in
+                deleteItemFromHistory(productToDelete, fromHistory: historyItem, at: indexPath)
             }
-            
-            updateEmptyLabel()
+        } else {
+            let waterToDelete = historyItem.waterList[indexPath.row]
+            showAlertDelete(for: "", inTableView: tableView) { [unowned self] in
+                deleteItemFromHistory(waterToDelete, fromHistory: historyItem, at: indexPath)
+            }
         }
-        
-        let noButton = UIAlertAction(title: "Нет", style: .cancel) { [unowned self] _ in
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func handleCancelAction() {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    func deleteItemFromHistory<T: Object>(_ item: T, fromHistory history: History, at indexPath: IndexPath) {
+        if item is Product {
+            if history.productList.count == 1 && history.waterList.isEmpty {
+                storageManager.deleteItemFromHistory(item, history: history)
+                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
+            } else {
+                storageManager.deleteItemFromHistory(item, history: history)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
+            }
+        } else if item is Water {
+            if history.waterList.count == 1 && history.productList.isEmpty {
+                storageManager.deleteItemFromHistory(item, history: history)
+                tableView.deleteSections(IndexSet(integer: indexPath.section), with: .fade)
+            } else {
+                storageManager.deleteItemFromHistory(item, history: history)
+                tableView.deleteRows(at: [indexPath], with: .fade)
+                tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
+            }
         }
-        
-        alert.addAction(yesButton)
-        alert.addAction(noButton)
-        present(alert, animated: true)
     }
 }

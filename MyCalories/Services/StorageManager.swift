@@ -239,17 +239,6 @@ final class StorageManager {
         }
     }
     
-    func deleteProductFromHistory(_ product: Product, fromHistory history: History) {
-        writeDeviceRealm {
-            if history.productList.count == 1 && history.waterList.count == 0 {
-                realmDevice.delete(product)
-                realmDevice.delete(history)
-            } else {
-                realmDevice.delete(product)
-            }
-        }
-    }
-    
     func fetchTodayTotalNutrients() -> AllNutritions {
         let startOfDay = Calendar.current.startOfDay(for: Date())
         let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
@@ -338,13 +327,24 @@ final class StorageManager {
         }
     }
     
-    func deleteWaterFromHistory(_ water: Water, fromHistory history: History) {
+    
+    // Delete water/product from history
+    func deleteItemFromHistory<T: RealmFetchable>(_ item: T, history: History) {
         writeDeviceRealm {
-            if history.waterList.count == 1 && history.productList.count == 0 {
-                realmDevice.delete(water)
-                realmDevice.delete(history)
-            } else {
-                realmDevice.delete(water)
+            if let product = item as? Product {
+                if history.productList.count == 1 && history.waterList.isEmpty {
+                    realmDevice.delete(product)
+                    realmDevice.delete(history)
+                } else {
+                    realmDevice.delete(product)
+                }
+            } else if let water = item as? Water {
+                if history.waterList.count == 1 && history.productList.isEmpty {
+                    realmDevice.delete(water)
+                    realmDevice.delete(history)
+                } else {
+                    realmDevice.delete(water)
+                }
             }
         }
     }
