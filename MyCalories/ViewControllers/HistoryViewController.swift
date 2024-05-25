@@ -306,5 +306,7 @@ private extension HistoryViewController {
                 tableView.reloadSections(IndexSet(integer: indexPath.section), with: .fade)
             }
         }
+        
+        updateEmptyLabel()
     }
 }

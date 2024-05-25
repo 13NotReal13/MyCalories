@@ -227,18 +227,6 @@ private extension ProfileViewController {
     }
     
     func checkTextOfTextField(_ textField: UITextField) {
-//        guard let text = textField.text else { return }
-//        
-//        if text.contains(",") {
-//            textField.text = text.replacingOccurrences(of: ",", with: ".")
-//        }
-//        
-//        guard let validValue = Double(text) else {
-//            showAlertError(textField: textField, type: .wrongFormat)
-//            saveBarButtonItem.isEnabled = false
-//            return
-//        }
-        
         guard let text = textField.text else { return }
         if text.filter({ $0 == ","}).count > 1 || text.filter({ $0 == "."}).count > 1
             || text.hasPrefix(",") || text.hasSuffix(",")

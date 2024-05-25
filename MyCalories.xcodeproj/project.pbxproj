@@ -41,6 +41,11 @@
 		7946F8ED2BCD50E4005C3F33 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */; };
 		7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */; };
 		7946F8F12BCE7C78005C3F33 /* HistoryProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */; };
+		79658B3F2C02338A000BD566 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79658B3E2C02338A000BD566 /* GoogleService-Info.plist */; };
+		79658B422C0235D8000BD566 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B412C0235D8000BD566 /* FirebaseAnalytics */; };
+		79658B442C0235D8000BD566 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B432C0235D8000BD566 /* FirebaseAnalyticsSwift */; };
+		79658B462C0235D8000BD566 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B452C0235D8000BD566 /* FirebaseAppCheck */; };
+		79658B492C0240E8000BD566 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B482C0240E8000BD566 /* FirebaseMessaging */; };
 		79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD10552BF69B20005C049A /* UIViewController + Ext.swift */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +84,8 @@
 		7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Ext.swift"; sourceTree = "<group>"; };
 		7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryProductViewCell.swift; sourceTree = "<group>"; };
+		79658B3D2C021100000BD566 /* MyCalories.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCalories.entitlements; sourceTree = "<group>"; };
+		79658B3E2C02338A000BD566 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,8 +94,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79658B492C0240E8000BD566 /* FirebaseMessaging in Frameworks */,
+				79658B442C0235D8000BD566 /* FirebaseAnalyticsSwift in Frameworks */,
 				7946F83B2BC2B0BE005C3F33 /* RealmSwift in Frameworks */,
 				7946F8392BC2B0BE005C3F33 /* Realm in Frameworks */,
+				79658B462C0235D8000BD566 /* FirebaseAppCheck in Frameworks */,
+				79658B422C0235D8000BD566 /* FirebaseAnalytics in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +121,7 @@
 			children = (
 				792DB1892BBADF4800209193 /* MyCalories */,
 				792DB1882BBADF4800209193 /* Products */,
+				79658B472C0240E8000BD566 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -124,6 +136,8 @@
 		792DB1892BBADF4800209193 /* MyCalories */ = {
 			isa = PBXGroup;
 			children = (
+				79658B3E2C02338A000BD566 /* GoogleService-Info.plist */,
+				79658B3D2C021100000BD566 /* MyCalories.entitlements */,
 				792DB19F2BBADFE300209193 /* ViewControllers */,
 				792DB1A02BBADFEE00209193 /* Storyboards */,
 				7946F82C2BC1F6A1005C3F33 /* Services */,
@@ -224,6 +238,13 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		79658B472C0240E8000BD566 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -243,6 +264,10 @@
 			packageProductDependencies = (
 				7946F8382BC2B0BE005C3F33 /* Realm */,
 				7946F83A2BC2B0BE005C3F33 /* RealmSwift */,
+				79658B412C0235D8000BD566 /* FirebaseAnalytics */,
+				79658B432C0235D8000BD566 /* FirebaseAnalyticsSwift */,
+				79658B452C0235D8000BD566 /* FirebaseAppCheck */,
+				79658B482C0240E8000BD566 /* FirebaseMessaging */,
 			);
 			productName = MyCalories;
 			productReference = 792DB1872BBADF4800209193 /* MyCalories.app */;
@@ -274,6 +299,7 @@
 			mainGroup = 792DB17E2BBADF4800209193;
 			packageReferences = (
 				7946F8372BC2B0BE005C3F33 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 792DB1882BBADF4800209193 /* Products */;
 			projectDirPath = "";
@@ -291,6 +317,7 @@
 			files = (
 				792DB1942BBADF4900209193 /* Assets.xcassets in Resources */,
 				790457232BE2972F0009FA34 /* productsFromProject.realm in Resources */,
+				79658B3F2C02338A000BD566 /* GoogleService-Info.plist in Resources */,
 				790457202BE2972F0009FA34 /* access_control.control.mx in Resources */,
 				790457242BE2972F0009FA34 /* productsFromProject.realm.lock in Resources */,
 				792DB1972BBADF4900209193 /* Base in Resources */,
@@ -482,6 +509,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = MyCalories/MyCalories.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -507,7 +535,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MyCalories AppStore v0.1.0";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MyCalories Distribution";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -524,6 +552,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
+				CODE_SIGN_ENTITLEMENTS = MyCalories/MyCalories.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
@@ -549,7 +578,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MyCalories AppStore v0.1.0";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MyCalories Distribution";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -592,6 +621,14 @@
 				kind = branch;
 			};
 		};
+		79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.26.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -604,6 +641,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 7946F8372BC2B0BE005C3F33 /* XCRemoteSwiftPackageReference "realm-swift" */;
 			productName = RealmSwift;
+		};
+		79658B412C0235D8000BD566 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		79658B432C0235D8000BD566 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		79658B452C0235D8000BD566 /* FirebaseAppCheck */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAppCheck;
+		};
+		79658B482C0240E8000BD566 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
