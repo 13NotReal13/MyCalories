@@ -86,12 +86,6 @@ private extension AddNewProductViewController {
         carbohydratesTF.customStyle()
         caloriesTF.customStyle()
         
-        nameTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-        proteinTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-        fatsTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-        carbohydratesTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-        caloriesTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-        
         nameTF.becomeFirstResponder()
     }
     
@@ -119,14 +113,10 @@ private extension AddNewProductViewController {
     
     func checkTextOfTextField(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        if text.filter({ $0 == ","}).count > 1 || text.filter({ $0 == "."}).count > 1 {
-            showAlertWrongFormat(fromTextField: textField)
-            return
-        } else if text.hasPrefix(",") || text.hasSuffix(",") {
-            showAlertWrongFormat(fromTextField: textField)
-            return
-        } else if text.hasPrefix(".") || text.hasSuffix(".") {
-            showAlertWrongFormat(fromTextField: textField)
+        if text.filter({ $0 == ","}).count > 1 || text.filter({ $0 == "."}).count > 1
+        || text.hasPrefix(",") || text.hasSuffix(",")
+        || text.hasPrefix(".") || text.hasSuffix(".") {
+            showAlertError(textField: textField, type: .wrongFormat)
             return
         } else if text.contains(",") {
             textField.text = text.replacingOccurrences(of: ",", with: ".")
@@ -134,7 +124,7 @@ private extension AddNewProductViewController {
         
         guard let value = Double(text) else { return }
         if text.count > 7 || value > 1500.0 {
-            showAlertInvalidValue(textField)
+            showAlertError(textField: textField, type: .invalidValue)
             return
         }
         
@@ -146,6 +136,7 @@ private extension AddNewProductViewController {
 extension AddNewProductViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
+        textField.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
         addBarButtonItem.isEnabled = false
     }
     

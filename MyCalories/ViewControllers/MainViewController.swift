@@ -115,7 +115,7 @@ final class MainViewController: UIViewController {
                 profileVC.delegate = self
             }
         case "SegueToHistoryProductsVC":
-            if let historyProductsVC = segue.destination as? HistroryProductsViewController {
+            if let historyProductsVC = segue.destination as? HistoryViewController {
                 historyProductsVC.delegate = self
             }
         case "SegueToSettingsVC":
@@ -224,7 +224,7 @@ private extension MainViewController {
         progressIsBlock.isUserInteractionEnabled = true
         progressIsBlock.addGestureRecognizer(tapGestureProgressIsBlock)
         
-        // Tap on ProgressIsBlock
+        // Tap on ProgressView
         let tapGestureProgressView = UITapGestureRecognizer(target: self, action: #selector(handleTapOnProgressView))
         progressView.isUserInteractionEnabled = true
         progressView.addGestureRecognizer(tapGestureProgressView)
@@ -300,11 +300,11 @@ private extension MainViewController {
         alert.addTextField { textField in
             textField.placeholder = "мл."
             textField.keyboardType = .numberPad
-
+            
             // Добавим наблюдатель для ограничения ввода
             NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: .main) { notification in
                 if let textField = notification.object as? UITextField, let text = textField.text, let number = Int(text) {
-                    if number > 9999 { // Предположим, что максимальное значение - 5000 мл
+                    if number > 9999 {
                         textField.text = String(text.dropLast())
                     }
                 }
@@ -314,22 +314,10 @@ private extension MainViewController {
         present(alert, animated: true)
     }
     
-    func showAlertForDeletingProduct(_ product: Product, indexPath: IndexPath) {
-        let alert = UIAlertController(title: "Вы уверены, что хотите удалить?", message: product.name, preferredStyle: .alert)
-        
-        let deleteButton = UIAlertAction(title: "Удалить", style: .destructive) { [unowned self] _ in
-            storageManager.deleteProduct(product) { [unowned self] in
-                tableView.deleteRows(at: [indexPath], with: .fade)
-            }
+    func deleteProduct(product: Product, indexPath: IndexPath) {
+        storageManager.deleteProduct(product) { [unowned self] in
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
-        
-        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel) { _ in
-            alert.dismiss(animated: true)
-        }
-        
-        alert.addAction(deleteButton)
-        alert.addAction(cancelButton)
-        present(alert, animated: true)
     }
     
     @objc func doneButtonPressed() {
@@ -541,7 +529,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let product = filteredProducts[indexPath.row]
         
         let deleteButton = UIContextualAction(style: .normal, title: nil) { [unowned self] _, _, isDone in
-            showAlertForDeletingProduct(product, indexPath: indexPath)
+            showAlertDelete(for: product.name) { [unowned self] in
+                deleteProduct(product: product, indexPath: indexPath)
+            }
             isDone(true)
         }
         
@@ -568,17 +558,6 @@ extension MainViewController: UISearchBarDelegate {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
         
-        let keyboardToolbar = UIToolbar()
-        keyboardToolbar.sizeToFit()
-        
-        let doneButton = UIBarButtonItem(
-            title: "Готово",
-            style: .done,
-            target: self,
-            action: #selector(doneButtonPressed)
-        )
-        let flexButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        keyboardToolbar.setItems([flexButton, doneButton], animated: true)
-        searchBar.inputAccessoryView = keyboardToolbar
+        searchBar.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
     }
 }

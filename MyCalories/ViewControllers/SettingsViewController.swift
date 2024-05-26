@@ -99,7 +99,7 @@ private extension SettingsViewController {
         
         if text.count > 4 {
             let firstValue = textField.text
-            showAlertInvalidValue(textField)
+            showAlertError(textField: textField, type: .invalidValue)
             textField.text = firstValue
             return
         }

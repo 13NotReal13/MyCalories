@@ -18,7 +18,7 @@ final class EditWeightViewController: UIViewController {
     
     var choosedProduct: Product?
     var choosedWater: Water?
-    weak var delegate: HistroryProductsViewControllerDelegate?
+    weak var delegate: HistoryViewControllerDelegate?
     
     private let storageManager = StorageManager.shared
     
@@ -68,7 +68,6 @@ extension EditWeightViewController {
             : String(choosedWater?.ml ?? 0)
         
         weightTF.delegate = self
-        weightTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
         weightTF.becomeFirstResponder()
         
         editHeightView.setShadow(
@@ -87,7 +86,7 @@ extension EditWeightViewController {
             showAlert()
             return
         } else if textValue > 5000 {
-            showAlertInvalidValue(weightTF)
+            showAlertError(textField: weightTF, type: .invalidValue)
             return
         }
         
@@ -119,6 +118,7 @@ extension EditWeightViewController {
 // MARK: - UITextFieldDelegate
 extension EditWeightViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
+        weightTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
         saveBarButtonItem.isEnabled = false
     }
     

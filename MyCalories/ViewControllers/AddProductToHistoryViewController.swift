@@ -134,12 +134,8 @@ private extension AddProductToHistoryViewController {
         }
         
         if textField == weightTF {
-            guard let value = Int(text) else { return }
-            if text.count > 4 || value > 5000 {
-                showAlertInvalidValue(textField)
-                return
-            } else if let intValue = Int(text), intValue == 0 {
-                showAlertInvalidValue(textField)
+            guard let value = Int(text), value <= 5000, value > 0 else {
+                showAlertError(textField: textField, type: .invalidValue)
                 return
             }
             textField.text = String(value)

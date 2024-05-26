@@ -228,16 +228,10 @@ private extension ProfileViewController {
     
     func checkTextOfTextField(_ textField: UITextField) {
         guard let text = textField.text else { return }
-        if text.filter({ $0 == ","}).count > 1 || text.filter({ $0 == "."}).count > 1 {
-            showAlertWrongFormat(fromTextField: textField)
-            saveBarButtonItem.isEnabled = false
-            return
-        } else if text.hasPrefix(",") || text.hasSuffix(",") {
-            showAlertWrongFormat(fromTextField: textField)
-            saveBarButtonItem.isEnabled = false
-            return
-        } else if text.hasPrefix(".") || text.hasSuffix(".") {
-            showAlertWrongFormat(fromTextField: textField)
+        if text.filter({ $0 == ","}).count > 1 || text.filter({ $0 == "."}).count > 1
+            || text.hasPrefix(",") || text.hasSuffix(",")
+                || text.hasPrefix(".") || text.hasSuffix(".") {
+            showAlertError(textField: textField, type: .wrongFormat)
             saveBarButtonItem.isEnabled = false
             return
         } else if text.contains(",") {
@@ -246,7 +240,7 @@ private extension ProfileViewController {
         
         guard let value = Double(text) else { return }
         if text.count > 7 || value > 600 {
-            showAlertInvalidValue(textField)
+            showAlertError(textField: textField, type: .invalidValue)
         }
     }
 
