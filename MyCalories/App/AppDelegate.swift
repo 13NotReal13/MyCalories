@@ -10,6 +10,7 @@ import FirebaseCore
 import UserNotifications
 import FirebaseMessaging
 import FirebaseCrashlytics
+import GoogleMobileAds
 
 @main
 final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
@@ -29,6 +30,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         // Установка делегата Firebase Messaging
         Messaging.messaging().delegate = self
         
+        GADMobileAds.sharedInstance().start(completionHandler: nil)
         return true
     }
 
@@ -60,7 +62,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 }
 
 extension AppDelegate: UNUserNotificationCenterDelegate {
-    
     // Приложение получило уведомление в foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
@@ -77,4 +78,3 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         completionHandler()
     }
 }
-
