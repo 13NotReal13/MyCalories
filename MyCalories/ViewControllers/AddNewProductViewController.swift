@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import BarcodeScanner
+import AVFoundation
 
 final class AddNewProductViewController: UIViewController {
     
@@ -45,6 +47,33 @@ final class AddNewProductViewController: UIViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         doneButtonPressed()
+    }
+    
+    @IBAction func barcodeScannerButtonAction() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized: // Разрешение уже предоставлено
+            startScanning()
+        case .notDetermined: // Разрешение еще не запрашивалось
+            AVCaptureDevice.requestAccess(for: .video) { [unowned self] granted in
+                if granted {
+                    startScanning()
+                }
+            }
+        default: // Разрешение отклонено или ограничено
+            // Показать алерт, просить пользователя разрешить доступ в настройках
+//            promptForCameraAccess()
+            break
+        }
+    }
+    
+    private func startScanning() {
+        DispatchQueue.main.async { [unowned self] in
+            let viewController = BarcodeScannerViewController()
+            viewController.codeDelegate = self
+            viewController.errorDelegate = self
+            viewController.dismissalDelegate = self
+            present(viewController, animated: true)
+        }
     }
     
     @IBAction func addBarButtonItemAction(_ sender: UIBarButtonItem) {
@@ -142,5 +171,23 @@ extension AddNewProductViewController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         doneButtonPressed()
+    }
+}
+
+// MARK: - BarcodeScanner
+extension AddNewProductViewController: BarcodeScannerCodeDelegate,
+                                        BarcodeScannerErrorDelegate,
+                                        BarcodeScannerDismissalDelegate {
+    func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
+        print("Found code: \(code) of type \(type)")
+        controller.dismiss(animated: true)
+    }
+    
+    func scanner(_ controller: BarcodeScannerViewController, didReceiveError error: Error) {
+        print(error)
+    }
+    
+    func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
+        controller.dismiss(animated: true)
     }
 }

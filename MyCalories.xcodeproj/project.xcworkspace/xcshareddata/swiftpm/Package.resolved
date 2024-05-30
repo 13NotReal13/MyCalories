@@ -1,5 +1,5 @@
 {
-  "originHash" : "64a8669f820627e8683e3ae55c5250292f532a885219c778b0c46a561d164edd",
+  "originHash" : "e897c1781f888fe322daf9e710791617502185f61219afc2ab9bb2678fa9cfa5",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -26,6 +26,15 @@
       "state" : {
         "revision" : "403cd95194e6a962e16db7c0d373d89fce83e0f7",
         "version" : "1.2.7"
+      }
+    },
+    {
+      "identity" : "barcodescanner",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/hyperoslo/BarcodeScanner.git",
+      "state" : {
+        "revision" : "059cd71c4e3b9efc8d7e42fa1948bf572471b448",
+        "version" : "5.0.1"
       }
     },
     {

@@ -53,6 +53,7 @@
 		79658B462C0235D8000BD566 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B452C0235D8000BD566 /* FirebaseAppCheck */; };
 		79658B492C0240E8000BD566 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B482C0240E8000BD566 /* FirebaseMessaging */; };
 		79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD10552BF69B20005C049A /* UIViewController + Ext.swift */; };
+		79CBA7912C08E599008EED18 /* BarcodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 79CBA7902C08E599008EED18 /* BarcodeScanner */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +113,7 @@
 				79658B442C0235D8000BD566 /* FirebaseAnalyticsSwift in Frameworks */,
 				7946F83B2BC2B0BE005C3F33 /* RealmSwift in Frameworks */,
 				795D99BA2C02774E009AC9CA /* FirebaseCrashlytics in Frameworks */,
+				79CBA7912C08E599008EED18 /* BarcodeScanner in Frameworks */,
 				795D99BD2C04C78D009AC9CA /* GoogleMobileAds in Frameworks */,
 				7946F8392BC2B0BE005C3F33 /* Realm in Frameworks */,
 				79658B462C0235D8000BD566 /* FirebaseAppCheck in Frameworks */,
@@ -291,6 +293,7 @@
 				795D99B92C02774E009AC9CA /* FirebaseCrashlytics */,
 				795D99BC2C04C78D009AC9CA /* GoogleMobileAds */,
 				795D99CF2C077E9D009AC9CA /* TPInAppReceipt */,
+				79CBA7902C08E599008EED18 /* BarcodeScanner */,
 			);
 			productName = MyCalories;
 			productReference = 792DB1872BBADF4800209193 /* MyCalories.app */;
@@ -326,6 +329,7 @@
 				795D99BB2C04C78D009AC9CA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
 				795D99CB2C077C72009AC9CA /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
 				795D99CE2C077E9D009AC9CA /* XCRemoteSwiftPackageReference "TPInAppReceipt" */,
+				79CBA78F2C08E599008EED18 /* XCRemoteSwiftPackageReference "BarcodeScanner" */,
 			);
 			productRefGroup = 792DB1882BBADF4800209193 /* Products */;
 			projectDirPath = "";
@@ -685,6 +689,14 @@
 				minimumVersion = 10.26.0;
 			};
 		};
+		79CBA78F2C08E599008EED18 /* XCRemoteSwiftPackageReference "BarcodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hyperoslo/BarcodeScanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -732,6 +744,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		79CBA7902C08E599008EED18 /* BarcodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79CBA78F2C08E599008EED18 /* XCRemoteSwiftPackageReference "BarcodeScanner" */;
+			productName = BarcodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
