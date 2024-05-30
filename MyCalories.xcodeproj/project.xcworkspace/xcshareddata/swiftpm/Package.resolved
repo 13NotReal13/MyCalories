@@ -1,5 +1,5 @@
 {
-  "originHash" : "c306069b3b67f10120cd6c9d9f9dbb09748d1c52153aa1669923a143c8b5f63a",
+  "originHash" : "64a8669f820627e8683e3ae55c5250292f532a885219c778b0c46a561d164edd",
   "pins" : [
     {
       "identity" : "abseil-cpp-binary",
@@ -17,6 +17,15 @@
       "state" : {
         "revision" : "076b241a625e25eac22f8849be256dfb960fcdfe",
         "version" : "10.19.1"
+      }
+    },
+    {
+      "identity" : "asn1swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tikhop/ASN1Swift",
+      "state" : {
+        "revision" : "403cd95194e6a962e16db7c0d373d89fce83e0f7",
+        "version" : "1.2.7"
       }
     },
     {
@@ -152,6 +161,24 @@
       "state" : {
         "revision" : "9f0c76544701845ad98716f3f6a774a892152bcb",
         "version" : "1.26.0"
+      }
+    },
+    {
+      "identity" : "swiftystorekit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/bizz84/SwiftyStoreKit.git",
+      "state" : {
+        "revision" : "9ce911639680113dac9b554d6243e406a9758ebe",
+        "version" : "0.16.4"
+      }
+    },
+    {
+      "identity" : "tpinappreceipt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/tikhop/TPInAppReceipt",
+      "state" : {
+        "revision" : "e135055eaeba5a52874b7f9b290f42890cbe981f",
+        "version" : "3.4.1"
       }
     }
   ],

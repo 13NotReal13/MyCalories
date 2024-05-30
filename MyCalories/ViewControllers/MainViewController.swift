@@ -78,7 +78,7 @@ final class MainViewController: UIViewController {
         return overlay
     }()
     
-    // MARK: View Life Cycle
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
@@ -107,7 +107,10 @@ final class MainViewController: UIViewController {
         menuLeadingConstraint.constant = -menuView.frame.size.width
         menuTrailingConstraint.constant = view.frame.width
         overlayView.alpha = 0
-        showInterstitial()
+        
+        if PurchasesManager.shared.activeSubscription() == nil {
+            showInterstitial()
+        }
         print("viewWillAppear")
     }
     
@@ -122,7 +125,7 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         ATTrackingManager.requestTrackingAuthorization { [unowned self] _ in
-            if adIsLoaded == false {
+            if adIsLoaded == false && PurchasesManager.shared.activeSubscription() == nil {
                 loadInterstitial()
                 adIsLoaded = true
             }
@@ -178,6 +181,18 @@ final class MainViewController: UIViewController {
     
     @IBAction func waterButtonAction() {
         showAlertForAddWater()
+    }
+    
+    @IBAction func noAdsButtonAction() {
+        DispatchQueue.main.async { [unowned self] in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let navigationVC = storyboard.instantiateViewController(withIdentifier: "PurchasesNavigationController") as? UINavigationController else { return }
+            
+            
+            navigationVC.modalPresentationStyle = .overFullScreen
+            present(navigationVC, animated: true)
+        }
+        toogleMenu()
     }
 }
 
@@ -351,7 +366,9 @@ private extension MainViewController {
             water.ml = waterML
             storageManager.saveWaterToHistory(water) { [unowned self] in
                 setProgressBarValues()
-                showInterstitial()
+                if PurchasesManager.shared.activeSubscription() == nil {
+                    showInterstitial()
+                }
             }
         }
         let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
@@ -403,6 +420,9 @@ private extension MainViewController {
     }
     
     @objc private func appWillEnterForeground() {
+        if PurchasesManager.shared.activeSubscription() == nil {
+            loadInterstitial()
+        }
         updateProgressBar()
     }
     
