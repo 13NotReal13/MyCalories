@@ -42,12 +42,19 @@
 		7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */; };
 		7946F8F12BCE7C78005C3F33 /* HistoryProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */; };
 		795D99BA2C02774E009AC9CA /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 795D99B92C02774E009AC9CA /* FirebaseCrashlytics */; };
+		795D99BD2C04C78D009AC9CA /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 795D99BC2C04C78D009AC9CA /* GoogleMobileAds */; };
+		795D99C32C05DDE8009AC9CA /* PurchasesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795D99C22C05DDE8009AC9CA /* PurchasesManager.swift */; };
+		795D99C72C06375A009AC9CA /* PurchasesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795D99C62C06375A009AC9CA /* PurchasesViewController.swift */; };
+		795D99C82C077C53009AC9CA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 795D99C02C05DD2B009AC9CA /* StoreKit.framework */; };
+		795D99D02C077E9D009AC9CA /* TPInAppReceipt in Frameworks */ = {isa = PBXBuildFile; productRef = 795D99CF2C077E9D009AC9CA /* TPInAppReceipt */; };
 		79658B3F2C02338A000BD566 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 79658B3E2C02338A000BD566 /* GoogleService-Info.plist */; };
 		79658B422C0235D8000BD566 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B412C0235D8000BD566 /* FirebaseAnalytics */; };
 		79658B442C0235D8000BD566 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B432C0235D8000BD566 /* FirebaseAnalyticsSwift */; };
 		79658B462C0235D8000BD566 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B452C0235D8000BD566 /* FirebaseAppCheck */; };
 		79658B492C0240E8000BD566 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B482C0240E8000BD566 /* FirebaseMessaging */; };
 		79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD10552BF69B20005C049A /* UIViewController + Ext.swift */; };
+		79CBA7912C08E599008EED18 /* BarcodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 79CBA7902C08E599008EED18 /* BarcodeScanner */; };
+		79CBA7932C0A2E7D008EED18 /* SearchProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -87,9 +94,13 @@
 		7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryProductViewCell.swift; sourceTree = "<group>"; };
 		795D99B72C027418009AC9CA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
 		795D99B82C027418009AC9CA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		795D99C02C05DD2B009AC9CA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		795D99C22C05DDE8009AC9CA /* PurchasesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesManager.swift; sourceTree = "<group>"; };
+		795D99C62C06375A009AC9CA /* PurchasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewController.swift; sourceTree = "<group>"; };
 		79658B3D2C021100000BD566 /* MyCalories.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCalories.entitlements; sourceTree = "<group>"; };
 		79658B3E2C02338A000BD566 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
+		79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProduct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,10 +108,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				795D99D02C077E9D009AC9CA /* TPInAppReceipt in Frameworks */,
+				795D99C82C077C53009AC9CA /* StoreKit.framework in Frameworks */,
 				79658B492C0240E8000BD566 /* FirebaseMessaging in Frameworks */,
 				79658B442C0235D8000BD566 /* FirebaseAnalyticsSwift in Frameworks */,
 				7946F83B2BC2B0BE005C3F33 /* RealmSwift in Frameworks */,
 				795D99BA2C02774E009AC9CA /* FirebaseCrashlytics in Frameworks */,
+				79CBA7912C08E599008EED18 /* BarcodeScanner in Frameworks */,
+				795D99BD2C04C78D009AC9CA /* GoogleMobileAds in Frameworks */,
 				7946F8392BC2B0BE005C3F33 /* Realm in Frameworks */,
 				79658B462C0235D8000BD566 /* FirebaseAppCheck in Frameworks */,
 				79658B422C0235D8000BD566 /* FirebaseAnalytics in Frameworks */,
@@ -174,6 +189,7 @@
 				7946F8CE2BCBD712005C3F33 /* AddProductToHistoryViewController.swift */,
 				7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */,
 				790456BE2BE193EE0009FA34 /* EditWeightViewController.swift */,
+				795D99C62C06375A009AC9CA /* PurchasesViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -195,6 +211,7 @@
 				7946F8482BC455F9005C3F33 /* History.swift */,
 				790456722BDD2A8B0009FA34 /* AllNutritions.swift */,
 				7946F82A2BC1F630005C3F33 /* Settings.swift */,
+				79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -203,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				7946F82D2BC1F6AF005C3F33 /* StorageManager.swift */,
+				795D99C22C05DDE8009AC9CA /* PurchasesManager.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -245,6 +263,7 @@
 		79658B472C0240E8000BD566 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				795D99C02C05DD2B009AC9CA /* StoreKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -273,6 +292,9 @@
 				79658B452C0235D8000BD566 /* FirebaseAppCheck */,
 				79658B482C0240E8000BD566 /* FirebaseMessaging */,
 				795D99B92C02774E009AC9CA /* FirebaseCrashlytics */,
+				795D99BC2C04C78D009AC9CA /* GoogleMobileAds */,
+				795D99CF2C077E9D009AC9CA /* TPInAppReceipt */,
+				79CBA7902C08E599008EED18 /* BarcodeScanner */,
 			);
 			productName = MyCalories;
 			productReference = 792DB1872BBADF4800209193 /* MyCalories.app */;
@@ -305,6 +327,10 @@
 			packageReferences = (
 				7946F8372BC2B0BE005C3F33 /* XCRemoteSwiftPackageReference "realm-swift" */,
 				79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				795D99BB2C04C78D009AC9CA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+				795D99CB2C077C72009AC9CA /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */,
+				795D99CE2C077E9D009AC9CA /* XCRemoteSwiftPackageReference "TPInAppReceipt" */,
+				79CBA78F2C08E599008EED18 /* XCRemoteSwiftPackageReference "BarcodeScanner" */,
 			);
 			productRefGroup = 792DB1882BBADF4800209193 /* Products */;
 			projectDirPath = "";
@@ -344,6 +370,7 @@
 				790457262BE3E5AF0009FA34 /* TexturedView.swift in Sources */,
 				790456732BDD2A8B0009FA34 /* AllNutritions.swift in Sources */,
 				792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */,
+				79CBA7932C0A2E7D008EED18 /* SearchProduct.swift in Sources */,
 				7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */,
 				7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */,
 				7946F8F12BCE7C78005C3F33 /* HistoryProductViewCell.swift in Sources */,
@@ -354,11 +381,13 @@
 				7946F8492BC455F9005C3F33 /* History.swift in Sources */,
 				790456BF2BE193EE0009FA34 /* EditWeightViewController.swift in Sources */,
 				790456C32BE22C290009FA34 /* UITextField + Ext.swift in Sources */,
+				795D99C72C06375A009AC9CA /* PurchasesViewController.swift in Sources */,
 				7946F7EE2BBB1B58005C3F33 /* ProfileViewController.swift in Sources */,
 				7946F8412BC2F914005C3F33 /* CircularProgressBar.swift in Sources */,
 				79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */,
 				7946F8CF2BCBD712005C3F33 /* AddProductToHistoryViewController.swift in Sources */,
 				7946F8282BC068C8005C3F33 /* SettingsViewController.swift in Sources */,
+				795D99C32C05DDE8009AC9CA /* PurchasesManager.swift in Sources */,
 				7946F8ED2BCD50E4005C3F33 /* HistoryViewController.swift in Sources */,
 				7946F8342BC28E60005C3F33 /* UIScrollView + Ext.swift in Sources */,
 				7946F8EB2BCC2DF2005C3F33 /* AddNewProductViewController.swift in Sources */,
@@ -522,7 +551,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -540,7 +569,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -565,7 +594,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -583,7 +612,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -630,12 +659,44 @@
 				kind = branch;
 			};
 		};
+		795D99BB2C04C78D009AC9CA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 11.5.0;
+			};
+		};
+		795D99CB2C077C72009AC9CA /* XCRemoteSwiftPackageReference "SwiftyStoreKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/bizz84/SwiftyStoreKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.16.4;
+			};
+		};
+		795D99CE2C077E9D009AC9CA /* XCRemoteSwiftPackageReference "TPInAppReceipt" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tikhop/TPInAppReceipt";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.4.1;
+			};
+		};
 		79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.26.0;
+			};
+		};
+		79CBA78F2C08E599008EED18 /* XCRemoteSwiftPackageReference "BarcodeScanner" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hyperoslo/BarcodeScanner.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -656,6 +717,16 @@
 			package = 79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
 		};
+		795D99BC2C04C78D009AC9CA /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 795D99BB2C04C78D009AC9CA /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+		795D99CF2C077E9D009AC9CA /* TPInAppReceipt */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 795D99CE2C077E9D009AC9CA /* XCRemoteSwiftPackageReference "TPInAppReceipt" */;
+			productName = TPInAppReceipt;
+		};
 		79658B412C0235D8000BD566 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
@@ -675,6 +746,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 79658B402C0235D8000BD566 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseMessaging;
+		};
+		79CBA7902C08E599008EED18 /* BarcodeScanner */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 79CBA78F2C08E599008EED18 /* XCRemoteSwiftPackageReference "BarcodeScanner" */;
+			productName = BarcodeScanner;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

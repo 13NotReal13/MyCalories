@@ -7,6 +7,8 @@
 
 import UIKit
 import RealmSwift
+import GoogleMobileAds
+import AppTrackingTransparency
 
 protocol MainScreenDelegate: AnyObject {
     func updateProgressBar()
@@ -24,6 +26,7 @@ final class MainViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var waterButton: UIButton!
+    @IBOutlet var noAdsButton: UIButton!
     
     @IBOutlet var extendingNavigationBarView: UIView!
     @IBOutlet var shadowForTableViewView: UIView!
@@ -62,6 +65,14 @@ final class MainViewController: UIViewController {
     
     private var initViewDidLayoutSubviews = false
     
+    private var interstitial: GADInterstitialAd?
+    
+    private let googleAdUnitID = "ca-app-pub-7511053995750557/9276091651"
+    private var adIsLoaded = false
+    private let appIDAppStore = "6502844957"
+    // testAdId: "ca-app-pub-3940256099942544/4411468910"
+    // realAdId: "ca-app-pub-7511053995750557/9276091651"
+    
     private lazy var overlayView: UIView = {
         let overlay = UIView(frame: view.bounds)
         overlay.backgroundColor = UIColor.black.withAlphaComponent(0.5)
@@ -69,11 +80,15 @@ final class MainViewController: UIViewController {
         return overlay
     }()
     
-    // MARK: View Life Cycle
+    // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         initialSetup()
         setupForegroundNotification()
+        
+        if interstitial == nil {
+            checkForUpdates()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -92,12 +107,26 @@ final class MainViewController: UIViewController {
         menuLeadingConstraint.constant = -menuView.frame.size.width
         menuTrailingConstraint.constant = view.frame.width
         overlayView.alpha = 0
+        
+        if PurchasesManager.shared.activeSubscription() == nil {
+            showInterstitial()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if menuIsVisible {
             toogleMenu()
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        ATTrackingManager.requestTrackingAuthorization { [unowned self] _ in
+            if adIsLoaded == false && PurchasesManager.shared.activeSubscription() == nil {
+                loadInterstitial()
+                adIsLoaded = true
+            }
         }
     }
     
@@ -151,13 +180,56 @@ final class MainViewController: UIViewController {
         showAlertForAddWater()
     }
     
-    // Выход из фонового режима и обновление данных в прогресс баре
-    private func setupForegroundNotification() {
-        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    @IBAction func noAdsButtonAction() {
+        DispatchQueue.main.async { [unowned self] in
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            guard let navigationVC = storyboard.instantiateViewController(withIdentifier: "PurchasesNavigationController") as? UINavigationController else { return }
+            
+            
+            navigationVC.modalPresentationStyle = .overFullScreen
+            present(navigationVC, animated: true)
+        }
+        toogleMenu()
+    }
+}
+
+// MARK: - GoogleAd (GADFullScreenContentDelegate)
+extension MainViewController: GADFullScreenContentDelegate {
+    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+        interstitial = nil
+        loadInterstitial()
+        checkForUpdates()
+    }
+
+    func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
+        print("Ad failed to present with error: \(error.localizedDescription)")
     }
     
-    @objc private func appWillEnterForeground() {
-        updateProgressBar()
+    func loadInterstitial() {
+        let request = GADRequest()
+        GADInterstitialAd.load(
+            withAdUnitID: googleAdUnitID,
+            request: request
+        ) { [weak self] ad, error in
+            if let error = error {
+                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                return
+            }
+            self?.interstitial = ad
+            self?.interstitial?.fullScreenContentDelegate = self
+        }
+        
+        print("load add")
+    }
+    
+    func showInterstitial() {
+        if let interstitial = interstitial {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                interstitial.present(fromRootViewController: self)
+            }
+        } else {
+            loadInterstitial()
+        }
     }
 }
 
@@ -291,6 +363,9 @@ private extension MainViewController {
             water.ml = waterML
             storageManager.saveWaterToHistory(water) { [unowned self] in
                 setProgressBarValues()
+                if PurchasesManager.shared.activeSubscription() == nil {
+                    showInterstitial()
+                }
             }
         }
         let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
@@ -333,6 +408,69 @@ private extension MainViewController {
     @objc func handleTapOnProgressView() {
         if progressIsBlock.isHidden {
             performSegue(withIdentifier: "SegueToHistoryProductsVC", sender: self)
+        }
+    }
+    
+    // Выход из фонового режима и обновление данных в прогресс баре
+    private func setupForegroundNotification() {
+        NotificationCenter.default.addObserver(self, selector: #selector(appWillEnterForeground), name: UIApplication.willEnterForegroundNotification, object: nil)
+    }
+    
+    @objc private func appWillEnterForeground() {
+        if PurchasesManager.shared.activeSubscription() == nil {
+            loadInterstitial()
+        }
+        updateProgressBar()
+    }
+    
+    func checkForUpdates() {
+        guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(appIDAppStore)") else { return }
+        
+        URLSession.shared.dataTask(with: url) { data, response, error in
+            guard let data = data else { return }
+            
+            do {
+                let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.fragmentsAllowed) as? [String: Any]
+                if let results = json?["results"] as? [[String: Any]],
+                   let appStoreVersion = results.first?["version"] as? String,
+                   let localVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
+                    if appStoreVersion.compare(localVersion, options: .numeric) == .orderedDescending {
+                        DispatchQueue.main.async { [unowned self] in
+                            showUpdateAlert(version: appStoreVersion)
+                        }
+                    }
+                }
+            } catch {
+                
+            }
+        }
+        .resume()
+    }
+    
+    func showUpdateAlert(version: String) {
+        let alert = UIAlertController(
+            title: "Доступно обновление",
+            message: "Доступна новая версия \(version). Пожалуйста, обновитесь до последней версии.",
+            preferredStyle: .alert
+        )
+        
+        let updateAction = UIAlertAction(title: "Обновить", style: .default) { [unowned self] _ in
+            let urlString = "https://apps.apple.com/app/id\(appIDAppStore)"
+            if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+        }
+        
+        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        
+        alert.addAction(updateAction)
+        alert.addAction(cancelAction)
+        
+        DispatchQueue.main.async {
+            if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let rootViewController = windowScene.windows.first(where: { $0.isKeyWindow })?.rootViewController {
+                rootViewController.present(alert, animated: true, completion: nil)
+            }
         }
     }
 }
