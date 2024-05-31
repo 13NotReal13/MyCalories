@@ -403,8 +403,8 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTV-Rn-AKa">
                                                 <rect key="frame" x="0.0" y="265" width="318" height="34.333333333333314"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="star.fill" catalog="system" title="Отключить рекламу" imagePadding="10">
-                                                    <color key="baseForegroundColor" name="backgroundProgressBar"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title="Отключить рекламу" imagePadding="10">
+                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
                                                     <action selector="noAdsButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="GHm-cl-gmT"/>
@@ -493,6 +493,7 @@
                         <outlet property="menuLeadingConstraint" destination="Dge-AY-yrY" id="niK-ED-Szv"/>
                         <outlet property="menuTrailingConstraint" destination="LEz-pA-pT5" id="BY2-di-LKc"/>
                         <outlet property="menuView" destination="La2-79-89M" id="HQI-r9-4VI"/>
+                        <outlet property="noAdsButton" destination="fTV-Rn-AKa" id="gUs-VW-nbQ"/>
                         <outlet property="progressIsBlock" destination="INR-2c-t8t" id="ycz-gV-g6V"/>
                         <outlet property="progressView" destination="T03-XA-YfC" id="hUQ-6k-fHl"/>
                         <outlet property="proteinProgrammLabel" destination="o7J-Jw-qD1" id="ApO-Bs-XyH"/>
@@ -1861,6 +1862,7 @@
                                                                 <state key="normal" image="barcode.viewfinder" catalog="system"/>
                                                                 <buttonConfiguration key="configuration" style="plain" image="barcode.viewfinder" catalog="system">
                                                                     <fontDescription key="titleFontDescription" type="system" pointSize="14"/>
+                                                                    <color key="baseForegroundColor" name="textColorApp"/>
                                                                 </buttonConfiguration>
                                                                 <connections>
                                                                     <action selector="barcodeScannerButtonAction" destination="hJI-KT-rZ1" eventType="touchUpInside" id="020-Rr-9ek"/>
@@ -1940,6 +1942,26 @@
                                     <constraint firstAttribute="trailing" secondItem="Yby-Qt-i3I" secondAttribute="trailing" constant="16" id="uhu-8s-hQM"/>
                                 </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cXh-5V-AjV">
+                                <rect key="frame" x="16" y="878" width="398" height="28"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Информация предоставлена:" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fU-CH-Rz0">
+                                        <rect key="frame" x="0.0" y="6.3333333333333703" width="251.66666666666666" height="15.666666666666664"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jzu-aa-wJk">
+                                        <rect key="frame" x="256.66666666666669" y="0.0" width="141.33333333333331" height="28"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Open Food Facts"/>
+                                        <connections>
+                                            <action selector="openFoodFactsButtonAction" destination="hJI-KT-rZ1" eventType="touchUpInside" id="jKq-Iq-OKp"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="qMm-cF-gHG"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -1950,8 +1972,11 @@
                             <constraint firstItem="Y0Y-QK-04j" firstAttribute="top" secondItem="qMm-cF-gHG" secondAttribute="top" constant="-1" id="Dsw-my-CZe"/>
                             <constraint firstItem="qwx-8e-4wK" firstAttribute="centerX" secondItem="uIo-fY-bXN" secondAttribute="centerX" id="EUf-5b-mZV"/>
                             <constraint firstItem="Y0Y-QK-04j" firstAttribute="leading" secondItem="qMm-cF-gHG" secondAttribute="leading" id="FaE-Ma-lgq"/>
+                            <constraint firstItem="qMm-cF-gHG" firstAttribute="trailing" secondItem="cXh-5V-AjV" secondAttribute="trailing" constant="16" id="NC3-7U-XIo"/>
+                            <constraint firstItem="qMm-cF-gHG" firstAttribute="bottom" secondItem="cXh-5V-AjV" secondAttribute="bottom" constant="16" id="dwR-VM-kJK"/>
                             <constraint firstItem="KWG-Ku-QYK" firstAttribute="leading" secondItem="qMm-cF-gHG" secondAttribute="leading" constant="16" id="nKM-oJ-E9v"/>
                             <constraint firstItem="qwx-8e-4wK" firstAttribute="top" secondItem="KWG-Ku-QYK" secondAttribute="bottom" constant="16" id="ow2-al-RSL"/>
+                            <constraint firstItem="cXh-5V-AjV" firstAttribute="leading" secondItem="qMm-cF-gHG" secondAttribute="leading" constant="16" id="qYy-Ac-Ow1"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Новый продукт" id="Igk-jL-08R">
@@ -1975,8 +2000,10 @@
                         <outlet property="extendingNavigationBarView" destination="Y0Y-QK-04j" id="DhI-BY-gqe"/>
                         <outlet property="fatsTF" destination="czP-3V-CMy" id="RIC-jg-cGs"/>
                         <outlet property="nameTF" destination="qLk-4G-uCu" id="2Y0-Y4-rEI"/>
+                        <outlet property="openFoodFactsButton" destination="Jzu-aa-wJk" id="GLd-ly-O6b"/>
                         <outlet property="productView" destination="KWG-Ku-QYK" id="q8f-GP-bEG"/>
                         <outlet property="proteinTF" destination="AXO-yT-lxp" id="twV-Be-azV"/>
+                        <outlet property="sourceOpenFoodStackView" destination="cXh-5V-AjV" id="LZH-y3-Khg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="84K-jk-Pw3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2093,7 +2120,7 @@
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="person" catalog="system" width="128" height="121"/>
-        <image name="star.fill" catalog="system" width="128" height="116"/>
+        <image name="star" catalog="system" width="128" height="116"/>
         <image name="waterButton" width="70" height="70"/>
         <namedColor name="backgroundProgressBar">
             <color red="0.20392156862745098" green="0.48627450980392156" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

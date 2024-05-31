@@ -54,6 +54,7 @@
 		79658B492C0240E8000BD566 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B482C0240E8000BD566 /* FirebaseMessaging */; };
 		79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD10552BF69B20005C049A /* UIViewController + Ext.swift */; };
 		79CBA7912C08E599008EED18 /* BarcodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 79CBA7902C08E599008EED18 /* BarcodeScanner */; };
+		79CBA7932C0A2E7D008EED18 /* SearchProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		79658B3D2C021100000BD566 /* MyCalories.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCalories.entitlements; sourceTree = "<group>"; };
 		79658B3E2C02338A000BD566 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
+		79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProduct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +213,7 @@
 				7946F8482BC455F9005C3F33 /* History.swift */,
 				790456722BDD2A8B0009FA34 /* AllNutritions.swift */,
 				7946F82A2BC1F630005C3F33 /* Settings.swift */,
+				79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -369,6 +372,7 @@
 				790457262BE3E5AF0009FA34 /* TexturedView.swift in Sources */,
 				790456732BDD2A8B0009FA34 /* AllNutritions.swift in Sources */,
 				792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */,
+				79CBA7932C0A2E7D008EED18 /* SearchProduct.swift in Sources */,
 				7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */,
 				7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */,
 				7946F8F12BCE7C78005C3F33 /* HistoryProductViewCell.swift in Sources */,
@@ -547,11 +551,9 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MyCalories/MyCalories.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GNN7DQ637Y;
+				DEVELOPMENT_TEAM = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyCalories/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Мои Калории";
@@ -571,7 +573,6 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MyCalories Distribution";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;

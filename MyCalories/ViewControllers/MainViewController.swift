@@ -26,6 +26,7 @@ final class MainViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var waterButton: UIButton!
+    @IBOutlet var noAdsButton: UIButton!
     
     @IBOutlet var extendingNavigationBarView: UIView!
     @IBOutlet var shadowForTableViewView: UIView!
@@ -87,7 +88,6 @@ final class MainViewController: UIViewController {
         if interstitial == nil {
             checkForUpdates()
         }
-        print("viewDidLoad")
     }
     
     override func viewDidLayoutSubviews() {
@@ -99,7 +99,6 @@ final class MainViewController: UIViewController {
         }
         setupRoundedCornersForViews()
         searchBar.resignFirstResponder()
-        print("viewDidLayoutSubviews")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,7 +110,6 @@ final class MainViewController: UIViewController {
         if PurchasesManager.shared.activeSubscription() == nil {
             showInterstitial()
         }
-        print("viewWillAppear")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -119,7 +117,6 @@ final class MainViewController: UIViewController {
         if menuIsVisible {
             toogleMenu()
         }
-        print("viewWillDisappear")
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -130,7 +127,6 @@ final class MainViewController: UIViewController {
                 adIsLoaded = true
             }
         }
-        print("viewDidAppear")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
