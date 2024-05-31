@@ -67,10 +67,11 @@ final class MainViewController: UIViewController {
     
     private var interstitial: GADInterstitialAd?
     
-    private let googleAdUnitID = "ca-app-pub-3940256099942544/4411468910"
+    private let googleAdUnitID = "ca-app-pub-7511053995750557/9276091651"
     private var adIsLoaded = false
     private let appIDAppStore = "6502844957"
     // testAdId: "ca-app-pub-3940256099942544/4411468910"
+    // realAdId: "ca-app-pub-7511053995750557/9276091651"
     
     private lazy var overlayView: UIView = {
         let overlay = UIView(frame: view.bounds)

@@ -96,7 +96,6 @@
 		795D99B82C027418009AC9CA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		795D99C02C05DD2B009AC9CA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		795D99C22C05DDE8009AC9CA /* PurchasesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesManager.swift; sourceTree = "<group>"; };
-		795D99C42C05FC3F009AC9CA /* TestPurchase.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPurchase.storekit; sourceTree = "<group>"; };
 		795D99C62C06375A009AC9CA /* PurchasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewController.swift; sourceTree = "<group>"; };
 		79658B3D2C021100000BD566 /* MyCalories.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCalories.entitlements; sourceTree = "<group>"; };
 		79658B3E2C02338A000BD566 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -139,7 +138,6 @@
 		792DB17E2BBADF4800209193 = {
 			isa = PBXGroup;
 			children = (
-				795D99C42C05FC3F009AC9CA /* TestPurchase.storekit */,
 				792DB1892BBADF4800209193 /* MyCalories */,
 				792DB1882BBADF4800209193 /* Products */,
 				79658B472C0240E8000BD566 /* Frameworks */,
@@ -551,9 +549,11 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_ENTITLEMENTS = MyCalories/MyCalories.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
-				DEVELOPMENT_TEAM = GNN7DQ637Y;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyCalories/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Мои Калории";
@@ -569,10 +569,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "MyCalories Distribution";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -593,7 +594,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -611,7 +612,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0.3;
+				MARKETING_VERSION = 1.1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -39,8 +39,12 @@ final class PurchasesViewController: UIViewController {
     private var choosedPurchase: Purchases = .annually
     private var activeSubscription: InAppPurchase?
     
+    private var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setActivityIndicator()
+        activityIndicator.startAnimating()
         purchasesManager.onProductsLoaded = {
             DispatchQueue.main.async { [unowned self] in
                 updateProductDict()
@@ -117,6 +121,10 @@ private extension PurchasesViewController {
         setPurchasesViews()
         setPrivacyButton()
         setTapsGestureForChoosedPurshase()
+        
+        activityIndicator.stopAnimating()
+        annuallyView.isHidden = false
+        monthlyView.isHidden = false
     }
     
     func setShadowsForViews() {
@@ -248,6 +256,13 @@ private extension PurchasesViewController {
             print(choosedPurchase)
             setupUI()
         }
+    }
+    
+    func setActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
     }
 }
 
