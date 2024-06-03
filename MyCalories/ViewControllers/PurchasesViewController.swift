@@ -32,6 +32,7 @@ final class PurchasesViewController: UIViewController {
     @IBOutlet var expirationDateMonthlyLabel: UILabel!
     
     @IBOutlet var purchaseButton: UIButton!
+    @IBOutlet var termsOfUseButton: UIButton!
     @IBOutlet var privacyButton: UIButton!
     
     private var purchasesManager = PurchasesManager.shared
@@ -109,6 +110,12 @@ final class PurchasesViewController: UIViewController {
         }
     }
     
+    @IBAction func termsOfUseButtonAction() {
+        if let url = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/") {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     private func updateProductDict() {
         productsDict = Dictionary(uniqueKeysWithValues: purchasesManager.products.map { ($0.productIdentifier, $0) } )
     }
@@ -120,6 +127,7 @@ private extension PurchasesViewController {
         setShadowsForViews()
         setPurchasesViews()
         setPrivacyButton()
+        setTermsOfUseButton()
         setTapsGestureForChoosedPurshase()
         
         activityIndicator.stopAnimating()
@@ -171,6 +179,19 @@ private extension PurchasesViewController {
         let attributedString = NSAttributedString(string: "Политика конфиденциальности", attributes: attributes)
         
         privacyButton.setAttributedTitle(attributedString, for: .normal)
+    }
+    
+    func setTermsOfUseButton() {
+        let attributes: [NSAttributedString .Key: Any] =
+            [
+                .font: UIFont.systemFont(ofSize: 13),
+                .foregroundColor: UIColor.black,
+                .underlineStyle: NSUnderlineStyle.single.rawValue
+            ]
+        
+        let attributedString = NSAttributedString(string: "Условия использования", attributes: attributes)
+        
+        termsOfUseButton.setAttributedTitle(attributedString, for: .normal)
     }
     
     func hasActivePurchase() {
