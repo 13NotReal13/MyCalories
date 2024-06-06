@@ -310,7 +310,7 @@
                                 <rect key="frame" x="0.0" y="103" width="350" height="829"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="7P2-Kk-QIh">
-                                        <rect key="frame" x="16" y="35" width="318" height="317.33333333333331"/>
+                                        <rect key="frame" x="16" y="35" width="318" height="384.66666666666669"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WeN-0J-aHE">
                                                 <rect key="frame" x="0.0" y="0.0" width="318" height="34.333333333333336"/>
@@ -400,10 +400,32 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTV-Rn-AKa">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeB-RE-AvQ">
                                                 <rect key="frame" x="0.0" y="265" width="318" height="34.333333333333314"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title="Отключить рекламу" imagePadding="10">
+                                                <buttonConfiguration key="configuration" style="plain" image="star" catalog="system" title="Оценить приложение" imagePadding="10">
+                                                    <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </buttonConfiguration>
+                                                <connections>
+                                                    <action selector="rateButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="bjL-Gr-1cN"/>
+                                                </connections>
+                                            </button>
+                                            <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYv-8x-rdf">
+                                                <rect key="frame" x="0.0" y="314.33333333333331" width="318" height="3"/>
+                                                <color key="backgroundColor" name="colorApp"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="3" id="D6y-Cf-JYH"/>
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="1"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fTV-Rn-AKa">
+                                                <rect key="frame" x="0.0" y="332.33333333333331" width="318" height="34.333333333333314"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" image="flame" catalog="system" title="Отключить рекламу" imagePadding="10">
                                                     <color key="baseForegroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </buttonConfiguration>
                                                 <connections>
@@ -411,7 +433,7 @@
                                                 </connections>
                                             </button>
                                             <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cUs-Gx-aud">
-                                                <rect key="frame" x="0.0" y="314.33333333333331" width="318" height="3"/>
+                                                <rect key="frame" x="0.0" y="381.66666666666663" width="318" height="3"/>
                                                 <color key="backgroundColor" name="colorApp"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="3" id="Tsb-ps-ENJ"/>
@@ -2150,6 +2172,7 @@
     <resources>
         <image name="barcode.viewfinder" catalog="system" width="128" height="115"/>
         <image name="clock.arrow.circlepath" catalog="system" width="128" height="112"/>
+        <image name="flame" catalog="system" width="106" height="128"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="person" catalog="system" width="128" height="121"/>

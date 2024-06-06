@@ -180,6 +180,12 @@ final class MainViewController: UIViewController {
         showAlertForAddWater()
     }
     
+    
+    @IBAction func rateButtonAction() {
+        toogleMenu()
+        showRatingAlert()
+    }
+    
     @IBAction func noAdsButtonAction() {
         DispatchQueue.main.async { [unowned self] in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
