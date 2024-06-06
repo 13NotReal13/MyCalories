@@ -52,6 +52,7 @@
 		79658B442C0235D8000BD566 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B432C0235D8000BD566 /* FirebaseAnalyticsSwift */; };
 		79658B462C0235D8000BD566 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B452C0235D8000BD566 /* FirebaseAppCheck */; };
 		79658B492C0240E8000BD566 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B482C0240E8000BD566 /* FirebaseMessaging */; };
+		79681EC02C121F85005D268E /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79681EBF2C121F85005D268E /* FAQViewController.swift */; };
 		79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD10552BF69B20005C049A /* UIViewController + Ext.swift */; };
 		79CBA7912C08E599008EED18 /* BarcodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 79CBA7902C08E599008EED18 /* BarcodeScanner */; };
 		79CBA7932C0A2E7D008EED18 /* SearchProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */; };
@@ -99,6 +100,7 @@
 		795D99C62C06375A009AC9CA /* PurchasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewController.swift; sourceTree = "<group>"; };
 		79658B3D2C021100000BD566 /* MyCalories.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCalories.entitlements; sourceTree = "<group>"; };
 		79658B3E2C02338A000BD566 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		79681EBF2C121F85005D268E /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProduct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +192,7 @@
 				7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */,
 				790456BE2BE193EE0009FA34 /* EditWeightViewController.swift */,
 				795D99C62C06375A009AC9CA /* PurchasesViewController.swift */,
+				79681EBF2C121F85005D268E /* FAQViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -374,6 +377,7 @@
 				7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */,
 				7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */,
 				7946F8F12BCE7C78005C3F33 /* HistoryProductViewCell.swift in Sources */,
+				79681EC02C121F85005D268E /* FAQViewController.swift in Sources */,
 				7946F8432BC44B61005C3F33 /* ProductsListViewCell.swift in Sources */,
 				790456C52BE26DB80009FA34 /* AllProducts.swift in Sources */,
 				790456712BDD0C040009FA34 /* UIView + Ext.swift in Sources */,

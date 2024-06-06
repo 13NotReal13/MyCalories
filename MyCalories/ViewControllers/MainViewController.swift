@@ -187,6 +187,7 @@ final class MainViewController: UIViewController {
     }
     
     @IBAction func noAdsButtonAction() {
+        toogleMenu()
         DispatchQueue.main.async { [unowned self] in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let navigationVC = storyboard.instantiateViewController(withIdentifier: "PurchasesNavigationController") as? UINavigationController else { return }
@@ -195,8 +196,12 @@ final class MainViewController: UIViewController {
             navigationVC.modalPresentationStyle = .overFullScreen
             present(navigationVC, animated: true)
         }
-        toogleMenu()
     }
+    
+//    @IBAction func faqButtonAction() {
+//        performSegue(withIdentifier: "SegueToFAQVC", sender: nil)
+//    }
+    
 }
 
 // MARK: - GoogleAd (GADFullScreenContentDelegate)
