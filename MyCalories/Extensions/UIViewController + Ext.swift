@@ -83,4 +83,48 @@ extension UIViewController {
         alert.addAction(cancelButton)
         present(alert, animated: true)
     }
+    
+    func showRatingAlert() {
+        let alert = UIAlertController(
+            title: "Нравится ли вам наше приложение?🥹",
+            message: "Мы очень стараемся для Вас и каждый день улучшаем наше приложение. Пожалуйста, оцените нас в 5 звёздочек.\nСпасибо за вашу поддержку!❤️",
+            preferredStyle: .alert
+        )
+        
+        // imageKitty
+        let kittyImage = UIImage(named: "littleKitty")
+        let imageView = UIImageView(image: kittyImage)
+        imageView.contentMode = .scaleAspectFit
+        let maxSize = CGSize(width: 372, height: 387)
+        var imageSize = imageView.sizeThatFits(maxSize)
+        imageSize = CGSize(width: min(maxSize.width, imageSize.width), height: min(maxSize.height, imageSize.height))
+        imageView.frame = CGRect(x: 10, y: 10, width: imageSize.width, height: imageSize.height)
+        alert.view.addSubview(imageView)
+        
+        alert.view.translatesAutoresizingMaskIntoConstraints = false
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            imageView.centerXAnchor.constraint(equalTo: alert.view.centerXAnchor),
+            imageView.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 160),
+            imageView.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor, constant: -50),
+            imageView.widthAnchor.constraint(equalToConstant: imageSize.width),
+            imageView.heightAnchor.constraint(equalToConstant: imageSize.height),
+        ])
+        
+        
+        let rateButton = UIAlertAction(title: "5 звёздочек", style: .default) { _ in
+            if let urlApp = URL(string: "https://apps.apple.com/pl/app/мои-калории-24-7/id6502844957") {
+                UIApplication.shared.open(urlApp)
+            }
+            alert.dismiss(animated: true)
+        }
+        
+        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
+        
+        alert.addAction(cancelButton)
+        alert.addAction(rateButton)
+        
+        present(alert, animated: true)
+    }
 }

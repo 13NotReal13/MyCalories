@@ -85,6 +85,7 @@ final class MainViewController: UIViewController {
         super.viewDidLoad()
         initialSetup()
         setupForegroundNotification()
+        storageManager.saveFirstOpenDate()
         
         if interstitial == nil {
             checkForUpdates()
@@ -108,7 +109,7 @@ final class MainViewController: UIViewController {
         menuTrailingConstraint.constant = view.frame.width
         overlayView.alpha = 0
         
-        if PurchasesManager.shared.activeSubscription() == nil {
+        if PurchasesManager.shared.activeSubscription() == nil && storageManager.shouldShowAds() {
             showInterstitial()
         }
     }
@@ -123,7 +124,9 @@ final class MainViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         ATTrackingManager.requestTrackingAuthorization { [unowned self] _ in
-            if adIsLoaded == false && PurchasesManager.shared.activeSubscription() == nil {
+            if adIsLoaded == false
+                && PurchasesManager.shared.activeSubscription() == nil
+                && storageManager.shouldShowAds() {
                 loadInterstitial()
                 adIsLoaded = true
             }
@@ -180,7 +183,14 @@ final class MainViewController: UIViewController {
         showAlertForAddWater()
     }
     
+    
+    @IBAction func rateButtonAction() {
+        toogleMenu()
+        showRatingAlert()
+    }
+    
     @IBAction func noAdsButtonAction() {
+        toogleMenu()
         DispatchQueue.main.async { [unowned self] in
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             guard let navigationVC = storyboard.instantiateViewController(withIdentifier: "PurchasesNavigationController") as? UINavigationController else { return }
@@ -189,8 +199,12 @@ final class MainViewController: UIViewController {
             navigationVC.modalPresentationStyle = .overFullScreen
             present(navigationVC, animated: true)
         }
-        toogleMenu()
     }
+    
+//    @IBAction func faqButtonAction() {
+//        performSegue(withIdentifier: "SegueToFAQVC", sender: nil)
+//    }
+    
 }
 
 // MARK: - GoogleAd (GADFullScreenContentDelegate)
@@ -218,8 +232,6 @@ extension MainViewController: GADFullScreenContentDelegate {
             self?.interstitial = ad
             self?.interstitial?.fullScreenContentDelegate = self
         }
-        
-        print("load add")
     }
     
     func showInterstitial() {
@@ -363,7 +375,7 @@ private extension MainViewController {
             water.ml = waterML
             storageManager.saveWaterToHistory(water) { [unowned self] in
                 setProgressBarValues()
-                if PurchasesManager.shared.activeSubscription() == nil {
+                if PurchasesManager.shared.activeSubscription() == nil && storageManager.shouldShowAds() {
                     showInterstitial()
                 }
             }
@@ -417,7 +429,7 @@ private extension MainViewController {
     }
     
     @objc private func appWillEnterForeground() {
-        if PurchasesManager.shared.activeSubscription() == nil {
+        if PurchasesManager.shared.activeSubscription() == nil && storageManager.shouldShowAds() {
             loadInterstitial()
         }
         updateProgressBar()
