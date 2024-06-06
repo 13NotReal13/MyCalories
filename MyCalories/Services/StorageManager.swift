@@ -83,6 +83,22 @@ final class StorageManager {
         userDefaults.setValue(settings.waterEnabled, forKey: waterKey)
     }
     
+    func saveFirstOpenDate() {
+        let userDefaults = UserDefaults.standard
+        if userDefaults.object(forKey: "dateFirstOpen") == nil {
+            userDefaults.set(Date(), forKey: "dateFirstOpen")
+        }
+    }
+    
+    func shouldShowAds() -> Bool {
+        let userDefaults = UserDefaults.standard
+        if let dateFirstOpen = userDefaults.object(forKey: "dateFirstOpen") as? Date {
+            let hoursSinceFirstOpen = Date().timeIntervalSince(dateFirstOpen) / 3600
+            return hoursSinceFirstOpen >= 48
+        }
+        return false
+    }
+    
     // MARK: - Realm
     // All Products
     func fetchAllProducts(completion: @escaping (Results<Product>) -> Void) {
