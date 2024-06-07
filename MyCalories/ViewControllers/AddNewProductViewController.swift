@@ -286,24 +286,35 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
     }
 
     private func updateUIWithProductDetails(_ product: FoundProduct) {
-        guard let protein = product.nutriments.proteins,
+        let title = product.productName
+        let protein = product.nutriments.proteins
+        let fats = product.nutriments.fat
+        let carbohydrates = product.nutriments.carbohydrates
+        let calories = product.nutriments.energyKcal
+        
+        if !title.isEmpty {
+            nameTF.text = title
+        } else if protein != nil {
+            proteinTF.text = String(protein ?? 0.0)
+        } else if fats != nil {
+            fatsTF.text = String(fats ?? 0.0)
+        } else if carbohydrates != nil {
+            carbohydratesTF.text = String(carbohydrates ?? 0.0)
+        } else if calories != nil {
+            caloriesTF.text = String(calories ?? 0.0)
+        }
+        
+        guard !title.isEmpty,
+              let protein = product.nutriments.proteins,
               let fats = product.nutriments.fat,
               let carbohydrates = product.nutriments.carbohydrates,
               let calories = product.nutriments.energyKcal else {
             
-            nameTF.text = product.productName
+            sourceOpenFoodStackView.isHidden = false
             showAlertWithMessage(title: "Информация", message: "Некоторые данные отсутствуют.")
-            
+            Analytics.logEvent("scan_product_not_full", parameters: nil)
             return
         }
-        
-        nameTF.text = product.productName
-        proteinTF.text = String(protein)
-        fatsTF.text = String(fats)
-        carbohydratesTF.text = String(carbohydrates)
-        caloriesTF.text = String(calories)
-        
-        sourceOpenFoodStackView.isHidden = false
     }
     
     private func showAlertWithMessage(title: String, message: String) {
