@@ -117,14 +117,16 @@ extension UIViewController {
         let rateButton = UIAlertAction(title: "5 звёздочек", style: .default) { _ in
             if let urlApp = URL(string: "https://apps.apple.com/pl/app/мои-калории-24-7/id6502844957") {
                 UIApplication.shared.open(urlApp)
-                Analytics.logEvent("5_stars_button_pressed", parameters: nil)
+                Analytics.logEvent("rate_5_stars_button_pressed", parameters: nil)
             } else {
-                Analytics.logEvent("5_stars_button_error_url", parameters: nil)
+                Analytics.logEvent("rate_5_stars_button_error_url", parameters: nil)
             }
             alert.dismiss(animated: true)
         }
         
-        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
+        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel) { _ in
+            Analytics.logEvent("rate_cancel_button_pressed", parameters: nil)
+        }
         
         alert.addAction(cancelButton)
         alert.addAction(rateButton)
