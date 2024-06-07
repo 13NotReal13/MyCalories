@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAnalytics
 
 enum TypeOfAlert {
     case invalidValue
@@ -116,6 +117,9 @@ extension UIViewController {
         let rateButton = UIAlertAction(title: "5 звёздочек", style: .default) { _ in
             if let urlApp = URL(string: "https://apps.apple.com/pl/app/мои-калории-24-7/id6502844957") {
                 UIApplication.shared.open(urlApp)
+                Analytics.logEvent("5_stars_button_pressed", parameters: nil)
+            } else {
+                Analytics.logEvent("5_stars_button_error_url", parameters: nil)
             }
             alert.dismiss(animated: true)
         }
