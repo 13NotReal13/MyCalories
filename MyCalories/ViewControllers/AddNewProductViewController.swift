@@ -304,12 +304,7 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
             caloriesTF.text = String(calories ?? 0.0)
         }
         
-        guard !title.isEmpty,
-              let protein = product.nutriments.proteins,
-              let fats = product.nutriments.fat,
-              let carbohydrates = product.nutriments.carbohydrates,
-              let calories = product.nutriments.energyKcal else {
-            
+        if title.isEmpty || protein == nil || fats == nil || carbohydrates == nil || calories == nil {
             sourceOpenFoodStackView.isHidden = false
             showAlertWithMessage(title: "Информация", message: "Некоторые данные отсутствуют.")
             Analytics.logEvent("scan_product_not_full", parameters: nil)

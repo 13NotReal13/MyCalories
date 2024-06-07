@@ -9,6 +9,7 @@ import UIKit
 import RealmSwift
 import GoogleMobileAds
 import AppTrackingTransparency
+import FirebaseAnalytics
 
 protocol MainScreenDelegate: AnyObject {
     func updateProgressBar()
@@ -86,10 +87,7 @@ final class MainViewController: UIViewController {
         initialSetup()
         setupForegroundNotification()
         storageManager.saveFirstOpenDate()
-        
-        if interstitial == nil {
-            checkForUpdates()
-        }
+        checkForUpdates()
     }
     
     override func viewDidLayoutSubviews() {
@@ -200,11 +198,6 @@ final class MainViewController: UIViewController {
             present(navigationVC, animated: true)
         }
     }
-    
-//    @IBAction func faqButtonAction() {
-//        performSegue(withIdentifier: "SegueToFAQVC", sender: nil)
-//    }
-    
 }
 
 // MARK: - GoogleAd (GADFullScreenContentDelegate)
@@ -212,7 +205,6 @@ extension MainViewController: GADFullScreenContentDelegate {
     func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         interstitial = nil
         loadInterstitial()
-        checkForUpdates()
     }
 
     func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
@@ -433,6 +425,7 @@ private extension MainViewController {
             loadInterstitial()
         }
         updateProgressBar()
+        checkForUpdates()
     }
     
     func checkForUpdates() {
@@ -453,7 +446,7 @@ private extension MainViewController {
                     }
                 }
             } catch {
-                
+                Analytics.logEvent("error_check_new_app_version", parameters: nil)
             }
         }
         .resume()
