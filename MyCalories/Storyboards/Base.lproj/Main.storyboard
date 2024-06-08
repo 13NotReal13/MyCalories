@@ -474,12 +474,25 @@
                                             <constraint firstItem="gOZ-HY-Ajw" firstAttribute="centerX" secondItem="7P2-Kk-QIh" secondAttribute="centerX" id="y6C-mA-3q7"/>
                                         </constraints>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5G-wx-BOU">
+                                        <rect key="frame" x="30" y="769" width="174" height="30"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="Версия: 1.2.0 (обновить)">
+                                            <color key="titleColor" systemColor="systemGrayColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="versionAppButtonAction" destination="BYZ-38-t0r" eventType="touchUpInside" id="6bJ-94-OE1"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="7P2-Kk-QIh" firstAttribute="leading" secondItem="La2-79-89M" secondAttribute="leading" constant="16" id="6mz-xo-mO2"/>
                                     <constraint firstAttribute="trailing" secondItem="7P2-Kk-QIh" secondAttribute="trailing" constant="16" id="NnV-Dq-lA0"/>
+                                    <constraint firstAttribute="bottom" secondItem="G5G-wx-BOU" secondAttribute="bottom" constant="30" id="PuU-RV-hjR"/>
                                     <constraint firstItem="7P2-Kk-QIh" firstAttribute="top" secondItem="La2-79-89M" secondAttribute="top" constant="35" id="bBR-dC-I66"/>
+                                    <constraint firstItem="G5G-wx-BOU" firstAttribute="leading" secondItem="La2-79-89M" secondAttribute="leading" constant="30" id="fEP-NI-8qb"/>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="G5G-wx-BOU" secondAttribute="trailing" constant="20" symbolic="YES" id="vyR-gn-NTc"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -546,6 +559,7 @@
                         <outlet property="shadowForProgressBarView" destination="eUE-0F-PXJ" id="S5F-pA-DRo"/>
                         <outlet property="shadowForTableViewView" destination="obA-V2-FCj" id="aTz-Jz-b1P"/>
                         <outlet property="tableView" destination="gDL-dZ-72b" id="XC7-Fg-GH0"/>
+                        <outlet property="versionAppButton" destination="G5G-wx-BOU" id="IBp-Gz-LGf"/>
                         <outlet property="waterButton" destination="PfG-hZ-WcI" id="P5n-j6-H8b"/>
                         <outlet property="waterProgrammLabel" destination="sB8-rb-5vd" id="67w-yW-8UC"/>
                         <outlet property="waterTodayLabel" destination="b6u-Oz-2UA" id="e4p-CX-eiv"/>
@@ -2593,25 +2607,25 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

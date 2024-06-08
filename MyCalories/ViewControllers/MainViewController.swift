@@ -50,6 +50,8 @@ final class MainViewController: UIViewController {
     @IBOutlet var waterTodayLabel: UILabel!
     @IBOutlet var waterProgrammLabel: UILabel!
     
+    @IBOutlet var versionAppButton: UIButton!
+    
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared
     
@@ -87,7 +89,7 @@ final class MainViewController: UIViewController {
         initialSetup()
         setupForegroundNotification()
         storageManager.saveFirstOpenDate()
-        checkForUpdates()
+        setVersionForVersionButton()
     }
     
     override func viewDidLayoutSubviews() {
@@ -196,6 +198,15 @@ final class MainViewController: UIViewController {
             
             navigationVC.modalPresentationStyle = .overFullScreen
             present(navigationVC, animated: true)
+        }
+    }
+    
+    @IBAction func versionAppButtonAction() {
+        toogleMenu()
+        
+        let urlString = "https://apps.apple.com/app/id\(appIDAppStore)"
+        if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
         }
     }
 }
@@ -425,10 +436,10 @@ private extension MainViewController {
             loadInterstitial()
         }
         updateProgressBar()
-        checkForUpdates()
+        setVersionForVersionButton()
     }
     
-    func checkForUpdates() {
+    func setVersionForVersionButton() {
         guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(appIDAppStore)") else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -441,7 +452,14 @@ private extension MainViewController {
                    let localVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
                     if appStoreVersion.compare(localVersion, options: .numeric) == .orderedDescending {
                         DispatchQueue.main.async { [unowned self] in
+                            versionAppButton.setTitle("Версия: \(localVersion) (обновить)", for: .normal)
+                            versionAppButton.isEnabled = true
                             showUpdateAlert(version: appStoreVersion)
+                        }
+                    } else {
+                        DispatchQueue.main.async { [unowned self] in
+                            versionAppButton.setTitle("Версия: \(localVersion)", for: .normal)
+                            versionAppButton.isEnabled = false
                         }
                     }
                 }
