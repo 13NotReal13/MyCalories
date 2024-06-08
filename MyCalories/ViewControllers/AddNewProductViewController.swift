@@ -273,15 +273,26 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
             activityIndicator.stopAnimating()
             
             if let product = response.product {
-                updateUIWithProductDetails(product)
-                Analytics.logEvent("scan_product_done", parameters: nil)
+                if !(product.productName ?? "").isEmpty || product.nutriments.proteins != nil || product.nutriments.fat != nil || product.nutriments.carbohydrates != nil || product.nutriments.energyKcal != nil {
+                    updateUIWithProductDetails(product)
+                    return
+                } else {
+                    showAlertWithMessage(title:"Продукт не найден", message: "Возможные варианты решения: \n1. Убедитесь, что сканируете только штрихкод, без лишних цифровых символов вокруг; \n2. Проверьте, не осталось ли на продукте других штрих-кодов или QR-кодов.")
+                    sourceOpenFoodStackView.isHidden = true
+                    Analytics.logEvent("scan_product_not_found", parameters: nil)
+                    return
+                }
             } else if response.errors != nil || response.result?.id == "product_not_found" {
                 showAlertWithMessage(title:"Продукт не найден", message: "Возможные варианты решения: \n1. Убедитесь, что сканируете только штрихкод, без лишних цифровых символов вокруг; \n2. Проверьте, не осталось ли на продукте других штрих-кодов или QR-кодов.")
+                sourceOpenFoodStackView.isHidden = true
                 Analytics.logEvent("scan_product_not_found", parameters: nil)
+                return
             }
         } catch {
             showAlertWithMessage(title: "Продукт не найден", message: "Возможные варианты решения: \n1. Убедитесь, что сканируете только штрихкод, без лишних цифровых символов вокруг; \n2. Проверьте, не осталось ли на продукте других штрих-кодов или QR-кодов.")
+            sourceOpenFoodStackView.isHidden = true
             Analytics.logEvent("scan_product_not_found", parameters: nil)
+            return
         }
     }
 
@@ -292,7 +303,7 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
         let carbohydrates = product.nutriments.carbohydrates
         let calories = product.nutriments.energyKcal
         
-        if let titleValue = title {
+        if let titleValue = title, !titleValue.isEmpty {
             nameTF.text = titleValue
         }
         if let proteinValue = protein {
@@ -308,8 +319,7 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
             caloriesTF.text = String(caloriesValue)
         }
         
-        if title == nil || protein == nil || fats == nil || carbohydrates == nil || calories == nil {
-            sourceOpenFoodStackView.isHidden = false
+        if (title ?? "").isEmpty || protein == nil || fats == nil || carbohydrates == nil || calories == nil {
             showAlertWithMessage(title: "Информация", message: "Некоторые данные отсутствуют.")
             Analytics.logEvent(
                 "scan_product_not_full",
@@ -324,7 +334,10 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
                         ]
                     ]
             )
+        } else {
+            Analytics.logEvent("scan_product_done", parameters: nil)
         }
+        sourceOpenFoodStackView.isHidden = false
     }
     
     private func showAlertWithMessage(title: String, message: String) {
