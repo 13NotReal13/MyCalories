@@ -35,21 +35,10 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24/7" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="syx-kS-FG1">
-                                <rect key="frame" x="136.66666666666666" y="670" width="119.99999999999997" height="88"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="120" id="WKh-OJ-R3F"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Zapfino" family="Zapfino" pointSize="26"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="syx-kS-FG1" secondAttribute="bottom" constant="60" id="4nk-OO-1wu"/>
-                            <constraint firstItem="syx-kS-FG1" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="TlU-De-Z7a"/>
                             <constraint firstItem="0h8-59-0ro" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="120" id="ien-Jk-3o5"/>
                             <constraint firstItem="0h8-59-0ro" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="o8f-qJ-p47"/>
                         </constraints>
@@ -63,7 +52,7 @@
     <resources>
         <image name="iconLaunchScreen" width="400" height="400"/>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

@@ -8,6 +8,7 @@
 import Foundation
 import StoreKit
 import TPInAppReceipt
+import FirebaseAnalytics
 
 final class PurchasesManager: NSObject {
     static let shared = PurchasesManager()
@@ -37,12 +38,12 @@ final class PurchasesManager: NSObject {
         do {
             let receipt = try InAppReceipt.localReceipt()
             let purchases = receipt.purchases
-            print("purchases: \(purchases)")
+//            print("purchases: \(purchases)")
             
             for purchase in purchases {
                 if let expiryDate = purchase.subscriptionExpirationDate,
                    expiryDate > Date() && purchase.cancellationDate == nil {
-                    print("Subscription \(purchase.productIdentifier) is active.")
+//                    print("Subscription \(purchase.productIdentifier) is active.")
                     return purchase
                 }
             }
@@ -78,7 +79,7 @@ extension PurchasesManager: SKPaymentTransactionObserver {
     }
     
     func restorePurchases() {
-        print("Attempting to restore purchases")
+//        print("Attempting to restore purchases")
         paymentQueue.restoreCompletedTransactions()
     }
     
@@ -86,11 +87,11 @@ extension PurchasesManager: SKPaymentTransactionObserver {
         for transaction in transactions {
             switch transaction.transactionState {
             case .purchased:
-                print("Purchased: \(transaction.payment.productIdentifier)")
+//                print("Purchased: \(transaction.payment.productIdentifier)")
                 onPurchaseComplete?(true)
                 paymentQueue.finishTransaction(transaction)
             case .restored:
-                print("Restored: \(transaction.payment.productIdentifier)")
+//                print("Restored: \(transaction.payment.productIdentifier)")
                 onPurchaseComplete?(true)
                 paymentQueue.finishTransaction(transaction)
             case .failed:
@@ -100,7 +101,7 @@ extension PurchasesManager: SKPaymentTransactionObserver {
                 onPurchaseComplete?(true)
                 paymentQueue.finishTransaction(transaction)
             default:
-                print("Other transaction state")
+//                print("Other transaction state")
                 break
             }
         }

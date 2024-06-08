@@ -9,6 +9,7 @@ import UIKit
 import RealmSwift
 import GoogleMobileAds
 import AppTrackingTransparency
+import FirebaseAnalytics
 
 protocol MainScreenDelegate: AnyObject {
     func updateProgressBar()
@@ -49,6 +50,8 @@ final class MainViewController: UIViewController {
     @IBOutlet var waterTodayLabel: UILabel!
     @IBOutlet var waterProgrammLabel: UILabel!
     
+    @IBOutlet var versionAppButton: UIButton!
+    
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared
     
@@ -86,10 +89,7 @@ final class MainViewController: UIViewController {
         initialSetup()
         setupForegroundNotification()
         storageManager.saveFirstOpenDate()
-        
-        if interstitial == nil {
-            checkForUpdates()
-        }
+        setVersionForVersionButton()
     }
     
     override func viewDidLayoutSubviews() {
@@ -201,10 +201,14 @@ final class MainViewController: UIViewController {
         }
     }
     
-//    @IBAction func faqButtonAction() {
-//        performSegue(withIdentifier: "SegueToFAQVC", sender: nil)
-//    }
-    
+    @IBAction func versionAppButtonAction() {
+        toogleMenu()
+        
+        let urlString = "https://apps.apple.com/app/id\(appIDAppStore)"
+        if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
 }
 
 // MARK: - GoogleAd (GADFullScreenContentDelegate)
@@ -212,7 +216,6 @@ extension MainViewController: GADFullScreenContentDelegate {
     func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
         interstitial = nil
         loadInterstitial()
-        checkForUpdates()
     }
 
     func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
@@ -433,9 +436,10 @@ private extension MainViewController {
             loadInterstitial()
         }
         updateProgressBar()
+        setVersionForVersionButton()
     }
     
-    func checkForUpdates() {
+    func setVersionForVersionButton() {
         guard let url = URL(string: "https://itunes.apple.com/lookup?id=\(appIDAppStore)") else { return }
         
         URLSession.shared.dataTask(with: url) { data, response, error in
@@ -448,12 +452,19 @@ private extension MainViewController {
                    let localVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
                     if appStoreVersion.compare(localVersion, options: .numeric) == .orderedDescending {
                         DispatchQueue.main.async { [unowned self] in
+                            versionAppButton.setTitle("Версия: \(localVersion) (обновить)", for: .normal)
+                            versionAppButton.isEnabled = true
                             showUpdateAlert(version: appStoreVersion)
+                        }
+                    } else {
+                        DispatchQueue.main.async { [unowned self] in
+                            versionAppButton.setTitle("Версия: \(localVersion)", for: .normal)
+                            versionAppButton.isEnabled = false
                         }
                     }
                 }
             } catch {
-                
+                Analytics.logEvent("error_check_new_app_version", parameters: nil)
             }
         }
         .resume()
