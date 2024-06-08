@@ -13,7 +13,7 @@ struct SearchProduct: Codable {
 }
 
 struct FoundProduct: Codable {
-    let productName: String
+    let productName: String?
     let nutriments: Nutriments
 
     enum CodingKeys: String, CodingKey {
