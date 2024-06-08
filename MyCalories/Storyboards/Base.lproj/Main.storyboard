@@ -796,6 +796,14 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.right" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MIl-Fn-n3G">
+                                <rect key="frame" x="348" y="778" width="50" height="20.333333333333371"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="26" id="1hH-WN-MCB"/>
+                                    <constraint firstAttribute="width" constant="50" id="Gfn-GH-4Uc"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mqN-4Y-Emw"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
@@ -803,11 +811,13 @@
                             <constraint firstItem="1p3-Lk-rwc" firstAttribute="leading" secondItem="mqN-4Y-Emw" secondAttribute="leading" constant="16" id="9Ru-Xm-qlm"/>
                             <constraint firstItem="mqN-4Y-Emw" firstAttribute="trailing" secondItem="3pN-Lo-uGA" secondAttribute="trailing" constant="16" id="C07-yQ-cEq"/>
                             <constraint firstItem="kWm-5P-dGI" firstAttribute="centerX" secondItem="91f-Xq-iLD" secondAttribute="centerX" id="Fq4-hf-9F1"/>
+                            <constraint firstItem="mqN-4Y-Emw" firstAttribute="trailing" secondItem="MIl-Fn-n3G" secondAttribute="trailing" constant="32" id="LsN-xi-4bH"/>
                             <constraint firstItem="kWm-5P-dGI" firstAttribute="top" secondItem="mqN-4Y-Emw" secondAttribute="top" constant="16" id="OED-MJ-5xS"/>
                             <constraint firstItem="mqN-4Y-Emw" firstAttribute="trailing" secondItem="1p3-Lk-rwc" secondAttribute="trailing" constant="16" id="aMg-gk-3z9"/>
                             <constraint firstItem="3pN-Lo-uGA" firstAttribute="leading" secondItem="mqN-4Y-Emw" secondAttribute="leading" constant="16" id="eSO-xb-iWH"/>
                             <constraint firstItem="3pN-Lo-uGA" firstAttribute="top" secondItem="kWm-5P-dGI" secondAttribute="bottom" constant="16" id="jOg-VX-Vgy"/>
                             <constraint firstItem="mqN-4Y-Emw" firstAttribute="bottom" secondItem="1p3-Lk-rwc" secondAttribute="bottom" constant="16" id="uJ9-Mr-pXm"/>
+                            <constraint firstItem="1p3-Lk-rwc" firstAttribute="top" secondItem="MIl-Fn-n3G" secondAttribute="bottom" constant="-35" id="urk-Q8-fHl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="Gb4-dK-Jxs">
@@ -820,6 +830,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="annuallyView" destination="rxl-c1-hdx" id="7fP-6r-bgi"/>
+                        <outlet property="arrowImageView" destination="MIl-Fn-n3G" id="t9F-MS-xqj"/>
                         <outlet property="descriptionAnnuallyLabel" destination="gM2-hY-0tf" id="lt1-vl-ciT"/>
                         <outlet property="descriptionMonthlyLabel" destination="7xE-HK-iBW" id="myf-9f-fyp"/>
                         <outlet property="expirationDateAnnuallyLabel" destination="396-T7-A7G" id="ZgR-WW-3tR"/>
@@ -2585,6 +2596,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="barcode.viewfinder" catalog="system" width="128" height="115"/>
         <image name="clock.arrow.circlepath" catalog="system" width="128" height="112"/>
         <image name="flame" catalog="system" width="106" height="128"/>

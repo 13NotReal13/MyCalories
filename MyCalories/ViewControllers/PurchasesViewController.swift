@@ -8,6 +8,7 @@
 import UIKit
 import StoreKit
 import TPInAppReceipt
+import FirebaseAnalytics
 
 enum Purchases {
     case annually
@@ -34,6 +35,8 @@ final class PurchasesViewController: UIViewController {
     @IBOutlet var purchaseButton: UIButton!
     @IBOutlet var termsOfUseButton: UIButton!
     @IBOutlet var privacyButton: UIButton!
+    
+    @IBOutlet var arrowImageView: UIImageView!
     
     private var purchasesManager = PurchasesManager.shared
     private var productsDict = [String: SKProduct]()
@@ -62,6 +65,7 @@ final class PurchasesViewController: UIViewController {
         }
         
         purchasesManager.setupIAP()
+        Analytics.logEvent("purchase_screen_open", parameters: nil)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,15 +77,15 @@ final class PurchasesViewController: UIViewController {
     @IBAction func purchaseButtonAction() {
         let productID = choosedPurchase == .annually ? "Annually" : "Monthly"
         if let product = productsDict[productID] {
-            print(productID)
-            print(product.productIdentifier)
             purchasesManager.buy(product: product)
         }
+        Analytics.logEvent("purchase_buy_button_tapped", parameters: nil)
     }
     
     @IBAction func restorePurchasesButtonAction() {
         purchasesManager.setupIAP()
         purchasesManager.restorePurchases()
+        Analytics.logEvent("purchase_restore_button_tapped", parameters: nil)
         
         guard let activeSubscription = activeSubscription,
             let expirationDate = activeSubscription.subscriptionExpirationDate else {
@@ -101,6 +105,7 @@ final class PurchasesViewController: UIViewController {
     }
     
     @IBAction func closeBarButtonItemAction(_ sender: UIBarButtonItem) {
+        Analytics.logEvent("purchase_screen_close", parameters: nil)
         dismiss(animated: true)
     }
     
@@ -126,6 +131,7 @@ private extension PurchasesViewController {
     func setupUI() {
         setShadowsForViews()
         setPurchasesViews()
+        animateArrow()
         setPrivacyButton()
         setTermsOfUseButton()
         setTapsGestureForChoosedPurshase()
@@ -284,6 +290,12 @@ private extension PurchasesViewController {
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
         view.addSubview(activityIndicator)
+    }
+    
+    func animateArrow() {
+        UIView.animate(withDuration: 0.5, delay: 0.0, options: [.autoreverse, .repeat]) { [unowned self] in
+            arrowImageView.transform = CGAffineTransform(translationX: -19, y: 0)
+        }
     }
 }
 
