@@ -292,23 +292,38 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
         let carbohydrates = product.nutriments.carbohydrates
         let calories = product.nutriments.energyKcal
         
-        if !title.isEmpty {
-            nameTF.text = title
-        } else if protein != nil {
-            proteinTF.text = String(protein ?? 0.0)
-        } else if fats != nil {
-            fatsTF.text = String(fats ?? 0.0)
-        } else if carbohydrates != nil {
-            carbohydratesTF.text = String(carbohydrates ?? 0.0)
-        } else if calories != nil {
-            caloriesTF.text = String(calories ?? 0.0)
+        if let titleValue = title {
+            nameTF.text = titleValue
+        }
+        if let proteinValue = protein {
+            proteinTF.text = String(proteinValue)
+        }
+        if let fatsValue = fats {
+            fatsTF.text = String(fatsValue)
+        }
+        if let carbohydratesValue = carbohydrates {
+            carbohydratesTF.text = String(carbohydratesValue)
+        }
+        if let caloriesValue = calories {
+            caloriesTF.text = String(caloriesValue)
         }
         
-        if title.isEmpty || protein == nil || fats == nil || carbohydrates == nil || calories == nil {
+        if title == nil || protein == nil || fats == nil || carbohydrates == nil || calories == nil {
             sourceOpenFoodStackView.isHidden = false
             showAlertWithMessage(title: "Информация", message: "Некоторые данные отсутствуют.")
-            Analytics.logEvent("scan_product_not_full", parameters: nil)
-            return
+            Analytics.logEvent(
+                "scan_product_not_full",
+                parameters:
+                    [
+                        "product_name": title ?? "Unknown",
+                        "missing_info": [
+                            "protein": protein == nil,
+                            "fats": fats == nil,
+                            "carbohydrates": carbohydrates == nil,
+                            "calories": calories == nil
+                        ]
+                    ]
+            )
         }
     }
     
