@@ -77,3 +77,13 @@
 // MARK: - EditWeightVC
 "Error" = "Error";
 "NeedEnterWeight" = "It is necessary to enter the weight.";
+
+// MARK: - PurchaseVC
+"RestorePurchase" = "Restore Purchases";
+"RequestHasBeenSent" = "A request to restore purchases from your AppleID has been sent.";
+"SubscriptionRestored" = "Subscription Restored";
+"ExpirationDate" = "Expiration Date:";
+"PrivacyPolicy" = "Privacy Policy";
+"TermsOfUse" = "Terms of Use";
+"Expiration" = "Expires:";
+"PerMonth" =  "/ mo.";

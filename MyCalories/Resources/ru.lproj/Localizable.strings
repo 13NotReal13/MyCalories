@@ -75,3 +75,14 @@
 // MARK: - EditWeightVC
 "Error" = "Ошибка";
 "NeedEnterWeight" = "Необходимо ввести вес.";
+
+// MARK: - PurchaseVC
+"RestorePurchase" = "Восстановить покупки";
+"RequestHasBeenSent" = "Запрос на восстановление покупок с вашего AppleID отправлен.";
+"SubscriptionRestored" = "Подписка восстановлена";
+"ExpirationDate" = "Дата истечения:";
+"PrivacyPolicy" = "Политика конфиденциальности";
+"TermsOfUse" = "Условия использования";
+"Expiration" = "Истекает:";
+"PerMonth" =  "/ мес.";
+

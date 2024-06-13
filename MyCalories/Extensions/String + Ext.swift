@@ -185,4 +185,30 @@ extension String {
     static var needEnterWeight: String {
         NSLocalizedString("NeedEnterWeight", comment: "It is necessary to enter the weight.")
     }
+    
+    // MARK: - PurchaseVC
+    static var restorePurchase: String {
+        NSLocalizedString("RestorePurchase", comment: "Restore Purchases")
+    }
+    static var requestHasBeenSent: String {
+        NSLocalizedString("RequestHasBeenSent", comment: "A request to restore purchases from your AppleID has been sent.")
+    }
+    static var subscriptionRestored: String {
+        NSLocalizedString("SubscriptionRestored", comment: "Subscription Restored")
+    }
+    static var expirationDate: String {
+        NSLocalizedString("ExpirationDate", comment: "Expiration Date:")
+    }
+    static var privacyPolicy: String {
+        NSLocalizedString("PrivacyPolicy", comment: "Privacy Policy")
+    }
+    static var termsOfUse: String {
+        NSLocalizedString("TermsOfUse", comment: "Terms of Use")
+    }
+    static var expiration: String {
+        NSLocalizedString("Expiration", comment: "Expires:")
+    }
+    static var perMonth: String {
+        NSLocalizedString("PerMonth", comment: "/ мес.")
+    }
 }
