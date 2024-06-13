@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleDisplayName</key>
-	<string>My Calories</string>
+	<string>Мои Калории</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-7511053995750557~1739548265</string>
 	<key>ITSAppUsesNonExemptEncryption</key>

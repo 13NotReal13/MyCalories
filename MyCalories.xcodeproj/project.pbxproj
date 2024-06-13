@@ -84,7 +84,6 @@
 		792DB1912BBADF4800209193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		792DB1932BBADF4900209193 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		792DB1962BBADF4900209193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		792DB1982BBADF4900209193 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7946F7ED2BBB1B58005C3F33 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7946F8272BC068C8005C3F33 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7946F82A2BC1F630005C3F33 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -110,6 +109,7 @@
 		79681EBF2C121F85005D268E /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProduct.swift; sourceTree = "<group>"; };
+		79FE15352C1B0B42001A9384 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -183,7 +183,7 @@
 			children = (
 				792DB18A2BBADF4800209193 /* AppDelegate.swift */,
 				792DB18C2BBADF4800209193 /* SceneDelegate.swift */,
-				792DB1982BBADF4900209193 /* Info.plist */,
+				79FE15352C1B0B42001A9384 /* Info.plist */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -329,7 +329,7 @@
 			};
 			buildConfigurationList = 792DB1822BBADF4800209193 /* Build configuration list for PBXProject "MyCalories" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = ru;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
@@ -585,6 +585,8 @@
 				INFOPLIST_FILE = MyCalories/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Мои Калории";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Доступ к камере необходим для сканирования штрихкода.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Это поможет нам поддерживать приложение бесплатным для вас и показывать только персонализированную рекламу.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -628,6 +630,8 @@
 				INFOPLIST_FILE = MyCalories/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Мои Калории";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Доступ к камере необходим для сканирования штрихкода.";
+				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Это поможет нам поддерживать приложение бесплатным для вас и показывать только персонализированную рекламу.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
