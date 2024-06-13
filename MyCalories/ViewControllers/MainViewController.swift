@@ -126,7 +126,8 @@ final class MainViewController: UIViewController {
         ATTrackingManager.requestTrackingAuthorization { [unowned self] _ in
             if adIsLoaded == false
                 && PurchasesManager.shared.activeSubscription() == nil
-                && storageManager.shouldShowAds() {
+                && storageManager.shouldShowAds() 
+                && storageManager.isFifteenMinutesPassedSinceLastAd() {
                 loadInterstitial()
                 adIsLoaded = true
             }
@@ -239,6 +240,7 @@ extension MainViewController: GADFullScreenContentDelegate {
     
     func showInterstitial() {
         if let interstitial = interstitial {
+            storageManager.saveLastAdShownDate()
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 interstitial.present(fromRootViewController: self)
             }
@@ -432,7 +434,9 @@ private extension MainViewController {
     }
     
     @objc private func appWillEnterForeground() {
-        if PurchasesManager.shared.activeSubscription() == nil && storageManager.shouldShowAds() {
+        if PurchasesManager.shared.activeSubscription() == nil 
+            && storageManager.shouldShowAds()
+            && storageManager.isFifteenMinutesPassedSinceLastAd() {
             loadInterstitial()
         }
         updateProgressBar()
