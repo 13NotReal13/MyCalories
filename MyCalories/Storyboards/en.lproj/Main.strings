@@ -96,7 +96,7 @@
 "CHR-6R-MjY.text" = "Why isn’t a product found when scanning its QR or barcode?";
 
 /* Class = "UILabel"; text = "Углев."; ObjectID = "DBu-EC-eDs"; */
-"DBu-EC-eDs.text" = "Carbs.";
+"DBu-EC-eDs.text" = "Carbs";
 
 /* Class = "UILabel"; text = "БЕЛКИ: 24,5"; ObjectID = "DP1-nz-aL3"; */
 "DP1-nz-aL3.text" = "PROTEINS: 24.5";
@@ -252,7 +252,7 @@
 "WeN-0J-aHE.normalTitle" = "Home";
 
 /* Class = "UILabel"; text = "Ккал."; ObjectID = "Wjh-UR-YYJ"; */
-"Wjh-UR-YYJ.text" = "Cal.";
+"Wjh-UR-YYJ.text" = "Kcal.";
 
 /* Class = "UILabel"; text = "4.99 PLN"; ObjectID = "XON-uk-SD7"; */
 "XON-uk-SD7.text" = "4.99 PLN";

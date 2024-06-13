@@ -15,22 +15,22 @@ enum Activity {
     var title: String {
         switch self {
         case .low:
-            "Низкая"
+            String.lowTitle
         case .medium:
-            "Средняя"
+            String.mediumTitle
         case .high:
-            "Высокая"
+            String.highTitle
         }
     }
     
     var description: String {
         switch self {
         case .low:
-            "Низкая (1-2 тренировки в неделю или сидячий образ жизни)"
+            String.lowDescription
         case .medium:
-            "Средняя (3-5 тренировок в неделю или лёгкие физические нагрузки)"
+            String.mediumDescription
         case .high:
-            "Высокая (6-7 тренировок в неделю или тяжёлые физические нагрузки)"
+            String.highDescription
         }
     }
 }
@@ -43,11 +43,11 @@ enum Goal {
     var title: String {
         switch self {
         case .downWeight:
-            "Снизить вес"
+            String.downWeight
         case .maintainWeight:
-            "Удержать вес"
+            String.maintainWeight
         case .upWeight:
-            "Набрать вес"
+            String.upWeight
         }
     }
 }
@@ -132,7 +132,7 @@ final class ProfileViewController: UIViewController {
         storageManager.savePerson(
             Person(value:
                     [
-                        genderSegmentedControl.selectedSegmentIndex == 0 ? "Мужчина" : "Женщина",
+                        genderSegmentedControl.selectedSegmentIndex == 0 ? String.male : String.female,
                         datePicker.date,
                         heightInDouble,
                         weightInDouble,
@@ -175,7 +175,7 @@ private extension ProfileViewController {
         dateOfBirthdayTF.inputView = datePicker
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
-        datePicker.locale = Locale(identifier: "ru_RU")
+        datePicker.locale = Locale.current
         
         activityTF.inputView = pickerView
         goalTF.inputView = pickerView
@@ -218,7 +218,7 @@ private extension ProfileViewController {
     func getPerson() {
         guard let person = storageManager.fetchPerson() else { return }
         
-        genderSegmentedControl.selectedSegmentIndex = person.gender == "Мужчина" ? 0 : 1
+        genderSegmentedControl.selectedSegmentIndex = person.gender == String.male ? 0 : 1
         dateOfBirthdayTF.text = datePicker.dateToString(person.dateOfBirthday)
         heightTF.text = String(person.height)
         weightTF.text = String(person.weight)
@@ -254,49 +254,49 @@ private extension ProfileViewController {
         var calories: Double
         var water: Double
         
-        calories = person.gender == "Мужчина"
+        calories = person.gender == String.male
             ? (person.weight * 10.0) + (person.height * 6.25) - (personAge * 5) + 5
             : (person.weight * 10.0) + (person.height * 6.25) - (personAge * 5) - 161
         
-        water = person.gender == "Мужчина" ? person.weight * 30 : person.weight * 25
+        water = person.gender == String.male ? person.weight * 30 : person.weight * 25
         
         switch person.activity {
-        case "Низкая":
+        case .lowTitle:
             calories *= 1.2
-            water += person.gender == "Мужчина" ? (0.57 * 500) : (0.57 * 400)
-        case "Средняя":
+            water += person.gender == String.male ? (0.57 * 500) : (0.57 * 400)
+        case .mediumTitle:
             calories *= 1.4
-            water += person.gender == "Мужчина" ? (1.42 * 500) : (1.42 * 400)
+            water += person.gender == String.male ? (1.42 * 500) : (1.42 * 400)
         default:
             calories *= 1.8
-            water += person.gender == "Мужчина" ? (2.0 * 500) : (2.0 * 400)
+            water += person.gender == String.male ? (2.0 * 500) : (2.0 * 400)
         }
         
         switch person.goal {
-        case "Снизить вес":
+        case .downWeight:
             calories *= 0.8
             protein = calories * 0.5 / 4
             fats = calories * 0.2 / 9
             carbohydrates = calories * 0.3 / 4
-            titleOfProgrammLabel.text = "Ежедневная рекомендуемая норма для снижения веса:"
-        case "Удержать вес":
+            titleOfProgrammLabel.text = String.normForDownWeight
+        case .maintainWeight:
             protein = calories * 0.3 / 4
             fats = calories * 0.3 / 9
             carbohydrates = calories * 0.4 / 4
-            titleOfProgrammLabel.text = "Ежедневная рекомендуемая норма для поддержания веса:"
+            titleOfProgrammLabel.text = String.normForMaintainWeight
         default:
             calories *= 1.25
             protein = calories * 0.3 / 4
             fats = calories * 0.2 / 9
             carbohydrates = calories * 0.5 / 4
-            titleOfProgrammLabel.text = "Ежедневная рекомендуемая норма для набора массы:"
+            titleOfProgrammLabel.text = String.normForUpWeight
         }
         
-        proteinPerDayLabel.text = "\(Int(protein)) г."
-        fatsPerDayLabel.text = "\(Int(fats)) г."
-        carbohydratesPerDayLabel.text = "\(Int(carbohydrates)) г."
-        caloriesPerDayLabel.text = "\(Int(calories)) кКал."
-        waterPerDayLabel.text = "\(Int(water)) мл."
+        proteinPerDayLabel.text = "\(Int(protein)) " + String.g
+        fatsPerDayLabel.text = "\(Int(fats)) " + String.g
+        carbohydratesPerDayLabel.text = "\(Int(carbohydrates)) " + String.g
+        caloriesPerDayLabel.text = "\(Int(calories)) " + String.cal
+        waterPerDayLabel.text = "\(Int(water)) " + String.ml
         
         let recommendedProgramm = RecommendedProgramm(
             value: [
@@ -323,7 +323,7 @@ private extension ProfileViewController {
                 .underlineStyle: NSUnderlineStyle.single.rawValue
             ]
         
-        let attributedString = NSAttributedString(string: "Источник расчёта формул", attributes: attributes)
+        let attributedString = NSAttributedString(string: String.sourceOfFormula, attributes: attributes)
         
         formulaSourceButton.setAttributedTitle(attributedString, for: .normal)
     }
@@ -333,7 +333,7 @@ private extension ProfileViewController {
 extension ProfileViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
-        textField.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        textField.inputAccessoryView = createToolbar(title: String.done, selector: #selector(doneButtonPressed))
         saveBarButtonItem.isEnabled = false
         pickerView.reloadAllComponents()
     }

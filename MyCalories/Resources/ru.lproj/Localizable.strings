@@ -5,6 +5,7 @@
   Created by Иван Семикин on 13/06/2024.
 */
 
+// MARK: - MainVC
 "AddWaterAlert" = "Сколько воды вы выпили?";
 "Save" = "Сохранить";
 "Cancel" = "Отмена";
@@ -23,3 +24,27 @@
 "CarbohydratesTableView" = "УГЛЕВОДЫ: ";
 "CaloriesTableView" = "ККАЛ: ";
 "Per100gTableView" = " НА 100 Г.";
+
+//MARK: - ProfileVC
+"LowTitle" = "Низкая";
+"MediumTitle" = "Средняя";
+"HighTitle" = "Высокая";
+
+"LowDescription" = "Низкая (1-2 тренировки в неделю или сидячий образ жизни)";
+"MediumDescription" = "Средняя (3-5 тренировок в неделю или лёгкие физические нагрузки)";
+"HighDescription" = "Высокая (6-7 тренировок в неделю или тяжёлые физические нагрузки)";
+
+"DownWeight" = "Снизить вес";
+"MaintainWeight" = "Удержать вес";
+"UpWeight" = "Набрать вес";
+
+"Male" = "Мужчина";
+"Female" = "Женщина";
+
+"NormForDownWeight" = "Ежедневная рекомендуемая норма для снижения веса:";
+"NormForMaintainWeight" = "Ежедневная рекомендуемая норма для поддержания веса:";
+"NormForUpWeight" = "Ежедневная рекомендуемая норма для набора массы:";
+
+"G" = "г.";
+"Cal" = "кКал.";
+"SourceOfFormula" = "Источник расчёта формул";

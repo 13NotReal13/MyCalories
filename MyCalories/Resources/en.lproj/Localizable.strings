@@ -5,6 +5,7 @@
   Created by Иван Семикин on 13/06/2024.
 */
 
+// MARK: - MainVC
 "AddWaterAlert" = "How much water did you drink?";
 "Save" = "Save";
 "Cancel" = "Cancel";
@@ -20,6 +21,30 @@
 
 "ProteinsTableView" = "PROTEINS: ";
 "FatsYableView" = "FATS: ";
-"CarbohydratesTableView" = "CARBOHYDRATES: ";
-"CaloriesTableView" = "CAL: ";
-"Per100gTableView" = " PER 100 G.";
+"CarbohydratesTableView" = "CARBS: ";
+"CaloriesTableView" = "KCAL: ";
+"Per100gTableView" = " per 100 g.";
+
+// MARK: - ProfileVC
+"LowTitle" = "Low";
+"MediumTitle" = "Medium";
+"HighTitle" = "High";
+
+"LowDescription" = "Low (1-2 workouts per week or a sedentary lifestyle)";
+"MediumDescription" = "Medium (3-5 workouts per week or light physical activity)";
+"HighDescription" = "High (6-7 workouts per week or heavy physical activity)";
+
+"DownWeight" = "Lose Weight";
+"MaintainWeight" = "Maintain Weight";
+"UpWeight" = "Gain Weight";
+
+"Male" = "Male";
+"Female" = "Female";
+
+"NormForDownWeight" = "Recommended daily norm for weight loss:";
+"NormForMaintainWeight" = "Recommended daily norm for weight maintenance:";
+"NormForUpWeight" = "Recommended daily norm for weight gain:";
+
+"G" = "g";
+"Cal" = "kcal";
+"SourceOfFormula" = "Source of Calculation";
