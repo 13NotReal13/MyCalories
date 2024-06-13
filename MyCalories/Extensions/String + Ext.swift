@@ -138,4 +138,15 @@ extension String {
     static var delete: String {
         NSLocalizedString("Delete", comment: "Удалить")
     }
+    
+    // MARK: - AddProductToHistoryVC
+    static var kcalPer100G: String {
+        NSLocalizedString("KcalPer100G", comment: "кКал на 100 г.")
+    }
+    static var today: String {
+        NSLocalizedString("Today", comment: "СЕГОДНЯ")
+    }
+    static var yesterday: String {
+        NSLocalizedString("Yesterday", comment: "ВЧЕРА")
+    }
 }

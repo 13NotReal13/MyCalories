@@ -23,7 +23,7 @@
 "FatsYableView" = "FATS: ";
 "CarbohydratesTableView" = "CARBS: ";
 "CaloriesTableView" = "KCAL: ";
-"Per100gTableView" = " per 100 g.";
+"Per100gTableView" = " per 100 g";
 
 // MARK: - ProfileVC
 "LowTitle" = "Low";
@@ -56,3 +56,8 @@
 "SelectTheOption" = "Select the option";
 "EditWeight" = "Edit weight";
 "Delete" = "Delete";
+
+// MARK: - AddProductToHistoryVC
+"KcalPer100G" = "kcal per 100 g";
+"Today" = "TODAY";
+"Yesterday" = "YESTERDAY";

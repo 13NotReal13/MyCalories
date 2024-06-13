@@ -57,3 +57,8 @@
 "EditWeight" = "Изменить вес";
 "Delete" = "Удалить";
 
+// MARK: - AddProductToHistoryVC
+"KcalPer100G" = "кКал на 100 г.";
+"Today" = "СЕГОДНЯ";
+"Yesterday" = "ВЧЕРА";
+
