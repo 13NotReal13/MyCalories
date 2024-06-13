@@ -171,6 +171,7 @@ final class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - IBActions
     @IBAction func menuUIButtonAction() {
         toogleMenu()
     }
@@ -182,7 +183,6 @@ final class MainViewController: UIViewController {
     @IBAction func waterButtonAction() {
         showAlertForAddWater()
     }
-    
     
     @IBAction func rateButtonAction() {
         toogleMenu()
@@ -366,12 +366,12 @@ private extension MainViewController {
     
     func showAlertForAddWater() {
         let alert = UIAlertController(
-            title: "Сколько воды вы выпили?",
+            title: String.addWaterAlert,
             message: "",
             preferredStyle: .alert
         )
         
-        let okButton = UIAlertAction(title: "Сохранить", style: .default) { [unowned self] _ in
+        let okButton = UIAlertAction(title: String.save, style: .default) { [unowned self] _ in
             guard let text = alert.textFields?.first?.text, let waterML = Int(text) else { return }
             let water = Water()
             water.date = Date()
@@ -383,12 +383,12 @@ private extension MainViewController {
                 }
             }
         }
-        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
+        let cancelButton = UIAlertAction(title: String.cancel, style: .cancel)
         
         alert.addAction(okButton)
         alert.addAction(cancelButton)
         alert.addTextField { textField in
-            textField.placeholder = "мл."
+            textField.placeholder = String.ml
             textField.keyboardType = .numberPad
             
             // Добавим наблюдатель для ограничения ввода
@@ -452,13 +452,13 @@ private extension MainViewController {
                    let localVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
                     if appStoreVersion.compare(localVersion, options: .numeric) == .orderedDescending {
                         DispatchQueue.main.async { [unowned self] in
-                            versionAppButton.setTitle("Версия: \(localVersion) (обновить)", for: .normal)
+                            versionAppButton.setTitle(String.version + "\(localVersion)" + String.update, for: .normal)
                             versionAppButton.isEnabled = true
                             showUpdateAlert(version: appStoreVersion)
                         }
                     } else {
                         DispatchQueue.main.async { [unowned self] in
-                            versionAppButton.setTitle("Версия: \(localVersion)", for: .normal)
+                            versionAppButton.setTitle(String.version + "\(localVersion)", for: .normal)
                             versionAppButton.isEnabled = false
                         }
                     }
@@ -472,19 +472,19 @@ private extension MainViewController {
     
     func showUpdateAlert(version: String) {
         let alert = UIAlertController(
-            title: "Доступно обновление",
-            message: "Доступна новая версия \(version). Пожалуйста, обновитесь до последней версии.",
+            title: String.updateAlertTitle,
+            message: String.updateAlertMessagePart1 + "\(version)" + String.updateAlertMessagePart2,
             preferredStyle: .alert
         )
         
-        let updateAction = UIAlertAction(title: "Обновить", style: .default) { [unowned self] _ in
+        let updateAction = UIAlertAction(title: String.updateAlertOkButton, style: .default) { [unowned self] _ in
             let urlString = "https://apps.apple.com/app/id\(appIDAppStore)"
             if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url)
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: String.cancel, style: .cancel, handler: nil)
         
         alert.addAction(updateAction)
         alert.addAction(cancelAction)
@@ -674,10 +674,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let product = filteredProducts[indexPath.row]
         cell?.productNameLabel.text = product.name
         cell?.productNameLabel.textColor = UIColor(named: product.color)
-        cell?.proteinProductLabel.text = "БЕЛКИ: \(product.protein)"
-        cell?.fatsProductLabel.text = "ЖИРЫ: \(product.fats)"
-        cell?.carbohydratesProductLabel.text = "УГЛЕВОДЫ: \(product.carbohydrates)"
-        cell?.caloriesProductLabel.text = "ККАЛ: \(product.calories) НА 100 Г."
+        cell?.proteinProductLabel.text = String.proteinsTableView + "\(product.protein)"
+        cell?.fatsProductLabel.text = String.fatsTableView + "\(product.fats)"
+        cell?.carbohydratesProductLabel.text = String.carbohydratesTableView + "\(product.carbohydrates)"
+        cell?.caloriesProductLabel.text = String.caloriesTableView + "\(product.calories)" + String.per100gTableView
         
         return cell ?? UITableViewCell()
     }
@@ -719,6 +719,6 @@ extension MainViewController: UISearchBarDelegate {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
         
-        searchBar.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        searchBar.inputAccessoryView = createToolbar(title: String.done, selector: #selector(doneButtonPressed))
     }
 }

@@ -19,6 +19,8 @@
 		790457242BE2972F0009FA34 /* productsFromProject.realm.lock in Resources */ = {isa = PBXBuildFile; fileRef = 7904571F2BE2972F0009FA34 /* productsFromProject.realm.lock */; };
 		790457262BE3E5AF0009FA34 /* TexturedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 790457252BE3E5AF0009FA34 /* TexturedView.swift */; };
 		7916A8AF2C1A2D480032B3C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 792DB1902BBADF4800209193 /* Main.storyboard */; };
+		7916A8B42C1AB0600032B3C0 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7916A8B22C1AB0600032B3C0 /* Localizable.strings */; };
+		7916A8B72C1ACA600032B3C0 /* String + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7916A8B62C1ACA600032B3C0 /* String + Ext.swift */; };
 		792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18A2BBADF4800209193 /* AppDelegate.swift */; };
 		792DB18D2BBADF4800209193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18C2BBADF4800209193 /* SceneDelegate.swift */; };
 		792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18E2BBADF4800209193 /* MainViewController.swift */; };
@@ -72,6 +74,9 @@
 		790457252BE3E5AF0009FA34 /* TexturedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TexturedView.swift; sourceTree = "<group>"; };
 		7916A8AD2C1A23080032B3C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Main.strings; sourceTree = "<group>"; };
 		7916A8AE2C1A23080032B3C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		7916A8B32C1AB0600032B3C0 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7916A8B52C1AB0D30032B3C0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		7916A8B62C1ACA600032B3C0 /* String + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + Ext.swift"; sourceTree = "<group>"; };
 		792DB1872BBADF4800209193 /* MyCalories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyCalories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		792DB18A2BBADF4800209193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		792DB18C2BBADF4800209193 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -239,6 +244,7 @@
 				790456702BDD0C040009FA34 /* UIView + Ext.swift */,
 				790456C22BE22C290009FA34 /* UITextField + Ext.swift */,
 				79BD10552BF69B20005C049A /* UIViewController + Ext.swift */,
+				7916A8B62C1ACA600032B3C0 /* String + Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -261,6 +267,7 @@
 				7904571F2BE2972F0009FA34 /* productsFromProject.realm.lock */,
 				7904571D2BE2972F0009FA34 /* productsFromProject.realm.management */,
 				792DB1932BBADF4900209193 /* Assets.xcassets */,
+				7916A8B22C1AB0600032B3C0 /* Localizable.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -357,6 +364,7 @@
 				790457232BE2972F0009FA34 /* productsFromProject.realm in Resources */,
 				79658B3F2C02338A000BD566 /* GoogleService-Info.plist in Resources */,
 				790457202BE2972F0009FA34 /* access_control.control.mx in Resources */,
+				7916A8B42C1AB0600032B3C0 /* Localizable.strings in Resources */,
 				790457242BE2972F0009FA34 /* productsFromProject.realm.lock in Resources */,
 				792DB1972BBADF4900209193 /* Base in Resources */,
 				790457222BE2972F0009FA34 /* access_control.write.mx in Resources */,
@@ -383,6 +391,7 @@
 				79681EC02C121F85005D268E /* FAQViewController.swift in Sources */,
 				7946F8432BC44B61005C3F33 /* ProductsListViewCell.swift in Sources */,
 				790456C52BE26DB80009FA34 /* AllProducts.swift in Sources */,
+				7916A8B72C1ACA600032B3C0 /* String + Ext.swift in Sources */,
 				790456712BDD0C040009FA34 /* UIView + Ext.swift in Sources */,
 				7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */,
 				7946F8492BC455F9005C3F33 /* History.swift in Sources */,
@@ -406,6 +415,15 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
+		7916A8B22C1AB0600032B3C0 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7916A8B32C1AB0600032B3C0 /* ru */,
+				7916A8B52C1AB0D30032B3C0 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		792DB1902BBADF4800209193 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

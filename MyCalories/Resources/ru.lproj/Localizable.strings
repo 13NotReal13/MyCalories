@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings (ru)
+  MyCalories
+
+  Created by Иван Семикин on 13/06/2024.
+*/
+
+"AddWaterAlert" = "Сколько воды вы выпили?";
+"Save" = "Сохранить";
+"Cancel" = "Отмена";
+"Done" = "Готово";
+"Ml" = "мл.";
+"Version" = "Версия: ";
+"Update" = " (обновить)";
+
+"UpdateAlertTitle" = "Доступно обновление";
+"UpdateAlertMessagePart1" = "Доступна новая версия ";
+"UpdateAlertMessagePart2" = ". Пожалуйста, обновитесь до последней версии.";
+"UpdateAlertOkButton" = "Обновить";
+
+"ProteinsTableView" = "БЕЛКИ: ";
+"FatsYableView" = "ЖИРЫ: ";
+"CarbohydratesTableView" = "УГЛЕВОДЫ: ";
+"CaloriesTableView" = "ККАЛ: ";
+"Per100gTableView" = " НА 100 Г.";

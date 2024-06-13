@@ -1,0 +1,25 @@
+/* 
+  Localizable.strings (en)
+  MyCalories
+
+  Created by Иван Семикин on 13/06/2024.
+*/
+
+"AddWaterAlert" = "How much water did you drink?";
+"Save" = "Save";
+"Cancel" = "Cancel";
+"Done" = "Done";
+"Ml" = "ml";
+"Version" = "Version: ";
+
+"Update" = " (update)";
+"UpdateAlertTitle" = "Update Available";
+"UpdateAlertMessagePart1" = "A new version ";
+"UpdateAlertMessagePart2" = " is available. Please update to the latest version.";
+"UpdateAlertOkButton" = "Update";
+
+"ProteinsTableView" = "PROTEINS: ";
+"FatsYableView" = "FATS: ";
+"CarbohydratesTableView" = "CARBOHYDRATES: ";
+"CaloriesTableView" = "CAL: ";
+"Per100gTableView" = " PER 100 G.";
