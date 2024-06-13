@@ -61,3 +61,15 @@
 "KcalPer100G" = "kcal per 100 g";
 "Today" = "TODAY";
 "Yesterday" = "YESTERDAY";
+
+// MARK: - AddNewProductVC
+"ProductNotFound" = "Product not found";
+"SolutionOptions" = "Possible solutions: \n1. Ensure you are scanning only the barcode, without any extra numeric characters around; \n2. Check if there are other barcodes or QR codes on the product.";
+
+"Information" = "Information";
+"SomeDataIsMissing" = "Some data is missing.";
+"Ok" = "OK";
+
+"AccessCameraIsRestricted" = "Camera access is restricted";
+"AccessCameraIsRestrictedInfo" = "To scan barcodes, you need to allow camera access in the settings. Please go to Settings and enable camera access for this app.";
+"OpenSettings" = "Open Settings";

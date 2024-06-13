@@ -200,7 +200,7 @@ private extension AddNewProductViewController {
 extension AddNewProductViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
-        textField.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        textField.inputAccessoryView = createToolbar(title: String.done, selector: #selector(doneButtonPressed))
         addBarButtonItem.isEnabled = false
     }
     
@@ -277,19 +277,19 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
                     updateUIWithProductDetails(product)
                     return
                 } else {
-                    showAlertWithMessage(title:"Продукт не найден", message: "Возможные варианты решения: \n1. Убедитесь, что сканируете только штрихкод, без лишних цифровых символов вокруг; \n2. Проверьте, не осталось ли на продукте других штрих-кодов или QR-кодов.")
+                    showAlertWithMessage(title: String.productNotFound, message: String.solutionOptions)
                     sourceOpenFoodStackView.isHidden = true
                     Analytics.logEvent("scan_product_not_found", parameters: nil)
                     return
                 }
             } else if response.errors != nil || response.result?.id == "product_not_found" {
-                showAlertWithMessage(title:"Продукт не найден", message: "Возможные варианты решения: \n1. Убедитесь, что сканируете только штрихкод, без лишних цифровых символов вокруг; \n2. Проверьте, не осталось ли на продукте других штрих-кодов или QR-кодов.")
+                showAlertWithMessage(title: String.productNotFound, message: String.solutionOptions)
                 sourceOpenFoodStackView.isHidden = true
                 Analytics.logEvent("scan_product_not_found", parameters: nil)
                 return
             }
         } catch {
-            showAlertWithMessage(title: "Продукт не найден", message: "Возможные варианты решения: \n1. Убедитесь, что сканируете только штрихкод, без лишних цифровых символов вокруг; \n2. Проверьте, не осталось ли на продукте других штрих-кодов или QR-кодов.")
+            showAlertWithMessage(title: String.productNotFound, message: String.solutionOptions)
             sourceOpenFoodStackView.isHidden = true
             Analytics.logEvent("scan_product_not_found", parameters: nil)
             return
@@ -320,7 +320,7 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
         }
         
         if (title ?? "").isEmpty || protein == nil || fats == nil || carbohydrates == nil || calories == nil {
-            showAlertWithMessage(title: "Информация", message: "Некоторые данные отсутствуют.")
+            showAlertWithMessage(title: String.information, message: String.someDataIsMissing)
             Analytics.logEvent(
                 "scan_product_not_full",
                 parameters:
@@ -342,20 +342,20 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
     
     private func showAlertWithMessage(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "ОК", style: .default))
+        alert.addAction(UIAlertAction(title: String.ok, style: .default))
         self.present(alert, animated: true)
     }
     
     private func promptForCameraAccess() {
-        let alert = UIAlertController(title: "Доступ к камере ограничен",
-                                      message: "Для сканирования штрихкодов необходимо разрешить доступ к камере в настройках. Пожалуйста, перейдите в Настройки и включите доступ к камере для этого приложения.",
+        let alert = UIAlertController(title: String.accessCameraIsRestricted,
+                                      message: String.accessCameraIsRestrictedInfo,
                                       preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Открыть Настройки", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: String.openSettings, style: .default) { _ in
             if let appSettings = URL(string: UIApplication.openSettingsURLString) {
                 UIApplication.shared.open(appSettings, options: [:], completionHandler: nil)
             }
         })
-        alert.addAction(UIAlertAction(title: "Отмена", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: String.cancel, style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
 }

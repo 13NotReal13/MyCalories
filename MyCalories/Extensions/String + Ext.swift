@@ -149,4 +149,32 @@ extension String {
     static var yesterday: String {
         NSLocalizedString("Yesterday", comment: "ВЧЕРА")
     }
+    
+    // MARK: - AddNewProductVC
+    static var productNotFound: String {
+        NSLocalizedString("ProductNotFound", comment: "Product not found")
+    }
+    static var solutionOptions: String {
+        NSLocalizedString("SolutionOptions", comment: "Possible solutions: \n1. Ensure you are scanning only the barcode, without any extra numeric characters around; \n2. Check if there are other barcodes or QR codes on the product.")
+    }
+    
+    static var information: String {
+        NSLocalizedString("Information", comment: "Information")
+    }
+    static var someDataIsMissing: String {
+        NSLocalizedString("SomeDataIsMissing.", comment: "Some data is missing.")
+    }
+    static var ok: String {
+        NSLocalizedString("Ok", comment: "OK")
+    }
+    
+    static var accessCameraIsRestricted: String {
+        NSLocalizedString("AccessCameraIsRestricted", comment: "Camera access is restricted")
+    }
+    static var accessCameraIsRestrictedInfo: String {
+        NSLocalizedString("AccessCameraIsRestrictedInfo", comment: "To scan barcodes, you need to allow camera access in the settings. Please go to Settings and enable camera access for this app.")
+    }
+    static var openSettings: String {
+        NSLocalizedString("OpenSettings", comment: "Open Settings")
+    }
 }
