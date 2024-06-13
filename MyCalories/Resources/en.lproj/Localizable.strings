@@ -73,3 +73,7 @@
 "AccessCameraIsRestricted" = "Camera access is restricted";
 "AccessCameraIsRestrictedInfo" = "To scan barcodes, you need to allow camera access in the settings. Please go to Settings and enable camera access for this app.";
 "OpenSettings" = "Open Settings";
+
+// MARK: - EditWeightVC
+"Error" = "Error";
+"NeedEnterWeight" = "It is necessary to enter the weight.";

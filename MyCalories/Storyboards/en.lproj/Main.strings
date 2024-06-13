@@ -75,7 +75,7 @@
 "AWz-Am-QzZ.text" = "Proteins:";
 
 /* Class = "UITextField"; placeholder = "г."; ObjectID = "AXO-yT-lxp"; */
-"AXO-yT-lxp.placeholder" = "g.";
+"AXO-yT-lxp.placeholder" = "g";
 
 /* Class = "UILabel"; text = "Использовать рекомендуемую суточную норму воды:"; ObjectID = "Ad7-Ej-25X"; */
 "Ad7-Ej-25X.text" = "Use the Recommended Daily Water Intake:";
@@ -153,7 +153,7 @@
 "Igk-jL-08R.title" = "New Product";
 
 /* Class = "UITextField"; placeholder = "г."; ObjectID = "JYL-qj-11U"; */
-"JYL-qj-11U.placeholder" = "g.";
+"JYL-qj-11U.placeholder" = "g";
 
 /* Class = "UILabel"; text = "Как начать пользоваться приложением?"; ObjectID = "JqY-X5-gfz"; */
 "JqY-X5-gfz.text" = "How to Start Using the App?";
@@ -291,7 +291,7 @@
 "c0N-Ye-oNa.text" = "Label";
 
 /* Class = "UITextField"; placeholder = "г."; ObjectID = "czP-3V-CMy"; */
-"czP-3V-CMy.placeholder" = "g.";
+"czP-3V-CMy.placeholder" = "g";
 
 /* Class = "UILabel"; text = "Могу ли я установить индивидуальные цели?"; ObjectID = "dDX-c9-gdp"; */
 "dDX-c9-gdp.text" = "Can I set individual goals?";
@@ -411,7 +411,7 @@
 "oZx-VU-UpM.text" = "Why aren’t added drinks or cocktails counted in the daily water intake?";
 
 /* Class = "UITextField"; placeholder = "кКал."; ObjectID = "ofC-8A-LxZ"; */
-"ofC-8A-LxZ.placeholder" = "Cal.";
+"ofC-8A-LxZ.placeholder" = "kcal.";
 
 /* Class = "UILabel"; text = "Истекает: 29 Июня 2024г."; ObjectID = "pnq-lH-q7i"; */
 "pnq-lH-q7i.text" = "Истекает: 29 Июня 2024г.";

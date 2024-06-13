@@ -60,7 +60,7 @@ final class EditWeightViewController: UIViewController {
 // MARK: - Private Methods
 extension EditWeightViewController {
     private func setupUI() {
-        weightTF.placeholder = choosedProduct != nil ? "г." : "мл."
+        weightTF.placeholder = choosedProduct != nil ? String.g : String.ml
         productNameLabel.text = choosedProduct != nil ? choosedProduct?.name : ""
         
         weightTF.text = choosedProduct != nil
@@ -96,12 +96,12 @@ extension EditWeightViewController {
     
     private func showAlert() {
         let alert = UIAlertController(
-            title: "Ошибка",
-            message: "Необходимо ввести вес.",
+            title: String.error,
+            message: String.needEnterWeight,
             preferredStyle: .alert
         )
         
-        let doneButton = UIAlertAction(title: "Ок", style: .default) { [unowned self] _ in
+        let doneButton = UIAlertAction(title: String.ok, style: .default) { [unowned self] _ in
             weightTF.text = ""
             weightTF.becomeFirstResponder()
         }
@@ -118,7 +118,7 @@ extension EditWeightViewController {
 // MARK: - UITextFieldDelegate
 extension EditWeightViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        weightTF.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        weightTF.inputAccessoryView = createToolbar(title: String.done, selector: #selector(doneButtonPressed))
         saveBarButtonItem.isEnabled = false
     }
     

@@ -177,4 +177,12 @@ extension String {
     static var openSettings: String {
         NSLocalizedString("OpenSettings", comment: "Open Settings")
     }
+    
+    // MARK: - EditWeightVC
+    static var error: String {
+        NSLocalizedString("Error", comment: "Error")
+    }
+    static var needEnterWeight: String {
+        NSLocalizedString("NeedEnterWeight", comment: "It is necessary to enter the weight.")
+    }
 }
