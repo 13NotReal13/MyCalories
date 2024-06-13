@@ -74,7 +74,7 @@ final class HistoryViewController: UIViewController {
     }
     
     @IBAction func segmentedControlAction(_ sender: UISegmentedControl) {
-        infoOfRowsInTable.text = sender.selectedSegmentIndex == 0 ? "Б / Ж / У  Ккал" : "Мл."
+        infoOfRowsInTable.text = sender.selectedSegmentIndex == 0 ? String.pfckCal : String.ml
         updateEmptyLabel()
         tableView.reloadData()
     }
@@ -97,11 +97,11 @@ private extension HistoryViewController {
     func setDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
-        datePicker.locale = Locale(identifier: "ru_RU")
+        datePicker.locale = Locale.current
         
         hiddenTextField.inputView = datePicker
         hiddenTextField.inputAccessoryView = createToolbar(
-            title: "Готово",
+            title: String.done,
             isCancelSelector: true,
             selector: #selector(doneButtonPressed)
         )
@@ -215,10 +215,10 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
             let fats = history.productList.reduce(0) { $0 + $1.fats }
             let carbohydrates = history.productList.reduce(0) { $0 + $1.carbohydrates }
             let calories = history.productList.reduce(0) { $0 + $1.calories }
-            label.text = "Всего:  \(Int(protein)) / \(Int(fats)) / \(Int(carbohydrates))   \(Int(calories))"
+            label.text = String.total + "  \(Int(protein)) / \(Int(fats)) / \(Int(carbohydrates))   \(Int(calories))"
         default:
             let mls = history.waterList.reduce(0) { $0 + $1.ml }
-            label.text = "Всего: \(mls) мл."
+            label.text = String.total + " \(mls) " + String.ml
         }
         
         footerView.addSubview(label)
@@ -234,9 +234,9 @@ extension HistoryViewController: UITableViewDataSource, UITableViewDelegate {
         switch segmentedControl.selectedSegmentIndex {
         case 0:
             let product = history[indexPath.section].productList[indexPath.row]
-            showAlert(withTitle: product.name, message: "Вес: \(product.weight) г.")
+            showAlert(withTitle: product.name, message: String.weight + " \(product.weight) " + String.g)
         default:
-            showAlert(withTitle: "Выберите нужный вариант", message: "")
+            showAlert(withTitle: String.selectTheOption, message: "")
         }
     }
 }
@@ -246,15 +246,15 @@ private extension HistoryViewController {
     func showAlert(withTitle title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
-        let editButton = UIAlertAction(title: "Изменить вес", style: .default) { [unowned self] _ in
+        let editButton = UIAlertAction(title: String.editWeight, style: .default) { [unowned self] _ in
             performSegue(withIdentifier: "ToEditPosition", sender: nil)
         }
         
-        let deleteButton = UIAlertAction(title: "Удалить", style: .destructive) { [unowned self] _ in
+        let deleteButton = UIAlertAction(title: String.delete, style: .destructive) { [unowned self] _ in
             handleDeleteAction()
         }
         
-        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel) { [unowned self] _ in
+        let cancelButton = UIAlertAction(title: String.cancel, style: .cancel) { [unowned self] _ in
             handleCancelAction()
         }
         

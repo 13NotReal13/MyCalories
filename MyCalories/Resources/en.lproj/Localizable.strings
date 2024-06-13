@@ -48,3 +48,11 @@
 "G" = "g";
 "Cal" = "kcal";
 "SourceOfFormula" = "Source of Calculation";
+
+// MARK: - HistoryVC
+"PFCKcal" = "P / F / C  Kcal";  // Proteins/Fats/Carbohydrates Calories
+"Total" = "Total:";
+"Weight" = "Weight:";
+"SelectTheOption" = "Select the option";
+"EditWeight" = "Edit weight";
+"Delete" = "Delete";

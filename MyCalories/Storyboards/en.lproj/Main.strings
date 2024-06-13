@@ -297,7 +297,7 @@
 "dDX-c9-gdp.text" = "Can I set individual goals?";
 
 /* Class = "UILabel"; text = "Б / Ж / У  Ккал"; ObjectID = "dEC-nW-scK"; */
-"dEC-nW-scK.text" = "P / F / C  Calories";
+"dEC-nW-scK.text" = "P / F / C  Kcal";
 
 /* Class = "UIButton"; normalTitle = "Источник расчёта формул"; ObjectID = "eoG-gB-HQJ"; */
 "eoG-gB-HQJ.normalTitle" = "Calculation Formula Source";

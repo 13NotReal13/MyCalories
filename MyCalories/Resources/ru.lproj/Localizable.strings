@@ -48,3 +48,12 @@
 "G" = "г.";
 "Cal" = "кКал.";
 "SourceOfFormula" = "Источник расчёта формул";
+
+// MARK: - HistoryVC
+"PFCKcal" = "Б / Ж / У  Ккал";
+"Total" = "Всего:";
+"Weight" = "Вес:";
+"SelectTheOption" = "Выберите нужный вариант";
+"EditWeight" = "Изменить вес";
+"Delete" = "Удалить";
+

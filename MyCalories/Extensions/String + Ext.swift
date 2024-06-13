@@ -118,4 +118,24 @@ extension String {
     static var sourceOfFormula: String {
         NSLocalizedString("SourceOfFormula", comment: "Источник расчёта формул")
     }
+    
+    // MARK: - HistoryVC
+    static var pfckCal: String {
+        NSLocalizedString("PFCKcal", comment: "Б / Ж / У  Ккал")
+    }
+    static var total: String {
+        NSLocalizedString("Total", comment: "Всего:")
+    }
+    static var weight: String {
+        NSLocalizedString("Weight", comment: "Вес:")
+    }
+    static var selectTheOption: String {
+        NSLocalizedString("SelectTheOption", comment: "Выберите нужный вариант")
+    }
+    static var editWeight: String {
+        NSLocalizedString("EditWeight", comment: "Изменить вес")
+    }
+    static var delete: String {
+        NSLocalizedString("Delete", comment: "Удалить")
+    }
 }
