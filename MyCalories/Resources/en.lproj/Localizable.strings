@@ -87,3 +87,11 @@
 "TermsOfUse" = "Terms of Use";
 "Expiration" = "Expires:";
 "PerMonth" =  "/ mo.";
+
+// MARK: - UIViewController + Ext
+"InvalidValue" = "Invalid value";
+"WrongFormat" = "Wrong format";
+"AskToDelete" = "Are you sure you want to delete?";
+"RateAlertTitle" = "Do you like our app?🥹";
+"RateAlertMessage" = "We work hard for you and improve our app every day. Please rate us 5 stars.\nThank you for your support!❤️";
+"RateAlertOkButton" = "5 stars";

@@ -33,7 +33,7 @@ extension UIViewController {
         
         if isCancelSelector != nil {
             let cancelButton = UIBarButtonItem(
-                title: "Отмена",
+                title: String.cancel,
                 style: .plain,
                 target: self,
                 action: #selector(cancelButtonSelector)
@@ -52,12 +52,12 @@ extension UIViewController {
     
     func showAlertError(textField: UITextField, type: TypeOfAlert) {
         let alert = UIAlertController(
-            title: "Ошибка",
-            message: type == .invalidValue ? "Недопустимое значение" : "Неверный формат",
+            title: String.error,
+            message: type == .invalidValue ? String.invalidValue : String.wrongFormat,
             preferredStyle: .alert
         )
         
-        let okButton = UIAlertAction(title: "OK", style: .default) { _ in
+        let okButton = UIAlertAction(title: String.ok, style: .default) { _ in
             textField.text = ""
             textField.becomeFirstResponder()
             alert.dismiss(animated: true)
@@ -68,13 +68,13 @@ extension UIViewController {
     }
     
     func showAlertDelete(for target: String, inTableView tableView: UITableView? = nil, completion: @escaping() -> Void) {
-        let alert = UIAlertController(title: "Вы уверены, что хотите удалить?", message: target, preferredStyle: .alert)
+        let alert = UIAlertController(title: String.askToDelete, message: target, preferredStyle: .alert)
         
-        let deleteButton = UIAlertAction(title: "Удалить", style: .destructive) { _ in
+        let deleteButton = UIAlertAction(title: String.delete, style: .destructive) { _ in
             completion()
         }
         
-        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel) { _ in
+        let cancelButton = UIAlertAction(title: String.cancel, style: .cancel) { _ in
             alert.dismiss(animated: true)
             guard let tableView, let indexPath = tableView.indexPathForSelectedRow else { return }
                 tableView.deselectRow(at: indexPath, animated: true)
@@ -87,8 +87,8 @@ extension UIViewController {
     
     func showRatingAlert() {
         let alert = UIAlertController(
-            title: "Нравится ли вам наше приложение?🥹",
-            message: "Мы очень стараемся для Вас и каждый день улучшаем наше приложение. Пожалуйста, оцените нас в 5 звёздочек.\nСпасибо за вашу поддержку!❤️",
+            title: String.rateAlertTitle,
+            message: String.rateAlertMessage,
             preferredStyle: .alert
         )
         
@@ -114,7 +114,7 @@ extension UIViewController {
         ])
         
         
-        let rateButton = UIAlertAction(title: "5 звёздочек", style: .default) { _ in
+        let rateButton = UIAlertAction(title: String.rateAlertOkButton, style: .default) { _ in
             if let urlApp = URL(string: "https://apps.apple.com/pl/app/мои-калории-24-7/id6502844957") {
                 UIApplication.shared.open(urlApp)
                 Analytics.logEvent("rate_5_stars_button_pressed", parameters: nil)
@@ -124,7 +124,7 @@ extension UIViewController {
             alert.dismiss(animated: true)
         }
         
-        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel) { _ in
+        let cancelButton = UIAlertAction(title: String.cancel, style: .cancel) { _ in
             Analytics.logEvent("rate_cancel_button_pressed", parameters: nil)
         }
         

@@ -211,4 +211,24 @@ extension String {
     static var perMonth: String {
         NSLocalizedString("PerMonth", comment: "/ мес.")
     }
+    
+    // MARK: - UIViewController + Ext
+    static var invalidValue: String {
+        NSLocalizedString("InvalidValue", comment: "Invalid value")
+    }
+    static var wrongFormat: String {
+        NSLocalizedString("WrongFormat", comment: "Wrong format")
+    }
+    static var askToDelete: String {
+        NSLocalizedString("AskToDelete", comment: "Are you sure you want to delete?")
+    }
+    static var rateAlertTitle: String {
+        NSLocalizedString("RateAlertTitle", comment: "Do you like our app?🥹")
+    }
+    static var rateAlertMessage: String {
+        NSLocalizedString("RateAlertMessage", comment: "We work hard for you and improve our app every day. Please rate us 5 stars.\nThank you for your support!❤️")
+    }
+    static var rateAlertOkButton: String {
+        NSLocalizedString("RateAlertOkButton", comment: "5 stars")
+    }
 }
