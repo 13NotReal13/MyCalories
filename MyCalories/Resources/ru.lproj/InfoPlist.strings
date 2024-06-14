@@ -1,0 +1,11 @@
+/* 
+  InfoPlist.strings
+  MyCalories
+
+  Created by Иван Семикин on 14/06/2024.
+  
+*/
+
+CFBundleDisplayName = "Мои Калории";
+NSCameraUsageDescription = "Для сканирования продуктов разрешите доступ к камере.";
+NSUserTrackingUsageDescription = "Помогите улучшить рекламу, разрешив её отслеживание.";

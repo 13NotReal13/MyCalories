@@ -58,6 +58,7 @@
 		79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD10552BF69B20005C049A /* UIViewController + Ext.swift */; };
 		79CBA7912C08E599008EED18 /* BarcodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 79CBA7902C08E599008EED18 /* BarcodeScanner */; };
 		79CBA7932C0A2E7D008EED18 /* SearchProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */; };
+		79FE15482C1CB137001A9384 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 79FE15462C1CB137001A9384 /* InfoPlist.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -110,6 +111,8 @@
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProduct.swift; sourceTree = "<group>"; };
 		79FE15352C1B0B42001A9384 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		79FE15472C1CB137001A9384 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		79FE15492C1CB13A001A9384 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -268,6 +271,7 @@
 				7904571D2BE2972F0009FA34 /* productsFromProject.realm.management */,
 				792DB1932BBADF4900209193 /* Assets.xcassets */,
 				7916A8B22C1AB0600032B3C0 /* Localizable.strings */,
+				79FE15462C1CB137001A9384 /* InfoPlist.strings */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -368,6 +372,7 @@
 				790457242BE2972F0009FA34 /* productsFromProject.realm.lock in Resources */,
 				792DB1972BBADF4900209193 /* Base in Resources */,
 				790457222BE2972F0009FA34 /* access_control.write.mx in Resources */,
+				79FE15482C1CB137001A9384 /* InfoPlist.strings in Resources */,
 				790457212BE2972F0009FA34 /* access_control.versions.mx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +447,15 @@
 				7916A8AE2C1A23080032B3C0 /* en */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		79FE15462C1CB137001A9384 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				79FE15472C1CB137001A9384 /* en */,
+				79FE15492C1CB13A001A9384 /* ru */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
