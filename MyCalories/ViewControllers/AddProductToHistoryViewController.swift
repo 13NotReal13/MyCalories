@@ -68,30 +68,26 @@ final class AddProductToHistoryViewController: UIViewController {
         let weight = Double(weightTF.text ?? "0") ?? 0.0
         let weightRatio = weight / 100.0
         
-        let adjustedProtein = (selectedProduct.protein * weightRatio * 100).rounded() / 100
-        let adjustedFats = (selectedProduct.fats * weightRatio * 100).rounded() / 100
-        let adjustedCarbohydrates = (selectedProduct.carbohydrates * weightRatio * 100).rounded() / 100
-        let adjustedCalories = (selectedProduct.calories * weightRatio * 100).rounded() / 100
-        
-        storageManager.changeIndexAndColor(forProduct: selectedProduct) { [unowned self] in
-            delegate?.updateTableView()
-        }
-        
-        storageManager.saveProductToHistory(
-            Product(
-                value: [
-                    selectedProduct.name,
-                    adjustedProtein,
-                    adjustedFats,
-                    adjustedCarbohydrates,
-                    adjustedCalories,
-                    datePicker.date,
-                    weight
-                ]
-            )
+        // Создаем отредактированный продукт
+        let adjustedProduct = Product(
+            value: [
+                selectedProduct.name,
+                selectedProduct.protein * weightRatio,
+                selectedProduct.fats * weightRatio,
+                selectedProduct.carbohydrates * weightRatio,
+                selectedProduct.calories * weightRatio,
+                datePicker.date,
+                weight
+            ]
         )
         
-        dismiss(animated: true)
+        storageManager.saveOriginalAndAdjustedProduct(
+            original: selectedProduct,
+            adjusted: adjustedProduct
+        ) { [unowned self] in
+            delegate?.updateTableView()
+            dismiss(animated: true)
+        }
     }
     
 }

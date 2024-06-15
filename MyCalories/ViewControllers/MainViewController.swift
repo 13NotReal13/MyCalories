@@ -55,8 +55,8 @@ final class MainViewController: UIViewController {
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared
     
-    private var allProducts: Results<Product>!
-    private var filteredProducts: Results<Product>!
+    private var allProducts: [Product] = []
+    private var filteredProducts: [Product] = []
     
     private var menuIsVisible = false
     
@@ -75,6 +75,10 @@ final class MainViewController: UIViewController {
     private let appIDAppStore = "6502844957"
     // testAdId: "ca-app-pub-3940256099942544/4411468910"
     // realAdId: "ca-app-pub-7511053995750557/9276091651"
+    
+    private var activityIndicator: UIActivityIndicatorView!
+    private var searchTimer: Timer?
+    private var currentDataTask: URLSessionDataTask?
     
     private lazy var overlayView: UIView = {
         let overlay = UIView(frame: view.bounds)
@@ -265,8 +269,20 @@ extension MainViewController: MainScreenDelegate {
     func updateTableView() {
         searchBar.text = ""
         searchBar.searchTextField.resignFirstResponder()
-        filteredProducts = allProducts
-        tableView.reloadData()
+        
+        if Locale.current.languageCode == "ru" {
+            storageManager.fetchAllProductsRu { [unowned self] productsList in
+                allProducts = productsList
+                filteredProducts = allProducts
+                tableView.reloadData()
+            }
+        } else {
+            storageManager.fetchAllProductsEn { [unowned self] productsList in
+                allProducts = productsList
+                filteredProducts = allProducts
+                tableView.reloadData()
+            }
+        }
     }
 }
 
@@ -276,13 +292,28 @@ private extension MainViewController {
         fetchData()
         setupUIs()
         setHiddenOfProgressBlock()
+        
+        if Locale.current.languageCode != "ru" {
+            setActivityIndicator()
+        }
     }
     
     func fetchData() {
-        storageManager.fetchAllProducts { [unowned self] productsList in
-            allProducts = productsList
-            filteredProducts = allProducts
-            tableView.reloadData()
+        let currentLocal = Locale.current.languageCode
+        
+        if currentLocal == "ru" {
+            storageManager.fetchAllProductsRu { [unowned self] productsList in
+                allProducts = productsList
+                filteredProducts = allProducts
+                tableView.reloadData()
+            }
+        } else {
+            storageManager.fetchAllProductsEn { [unowned self] productsList in
+                activityIndicator.stopAnimating()
+                allProducts = productsList
+                filteredProducts = allProducts
+                tableView.reloadData()
+            }
         }
     }
     
@@ -500,6 +531,14 @@ private extension MainViewController {
             }
         }
     }
+    
+    func setActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
+    }
 }
 
 // MARK: - Progress Bar
@@ -708,21 +747,99 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter("name CONTAINS[c] %@", searchText)
-        tableView.reloadData()
+        let currentLocale = Locale.current.languageCode
         
-        if !filteredProducts.isEmpty {
-            let indexPath = IndexPath(row: 0, section: 0)
-            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if currentLocale == "ru" {
+            filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+            tableView.reloadData()
+            
+            if !filteredProducts.isEmpty {
+                let indexPath = IndexPath(row: 0, section: 0)
+                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
+        } else {
+            activityIndicator.startAnimating()
+            searchTimer?.invalidate()
+            searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [unowned self] _ in
+                if searchText.isEmpty {
+                    filteredProducts = allProducts
+                    activityIndicator.stopAnimating()
+                } else {
+                    fetchProductsFromAPI(searchText: searchText)
+                }
+                
+                DispatchQueue.main.async { [unowned self] in
+                    tableView.reloadData()
+                    if !filteredProducts.isEmpty {
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
+                }
+            }
         }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        print("allProducts: \(allProducts.count)")
+        print("filteredProducts: \(filteredProducts.count)")
         if !filteredProducts.isEmpty {
             let indexPath = IndexPath(row: 0, section: 0)
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
         
         searchBar.inputAccessoryView = createToolbar(title: String.done, selector: #selector(doneButtonPressed))
+    }
+    
+    private func fetchProductsFromAPI(searchText: String) {
+        currentDataTask?.cancel()
+        
+        let urlString = "https://world.openfoodfacts.org/cgi/search.pl?search_terms=\(searchText)&search_simple=1&action=process&json=1&page_size=100"
+        guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else {
+            print("Invalid URL")
+            return
+        }
+
+        currentDataTask = URLSession.shared.dataTask(with: url) { [unowned self] data, response, error in
+            guard let data = data, error == nil else {
+                print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
+                return
+            }
+
+            do {
+                let response = try JSONDecoder().decode(ProductsResponse.self, from: data)
+                let products = response.products.compactMap { apiProduct -> Product? in
+                    guard let name = apiProduct.productName, !name.isEmpty else { return nil }
+                    return storageManager.createProductFrom(apiProduct: apiProduct, index: 0)
+                }
+                
+                updateFilteredProducts(with: products, searchText: searchText)
+            } catch {
+                print("Failed to decode JSON: \(error)")
+            }
+        }
+        currentDataTask?.resume()
+    }
+
+    private func updateFilteredProducts(with products: [Product], searchText: String) {
+        var uniqueProducts = [String: Product]()
+        for product in products {
+            // Проверка на уникальность и более полную информацию
+            if let existing = uniqueProducts[product.name], (existing.protein) < (product.protein) {
+                uniqueProducts[product.name] = product
+            } else if uniqueProducts[product.name] == nil {
+                uniqueProducts[product.name] = product
+            }
+        }
+
+        // Отфильтровываем продукты, строго соответствующие поиску
+        let filteredUniqueProducts = uniqueProducts.values.filter { product in
+            product.name.localizedCaseInsensitiveContains(searchText)
+        }
+
+        DispatchQueue.main.async { [unowned self] in
+            activityIndicator.stopAnimating()
+            filteredProducts = filteredUniqueProducts
+            tableView.reloadData()
+        }
     }
 }

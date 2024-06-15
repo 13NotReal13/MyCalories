@@ -115,7 +115,7 @@ final class StorageManager {
     
     // MARK: - Realm
     // All Products
-    func fetchAllProducts(completion: @escaping (Results<Product>) -> Void) {
+    func fetchAllProductsRu(completion: @escaping ([Product]) -> Void) {
         guard let allProductsInDevice = realmDevice.objects(AllProducts.self).first else {
             let productsFromProject = realmProject.objects(Product.self)
             
@@ -140,13 +140,84 @@ final class StorageManager {
                 realmDevice.add(allProductsInDevice)
             }
             
-            completion(realmDevice.objects(AllProducts.self).first!.productList.sorted(byKeyPath: "index"))
+            completion(Array(realmDevice.objects(Product.self).sorted(byKeyPath: "index")))
             return
         }
         
-        completion(allProductsInDevice.productList.sorted(byKeyPath: "index"))
+        completion(Array(allProductsInDevice.productList.sorted(byKeyPath: "index")))
     }
+    
+    func fetchAllProductsEn(completion: @escaping ([Product]) -> Void) {
+        guard let allProductsInDevice = realmDevice.objects(AllProducts.self).first else {
+            let urlString = "https://world.openfoodfacts.org/category/vegetables.json?fields=product_name,nutriments&page_size=100"
+            guard let url = URL(string: urlString) else {
+                print("Invalid URL")
+                completion([])
+                return
+            }
+            
+            URLSession.shared.dataTask(with: url) { [unowned self] data, response, error in
+                guard let data = data, error == nil else {
+                    print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
+                    DispatchQueue.main.async {
+                        completion([])
+                    }
+                    return
+                }
+                
+                do {
+                    let response = try JSONDecoder().decode(ProductsResponse.self, from: data)
+                    var index = 1
+                    let productsFromApi = response.products.compactMap { apiProduct -> Product? in
+                        let product = createProductFrom(apiProduct: apiProduct, index: index)
+                        index += 1
+                        return product
+                    }
+                    
+                    self.writeDeviceRealm {
+                        let allProductsInDevice = AllProducts()
+                        allProductsInDevice.productList.append(objectsIn: productsFromApi)
+                        self.realmDevice.add(allProductsInDevice)
+                    }
+                    
+                    DispatchQueue.main.async {
+                        let sortedProducts = Array(self.realmDevice.objects(Product.self).sorted(byKeyPath: "index"))
+                        DispatchQueue.main.async {
+                            completion(sortedProducts)
+                        }
+                    }
+                } catch {
+                    print("Failed to decode JSON: \(error)")
+                    DispatchQueue.main.async {
+                        completion([])
+                    }
+                }
+            }.resume()
+            return
+        }
+        
+        let sortedProducts = Array(allProductsInDevice.productList.sorted(byKeyPath: "index"))
+        DispatchQueue.main.async {
+            completion(sortedProducts)
+        }
+    }
+    
+    func createProductFrom(apiProduct: FoundProduct, index: Int) -> Product {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        formatter.maximumFractionDigits = 2
 
+        let product = Product()
+        product.name = apiProduct.productName ?? "Unknown"
+        product.protein = Double(formatter.string(for: apiProduct.nutriments.proteins) ?? "0.0") ?? 0.0
+        product.fats = Double(formatter.string(for: apiProduct.nutriments.fat) ?? "0.0") ?? 0.0
+        product.carbohydrates = Double(formatter.string(for: apiProduct.nutriments.carbohydrates) ?? "0.0") ?? 0.0
+        product.calories = Double(formatter.string(for: apiProduct.nutriments.energyKcal) ?? "0.0") ?? 0.0
+        product.index = index
+        product.color = "black"
+
+        return product
+    }
     
     // User Programm
     func fetchUserProgramm() -> UserProgramm {
@@ -225,7 +296,47 @@ final class StorageManager {
         completion(realmDevice.objects(History.self).sorted(byKeyPath: "date", ascending: false))
     }
     
-    func changeIndexAndColor(forProduct product: Product, completion: @escaping() -> Void) {
+    func saveOriginalAndAdjustedProduct(original: Product, adjusted: Product, completion: @escaping () -> Void) {
+        writeDeviceRealm {
+            // Add to Base if it isn't there
+            let products = realmDevice.objects(Product.self).sorted(byKeyPath: "index", ascending: true)
+            
+            for productFromBase in products {
+                productFromBase.index += 1
+            }
+            
+            let allProducts = realmDevice.objects(AllProducts.self).first ?? {
+                let newAllProducts = AllProducts()
+                realmDevice.add(newAllProducts)
+                return newAllProducts
+            }()
+            
+            if !allProducts.productList.contains(where: { $0.name == original.name }) {
+                original.index = 0
+                original.color = "colorApp"
+                allProducts.productList.append(original)
+            } else {
+                original.index = 0
+                original.color = "colorApp"
+            }
+            
+            // Add to History
+            let productDate = Calendar.current.startOfDay(for: adjusted.date)
+            if let historyOfProducts = realmDevice.objects(History.self).filter("date == %@", productDate).first {
+                historyOfProducts.productList.append(adjusted)
+            } else {
+                let newHistoryOfProducts = History()
+                newHistoryOfProducts.date = productDate
+                newHistoryOfProducts.productList.append(adjusted)
+                realmDevice.add(newHistoryOfProducts)
+            }
+            
+            completion()
+        }
+    }
+    
+    // Add new product to base
+    func addNewProductToBase(_ product: Product, completion: @escaping() -> Void) {
         writeDeviceRealm {
             let products = realmDevice.objects(Product.self).sorted(byKeyPath: "index", ascending: true)
             
@@ -233,25 +344,12 @@ final class StorageManager {
                 productFromBase.index += 1
             }
             
-            product.index = 0
-            product.color = "colorApp"
-            completion()
-        }
-    }
-    
-    func saveProductToHistory(_ product: Product) {
-        let productDate = Calendar.current.startOfDay(for: product.date)
-
-        writeDeviceRealm {
-            if let historyOfProducts = realmDevice.objects(History.self).filter("date == %@", productDate).first {
-                historyOfProducts.productList.append(product)
-            } else {
-                let newHistoryOfProducts = History()
-                newHistoryOfProducts.date = productDate
-                newHistoryOfProducts.productList.append(product)
-                realmDevice.add(newHistoryOfProducts)
+            if let allProducts = realmDevice.objects(AllProducts.self).first {
+                product.index = 0
+                allProducts.productList.append(product)
+                realmDevice.add(product)
             }
-            
+            completion()
         }
     }
     
@@ -304,24 +402,6 @@ final class StorageManager {
             calories: totalCalories,
             water: totalWater
         )
-    }
-    
-    // Add new product to base
-    func addNewProductToBase(_ product: Product, completion: @escaping() -> Void) {
-        writeDeviceRealm {
-            let products = realmDevice.objects(Product.self).sorted(byKeyPath: "index", ascending: true)
-            
-            for productFromBase in products {
-                productFromBase.index += 1
-            }
-            
-            if let allProducts = realmDevice.objects(AllProducts.self).first {
-                product.index = 0
-                allProducts.productList.append(product)
-                realmDevice.add(product)
-            }
-            completion()
-        }
     }
     
     // Delete product from base
