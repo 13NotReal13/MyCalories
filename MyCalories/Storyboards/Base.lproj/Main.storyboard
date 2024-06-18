@@ -2131,10 +2131,10 @@
                                 <rect key="frame" x="0.0" y="103" width="430" height="795"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9KM-2g-kNM">
-                                        <rect key="frame" x="0.0" y="0.0" width="430" height="2292.6666666666665"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="430" height="2576.6666666666665"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="s0P-et-pHk">
-                                                <rect key="frame" x="0.0" y="0.0" width="430" height="2292.6666666666665"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="430" height="2576.6666666666665"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="luJ-Gt-31a">
                                                         <rect key="frame" x="16" y="16" width="398" height="176"/>
@@ -2286,8 +2286,40 @@
                                                             <constraint firstItem="dlj-or-4im" firstAttribute="top" secondItem="1IR-sY-MnY" secondAttribute="top" constant="16" id="vF5-qk-Ufw"/>
                                                         </constraints>
                                                     </view>
+                                                    <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yLc-VS-9ao">
+                                                        <rect key="frame" x="16" y="1272" width="398" height="268"/>
+                                                        <subviews>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="1Vh-37-BiQ">
+                                                                <rect key="frame" x="16" y="16" width="366" height="236"/>
+                                                                <subviews>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How accurate is the product information in your database?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YPg-cv-Uqu">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="236"/>
+                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMF-En-V8D">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="366" height="0.0"/>
+                                                                        <mutableString key="text">    We utilize the open database Open Food Facts, which contains information on more than 2.9 million products from 150 countries and is updated daily with new data. This database is maintained by an international community of over 100,000 volunteers who actively collect and update product information from around the world. Despite all participants’ efforts to ensure the accuracy and currency of the data, it may contain inaccuracies or not be fully updated due to changes that manufacturers may introduce.
+
+Since our application does not have the capability to add or edit products in the Open Food Facts database, we strongly recommend verifying the information provided in the app with the data on the product packaging. This is particularly crucial for individuals for whom the accuracy of product composition is essential, such as those with allergies or those following special diets.</mutableString>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                                        <nil key="textColor"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="1Vh-37-BiQ" secondAttribute="trailing" constant="16" id="1wI-gO-1bh"/>
+                                                            <constraint firstItem="1Vh-37-BiQ" firstAttribute="top" secondItem="yLc-VS-9ao" secondAttribute="top" constant="16" id="BE8-Yi-gGr"/>
+                                                            <constraint firstAttribute="bottom" secondItem="1Vh-37-BiQ" secondAttribute="bottom" constant="16" id="WLf-DT-fnr"/>
+                                                            <constraint firstItem="1Vh-37-BiQ" firstAttribute="leading" secondItem="yLc-VS-9ao" secondAttribute="leading" constant="16" id="nwh-C0-GGY"/>
+                                                        </constraints>
+                                                    </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MvF-O9-9Ko">
-                                                        <rect key="frame" x="16" y="1272" width="398" height="196.33333333333326"/>
+                                                        <rect key="frame" x="16" y="1556" width="398" height="196.33333333333326"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="QSf-IQ-3ZM">
                                                                 <rect key="frame" x="16" y="16" width="366" height="164.33333333333334"/>
@@ -2317,7 +2349,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eAT-ZN-roh">
-                                                        <rect key="frame" x="16" y="1484.3333333333333" width="398" height="176"/>
+                                                        <rect key="frame" x="16" y="1768.3333333333333" width="398" height="176"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Omd-ii-LUd">
                                                                 <rect key="frame" x="16" y="16" width="366" height="144"/>
@@ -2347,7 +2379,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Y5n-oc-Ks0">
-                                                        <rect key="frame" x="16" y="1676.3333333333333" width="398" height="178.33333333333326"/>
+                                                        <rect key="frame" x="16" y="1960.3333333333333" width="398" height="178.33333333333326"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="kjz-Rf-cyU">
                                                                 <rect key="frame" x="16" y="16" width="366" height="146.33333333333334"/>
@@ -2377,7 +2409,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3zG-ir-MoI">
-                                                        <rect key="frame" x="16" y="1870.6666666666667" width="398" height="196.33333333333326"/>
+                                                        <rect key="frame" x="16" y="2154.6666666666665" width="398" height="196.33333333333348"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="oCM-Xr-ABy">
                                                                 <rect key="frame" x="16" y="16" width="366" height="164.33333333333334"/>
@@ -2407,7 +2439,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZpN-cC-cGS">
-                                                        <rect key="frame" x="16" y="2083" width="398" height="193.66666666666652"/>
+                                                        <rect key="frame" x="16" y="2367" width="398" height="193.66666666666652"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="bKh-8V-K1v">
                                                                 <rect key="frame" x="16" y="16" width="366" height="161.66666666666666"/>
@@ -2485,6 +2517,7 @@
                         <outletCollection property="questionsViews" destination="3zG-ir-MoI" collectionClass="NSMutableArray" id="yUR-wU-pw4"/>
                         <outletCollection property="questionsViews" destination="ZpN-cC-cGS" collectionClass="NSMutableArray" id="guU-0o-n4t"/>
                         <outletCollection property="questionsViews" destination="dXc-Cl-vqh" collectionClass="NSMutableArray" id="OGt-AJ-7Ac"/>
+                        <outletCollection property="questionsViews" destination="yLc-VS-9ao" collectionClass="NSMutableArray" id="ggp-Uk-md5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="chR-ga-0xQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2619,25 +2652,25 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="secondarySystemBackgroundColor">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray4Color">
-            <color red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.81960784313725488" green="0.81960784313725488" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

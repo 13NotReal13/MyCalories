@@ -1,0 +1,108 @@
+/* 
+  Localizable.strings (en)
+  MyCalories
+
+  Created by Иван Семикин on 13/06/2024.
+*/
+
+// MARK: - MainVC
+"AddWaterAlert" = "How much water did you drink?";
+"Save" = "Save";
+"Cancel" = "Cancel";
+"Done" = "Done";
+"Ml" = "ml";
+"Version" = "Version: ";
+
+"Update" = " (update)";
+"UpdateAlertTitle" = "Update Available";
+"UpdateAlertMessagePart1" = "A new version ";
+"UpdateAlertMessagePart2" = " is available. Please update to the latest version.";
+"UpdateAlertOkButton" = "Update";
+
+"ProteinsTableView" = "PROTEINS: ";
+"FatsYableView" = "FATS: ";
+"CarbohydratesTableView" = "CARBS: ";
+"CaloriesTableView" = "KCAL: ";
+"Per100gTableView" = " per 100 g";
+
+// MARK: - ProfileVC
+"LowTitle" = "Low";
+"MediumTitle" = "Medium";
+"HighTitle" = "High";
+
+"LowDescription" = "Low (1-2 workouts per week or a sedentary lifestyle)";
+"MediumDescription" = "Medium (3-5 workouts per week or light physical activity)";
+"HighDescription" = "High (6-7 workouts per week or heavy physical activity)";
+
+"DownWeight" = "Lose Weight";
+"MaintainWeight" = "Maintain Weight";
+"UpWeight" = "Gain Weight";
+
+"Male" = "Male";
+"Female" = "Female";
+
+"NormForDownWeight" = "Recommended daily norm for weight loss:";
+"NormForMaintainWeight" = "Recommended daily norm for weight maintenance:";
+"NormForUpWeight" = "Recommended daily norm for weight gain:";
+
+"G" = "g";
+"Cal" = "kcal";
+"SourceOfFormula" = "Source of Calculation";
+
+// MARK: - HistoryVC
+"PFCKcal" = "P / F / C  Kcal";  // Proteins/Fats/Carbohydrates Calories
+"Total" = "Total:";
+"Weight" = "Weight:";
+"SelectTheOption" = "Select the option";
+"EditWeight" = "Edit weight";
+"Delete" = "Delete";
+
+// MARK: - AddProductToHistoryVC
+"KcalPer100G" = "kcal per 100 g";
+"Today" = "TODAY";
+"Yesterday" = "YESTERDAY";
+
+// MARK: - AddNewProductVC
+"ProductNotFound" = "Product not found";
+"SolutionOptions" = "Possible solutions: \n1. Ensure you are scanning only the barcode, without any extra numeric characters around; \n2. Check if there are other barcodes or QR codes on the product.";
+
+"Information" = "Information";
+"SomeDataIsMissing" = "Some data is missing.";
+"Ok" = "OK";
+
+"AccessCameraIsRestricted" = "Camera access is restricted";
+"AccessCameraIsRestrictedInfo" = "To scan barcodes, you need to allow camera access in the settings. Please go to Settings and enable camera access for this app.";
+"OpenSettings" = "Open Settings";
+
+// MARK: - EditWeightVC
+"Error" = "Error";
+"NeedEnterWeight" = "It is necessary to enter the weight.";
+
+// MARK: - PurchaseVC
+"RestorePurchase" = "Restore Purchases";
+"RequestHasBeenSent" = "A request to restore purchases from your AppleID has been sent.";
+"SubscriptionRestored" = "Subscription Restored";
+"ExpirationDate" = "Expiration Date:";
+"PrivacyPolicy" = "Privacy Policy";
+"TermsOfUse" = "Terms of Use";
+"Expiration" = "Expires:";
+"PerMonth" =  "/ mo.";
+
+// MARK: - UIViewController + Ext
+"InvalidValue" = "Invalid value";
+"WrongFormat" = "Wrong format";
+"AskToDelete" = "Are you sure you want to delete?";
+"RateAlertTitle" = "Do you like our app?🥹";
+"RateAlertMessage" = "We work hard for you and improve our app every day. Please rate us 5 stars.\nThank you for your support!❤️";
+"RateAlertOkButton" = "5 stars";
+
+"ConnectionErrorTitle" = "Connection Error";
+"ConnectionErrorMessage" = "Please check your internet connection and try again.";
+
+"TimeoutErrorTitle" = "Timeout";
+"TimeoutErrorMessage" = "The server is not responding. Please try again later.😢";
+
+"UnexpectedErrorMessage" = "An unexpected error occurred.😢";
+
+"DataErrorTitle" = "Data Error";
+"DataErrorMessage" = "Failed to retrieve data from the server.😢";

@@ -68,30 +68,26 @@ final class AddProductToHistoryViewController: UIViewController {
         let weight = Double(weightTF.text ?? "0") ?? 0.0
         let weightRatio = weight / 100.0
         
-        let adjustedProtein = (selectedProduct.protein * weightRatio * 100).rounded() / 100
-        let adjustedFats = (selectedProduct.fats * weightRatio * 100).rounded() / 100
-        let adjustedCarbohydrates = (selectedProduct.carbohydrates * weightRatio * 100).rounded() / 100
-        let adjustedCalories = (selectedProduct.calories * weightRatio * 100).rounded() / 100
-        
-        storageManager.changeIndexAndColor(forProduct: selectedProduct) { [unowned self] in
-            delegate?.updateTableView()
-        }
-        
-        storageManager.saveProductToHistory(
-            Product(
-                value: [
-                    selectedProduct.name,
-                    adjustedProtein,
-                    adjustedFats,
-                    adjustedCarbohydrates,
-                    adjustedCalories,
-                    datePicker.date,
-                    weight
-                ]
-            )
+        // Создаем отредактированный продукт
+        let adjustedProduct = Product(
+            value: [
+                selectedProduct.name,
+                selectedProduct.protein * weightRatio,
+                selectedProduct.fats * weightRatio,
+                selectedProduct.carbohydrates * weightRatio,
+                selectedProduct.calories * weightRatio,
+                datePicker.date,
+                weight
+            ]
         )
         
-        dismiss(animated: true)
+        storageManager.saveOriginalAndAdjustedProduct(
+            original: selectedProduct,
+            adjusted: adjustedProduct
+        ) { [unowned self] in
+            delegate?.updateTableView()
+            dismiss(animated: true)
+        }
     }
     
 }
@@ -109,15 +105,15 @@ private extension AddProductToHistoryViewController {
         dateTF.inputView = datePicker
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
-        datePicker.locale = Locale(identifier: "ru_RU")
+        datePicker.locale = Locale.current
     }
     
     func setLabels() {
         nameProductLabel.text = selectedProduct.name
-        proteinProductLabel.text = "\(selectedProduct.protein) г."
-        fatsProductLabel.text = "\(selectedProduct.fats) г."
-        carbohydratesProductLabel.text = "\(selectedProduct.carbohydrates) г."
-        caloriesProductLabel.text = "\(selectedProduct.calories) кКал на 100 г."
+        proteinProductLabel.text = "\(selectedProduct.protein) " + String.g
+        fatsProductLabel.text = "\(selectedProduct.fats) " + String.g
+        carbohydratesProductLabel.text = "\(selectedProduct.carbohydrates) " + String.g
+        caloriesProductLabel.text = "\(selectedProduct.calories) " + String.kcalPer100G
     }
     
     @objc private func doneButtonPressed() {
@@ -125,9 +121,9 @@ private extension AddProductToHistoryViewController {
         
         if textField == dateTF {
             if Calendar.current.isDateInToday(datePicker.date) {
-                dateTF.text = "СЕГОДНЯ"
+                dateTF.text = String.today
             } else if Calendar.current.isDateInYesterday(datePicker.date) {
-                dateTF.text = "ВЧЕРА"
+                dateTF.text = String.yesterday
             } else {
                 dateTF.text = datePicker.dateToString(datePicker.date)
             }
@@ -153,7 +149,7 @@ private extension AddProductToHistoryViewController {
 extension AddProductToHistoryViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
-        textField.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        textField.inputAccessoryView = createToolbar(title: String.done, selector: #selector(doneButtonPressed))
         addBarButtonItem.isEnabled = false
     }
     

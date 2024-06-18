@@ -55,8 +55,8 @@ final class MainViewController: UIViewController {
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared
     
-    private var allProducts: Results<Product>!
-    private var filteredProducts: Results<Product>!
+    private var allProducts: [Product] = []
+    private var filteredProducts: [Product] = []
     
     private var menuIsVisible = false
     
@@ -75,6 +75,10 @@ final class MainViewController: UIViewController {
     private let appIDAppStore = "6502844957"
     // testAdId: "ca-app-pub-3940256099942544/4411468910"
     // realAdId: "ca-app-pub-7511053995750557/9276091651"
+    
+    private var activityIndicator: UIActivityIndicatorView!
+    private var searchTimer: Timer?
+    private var currentDataTask: URLSessionDataTask?
     
     private lazy var overlayView: UIView = {
         let overlay = UIView(frame: view.bounds)
@@ -109,7 +113,8 @@ final class MainViewController: UIViewController {
         menuTrailingConstraint.constant = view.frame.width
         overlayView.alpha = 0
         
-        if PurchasesManager.shared.activeSubscription() == nil && storageManager.shouldShowAds() {
+        if PurchasesManager.shared.activeSubscription() == nil,
+           storageManager.shouldShowAds(), storageManager.isFifteenMinutesPassedSinceLastAd() {
             showInterstitial()
         }
     }
@@ -126,7 +131,8 @@ final class MainViewController: UIViewController {
         ATTrackingManager.requestTrackingAuthorization { [unowned self] _ in
             if adIsLoaded == false
                 && PurchasesManager.shared.activeSubscription() == nil
-                && storageManager.shouldShowAds() {
+                && storageManager.shouldShowAds() 
+                && storageManager.isFifteenMinutesPassedSinceLastAd() {
                 loadInterstitial()
                 adIsLoaded = true
             }
@@ -171,6 +177,7 @@ final class MainViewController: UIViewController {
         }
     }
     
+    // MARK: - IBActions
     @IBAction func menuUIButtonAction() {
         toogleMenu()
     }
@@ -182,7 +189,6 @@ final class MainViewController: UIViewController {
     @IBAction func waterButtonAction() {
         showAlertForAddWater()
     }
-    
     
     @IBAction func rateButtonAction() {
         toogleMenu()
@@ -219,19 +225,17 @@ extension MainViewController: GADFullScreenContentDelegate {
     }
 
     func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
-        print("Ad failed to present with error: \(error.localizedDescription)")
+        Analytics.logEvent("did_fail_present_fullscrenn_ad", parameters: nil)
     }
     
     func loadInterstitial() {
         let request = GADRequest()
-        GADInterstitialAd.load(
-            withAdUnitID: googleAdUnitID,
-            request: request
-        ) { [weak self] ad, error in
-            if let error = error {
-                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+        GADInterstitialAd.load(withAdUnitID: googleAdUnitID, request: request) { [weak self] ad, error in
+            if error != nil {
+                Analytics.logEvent("load_interstitial_failed", parameters: nil)
                 return
             }
+            Analytics.logEvent("load_interstitial_success", parameters: nil)
             self?.interstitial = ad
             self?.interstitial?.fullScreenContentDelegate = self
         }
@@ -239,10 +243,13 @@ extension MainViewController: GADFullScreenContentDelegate {
     
     func showInterstitial() {
         if let interstitial = interstitial {
+            storageManager.saveLastAdShownDate()
+            Analytics.logEvent("show_interstitial_success", parameters: nil)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 interstitial.present(fromRootViewController: self)
             }
         } else {
+            Analytics.logEvent("show_interstitial_failed", parameters: nil)
             loadInterstitial()
         }
     }
@@ -263,8 +270,21 @@ extension MainViewController: MainScreenDelegate {
     func updateTableView() {
         searchBar.text = ""
         searchBar.searchTextField.resignFirstResponder()
-        filteredProducts = allProducts
-        tableView.reloadData()
+        
+        if Locale.current.languageCode == "ru" {
+            storageManager.fetchAllProductsRu { [unowned self] productsList in
+                allProducts = productsList
+                filteredProducts = allProducts
+                tableView.reloadData()
+            }
+        } else {
+            storageManager.fetchAllProductsEn { [unowned self] productsList in
+                activityIndicator.stopAnimating()
+                allProducts = productsList
+                filteredProducts = allProducts
+                tableView.reloadData()
+            }
+        }
     }
 }
 
@@ -274,13 +294,28 @@ private extension MainViewController {
         fetchData()
         setupUIs()
         setHiddenOfProgressBlock()
+        
+        if Locale.current.languageCode != "ru" {
+            setActivityIndicator()
+        }
     }
     
     func fetchData() {
-        storageManager.fetchAllProducts { [unowned self] productsList in
-            allProducts = productsList
-            filteredProducts = allProducts
-            tableView.reloadData()
+        let currentLocal = Locale.current.languageCode
+        
+        if currentLocal == "ru" {
+            storageManager.fetchAllProductsRu { [unowned self] productsList in
+                allProducts = productsList
+                filteredProducts = allProducts
+                tableView.reloadData()
+            }
+        } else {
+            storageManager.fetchAllProductsEn { [unowned self] productsList in
+                activityIndicator.stopAnimating()
+                allProducts = productsList
+                filteredProducts = allProducts
+                tableView.reloadData()
+            }
         }
     }
     
@@ -366,29 +401,30 @@ private extension MainViewController {
     
     func showAlertForAddWater() {
         let alert = UIAlertController(
-            title: "Сколько воды вы выпили?",
+            title: String.addWaterAlert,
             message: "",
             preferredStyle: .alert
         )
         
-        let okButton = UIAlertAction(title: "Сохранить", style: .default) { [unowned self] _ in
+        let okButton = UIAlertAction(title: String.save, style: .default) { [unowned self] _ in
             guard let text = alert.textFields?.first?.text, let waterML = Int(text) else { return }
             let water = Water()
             water.date = Date()
             water.ml = waterML
             storageManager.saveWaterToHistory(water) { [unowned self] in
                 setProgressBarValues()
-                if PurchasesManager.shared.activeSubscription() == nil && storageManager.shouldShowAds() {
+                if PurchasesManager.shared.activeSubscription() == nil,
+                   storageManager.shouldShowAds(), storageManager.isFifteenMinutesPassedSinceLastAd() {
                     showInterstitial()
                 }
             }
         }
-        let cancelButton = UIAlertAction(title: "Отмена", style: .cancel)
+        let cancelButton = UIAlertAction(title: String.cancel, style: .cancel)
         
         alert.addAction(okButton)
         alert.addAction(cancelButton)
         alert.addTextField { textField in
-            textField.placeholder = "мл."
+            textField.placeholder = String.ml
             textField.keyboardType = .numberPad
             
             // Добавим наблюдатель для ограничения ввода
@@ -406,7 +442,7 @@ private extension MainViewController {
     
     func deleteProduct(product: Product, indexPath: IndexPath) {
         storageManager.deleteProduct(product) { [unowned self] in
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            fetchData()
         }
     }
     
@@ -432,7 +468,9 @@ private extension MainViewController {
     }
     
     @objc private func appWillEnterForeground() {
-        if PurchasesManager.shared.activeSubscription() == nil && storageManager.shouldShowAds() {
+        if PurchasesManager.shared.activeSubscription() == nil 
+            && storageManager.shouldShowAds()
+            && storageManager.isFifteenMinutesPassedSinceLastAd() {
             loadInterstitial()
         }
         updateProgressBar()
@@ -452,13 +490,13 @@ private extension MainViewController {
                    let localVersion = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String {
                     if appStoreVersion.compare(localVersion, options: .numeric) == .orderedDescending {
                         DispatchQueue.main.async { [unowned self] in
-                            versionAppButton.setTitle("Версия: \(localVersion) (обновить)", for: .normal)
+                            versionAppButton.setTitle(String.version + "\(localVersion)" + String.update, for: .normal)
                             versionAppButton.isEnabled = true
                             showUpdateAlert(version: appStoreVersion)
                         }
                     } else {
                         DispatchQueue.main.async { [unowned self] in
-                            versionAppButton.setTitle("Версия: \(localVersion)", for: .normal)
+                            versionAppButton.setTitle(String.version + "\(localVersion)", for: .normal)
                             versionAppButton.isEnabled = false
                         }
                     }
@@ -472,19 +510,19 @@ private extension MainViewController {
     
     func showUpdateAlert(version: String) {
         let alert = UIAlertController(
-            title: "Доступно обновление",
-            message: "Доступна новая версия \(version). Пожалуйста, обновитесь до последней версии.",
+            title: String.updateAlertTitle,
+            message: String.updateAlertMessagePart1 + "\(version)" + String.updateAlertMessagePart2,
             preferredStyle: .alert
         )
         
-        let updateAction = UIAlertAction(title: "Обновить", style: .default) { [unowned self] _ in
+        let updateAction = UIAlertAction(title: String.updateAlertOkButton, style: .default) { [unowned self] _ in
             let urlString = "https://apps.apple.com/app/id\(appIDAppStore)"
             if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url)
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: String.cancel, style: .cancel, handler: nil)
         
         alert.addAction(updateAction)
         alert.addAction(cancelAction)
@@ -495,6 +533,14 @@ private extension MainViewController {
                 rootViewController.present(alert, animated: true, completion: nil)
             }
         }
+    }
+    
+    func setActivityIndicator() {
+        activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.center = view.center
+        activityIndicator.hidesWhenStopped = true
+        view.addSubview(activityIndicator)
+        activityIndicator.startAnimating()
     }
 }
 
@@ -674,10 +720,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let product = filteredProducts[indexPath.row]
         cell?.productNameLabel.text = product.name
         cell?.productNameLabel.textColor = UIColor(named: product.color)
-        cell?.proteinProductLabel.text = "БЕЛКИ: \(product.protein)"
-        cell?.fatsProductLabel.text = "ЖИРЫ: \(product.fats)"
-        cell?.carbohydratesProductLabel.text = "УГЛЕВОДЫ: \(product.carbohydrates)"
-        cell?.caloriesProductLabel.text = "ККАЛ: \(product.calories) НА 100 Г."
+        cell?.proteinProductLabel.text = String.proteinsTableView + "\(product.protein)"
+        cell?.fatsProductLabel.text = String.fatsTableView + "\(product.fats)"
+        cell?.carbohydratesProductLabel.text = String.carbohydratesTableView + "\(product.carbohydrates)"
+        cell?.caloriesProductLabel.text = String.caloriesTableView + "\(product.calories)" + String.per100gTableView
         
         return cell ?? UITableViewCell()
     }
@@ -689,27 +735,54 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let product = filteredProducts[indexPath.row]
         
-        let deleteButton = UIContextualAction(style: .normal, title: nil) { [unowned self] _, _, isDone in
-            showAlertDelete(for: product.name) { [unowned self] in
-                deleteProduct(product: product, indexPath: indexPath)
+        if product.color == "colorApp" {
+            let deleteButton = UIContextualAction(style: .normal, title: nil) { [unowned self] _, _, isDone in
+                showAlertDelete(for: product.name) { [unowned self] in
+                    deleteProduct(product: product, indexPath: indexPath)
+                }
+                isDone(true)
             }
-            isDone(true)
+            
+            deleteButton.image = UIImage(systemName: "trash")
+            return UISwipeActionsConfiguration(actions: [deleteButton])
         }
         
-        deleteButton.image = UIImage(systemName: "trash")
-        return UISwipeActionsConfiguration(actions: [deleteButton])
+        return nil
     }
 }
 
 // MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter("name CONTAINS[c] %@", searchText)
-        tableView.reloadData()
+        let currentLocale = Locale.current.languageCode
         
-        if !filteredProducts.isEmpty {
-            let indexPath = IndexPath(row: 0, section: 0)
-            tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        if currentLocale == "ru" {
+            filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+            tableView.reloadData()
+            
+            if !filteredProducts.isEmpty {
+                let indexPath = IndexPath(row: 0, section: 0)
+                tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+            }
+        } else {
+            activityIndicator.startAnimating()
+            searchTimer?.invalidate()
+            searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [unowned self] _ in
+                if searchText.isEmpty {
+                    filteredProducts = allProducts
+                    activityIndicator.stopAnimating()
+                } else {
+                    fetchProductsFromAPI(searchText: searchText)
+                }
+                
+                DispatchQueue.main.async { [unowned self] in
+                    tableView.reloadData()
+                    if !filteredProducts.isEmpty {
+                        let indexPath = IndexPath(row: 0, section: 0)
+                        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
+                }
+            }
         }
     }
     
@@ -719,6 +792,93 @@ extension MainViewController: UISearchBarDelegate {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
         
-        searchBar.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        searchBar.inputAccessoryView = createToolbar(title: String.done, selector: #selector(doneButtonPressed))
+    }
+    
+    private func fetchProductsFromAPI(searchText: String) {
+        currentDataTask?.cancel()
+        
+        let urlString = "https://world.openfoodfacts.org/cgi/search.pl?search_terms=\(searchText)&search_simple=1&action=process&json=1&page_size=100"
+        guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
+        
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
+        let bundleIdentifier = Bundle.main.bundleIdentifier ?? "unknown"
+        
+        // Создание строки User-Agent
+        let userAgent = "\(bundleIdentifier)/\(appVersion)"
+        var request = URLRequest(url: url)
+        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+        
+        currentDataTask = URLSession.shared.dataTask(with: request) { [unowned self] data, response, error in
+            if let error = error as NSError? {
+                if error.code == NSURLErrorCancelled {
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    
+                    switch error.code {
+                    case NSURLErrorNotConnectedToInternet:
+                        Analytics.logEvent("connection_error_from_Api", parameters: nil)
+                        self.showAlert(title: String.connectErrorTitle, message: String.connectionErrorMessage)
+                    case NSURLErrorTimedOut:
+                        Analytics.logEvent("timeout_error_from_Api", parameters: nil)
+                        self.showAlert(title: String.timeoutErrorTitle, message: String.timeoutErrorMessage)
+                    default:
+                        Analytics.logEvent("error_from_Api", parameters: ["error": error.localizedDescription])
+                        self.showAlert(title: String.error, message: String.unexpectedErrorMessage)
+                    }
+                }
+                return
+            }
+            
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    Analytics.logEvent("data_error_from_Api", parameters: nil)
+                    self.showAlert(title: String.dataErrorTitle, message: String.dataErrorMessage)
+                }
+                return
+            }
+            
+            do {
+                let response = try JSONDecoder().decode(ProductsResponse.self, from: data)
+                let products = response.products.compactMap { apiProduct -> Product? in
+                    guard let name = apiProduct.productName, !name.isEmpty else { return nil }
+                    Analytics.logEvent("connection_success_from_Api", parameters: nil)
+                    return self.storageManager.createProductFrom(apiProduct: apiProduct, index: 0)
+                }
+                
+                DispatchQueue.main.async {
+                    self.updateFilteredProducts(with: products, searchText: searchText)
+                }
+            } catch {
+                Analytics.logEvent("decoding_error_from_Api", parameters: nil)
+            }
+        }
+        currentDataTask?.resume()
+    }
+
+    private func updateFilteredProducts(with products: [Product], searchText: String) {
+        var uniqueProducts = [String: Product]()
+        for product in products {
+            // Проверка на уникальность и более полную информацию
+            if uniqueProducts[product.name.lowercased()] != nil {
+                uniqueProducts[product.name.lowercased()] = product
+            } else if uniqueProducts[product.name.lowercased()] == nil {
+                uniqueProducts[product.name.lowercased()] = product
+            }
+        }
+
+        // Отфильтровываем продукты, строго соответствующие поиску
+        let filteredUniqueProducts = uniqueProducts.values.filter { product in
+            product.name.localizedCaseInsensitiveContains(searchText)
+        }.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+
+        DispatchQueue.main.async { [unowned self] in
+            activityIndicator.stopAnimating()
+            filteredProducts = filteredUniqueProducts
+            tableView.reloadData()
+        }
     }
 }

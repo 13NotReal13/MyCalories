@@ -6,6 +6,10 @@
 //
 import Foundation
 
+struct ProductsResponse: Codable {
+    let products: [FoundProduct]
+}
+
 struct SearchProduct: Codable {
     let product: FoundProduct?
     let errors: [ErrorItem]?
@@ -23,16 +27,36 @@ struct FoundProduct: Codable {
 }
 
 struct Nutriments: Codable {
-    let proteins: Double?
-    let fat: Double?
-    let carbohydrates: Double?
-    let energyKcal: Double?
+    var proteins: Double?
+    var fat: Double?
+    var carbohydrates: Double?
+    var energyKcal: Double?
 
     enum CodingKeys: String, CodingKey {
         case proteins = "proteins_100g"
         case fat = "fat_100g"
         case carbohydrates = "carbohydrates_100g"
         case energyKcal = "energy-kcal_100g"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        proteins = try container.decodeDoubleOrString(forKey: .proteins)
+        fat = try container.decodeDoubleOrString(forKey: .fat)
+        carbohydrates = try container.decodeDoubleOrString(forKey: .carbohydrates)
+        energyKcal = try container.decodeDoubleOrString(forKey: .energyKcal)
+    }
+}
+
+extension KeyedDecodingContainer {
+    func decodeDoubleOrString(forKey key: Key) throws -> Double? {
+        if let value = try? decode(Double.self, forKey: key) {
+            return value
+        }
+        if let stringValue = try? decode(String.self, forKey: key), let value = Double(stringValue) {
+            return value
+        }
+        return nil
     }
 }
 

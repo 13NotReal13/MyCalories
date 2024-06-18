@@ -10,7 +10,7 @@ import Foundation
 extension Date {
     static func dateToString(_ date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.locale = Locale(identifier: "ru_RU")
+        dateFormatter.locale = Locale.current
         dateFormatter.dateFormat = "dd MMMM yyyy"
         let dateInString = dateFormatter.string(from: date)
         return dateInString
