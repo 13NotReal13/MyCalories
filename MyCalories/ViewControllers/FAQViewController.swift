@@ -17,6 +17,9 @@ final class FAQViewController: UIViewController {
         setupUI()
         
         questionsViews.forEach { questionView in
+            if questionView.tag == 1, Locale.current.languageCode == "ru" {
+                questionView.isHidden = true
+            }
             let tapGesture = UITapGestureRecognizer(target: self, action: #selector(toggleAnswerVisibility(_:)))
             questionView.addGestureRecognizer(tapGesture)
             questionView.isUserInteractionEnabled = true

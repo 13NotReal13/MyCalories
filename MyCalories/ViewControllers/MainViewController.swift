@@ -230,11 +230,8 @@ extension MainViewController: GADFullScreenContentDelegate {
     
     func loadInterstitial() {
         let request = GADRequest()
-        GADInterstitialAd.load(
-            withAdUnitID: googleAdUnitID,
-            request: request
-        ) { [weak self] ad, error in
-            if let error = error {
+        GADInterstitialAd.load(withAdUnitID: googleAdUnitID, request: request) { [weak self] ad, error in
+            if error != nil {
                 Analytics.logEvent("load_interstitial_failed", parameters: nil)
                 return
             }
@@ -445,7 +442,7 @@ private extension MainViewController {
     
     func deleteProduct(product: Product, indexPath: IndexPath) {
         storageManager.deleteProduct(product) { [unowned self] in
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            fetchData()
         }
     }
     
@@ -738,15 +735,19 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let product = filteredProducts[indexPath.row]
         
-        let deleteButton = UIContextualAction(style: .normal, title: nil) { [unowned self] _, _, isDone in
-            showAlertDelete(for: product.name) { [unowned self] in
-                deleteProduct(product: product, indexPath: indexPath)
+        if product.color == "colorApp" {
+            let deleteButton = UIContextualAction(style: .normal, title: nil) { [unowned self] _, _, isDone in
+                showAlertDelete(for: product.name) { [unowned self] in
+                    deleteProduct(product: product, indexPath: indexPath)
+                }
+                isDone(true)
             }
-            isDone(true)
+            
+            deleteButton.image = UIImage(systemName: "trash")
+            return UISwipeActionsConfiguration(actions: [deleteButton])
         }
         
-        deleteButton.image = UIImage(systemName: "trash")
-        return UISwipeActionsConfiguration(actions: [deleteButton])
+        return nil
     }
 }
 
@@ -786,8 +787,6 @@ extension MainViewController: UISearchBarDelegate {
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
-        print("allProducts: \(allProducts.count)")
-        print("filteredProducts: \(filteredProducts.count)")
         if !filteredProducts.isEmpty {
             let indexPath = IndexPath(row: 0, section: 0)
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
@@ -811,12 +810,14 @@ extension MainViewController: UISearchBarDelegate {
         request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
         
         currentDataTask = URLSession.shared.dataTask(with: request) { [unowned self] data, response, error in
-            DispatchQueue.main.async {
-                self.activityIndicator.stopAnimating()
-            }
-            
             if let error = error as NSError? {
+                if error.code == NSURLErrorCancelled {
+                    return
+                }
+                
                 DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    
                     switch error.code {
                     case NSURLErrorNotConnectedToInternet:
                         Analytics.logEvent("connection_error_from_Api", parameters: nil)
@@ -825,7 +826,7 @@ extension MainViewController: UISearchBarDelegate {
                         Analytics.logEvent("timeout_error_from_Api", parameters: nil)
                         self.showAlert(title: String.timeoutErrorTitle, message: String.timeoutErrorMessage)
                     default:
-                        Analytics.logEvent("error_from_Api", parameters: nil)
+                        Analytics.logEvent("error_from_Api", parameters: ["error": error.localizedDescription])
                         self.showAlert(title: String.error, message: String.unexpectedErrorMessage)
                     }
                 }
@@ -834,6 +835,7 @@ extension MainViewController: UISearchBarDelegate {
             
             guard let data = data else {
                 DispatchQueue.main.async {
+                    Analytics.logEvent("data_error_from_Api", parameters: nil)
                     self.showAlert(title: String.dataErrorTitle, message: String.dataErrorMessage)
                 }
                 return
