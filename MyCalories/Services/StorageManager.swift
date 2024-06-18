@@ -169,14 +169,28 @@ final class StorageManager {
                     let response = try JSONDecoder().decode(ProductsResponse.self, from: data)
                     var index = 1
                     let productsFromApi = response.products.compactMap { apiProduct -> Product? in
+                        guard let name = apiProduct.productName, !name.isEmpty else { return nil }
                         let product = createProductFrom(apiProduct: apiProduct, index: index)
                         index += 1
                         return product
                     }
                     
+                    var uniqueProducts = [String: Product]()
+                    for product in productsFromApi {
+                        // Проверка на уникальность и более полную информацию
+                        if let existing = uniqueProducts[product.name.lowercased()], (existing.protein) < (product.protein) {
+                            uniqueProducts[product.name.lowercased()] = product
+                        } else if uniqueProducts[product.name.lowercased()] == nil {
+                            uniqueProducts[product.name.lowercased()] = product
+                        }
+                    }
+
+                    // Отфильтровываем продукты, строго соответствующие поиску
+                    let filteredUniqueProducts = uniqueProducts.values.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
+                    
                     self.writeDeviceRealm {
                         let allProductsInDevice = AllProducts()
-                        allProductsInDevice.productList.append(objectsIn: productsFromApi)
+                        allProductsInDevice.productList.append(objectsIn: filteredUniqueProducts)
                         self.realmDevice.add(allProductsInDevice)
                     }
                     

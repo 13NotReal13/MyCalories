@@ -231,4 +231,26 @@ extension String {
     static var rateAlertOkButton: String {
         NSLocalizedString("RateAlertOkButton", comment: "5 stars")
     }
+    
+    static var connectErrorTitle: String {
+        NSLocalizedString("ConnectionErrorTitle", comment: "Ошибка подключения")
+    }
+    static var connectionErrorMessage: String {
+        NSLocalizedString("ConnectionErrorMessage", comment: "Проверьте подключение к интернету и попробуйте снова.")
+    }
+    static var timeoutErrorTitle: String {
+        NSLocalizedString("TimeoutErrorTitle", comment: "Время ожидания истекло")
+    }
+    static var timeoutErrorMessage: String {
+        NSLocalizedString("TimeoutErrorMessage", comment: "Сервер не отвечает. Попробуйте повторить запрос позже.")
+    }
+    static var unexpectedErrorMessage: String {
+        NSLocalizedString("UnexpectedErrorMessage", comment: "Произошла неожиданная ошибка.😢")
+    }
+    static var dataErrorTitle: String {
+        NSLocalizedString("DataErrorTitle", comment: "Ошибка данных")
+    }
+    static var dataErrorMessage: String {
+        NSLocalizedString("DataErrorMessage", comment: "Не удалось получить данные с сервера.")
+    }
 }

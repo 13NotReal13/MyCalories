@@ -246,7 +246,7 @@ extension AddNewProductViewController: BarcodeScannerCodeDelegate,
         let bundleIdentifier = Bundle.main.bundleIdentifier ?? "unknown"
         
         // Создание строки User-Agent
-        let userAgent = "\(bundleIdentifier)/\(appVersion) (\(bundleIdentifier))"
+        let userAgent = "\(bundleIdentifier)/\(appVersion)"
         
         var request = URLRequest(url: url)
         request.setValue(userAgent, forHTTPHeaderField: "User-Agent")

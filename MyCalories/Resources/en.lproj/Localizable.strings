@@ -95,3 +95,14 @@
 "RateAlertTitle" = "Do you like our app?🥹";
 "RateAlertMessage" = "We work hard for you and improve our app every day. Please rate us 5 stars.\nThank you for your support!❤️";
 "RateAlertOkButton" = "5 stars";
+
+"ConnectionErrorTitle" = "Connection Error";
+"ConnectionErrorMessage" = "Please check your internet connection and try again.";
+
+"TimeoutErrorTitle" = "Timeout";
+"TimeoutErrorMessage" = "The server is not responding. Please try again later.😢";
+
+"UnexpectedErrorMessage" = "An unexpected error occurred.😢";
+
+"DataErrorTitle" = "Data Error";
+"DataErrorMessage" = "Failed to retrieve data from the server.😢";

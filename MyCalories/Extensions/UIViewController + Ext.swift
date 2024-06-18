@@ -133,4 +133,16 @@ extension UIViewController {
         
         present(alert, animated: true)
     }
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okButton = UIAlertAction(title: String.ok, style: .default) { _ in
+            alert.dismiss(animated: true)
+        }
+        alert.addAction(okButton)
+        
+        DispatchQueue.main.async { [unowned self] in
+            present(alert, animated: true)
+        }
+    }
 }

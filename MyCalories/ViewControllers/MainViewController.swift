@@ -113,7 +113,8 @@ final class MainViewController: UIViewController {
         menuTrailingConstraint.constant = view.frame.width
         overlayView.alpha = 0
         
-        if PurchasesManager.shared.activeSubscription() == nil && storageManager.shouldShowAds() {
+        if PurchasesManager.shared.activeSubscription() == nil,
+           storageManager.shouldShowAds(), storageManager.isFifteenMinutesPassedSinceLastAd() {
             showInterstitial()
         }
     }
@@ -224,7 +225,7 @@ extension MainViewController: GADFullScreenContentDelegate {
     }
 
     func ad(_ ad: GADFullScreenPresentingAd, didFailToPresentFullScreenContentWithError error: Error) {
-        print("Ad failed to present with error: \(error.localizedDescription)")
+        Analytics.logEvent("did_fail_present_fullscrenn_ad", parameters: nil)
     }
     
     func loadInterstitial() {
@@ -234,9 +235,10 @@ extension MainViewController: GADFullScreenContentDelegate {
             request: request
         ) { [weak self] ad, error in
             if let error = error {
-                print("Failed to load interstitial ad with error: \(error.localizedDescription)")
+                Analytics.logEvent("load_interstitial_failed", parameters: nil)
                 return
             }
+            Analytics.logEvent("load_interstitial_success", parameters: nil)
             self?.interstitial = ad
             self?.interstitial?.fullScreenContentDelegate = self
         }
@@ -245,10 +247,12 @@ extension MainViewController: GADFullScreenContentDelegate {
     func showInterstitial() {
         if let interstitial = interstitial {
             storageManager.saveLastAdShownDate()
+            Analytics.logEvent("show_interstitial_success", parameters: nil)
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 interstitial.present(fromRootViewController: self)
             }
         } else {
+            Analytics.logEvent("show_interstitial_failed", parameters: nil)
             loadInterstitial()
         }
     }
@@ -278,6 +282,7 @@ extension MainViewController: MainScreenDelegate {
             }
         } else {
             storageManager.fetchAllProductsEn { [unowned self] productsList in
+                activityIndicator.stopAnimating()
                 allProducts = productsList
                 filteredProducts = allProducts
                 tableView.reloadData()
@@ -411,7 +416,8 @@ private extension MainViewController {
             water.ml = waterML
             storageManager.saveWaterToHistory(water) { [unowned self] in
                 setProgressBarValues()
-                if PurchasesManager.shared.activeSubscription() == nil && storageManager.shouldShowAds() {
+                if PurchasesManager.shared.activeSubscription() == nil,
+                   storageManager.shouldShowAds(), storageManager.isFifteenMinutesPassedSinceLastAd() {
                     showInterstitial()
                 }
             }
@@ -794,27 +800,58 @@ extension MainViewController: UISearchBarDelegate {
         currentDataTask?.cancel()
         
         let urlString = "https://world.openfoodfacts.org/cgi/search.pl?search_terms=\(searchText)&search_simple=1&action=process&json=1&page_size=100"
-        guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else {
-            print("Invalid URL")
-            return
-        }
-
-        currentDataTask = URLSession.shared.dataTask(with: url) { [unowned self] data, response, error in
-            guard let data = data, error == nil else {
-                print("Error fetching data: \(error?.localizedDescription ?? "Unknown error")")
+        guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
+        
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
+        let bundleIdentifier = Bundle.main.bundleIdentifier ?? "unknown"
+        
+        // Создание строки User-Agent
+        let userAgent = "\(bundleIdentifier)/\(appVersion)"
+        var request = URLRequest(url: url)
+        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
+        
+        currentDataTask = URLSession.shared.dataTask(with: request) { [unowned self] data, response, error in
+            DispatchQueue.main.async {
+                self.activityIndicator.stopAnimating()
+            }
+            
+            if let error = error as NSError? {
+                DispatchQueue.main.async {
+                    switch error.code {
+                    case NSURLErrorNotConnectedToInternet:
+                        Analytics.logEvent("connection_error_from_Api", parameters: nil)
+                        self.showAlert(title: String.connectErrorTitle, message: String.connectionErrorMessage)
+                    case NSURLErrorTimedOut:
+                        Analytics.logEvent("timeout_error_from_Api", parameters: nil)
+                        self.showAlert(title: String.timeoutErrorTitle, message: String.timeoutErrorMessage)
+                    default:
+                        Analytics.logEvent("error_from_Api", parameters: nil)
+                        self.showAlert(title: String.error, message: String.unexpectedErrorMessage)
+                    }
+                }
                 return
             }
-
+            
+            guard let data = data else {
+                DispatchQueue.main.async {
+                    self.showAlert(title: String.dataErrorTitle, message: String.dataErrorMessage)
+                }
+                return
+            }
+            
             do {
                 let response = try JSONDecoder().decode(ProductsResponse.self, from: data)
                 let products = response.products.compactMap { apiProduct -> Product? in
                     guard let name = apiProduct.productName, !name.isEmpty else { return nil }
-                    return storageManager.createProductFrom(apiProduct: apiProduct, index: 0)
+                    Analytics.logEvent("connection_success_from_Api", parameters: nil)
+                    return self.storageManager.createProductFrom(apiProduct: apiProduct, index: 0)
                 }
                 
-                updateFilteredProducts(with: products, searchText: searchText)
+                DispatchQueue.main.async {
+                    self.updateFilteredProducts(with: products, searchText: searchText)
+                }
             } catch {
-                print("Failed to decode JSON: \(error)")
+                Analytics.logEvent("decoding_error_from_Api", parameters: nil)
             }
         }
         currentDataTask?.resume()
@@ -824,17 +861,17 @@ extension MainViewController: UISearchBarDelegate {
         var uniqueProducts = [String: Product]()
         for product in products {
             // Проверка на уникальность и более полную информацию
-            if let existing = uniqueProducts[product.name], (existing.protein) < (product.protein) {
-                uniqueProducts[product.name] = product
-            } else if uniqueProducts[product.name] == nil {
-                uniqueProducts[product.name] = product
+            if uniqueProducts[product.name.lowercased()] != nil {
+                uniqueProducts[product.name.lowercased()] = product
+            } else if uniqueProducts[product.name.lowercased()] == nil {
+                uniqueProducts[product.name.lowercased()] = product
             }
         }
 
         // Отфильтровываем продукты, строго соответствующие поиску
         let filteredUniqueProducts = uniqueProducts.values.filter { product in
             product.name.localizedCaseInsensitiveContains(searchText)
-        }
+        }.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
 
         DispatchQueue.main.async { [unowned self] in
             activityIndicator.stopAnimating()
