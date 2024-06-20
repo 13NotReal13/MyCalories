@@ -30,7 +30,7 @@
                                 <rect key="frame" x="16" y="153" width="398" height="779"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="gDL-dZ-72b">
-                                        <rect key="frame" x="16" y="0.0" width="366" height="629"/>
+                                        <rect key="frame" x="16" y="8" width="366" height="621"/>
                                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                                         <color key="sectionIndexBackgroundColor" systemColor="systemGray6Color"/>
                                         <prototypes>
@@ -110,15 +110,35 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="STy-aa-jVd"/>
                                         </connections>
                                     </tableView>
+                                    <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PpC-zB-jRT">
+                                        <rect key="frame" x="8" y="0.0" width="382" height="4"/>
+                                        <color key="progressTintColor" name="colorApp"/>
+                                        <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </progressView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="gDL-dZ-72b" secondAttribute="trailing" constant="16" id="H81-ts-KSJ"/>
+                                    <constraint firstItem="PpC-zB-jRT" firstAttribute="top" secondItem="obA-V2-FCj" secondAttribute="top" id="Hvn-kR-8mh"/>
                                     <constraint firstItem="gDL-dZ-72b" firstAttribute="leading" secondItem="obA-V2-FCj" secondAttribute="leading" constant="16" id="LAa-VK-goH"/>
-                                    <constraint firstItem="gDL-dZ-72b" firstAttribute="top" secondItem="obA-V2-FCj" secondAttribute="top" id="bib-g6-3jd"/>
+                                    <constraint firstAttribute="trailing" secondItem="PpC-zB-jRT" secondAttribute="trailing" constant="8" id="VvK-bi-8aJ"/>
+                                    <constraint firstItem="gDL-dZ-72b" firstAttribute="top" secondItem="obA-V2-FCj" secondAttribute="top" constant="8" id="bib-g6-3jd"/>
                                     <constraint firstAttribute="bottom" secondItem="gDL-dZ-72b" secondAttribute="bottom" constant="150" id="ji0-oT-xXi"/>
+                                    <constraint firstItem="PpC-zB-jRT" firstAttribute="leading" secondItem="obA-V2-FCj" secondAttribute="leading" constant="8" id="vJJ-z4-yt7"/>
                                 </constraints>
                             </view>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRe-XA-bC1">
+                                <rect key="frame" x="101" y="169" width="228" height="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="tintColor" name="textColorApp"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" title="Добавить новый продукт" image="plus" catalog="system">
+                                    <color key="titleColor" name="textColorApp"/>
+                                </state>
+                                <connections>
+                                    <segue destination="49J-jZ-JKF" kind="presentation" identifier="SegueToAddNewProductVC" id="bTm-pY-niS"/>
+                                </connections>
+                            </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eUE-0F-PXJ">
                                 <rect key="frame" x="0.0" y="782" width="430" height="150"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -274,10 +294,24 @@
                                     <outlet property="delegate" destination="BYZ-38-t0r" id="gpn-Bc-wAz"/>
                                 </connections>
                             </searchBar>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfG-hZ-WcI">
-                                <rect key="frame" x="340" y="696" width="70" height="70"/>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LMk-5P-ssH" userLabel="Barcode Button">
+                                <rect key="frame" x="185" y="706" width="60" height="60"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="70" id="729-1K-I8z"/>
+                                    <constraint firstAttribute="width" constant="60" id="30h-de-Wfq"/>
+                                    <constraint firstAttribute="height" constant="60" id="yhf-ai-jGZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="tintColor" name="backgroundProgressBar"/>
+                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                <state key="normal" image="barcodeButton"/>
+                                <connections>
+                                    <segue destination="49J-jZ-JKF" kind="presentation" identifier="SegueToAddNewProductVCFromBarcodeButton" id="2eE-oq-ozf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PfG-hZ-WcI">
+                                <rect key="frame" x="345" y="706" width="60" height="60"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="729-1K-I8z"/>
                                     <constraint firstAttribute="width" secondItem="PfG-hZ-WcI" secondAttribute="height" id="Pzd-Gl-0DI"/>
                                 </constraints>
                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -499,6 +533,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <constraints>
+                            <constraint firstItem="LMk-5P-ssH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="0aD-Qo-HVK"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="kGo-Cg-86x" secondAttribute="trailing" id="1ZJ-Nh-Cru"/>
                             <constraint firstItem="PfG-hZ-WcI" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" symbolic="YES" id="2Ko-hc-Wva"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="eUE-0F-PXJ" secondAttribute="trailing" id="2Oc-jT-Flk"/>
@@ -506,9 +541,10 @@
                             <constraint firstItem="obA-V2-FCj" firstAttribute="top" secondItem="OMz-5R-Q5X" secondAttribute="bottom" constant="6" id="6vq-xa-Qnp"/>
                             <constraint firstItem="INR-2c-t8t" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Bfl-J4-drd"/>
                             <constraint firstItem="T03-XA-YfC" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="C6d-ja-d2O"/>
+                            <constraint firstItem="ZRe-XA-bC1" firstAttribute="top" secondItem="obA-V2-FCj" secondAttribute="top" constant="16" id="CZU-er-Hhb"/>
                             <constraint firstItem="La2-79-89M" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Dge-AY-yrY"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="obA-V2-FCj" secondAttribute="trailing" constant="16" id="IhK-6c-dJp"/>
-                            <constraint firstAttribute="trailing" secondItem="PfG-hZ-WcI" secondAttribute="trailing" constant="20" id="LAu-BK-ypO"/>
+                            <constraint firstAttribute="trailing" secondItem="PfG-hZ-WcI" secondAttribute="trailing" constant="25" id="LAu-BK-ypO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="La2-79-89M" secondAttribute="trailing" constant="80" id="LEz-pA-pT5"/>
                             <constraint firstItem="eUE-0F-PXJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Nhb-vQ-mgy"/>
                             <constraint firstAttribute="bottom" secondItem="T03-XA-YfC" secondAttribute="bottom" id="OeL-5V-BwL"/>
@@ -517,8 +553,10 @@
                             <constraint firstAttribute="bottom" secondItem="La2-79-89M" secondAttribute="bottom" id="S0D-YH-sQr"/>
                             <constraint firstItem="kGo-Cg-86x" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-1" id="Tct-kY-HLh"/>
                             <constraint firstItem="INR-2c-t8t" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Xy6-TF-Sea"/>
+                            <constraint firstItem="ZRe-XA-bC1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="alo-ll-yUb"/>
                             <constraint firstItem="T03-XA-YfC" firstAttribute="bottom" secondItem="obA-V2-FCj" secondAttribute="bottom" id="cKb-Kp-hij"/>
                             <constraint firstItem="T03-XA-YfC" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="it4-zl-6vd"/>
+                            <constraint firstItem="eUE-0F-PXJ" firstAttribute="top" secondItem="LMk-5P-ssH" secondAttribute="bottom" constant="16" id="mvC-3M-cOK"/>
                             <constraint firstItem="obA-V2-FCj" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="oxg-CB-c8b"/>
                             <constraint firstItem="La2-79-89M" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="tSM-6h-dcq"/>
                             <constraint firstItem="T03-XA-YfC" firstAttribute="top" secondItem="PfG-hZ-WcI" secondAttribute="bottom" constant="16" id="uAf-hP-IA6"/>
@@ -540,6 +578,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="addNewProductFromTableViewButton" destination="ZRe-XA-bC1" id="Xjf-Fq-fKF"/>
                         <outlet property="caloriesProgrammLabel" destination="rEK-I4-vgb" id="1Wj-KW-cTj"/>
                         <outlet property="caloriesTodayLabel" destination="RpC-e5-DIQ" id="oWw-4O-aoy"/>
                         <outlet property="carbohydratesProgrammLabel" destination="7fu-VO-U4E" id="dNx-3J-D9J"/>
@@ -547,6 +586,7 @@
                         <outlet property="extendingNavigationBarView" destination="kGo-Cg-86x" id="Hnj-sf-s0n"/>
                         <outlet property="fatsProgrammLabel" destination="SmI-bG-gKv" id="ykS-Df-bs5"/>
                         <outlet property="fatsTodayLabel" destination="4da-Ra-UME" id="7Je-j1-JsX"/>
+                        <outlet property="loadProductsFromApiProgressView" destination="PpC-zB-jRT" id="pSn-MT-agE"/>
                         <outlet property="menuLeadingConstraint" destination="Dge-AY-yrY" id="niK-ED-Szv"/>
                         <outlet property="menuTrailingConstraint" destination="LEz-pA-pT5" id="BY2-di-LKc"/>
                         <outlet property="menuView" destination="La2-79-89M" id="HQI-r9-4VI"/>
@@ -555,6 +595,7 @@
                         <outlet property="progressView" destination="T03-XA-YfC" id="hUQ-6k-fHl"/>
                         <outlet property="proteinProgrammLabel" destination="o7J-Jw-qD1" id="ApO-Bs-XyH"/>
                         <outlet property="proteinTodayLabel" destination="QkO-Mh-02N" id="5qU-ch-zJ0"/>
+                        <outlet property="scanBarcodeButton" destination="LMk-5P-ssH" id="Bhq-kG-a0r"/>
                         <outlet property="searchBar" destination="OMz-5R-Q5X" id="9ch-4d-qLd"/>
                         <outlet property="shadowForProgressBarView" destination="eUE-0F-PXJ" id="S5F-pA-DRo"/>
                         <outlet property="shadowForTableViewView" destination="obA-V2-FCj" id="aTz-Jz-b1P"/>
@@ -2300,9 +2341,9 @@
                                                                     </label>
                                                                     <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OMF-En-V8D">
                                                                         <rect key="frame" x="0.0" y="0.0" width="366" height="0.0"/>
-                                                                        <mutableString key="text">    We utilize the open database Open Food Facts, which contains information on more than 2.9 million products from 150 countries and is updated daily with new data. This database is maintained by an international community of over 100,000 volunteers who actively collect and update product information from around the world. Despite all participants’ efforts to ensure the accuracy and currency of the data, it may contain inaccuracies or not be fully updated due to changes that manufacturers may introduce.
+                                                                        <string key="text">    We utilize the open database Open Food Facts, which contains information on more than 2.9 million products from 150 countries and is updated daily with new data. This database is maintained by an international community of over 100,000 volunteers who actively collect and update product information from around the world. Despite all participants’ efforts to ensure the accuracy and currency of the data, it may contain inaccuracies or not be fully updated due to changes that manufacturers may introduce.
 
-Since our application does not have the capability to add or edit products in the Open Food Facts database, we strongly recommend verifying the information provided in the app with the data on the product packaging. This is particularly crucial for individuals for whom the accuracy of product composition is essential, such as those with allergies or those following special diets.</mutableString>
+Since our application does not have the capability to add or edit products in the Open Food Facts database, we strongly recommend verifying the information provided in the app with the data on the product packaging. This is particularly crucial for individuals for whom the accuracy of product composition is essential, such as those with allergies or those following special diets.</string>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
@@ -2628,15 +2669,20 @@ Since our application does not have the capability to add or edit products in th
             <point key="canvasLocation" x="1641" y="-3"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="bTm-pY-niS"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.right" catalog="system" width="128" height="95"/>
         <image name="barcode.viewfinder" catalog="system" width="128" height="115"/>
+        <image name="barcodeButton" width="70" height="70"/>
         <image name="clock.arrow.circlepath" catalog="system" width="128" height="112"/>
         <image name="flame" catalog="system" width="106" height="128"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="info.circle" catalog="system" width="128" height="123"/>
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="person" catalog="system" width="128" height="121"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="star" catalog="system" width="128" height="116"/>
         <image name="waterButton" width="70" height="70"/>
         <namedColor name="backgroundProgressBar">

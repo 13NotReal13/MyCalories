@@ -91,7 +91,6 @@ final class StorageManager {
     }
     
     func shouldShowAds() -> Bool {
-        let userDefaults = UserDefaults.standard
         if let dateFirstOpen = userDefaults.object(forKey: "dateFirstOpen") as? Date {
             let hoursSinceFirstOpen = Date().timeIntervalSince(dateFirstOpen) / 3600
             return hoursSinceFirstOpen >= 48
@@ -106,11 +105,19 @@ final class StorageManager {
     }
     
     func isFifteenMinutesPassedSinceLastAd() -> Bool {
-        if let lastAdShown = UserDefaults.standard.object(forKey: "lastAdShown") as? Date {
+        if let lastAdShown = userDefaults.object(forKey: "lastAdShown") as? Date {
             let thirtyMinutes = 15 * 60 // 15 minutes in seconds
             return Date().timeIntervalSince(lastAdShown) >= TimeInterval(thirtyMinutes)
         }
         return true // Если реклама не показывалась, можно показать снова
+    }
+    
+    func didAskedForScanBarcode() -> Bool {
+        if let didAsked = userDefaults.object(forKey: "didAskedForScanBarcode") as? Bool {
+            return didAsked
+        }
+        userDefaults.setValue(true, forKey: "didAskedForScanBarcode")
+        return false
     }
     
     // MARK: - Realm

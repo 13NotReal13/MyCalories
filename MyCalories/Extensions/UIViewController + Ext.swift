@@ -107,7 +107,7 @@ extension UIViewController {
         
         NSLayoutConstraint.activate([
             imageView.centerXAnchor.constraint(equalTo: alert.view.centerXAnchor),
-            imageView.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: 160),
+            imageView.topAnchor.constraint(equalTo: alert.view.topAnchor, constant: Locale.current.languageCode == "ru" ? 160 : 100),
             imageView.bottomAnchor.constraint(equalTo: alert.view.bottomAnchor, constant: -50),
             imageView.widthAnchor.constraint(equalToConstant: imageSize.width),
             imageView.heightAnchor.constraint(equalToConstant: imageSize.height),

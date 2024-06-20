@@ -27,6 +27,8 @@ final class AddNewProductViewController: UIViewController {
     
     weak var delegate: MainScreenDelegate?
     
+    var segueFromBarcodeButton: Bool!
+    
     private let storageManager = StorageManager.shared
     private var activeTextField: UITextField?
     
@@ -41,25 +43,20 @@ final class AddNewProductViewController: UIViewController {
         extendingNavigationBarView.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 50)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if segueFromBarcodeButton {
+            openScanner()
+        }
+    }
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         doneButtonPressed()
     }
     
     @IBAction func barcodeScannerButtonAction() {
-        switch AVCaptureDevice.authorizationStatus(for: .video) {
-        case .authorized: // Разрешение уже предоставлено
-            startScanning()
-        case .notDetermined: // Разрешение еще не запрашивалось
-            AVCaptureDevice.requestAccess(for: .video) { [unowned self] granted in
-                if granted {
-                    startScanning()
-                }
-            }
-        default: // Разрешение отклонено или ограничено
-            promptForCameraAccess()
-            break
-        }
+        openScanner()
     }
     
     @IBAction func addBarButtonItemAction(_ sender: UIBarButtonItem) {
@@ -193,6 +190,22 @@ private extension AddNewProductViewController {
         let attributedString = NSAttributedString(string: "Open Food Facts", attributes: attributes)
         
         openFoodFactsButton.setAttributedTitle(attributedString, for: .normal)
+    }
+    
+    func openScanner() {
+        switch AVCaptureDevice.authorizationStatus(for: .video) {
+        case .authorized: // Разрешение уже предоставлено
+            startScanning()
+        case .notDetermined: // Разрешение еще не запрашивалось
+            AVCaptureDevice.requestAccess(for: .video) { [unowned self] granted in
+                if granted {
+                    startScanning()
+                }
+            }
+        default: // Разрешение отклонено или ограничено
+            promptForCameraAccess()
+            break
+        }
     }
 }
 

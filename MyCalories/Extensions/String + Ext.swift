@@ -253,4 +253,7 @@ extension String {
     static var dataErrorMessage: String {
         NSLocalizedString("DataErrorMessage", comment: "Не удалось получить данные с сервера.")
     }
+    static var addNewProductTitle: String {
+        NSLocalizedString("AddNewProductFromTableView", comment: "Добавить новый продукт")
+    }
 }

@@ -106,3 +106,5 @@
 
 "DataErrorTitle" = "Data Error";
 "DataErrorMessage" = "Failed to retrieve data from the server.😢";
+
+"AddNewProductFromTableView" = "Add New Product";

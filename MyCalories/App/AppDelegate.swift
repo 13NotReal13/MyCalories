@@ -20,8 +20,14 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        FirebaseApp.configure()
         
+        let memoryCapacity = 512 * 1024 * 1024  // 512 MB
+        let diskCapacity = 10 * 1024 * 1024 * 1024  // 10 GB
+        let cache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "myDiskPath")
+        URLCache.shared = cache
+        
+        
+        FirebaseApp.configure()
         // Установка делегата Firebase Messaging
         Messaging.messaging().delegate = self
         
