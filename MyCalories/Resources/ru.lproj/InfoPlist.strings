@@ -8,4 +8,4 @@
 
 CFBundleDisplayName = "Мои Калории";
 NSCameraUsageDescription = "Для сканирования продуктов разрешите доступ к камере.";
-NSUserTrackingUsageDescription = "Помогите улучшить рекламу, разрешив её отслеживание.";
+NSUserTrackingUsageDescription = "Это поможет нам поддерживать приложение бесплатным для вас и показывать только персонализированную рекламу.";

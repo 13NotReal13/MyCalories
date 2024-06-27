@@ -8,4 +8,4 @@
 
 CFBundleDisplayName = "My Calories";
 NSCameraUsageDescription = "Allow access to the camera to scan products.";
-NSUserTrackingUsageDescription = "Help improve advertising by allowing tracking.";
+NSUserTrackingUsageDescription = "This will help us keep the app free for you and only show personalized ads.";

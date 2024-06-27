@@ -27,8 +27,8 @@
                                             <constraint firstAttribute="height" constant="100" id="unQ-KT-MHW"/>
                                         </constraints>
                                     </imageView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Calories" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17g-RT-J2R">
-                                        <rect key="frame" x="125.66666666666669" y="117.00000000000001" width="149" height="39.666666666666671"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Мои Калории" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="17g-RT-J2R">
+                                        <rect key="frame" x="113.99999999999999" y="117.00000000000001" width="172.66666666666663" height="39.666666666666671"/>
                                         <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="28"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>

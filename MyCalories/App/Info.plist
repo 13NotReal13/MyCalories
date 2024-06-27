@@ -2,12 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>NSUserTrackingUsageDescription</key>
-	<string>Помогите улучшить рекламу, разрешив её отслеживание.</string>
-	<key>NSCameraUsageDescription</key>
-	<string>Для сканирования продуктов разрешите доступ к камере.</string>
-	<key>CFBundleDisplayName</key>
-	<string>$(PRODUCT_NAME)</string>
 	<key>GADApplicationIdentifier</key>
 	<string>ca-app-pub-7511053995750557~1739548265</string>
 	<key>ITSAppUsesNonExemptEncryption</key>
