@@ -259,7 +259,7 @@ extension SettingsViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
-        textField.inputAccessoryView = createToolbar(title: String.save, selector: #selector(saveButtonPressed))
+        textField.inputAccessoryView = createToolbar(title: "Сохранить", selector: #selector(saveButtonPressed))
         
         if textField == waterTF {
             scrollView.scrollToBottom(animated: true)

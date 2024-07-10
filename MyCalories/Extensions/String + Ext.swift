@@ -10,152 +10,152 @@ import Foundation
 extension String {
     // MARK: - MainVC
     static var addWaterAlert: String {
-        NSLocalizedString("AddWaterAlert", comment: "Сколько воды вы выпили?")
+        NSLocalizedString("Сколько воды вы выпили?", comment: "Сколько воды вы выпили?")
     }
     static var save: String {
-        NSLocalizedString("Save", comment: "Сохранить")
+        NSLocalizedString("Сохранить", comment: "Сохранить")
     }
     static var cancel: String {
-        NSLocalizedString("Cancel", comment: "Отмена")
+        NSLocalizedString("Отмена", comment: "Отмена")
     }
     static var done: String {
-        NSLocalizedString("Done", comment: "Готово")
+        NSLocalizedString("Готово", comment: "Готово")
     }
     static var ml: String {
-        NSLocalizedString("Ml", comment: "мл.")
+        NSLocalizedString("мл.", comment: "мл.")
     }
     
     static var version: String {
-        NSLocalizedString("Version", comment: "Версия: ")
+        NSLocalizedString("Версия: ", comment: "Версия: ")
     }
     static var update: String {
-        NSLocalizedString("Update", comment: " (обновить)")
+        NSLocalizedString(" (обновить)", comment: " (обновить)")
     }
     
     static var updateAlertTitle: String {
-        NSLocalizedString("UpdateAlertTitle", comment: "Доступно обновление")
+        NSLocalizedString("Доступно обновление", comment: "Доступно обновление")
     }
     static var updateAlertMessagePart1: String {
-        NSLocalizedString("UpdateAlertMessagePart1", comment: "Доступна новая версия ")
+        NSLocalizedString("Доступна новая версия ", comment: "Доступна новая версия ")
     }
     static var updateAlertMessagePart2: String {
-        NSLocalizedString("UpdateAlertMessagePart2", comment: ". Пожалуйста, обновитесь до последней версии.")
+        NSLocalizedString(". Пожалуйста, обновитесь до последней версии.", comment: ". Пожалуйста, обновитесь до последней версии.")
     }
     static var updateAlertOkButton: String {
-        NSLocalizedString("UpdateAlertOkButton", comment: "Обновить")
+        NSLocalizedString("Обновить", comment: "Обновить")
     }
     
     static var proteinsTableView: String {
-        NSLocalizedString("ProteinsTableView", comment: "БЕЛКИ: ")
+        NSLocalizedString("БЕЛКИ: ", comment: "БЕЛКИ: ")
     }
     static var fatsTableView: String {
-        NSLocalizedString("FatsYableView", comment: "ЖИРЫ: ")
+        NSLocalizedString("ЖИРЫ: ", comment: "ЖИРЫ: ")
     }
     static var carbohydratesTableView: String {
-        NSLocalizedString("CarbohydratesTableView", comment: "УГЛЕВОДЫ: ")
+        NSLocalizedString("УГЛЕВОДЫ: ", comment: "УГЛЕВОДЫ: ")
     }
     static var caloriesTableView: String {
-        NSLocalizedString("CaloriesTableView", comment: "ККАЛ: ")
+        NSLocalizedString("ККАЛ: ", comment: "ККАЛ: ")
     }
     static var per100gTableView: String {
-        NSLocalizedString("Per100gTableView", comment: " НА 100 Г.")
+        NSLocalizedString(" НА 100 Г.", comment: " НА 100 Г.")
     }
     
     // MARK: - ProfileVC
     static var lowTitle: String {
-        NSLocalizedString("LowTitle", comment: "Низкая")
+        NSLocalizedString("Низкая", comment: "Низкая")
     }
     static var mediumTitle: String {
-        NSLocalizedString("MediumTitle", comment: "Средняя")
+        NSLocalizedString("Средняя", comment: "Средняя")
     }
     static var highTitle: String {
-        NSLocalizedString("HighTitle", comment: "Высокая")
+        NSLocalizedString("Высокая", comment: "Высокая")
     }
     
     static var lowDescription: String {
-        NSLocalizedString("LowDescription", comment: "Низкая (1-2 тренировки в неделю или сидячий образ жизни)")
+        NSLocalizedString("Низкая (1-2 тренировки в неделю или сидячий образ жизни)", comment: "Низкая (1-2 тренировки в неделю или сидячий образ жизни)")
     }
     static var mediumDescription: String {
-        NSLocalizedString("MediumDescription", comment: "Средняя (3-5 тренировок в неделю или лёгкие физические нагрузки)")
+        NSLocalizedString("Средняя (3-5 тренировок в неделю или лёгкие физические нагрузки)", comment: "Средняя (3-5 тренировок в неделю или лёгкие физические нагрузки)")
     }
     static var highDescription: String {
-        NSLocalizedString("HighDescription", comment: "Высокая (6-7 тренировок в неделю или тяжёлые физические нагрузки)")
+        NSLocalizedString("Высокая (6-7 тренировок в неделю или тяжёлые физические нагрузки)", comment: "Высокая (6-7 тренировок в неделю или тяжёлые физические нагрузки)")
     }
     
     static var downWeight: String {
-        NSLocalizedString("DownWeight", comment: "Снизить вес")
+        NSLocalizedString("Снизить вес", comment: "Снизить вес")
     }
     static var maintainWeight: String {
-        NSLocalizedString("MaintainWeight", comment: "Удержать вес")
+        NSLocalizedString("Удержать вес", comment: "Удержать вес")
     }
     static var upWeight: String {
-        NSLocalizedString("UpWeight", comment: "Набрать вес")
+        NSLocalizedString("Набрать вес", comment: "Набрать вес")
     }
     
     static var male: String {
-        NSLocalizedString("Male", comment: "Мужчина")
+        NSLocalizedString("Мужчина", comment: "Мужчина")
     }
     static var female: String {
-        NSLocalizedString("Female", comment: "Женщина")
+        NSLocalizedString("Женщина", comment: "Женщина")
     }
     
     static var normForDownWeight: String {
-        NSLocalizedString("NormForDownWeight", comment: "Ежедневная рекомендуемая норма для снижения веса:")
+        NSLocalizedString("Ежедневная рекомендуемая норма для снижения веса:", comment: "Ежедневная рекомендуемая норма для снижения веса:")
     }
     static var normForMaintainWeight: String {
-        NSLocalizedString("NormForMaintainWeight", comment: "Ежедневная рекомендуемая норма для поддержания веса:")
+        NSLocalizedString("Ежедневная рекомендуемая норма для поддержания веса:", comment: "Ежедневная рекомендуемая норма для поддержания веса:")
     }
     static var normForUpWeight: String {
-        NSLocalizedString("NormForUpWeight", comment: "Ежедневная рекомендуемая норма для набора массы:")
+        NSLocalizedString("Ежедневная рекомендуемая норма для набора массы:", comment: "Ежедневная рекомендуемая норма для набора массы:")
     }
     
     static var g: String {
-        NSLocalizedString("G", comment: "г.")
+        NSLocalizedString("г.", comment: "г.")
     }
     static var cal: String {
-        NSLocalizedString("Cal", comment: "кКал.")
+        NSLocalizedString("кКал.", comment: "кКал.")
     }
     static var sourceOfFormula: String {
-        NSLocalizedString("SourceOfFormula", comment: "Источник расчёта формул")
+        NSLocalizedString("Источник расчёта формул", comment: "Источник расчёта формул")
     }
     
     // MARK: - HistoryVC
     static var pfckCal: String {
-        NSLocalizedString("PFCKcal", comment: "Б / Ж / У  Ккал")
+        NSLocalizedString("Б / Ж / У  Ккал", comment: "Б / Ж / У  Ккал")
     }
     static var total: String {
-        NSLocalizedString("Total", comment: "Всего:")
+        NSLocalizedString("Всего:", comment: "Всего:")
     }
     static var weight: String {
-        NSLocalizedString("Weight", comment: "Вес:")
+        NSLocalizedString("Вес:", comment: "Вес:")
     }
     static var selectTheOption: String {
-        NSLocalizedString("SelectTheOption", comment: "Выберите нужный вариант")
+        NSLocalizedString("Выберите нужный вариант", comment: "Выберите нужный вариант")
     }
     static var editWeight: String {
-        NSLocalizedString("EditWeight", comment: "Изменить вес")
+        NSLocalizedString("Изменить вес", comment: "Изменить вес")
     }
     static var delete: String {
-        NSLocalizedString("Delete", comment: "Удалить")
+        NSLocalizedString("Удалить", comment: "Удалить")
     }
     
     // MARK: - AddProductToHistoryVC
     static var kcalPer100G: String {
-        NSLocalizedString("KcalPer100G", comment: "кКал на 100 г.")
+        NSLocalizedString("кКал на 100 г.", comment: "кКал на 100 г.")
     }
     static var today: String {
-        NSLocalizedString("Today", comment: "СЕГОДНЯ")
+        NSLocalizedString("СЕГОДНЯ", comment: "СЕГОДНЯ")
     }
     static var yesterday: String {
-        NSLocalizedString("Yesterday", comment: "ВЧЕРА")
+        NSLocalizedString("ВЧЕРА", comment: "ВЧЕРА")
     }
     
     // MARK: - AddNewProductVC
     static var productNotFound: String {
-        NSLocalizedString("ProductNotFound", comment: "Product not found")
+        NSLocalizedString("Product not found", comment: "Product not found")
     }
     static var solutionOptions: String {
-        NSLocalizedString("SolutionOptions", comment: "Possible solutions: \n1. Ensure you are scanning only the barcode, without any extra numeric characters around; \n2. Check if there are other barcodes or QR codes on the product.")
+        NSLocalizedString("Возможные решения: \n1. Убедитесь, что вы сканируете только штрих-код, без каких-либо дополнительных числовых символов вокруг; \n2. Проверьте, есть ли на товаре другие штрих-коды или QR-коды.", comment: "Возможные решения: \n1. Убедитесь, что вы сканируете только штрих-код, без каких-либо дополнительных числовых символов вокруг; \n2. Проверьте, есть ли на товаре другие штрих-коды или QR-коды.")
     }
     
     static var information: String {
@@ -223,10 +223,10 @@ extension String {
         NSLocalizedString("AskToDelete", comment: "Are you sure you want to delete?")
     }
     static var rateAlertTitle: String {
-        NSLocalizedString("RateAlertTitle", comment: "Do you like our app?🥹")
+        NSLocalizedString("RateAlertTitle", comment: "Нравится ли вам наше приложение?🥹")
     }
     static var rateAlertMessage: String {
-        NSLocalizedString("RateAlertMessage", comment: "We work hard for you and improve our app every day. Please rate us 5 stars.\nThank you for your support!❤️")
+        NSLocalizedString("RateAlertMessage", comment: "Мы очень стараемся для Вас и каждый день!❤️")
     }
     static var rateAlertOkButton: String {
         NSLocalizedString("RateAlertOkButton", comment: "5 stars")

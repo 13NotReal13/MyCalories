@@ -90,16 +90,16 @@ final class PurchasesViewController: UIViewController {
         guard let activeSubscription = activeSubscription,
             let expirationDate = activeSubscription.subscriptionExpirationDate else {
             showAlertRestorePurchases(
-                withTitle: String.restorePurchase,
-                andMessage: String.requestHasBeenSent
+                withTitle: "Восстановить покупки",
+                andMessage: "Запрос на восстановление покупок с вашего AppleID отправлен."
             )
             return
         }
         
         let formatDate = Date.dateToString(expirationDate)
         showAlertRestorePurchases(
-            withTitle: String.subscriptionRestored,
-            andMessage: String.expirationDate + " \(formatDate)"
+            withTitle: "Подписка восстановлена",
+            andMessage: "Дата истечения: \(formatDate)"
         )
         hasActivePurchase()
     }
@@ -182,7 +182,7 @@ private extension PurchasesViewController {
                 .underlineStyle: NSUnderlineStyle.single.rawValue
             ]
         
-        let attributedString = NSAttributedString(string: String.privacyPolicy, attributes: attributes)
+        let attributedString = NSAttributedString(string: "Политика конфиденциальности", attributes: attributes)
         
         privacyButton.setAttributedTitle(attributedString, for: .normal)
     }
@@ -195,7 +195,7 @@ private extension PurchasesViewController {
                 .underlineStyle: NSUnderlineStyle.single.rawValue
             ]
         
-        let attributedString = NSAttributedString(string: String.termsOfUse, attributes: attributes)
+        let attributedString = NSAttributedString(string: "Условия использования", attributes: attributes)
         
         termsOfUseButton.setAttributedTitle(attributedString, for: .normal)
     }
@@ -203,7 +203,7 @@ private extension PurchasesViewController {
     func hasActivePurchase() {
         guard let activeSubscription = activeSubscription,
             let expirationDate = activeSubscription.subscriptionExpirationDate else { return }
-        let formatDate = String.expiration + " \(Date.dateToString(expirationDate))"
+        let formatDate = "Истекает: \(Date.dateToString(expirationDate))"
         
         choosedPurchase = activeSubscription.productIdentifier == "Annually" ? .annually : .monthly
         
@@ -228,12 +228,12 @@ private extension PurchasesViewController {
                 titleAnnuallyLabel.text = product.localizedTitle
                 descriptionAnnuallyLabel.text = product.localizedDescription
                 priceAnnuallyLabel.text = formatPrice(product)
-                pricePerMonthAnnuallyLabel.text = formatPricePerMonth(product) + String.perMonth
+                pricePerMonthAnnuallyLabel.text = formatPricePerMonth(product) + " / мес."
             case "Monthly":
                 titleMonthlyLabel.text = product.localizedTitle
                 descriptionMonthlyLabel.text = product.localizedDescription
                 priceMonthlyLabel.text = formatPrice(product)
-                pricePerMonthMonthlyLabel.text = formatPricePerMonth(product) + String.perMonth
+                pricePerMonthMonthlyLabel.text = formatPricePerMonth(product) + " / мес."
             default:
                 break
             }
@@ -307,7 +307,7 @@ private extension PurchasesViewController {
             preferredStyle: .alert
         )
         
-        let okButton = UIAlertAction(title: String.ok, style: .default) { _ in
+        let okButton = UIAlertAction(title: "OK", style: .default) { _ in
             alert.dismiss(animated: true)
         }
         
