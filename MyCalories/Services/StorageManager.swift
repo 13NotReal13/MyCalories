@@ -91,6 +91,7 @@ final class StorageManager {
     }
     
     func shouldShowAds() -> Bool {
+        let userDefaults = UserDefaults.standard
         if let dateFirstOpen = userDefaults.object(forKey: "dateFirstOpen") as? Date {
             let hoursSinceFirstOpen = Date().timeIntervalSince(dateFirstOpen) / 3600
             return hoursSinceFirstOpen >= 48
@@ -98,31 +99,9 @@ final class StorageManager {
         return false
     }
     
-    func saveLastAdShownDate() {
-        let currentDate = Date()
-        UserDefaults.standard.set(currentDate, forKey: "lastAdShown")
-        UserDefaults.standard.synchronize()
-    }
-    
-    func isFifteenMinutesPassedSinceLastAd() -> Bool {
-        if let lastAdShown = userDefaults.object(forKey: "lastAdShown") as? Date {
-            let thirtyMinutes = 15 * 60 // 15 minutes in seconds
-            return Date().timeIntervalSince(lastAdShown) >= TimeInterval(thirtyMinutes)
-        }
-        return true // Если реклама не показывалась, можно показать снова
-    }
-    
-    func didAskedForScanBarcode() -> Bool {
-        if let didAsked = userDefaults.object(forKey: "didAskedForScanBarcode") as? Bool {
-            return didAsked
-        }
-        userDefaults.setValue(true, forKey: "didAskedForScanBarcode")
-        return false
-    }
-    
     // MARK: - Realm
     // All Products
-    func fetchAllProductsRu(completion: @escaping ([Product]) -> Void) {
+    func fetchAllProducts(completion: @escaping (Results<Product>) -> Void) {
         guard let allProductsInDevice = realmDevice.objects(AllProducts.self).first else {
             let productsFromProject = realmProject.objects(Product.self)
             
@@ -147,12 +126,13 @@ final class StorageManager {
                 realmDevice.add(allProductsInDevice)
             }
             
-            completion(Array(realmDevice.objects(Product.self).sorted(byKeyPath: "index")))
+            completion(realmDevice.objects(AllProducts.self).first!.productList.sorted(byKeyPath: "index"))
             return
         }
         
-        completion(Array(allProductsInDevice.productList.sorted(byKeyPath: "index")))
+        completion(allProductsInDevice.productList.sorted(byKeyPath: "index"))
     }
+
     
     // User Programm
     func fetchUserProgramm() -> UserProgramm {
@@ -231,60 +211,33 @@ final class StorageManager {
         completion(realmDevice.objects(History.self).sorted(byKeyPath: "date", ascending: false))
     }
     
-    func saveOriginalAndAdjustedProduct(original: Product, adjusted: Product, completion: @escaping () -> Void) {
+    func changeIndexAndColor(forProduct product: Product, completion: @escaping() -> Void) {
         writeDeviceRealm {
-            // Add to Base if it isn't there
             let products = realmDevice.objects(Product.self).sorted(byKeyPath: "index", ascending: true)
             
             for productFromBase in products {
                 productFromBase.index += 1
             }
             
-            let allProducts = realmDevice.objects(AllProducts.self).first ?? {
-                let newAllProducts = AllProducts()
-                realmDevice.add(newAllProducts)
-                return newAllProducts
-            }()
-            
-            if !allProducts.productList.contains(where: { $0.name == original.name }) {
-                original.index = 0
-                original.color = "colorApp"
-                allProducts.productList.append(original)
-            } else {
-                original.index = 0
-                original.color = "colorApp"
-            }
-            
-            // Add to History
-            let productDate = Calendar.current.startOfDay(for: adjusted.date)
-            if let historyOfProducts = realmDevice.objects(History.self).filter("date == %@", productDate).first {
-                historyOfProducts.productList.append(adjusted)
-            } else {
-                let newHistoryOfProducts = History()
-                newHistoryOfProducts.date = productDate
-                newHistoryOfProducts.productList.append(adjusted)
-                realmDevice.add(newHistoryOfProducts)
-            }
-            
+            product.index = 0
+            product.color = "colorApp"
             completion()
         }
     }
     
-    // Add new product to base
-    func addNewProductToBase(_ product: Product, completion: @escaping() -> Void) {
+    func saveProductToHistory(_ product: Product) {
+        let productDate = Calendar.current.startOfDay(for: product.date)
+
         writeDeviceRealm {
-            let products = realmDevice.objects(Product.self).sorted(byKeyPath: "index", ascending: true)
-            
-            for productFromBase in products {
-                productFromBase.index += 1
+            if let historyOfProducts = realmDevice.objects(History.self).filter("date == %@", productDate).first {
+                historyOfProducts.productList.append(product)
+            } else {
+                let newHistoryOfProducts = History()
+                newHistoryOfProducts.date = productDate
+                newHistoryOfProducts.productList.append(product)
+                realmDevice.add(newHistoryOfProducts)
             }
             
-            if let allProducts = realmDevice.objects(AllProducts.self).first {
-                product.index = 0
-                allProducts.productList.append(product)
-                realmDevice.add(product)
-            }
-            completion()
         }
     }
     
@@ -337,6 +290,24 @@ final class StorageManager {
             calories: totalCalories,
             water: totalWater
         )
+    }
+    
+    // Add new product to base
+    func addNewProductToBase(_ product: Product, completion: @escaping() -> Void) {
+        writeDeviceRealm {
+            let products = realmDevice.objects(Product.self).sorted(byKeyPath: "index", ascending: true)
+            
+            for productFromBase in products {
+                productFromBase.index += 1
+            }
+            
+            if let allProducts = realmDevice.objects(AllProducts.self).first {
+                product.index = 0
+                allProducts.productList.append(product)
+                realmDevice.add(product)
+            }
+            completion()
+        }
     }
     
     // Delete product from base
@@ -409,12 +380,12 @@ final class StorageManager {
 //        guard let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
 //            fatalError("Documents directory is unavailable")
 //        }
-//        
+//
 //        func createRealmDatabaseInResourcesFolder() {
 //            let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
 //            let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("productsFromProject.realm")
 //            let realmConfig = Realm.Configuration(fileURL: deviceRealmURL)
-//            
+//
 //            let realm: Realm
 //            do {
 //                realm = try Realm(configuration: realmConfig)
