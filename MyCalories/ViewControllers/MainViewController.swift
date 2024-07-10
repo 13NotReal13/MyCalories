@@ -58,8 +58,8 @@ final class MainViewController: UIViewController {
     // MARK: - Private Properties
     private let storageManager = StorageManager.shared
     
-    private var allProducts: [Product] = []
-    private var filteredProducts: [Product] = []
+    private var allProducts: Results<Product>!
+    private var filteredProducts: Results<Product>!
     
     private var menuIsVisible = false
     
@@ -273,11 +273,11 @@ extension MainViewController: MainScreenDelegate {
     func updateTableView() {
         searchBar.text = ""
         searchBar.searchTextField.resignFirstResponder()
+        addNewProductFromTableViewButton.isHidden = true
         
-        storageManager.fetchAllProductsRu { [unowned self] productsList in
+        storageManager.fetchAllProducts { [unowned self] productsList in
             allProducts = productsList
             filteredProducts = allProducts
-            setVisibleForAddNewProductButton()
             tableView.reloadData()
         }
     }
@@ -292,7 +292,7 @@ private extension MainViewController {
     }
     
     func fetchData() {
-        storageManager.fetchAllProductsRu { [unowned self] productsList in
+        storageManager.fetchAllProducts { [unowned self] productsList in
             allProducts = productsList
             filteredProducts = allProducts
             tableView.reloadData()
@@ -362,7 +362,7 @@ private extension MainViewController {
         scanBarcodeButton.clipsToBounds = false
         scanBarcodeButton.layer.masksToBounds = false
         
-        addNewProductFromTableViewButton.setTitle(String.addNewProductTitle, for: .normal)
+        addNewProductFromTableViewButton.setTitle("Добавить новый продукт", for: .normal)
     }
     
     func setupRoundedCornersForViews() {
@@ -501,19 +501,19 @@ private extension MainViewController {
     
     func showUpdateAlert(version: String) {
         let alert = UIAlertController(
-            title: "Доступно обновление",
-            message: "Доступна новая версия \(version). Пожалуйста, обновитесь до последней версии.",
+            title: String.updateAlertTitle,
+            message: String.updateAlertMessagePart1 + "\(version)" + String.updateAlertMessagePart2,
             preferredStyle: .alert
         )
         
-        let updateAction = UIAlertAction(title: "Обновить", style: .default) { [unowned self] _ in
+        let updateAction = UIAlertAction(title: String.updateAlertOkButton, style: .default) { [unowned self] _ in
             let urlString = "https://apps.apple.com/app/id\(appIDAppStore)"
             if let url = URL(string: urlString), UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url)
             }
         }
         
-        let cancelAction = UIAlertAction(title: "Отмена", style: .cancel, handler: nil)
+        let cancelAction = UIAlertAction(title: String.cancel, style: .cancel, handler: nil)
         
         alert.addAction(updateAction)
         alert.addAction(cancelAction)
@@ -648,46 +648,46 @@ private extension MainViewController {
         let waterProgramm = settings.waterEnabled ? recommendedProgramm.water : userProgramm.water
         
         proteinProgressBar?.progress = proteinToday < proteinProgramm
-            ? Double(proteinToday) / Double(proteinProgramm)
-            : 1.0
+        ? Double(proteinToday) / Double(proteinProgramm)
+        : 1.0
         fatsProgressBar?.progress = fatsToday < fatsProgramm
-            ? Double(fatsToday) / Double(fatsProgramm )
-            : 1.0
+        ? Double(fatsToday) / Double(fatsProgramm )
+        : 1.0
         carbohydratesProgressBar?.progress = carbohydratesToday < carbohydratesProgramm
-            ? Double(carbohydratesToday) / Double(carbohydratesProgramm)
-            : 1.0
+        ? Double(carbohydratesToday) / Double(carbohydratesProgramm)
+        : 1.0
         caloriesProgressBar?.progress = caloriesToday < caloriesProgramm
-            ? Double(caloriesToday) / Double(caloriesProgramm)
-            : 1.0
+        ? Double(caloriesToday) / Double(caloriesProgramm)
+        : 1.0
         waterProgressBar?.progress = waterToday < waterProgramm
-            ? Double(waterToday) / Double(waterProgramm)
-            : 1.0
+        ? Double(waterToday) / Double(waterProgramm)
+        : 1.0
         
         proteinTodayLabel.text = proteinToday > proteinProgramm
-            ? "\(proteinToday.formatted()) !"
-            : proteinToday.formatted()
+        ? "\(proteinToday.formatted()) !"
+        : proteinToday.formatted()
         proteinTodayLabel.textColor = proteinToday > proteinProgramm ? .yellow : .white
         
         fatsTodayLabel.text = fatsToday > fatsProgramm
-            ? "\(fatsToday.formatted()) !"
-            : fatsToday.formatted()
+        ? "\(fatsToday.formatted()) !"
+        : fatsToday.formatted()
         fatsTodayLabel.textColor = fatsToday > fatsProgramm ? .yellow : .white
         
         carbohydratesTodayLabel.text = carbohydratesToday > carbohydratesProgramm
-            ? "\(carbohydratesToday.formatted()) !"
-            : carbohydratesToday.formatted()
+        ? "\(carbohydratesToday.formatted()) !"
+        : carbohydratesToday.formatted()
         carbohydratesTodayLabel.textColor = carbohydratesToday > carbohydratesProgramm ? .yellow : .white
         
         caloriesTodayLabel.text = caloriesToday > caloriesProgramm
-            ? "\(caloriesToday.formatted()) !"
-            : caloriesToday.formatted()
+        ? "\(caloriesToday.formatted()) !"
+        : caloriesToday.formatted()
         caloriesTodayLabel.textColor = caloriesToday > caloriesProgramm ? .yellow : .white
         
         waterTodayLabel.text = waterToday > waterProgramm
-            ? "\(waterToday.formatted()) !"
-            : waterToday.formatted()
+        ? "\(waterToday.formatted()) !"
+        : waterToday.formatted()
         waterTodayLabel.textColor = waterToday > waterProgramm ? .yellow : .white
-    
+        
         proteinProgrammLabel.text = proteinProgramm.formatted()
         fatsProgrammLabel.text = fatsProgramm.formatted()
         carbohydratesProgrammLabel.text = carbohydratesProgramm.formatted()
@@ -711,10 +711,10 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
         let product = filteredProducts[indexPath.row]
         cell?.productNameLabel.text = product.name
         cell?.productNameLabel.textColor = UIColor(named: product.color)
-        cell?.proteinProductLabel.text = "БЕЛКИ: \(product.protein)"
-        cell?.fatsProductLabel.text = "ЖИРЫ: \(product.fats)"
-        cell?.carbohydratesProductLabel.text = "УГЛЕВОДЫ: \(product.carbohydrates)"
-        cell?.caloriesProductLabel.text = "ККАЛ: \(product.calories) НА 100 Г."
+        cell?.proteinProductLabel.text = String.proteinsTableView + "\(product.protein)"
+        cell?.fatsProductLabel.text = String.fatsTableView + "\(product.fats)"
+        cell?.carbohydratesProductLabel.text = String.carbohydratesTableView + "\(product.carbohydrates)"
+        cell?.caloriesProductLabel.text = String.caloriesTableView + "\(product.calories)" + String.per100gTableView
         
         return cell ?? UITableViewCell()
     }
@@ -726,33 +726,29 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let product = filteredProducts[indexPath.row]
         
-        if product.color == "colorApp" {
-            let deleteButton = UIContextualAction(style: .normal, title: nil) { [unowned self] _, _, isDone in
-                showAlertDelete(for: product.name) { [unowned self] in
-                    deleteProduct(product: product, indexPath: indexPath)
-                }
-                isDone(true)
+        let deleteButton = UIContextualAction(style: .normal, title: nil) { [unowned self] _, _, isDone in
+            showAlertDelete(for: product.name) { [unowned self] in
+                deleteProduct(product: product, indexPath: indexPath)
             }
-            
-            deleteButton.image = UIImage(systemName: "trash")
-            return UISwipeActionsConfiguration(actions: [deleteButton])
+            isDone(true)
         }
         
-        return nil
+        deleteButton.image = UIImage(systemName: "trash")
+        return UISwipeActionsConfiguration(actions: [deleteButton])
     }
 }
 
 // MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
-        setVisibleForAddNewProductButton()
+        filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter("name CONTAINS[c] %@", searchText)
         tableView.reloadData()
         
         if !filteredProducts.isEmpty {
             let indexPath = IndexPath(row: 0, section: 0)
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
+        setVisibleForAddNewProductButton()
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
@@ -761,18 +757,6 @@ extension MainViewController: UISearchBarDelegate {
             tableView.scrollToRow(at: indexPath, at: .top, animated: true)
         }
         
-        searchBar.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
-    }
-    
-    private func showAlertForBarcodeScanner() {
-        let alert = UIAlertController(title: "Quick Search", message: "Searching products by name can take some time. We recommend using our barcode scanner for quick results.", preferredStyle: .alert)
-        let scanAction = UIAlertAction(title: "Scan", style: .default) { [unowned self] _ in
-            performSegue(withIdentifier: "SegueToAddNewProductVCFromBarcodeButton", sender: nil)
-        }
-        let cancelButton = UIAlertAction(title: "Continue Search", style: .cancel)
-        
-        alert.addAction(scanAction)
-        alert.addAction(cancelButton)
-        present(alert, animated: true)
+        searchBar.inputAccessoryView = createToolbar(title: String.done, selector: #selector(doneButtonPressed))
     }
 }

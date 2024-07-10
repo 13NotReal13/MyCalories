@@ -99,6 +99,20 @@ final class StorageManager {
         return false
     }
     
+    func saveLastAdShownDate() {
+        let currentDate = Date()
+        UserDefaults.standard.set(currentDate, forKey: "lastAdShown")
+        UserDefaults.standard.synchronize()
+    }
+    
+    func isFifteenMinutesPassedSinceLastAd() -> Bool {
+        if let lastAdShown = userDefaults.object(forKey: "lastAdShown") as? Date {
+            let thirtyMinutes = 15 * 60 // 15 minutes in seconds
+            return Date().timeIntervalSince(lastAdShown) >= TimeInterval(thirtyMinutes)
+        }
+        return true // Если реклама не показывалась, можно показать снова
+    }
+    
     // MARK: - Realm
     // All Products
     func fetchAllProducts(completion: @escaping (Results<Product>) -> Void) {

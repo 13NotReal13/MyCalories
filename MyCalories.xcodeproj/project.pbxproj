@@ -24,7 +24,6 @@
 		792DB18D2BBADF4800209193 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18C2BBADF4800209193 /* SceneDelegate.swift */; };
 		792DB18F2BBADF4800209193 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 792DB18E2BBADF4800209193 /* MainViewController.swift */; };
 		792DB1942BBADF4900209193 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 792DB1932BBADF4900209193 /* Assets.xcassets */; };
-		792DB1972BBADF4900209193 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 792DB1962BBADF4900209193 /* Base */; };
 		7946F7EE2BBB1B58005C3F33 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F7ED2BBB1B58005C3F33 /* ProfileViewController.swift */; };
 		7946F8282BC068C8005C3F33 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8272BC068C8005C3F33 /* SettingsViewController.swift */; };
 		7946F82B2BC1F631005C3F33 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F82A2BC1F630005C3F33 /* Settings.swift */; };
@@ -54,6 +53,7 @@
 		79658B462C0235D8000BD566 /* FirebaseAppCheck in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B452C0235D8000BD566 /* FirebaseAppCheck */; };
 		79658B492C0240E8000BD566 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 79658B482C0240E8000BD566 /* FirebaseMessaging */; };
 		79681EC02C121F85005D268E /* FAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79681EBF2C121F85005D268E /* FAQViewController.swift */; };
+		79ADA4752C3F160C004EC09E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 792DB1952BBADF4900209193 /* LaunchScreen.storyboard */; };
 		79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD10552BF69B20005C049A /* UIViewController + Ext.swift */; };
 		79CBA7912C08E599008EED18 /* BarcodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 79CBA7902C08E599008EED18 /* BarcodeScanner */; };
 		79CBA7932C0A2E7D008EED18 /* SearchProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */; };
@@ -76,9 +76,7 @@
 		792DB18A2BBADF4800209193 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		792DB18C2BBADF4800209193 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		792DB18E2BBADF4800209193 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		792DB1912BBADF4800209193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		792DB1932BBADF4900209193 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		792DB1962BBADF4900209193 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7946F7ED2BBB1B58005C3F33 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7946F8272BC068C8005C3F33 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7946F82A2BC1F630005C3F33 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
@@ -94,14 +92,14 @@
 		7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Ext.swift"; sourceTree = "<group>"; };
 		7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryProductViewCell.swift; sourceTree = "<group>"; };
-		795D99B72C027418009AC9CA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Main.strings; sourceTree = "<group>"; };
-		795D99B82C027418009AC9CA /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		795D99C02C05DD2B009AC9CA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		795D99C22C05DDE8009AC9CA /* PurchasesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesManager.swift; sourceTree = "<group>"; };
 		795D99C62C06375A009AC9CA /* PurchasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewController.swift; sourceTree = "<group>"; };
 		79658B3D2C021100000BD566 /* MyCalories.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCalories.entitlements; sourceTree = "<group>"; };
 		79658B3E2C02338A000BD566 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79681EBF2C121F85005D268E /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
+		79ADA4732C3F0FEF004EC09E /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/Main.storyboard; sourceTree = "<group>"; };
+		79ADA4742C3F0FEF004EC09E /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProduct.swift; sourceTree = "<group>"; };
 		79FE15352C1B0B42001A9384 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -326,7 +324,6 @@
 			developmentRegion = ru;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				Base,
 				ru,
 			);
 			mainGroup = 792DB17E2BBADF4800209193;
@@ -352,13 +349,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79ADA4752C3F160C004EC09E /* LaunchScreen.storyboard in Resources */,
 				792DB1942BBADF4900209193 /* Assets.xcassets in Resources */,
 				7916A8AF2C1A2D480032B3C0 /* Main.storyboard in Resources */,
 				790457232BE2972F0009FA34 /* productsFromProject.realm in Resources */,
 				79658B3F2C02338A000BD566 /* GoogleService-Info.plist in Resources */,
 				790457202BE2972F0009FA34 /* access_control.control.mx in Resources */,
 				790457242BE2972F0009FA34 /* productsFromProject.realm.lock in Resources */,
-				792DB1972BBADF4900209193 /* Base in Resources */,
 				790457222BE2972F0009FA34 /* access_control.write.mx in Resources */,
 				790457212BE2972F0009FA34 /* access_control.versions.mx in Resources */,
 			);
@@ -410,8 +407,7 @@
 		792DB1902BBADF4800209193 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				792DB1912BBADF4800209193 /* Base */,
-				795D99B72C027418009AC9CA /* ru */,
+				79ADA4732C3F0FEF004EC09E /* ru */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -419,8 +415,7 @@
 		792DB1952BBADF4900209193 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				792DB1962BBADF4900209193 /* Base */,
-				795D99B82C027418009AC9CA /* ru */,
+				79ADA4742C3F0FEF004EC09E /* ru */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -559,14 +554,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyCalories/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Мои Калории";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Доступ к камере необходим для сканирования штрихкода.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Для сканирования продуктов разрешите доступ к камере.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Это поможет нам поддерживать приложение бесплатным для вас и показывать только персонализированную рекламу.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -579,7 +574,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -604,14 +599,14 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = "";
 				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MyCalories/App/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Мои Калории";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
-				INFOPLIST_KEY_NSCameraUsageDescription = "Доступ к камере необходим для сканирования штрихкода.";
+				INFOPLIST_KEY_NSCameraUsageDescription = "Для сканирования продуктов разрешите доступ к камере.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Это поможет нам поддерживать приложение бесплатным для вас и показывать только персонализированную рекламу.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
@@ -624,7 +619,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3.0;
+				MARKETING_VERSION = 1.3.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "Ivan-Semikin.MyCalories";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

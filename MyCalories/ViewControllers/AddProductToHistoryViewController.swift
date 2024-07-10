@@ -74,23 +74,26 @@ final class AddProductToHistoryViewController: UIViewController {
         let adjustedCalories = (selectedProduct.calories * weightRatio * 100).rounded() / 100
         
         storageManager.changeIndexAndColor(forProduct: selectedProduct) { [unowned self] in
-            storageManager.saveProductToHistory(
-                Product(
-                    value: [
-                        selectedProduct.name,
-                        adjustedProtein,
-                        adjustedFats,
-                        adjustedCarbohydrates,
-                        adjustedCalories,
-                        datePicker.date,
-                        weight
-                    ]
-                )
-            )
-            
-            dismiss(animated: true)
+            delegate?.updateTableView()
         }
+        
+        storageManager.saveProductToHistory(
+            Product(
+                value: [
+                    selectedProduct.name,
+                    adjustedProtein,
+                    adjustedFats,
+                    adjustedCarbohydrates,
+                    adjustedCalories,
+                    datePicker.date,
+                    weight
+                ]
+            )
+        )
+        
+        dismiss(animated: true)
     }
+    
 }
 
 // MARK: - Private Methods
@@ -106,15 +109,15 @@ private extension AddProductToHistoryViewController {
         dateTF.inputView = datePicker
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
-        datePicker.locale = Locale(identifier: "ru_RU")
+        datePicker.locale = Locale.current
     }
     
     func setLabels() {
         nameProductLabel.text = selectedProduct.name
-        proteinProductLabel.text = "\(selectedProduct.protein) г."
-        fatsProductLabel.text = "\(selectedProduct.fats) г."
-        carbohydratesProductLabel.text = "\(selectedProduct.carbohydrates) г."
-        caloriesProductLabel.text = "\(selectedProduct.calories) кКал на 100 г."
+        proteinProductLabel.text = "\(selectedProduct.protein) " + String.g
+        fatsProductLabel.text = "\(selectedProduct.fats) " + String.g
+        carbohydratesProductLabel.text = "\(selectedProduct.carbohydrates) " + String.g
+        caloriesProductLabel.text = "\(selectedProduct.calories) " + String.kcalPer100G
     }
     
     @objc private func doneButtonPressed() {
@@ -122,9 +125,9 @@ private extension AddProductToHistoryViewController {
         
         if textField == dateTF {
             if Calendar.current.isDateInToday(datePicker.date) {
-                dateTF.text = "СЕГОДНЯ"
+                dateTF.text = String.today
             } else if Calendar.current.isDateInYesterday(datePicker.date) {
-                dateTF.text = "ВЧЕРА"
+                dateTF.text = String.yesterday
             } else {
                 dateTF.text = datePicker.dateToString(datePicker.date)
             }
@@ -150,7 +153,7 @@ private extension AddProductToHistoryViewController {
 extension AddProductToHistoryViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         activeTextField = textField
-        textField.inputAccessoryView = createToolbar(title: "Готово", selector: #selector(doneButtonPressed))
+        textField.inputAccessoryView = createToolbar(title: String.done, selector: #selector(doneButtonPressed))
         addBarButtonItem.isEnabled = false
     }
     
