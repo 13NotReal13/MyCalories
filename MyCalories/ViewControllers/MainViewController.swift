@@ -31,7 +31,6 @@ final class MainViewController: UIViewController {
     @IBOutlet var waterButton: UIButton!
     @IBOutlet var noAdsButton: UIButton!
     @IBOutlet var addNewProductFromTableViewButton: UIButton!
-    @IBOutlet var loadProductsFromApiProgressView: UIProgressView!
     
     @IBOutlet var extendingNavigationBarView: UIView!
     @IBOutlet var shadowForTableViewView: UIView!
@@ -78,10 +77,6 @@ final class MainViewController: UIViewController {
     private let appIDAppStore = "6502844957"
     // testAdId: "ca-app-pub-3940256099942544/4411468910"
     // realAdId: "ca-app-pub-7511053995750557/9276091651"
-    
-    private var activityIndicator: UIActivityIndicatorView!
-    private var searchTimer: Timer?
-    private var currentDataTask: URLSessionDataTask?
     
     private lazy var overlayView: UIView = {
         let overlay = UIView(frame: view.bounds)
@@ -279,23 +274,12 @@ extension MainViewController: MainScreenDelegate {
         searchBar.text = ""
         searchBar.searchTextField.resignFirstResponder()
         
-        if Locale.current.languageCode == "ru" {
-            storageManager.fetchAllProductsRu { [unowned self] productsList in
-                allProducts = productsList
-                filteredProducts = allProducts
-                setVisibleForAddNewProductButton()
-                tableView.reloadData()
-            }
-        } else {
-            storageManager.fetchAllProductsEn { [unowned self] productsList in
-                activityIndicator.stopAnimating()
-                allProducts = productsList
-                filteredProducts = allProducts
-                setVisibleForAddNewProductButton()
-                tableView.reloadData()
-            }
+        storageManager.fetchAllProductsRu { [unowned self] productsList in
+            allProducts = productsList
+            filteredProducts = allProducts
+            setVisibleForAddNewProductButton()
+            tableView.reloadData()
         }
-        
     }
 }
 
@@ -305,28 +289,13 @@ private extension MainViewController {
         fetchData()
         setupUIs()
         setHiddenOfProgressBlock()
-        
-        if Locale.current.languageCode != "ru" {
-            setActivityIndicator()
-        }
     }
     
     func fetchData() {
-        let currentLocal = Locale.current.languageCode
-        
-        if currentLocal == "ru" {
-            storageManager.fetchAllProductsRu { [unowned self] productsList in
-                allProducts = productsList
-                filteredProducts = allProducts
-                tableView.reloadData()
-            }
-        } else {
-            storageManager.fetchAllProductsEn { [unowned self] productsList in
-                activityIndicator.stopAnimating()
-                allProducts = productsList
-                filteredProducts = allProducts
-                tableView.reloadData()
-            }
+        storageManager.fetchAllProductsRu { [unowned self] productsList in
+            allProducts = productsList
+            filteredProducts = allProducts
+            tableView.reloadData()
         }
     }
     
@@ -394,7 +363,6 @@ private extension MainViewController {
         scanBarcodeButton.layer.masksToBounds = false
         
         addNewProductFromTableViewButton.setTitle(String.addNewProductTitle, for: .normal)
-        loadProductsFromApiProgressView.isHidden = true
     }
     
     func setupRoundedCornersForViews() {
@@ -559,39 +527,11 @@ private extension MainViewController {
         }
     }
     
-    func setActivityIndicator() {
-        activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.center = view.center
-        activityIndicator.hidesWhenStopped = true
-        view.addSubview(activityIndicator)
-        activityIndicator.startAnimating()
-    }
-    
     func setVisibleForAddNewProductButton() {
         if filteredProducts.isEmpty {
             addNewProductFromTableViewButton.isHidden = false
         } else {
             addNewProductFromTableViewButton.isHidden = true
-        }
-    }
-    
-    func setValueForLoadProductsProgress(currentValue current: Int, maxValue max: Int) {
-        if loadProductsFromApiProgressView.isHidden {
-            loadProductsFromApiProgressView.isHidden = false
-        }
-        
-        let maxValue = Float(max)
-        let currentValue = Float(current)
-        loadProductsFromApiProgressView.setProgress(currentValue / maxValue, animated: true)
-        
-        print("cuttentValue: \(currentValue)")
-        print("maxValue: \(maxValue)")
-        
-        if currentValue == maxValue {
-            Timer.scheduledTimer(withTimeInterval: 1, repeats: false) { [unowned self] _ in
-                loadProductsFromApiProgressView.isHidden = true
-                loadProductsFromApiProgressView.setProgress(0, animated: false)
-            }
         }
     }
 }
@@ -806,30 +746,9 @@ extension MainViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - UISearchBarDelegate
 extension MainViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        
-        if Locale.current.languageCode == "ru" {
-            filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
-            setVisibleForAddNewProductButton()
-            tableView.reloadData()
-        } else {
-            filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
-            
-            if filteredProducts.isEmpty {
-                activityIndicator.startAnimating()
-                searchTimer?.invalidate()
-                searchTimer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [unowned self] _ in
-                    fetchProductsFromAPI(searchText: searchText)
-                }
-            }
-            if searchText.isEmpty {
-                currentDataTask?.cancel()
-                filteredProducts = allProducts
-                setValueForLoadProductsProgress(currentValue: 0, maxValue: 0)
-                activityIndicator.stopAnimating()
-            }
-            setVisibleForAddNewProductButton()
-            tableView.reloadData()
-        }
+        filteredProducts = searchText.isEmpty ? allProducts : allProducts.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        setVisibleForAddNewProductButton()
+        tableView.reloadData()
         
         if !filteredProducts.isEmpty {
             let indexPath = IndexPath(row: 0, section: 0)
@@ -844,121 +763,6 @@ extension MainViewController: UISearchBarDelegate {
         }
         
         searchBar.inputAccessoryView = createToolbar(title: String.done, selector: #selector(doneButtonPressed))
-    }
-    
-    private func fetchProductsFromAPI(searchText: String, page: Int = 1) {
-        currentDataTask?.cancel()
-        
-        let urlString = "https://world.openfoodfacts.org/cgi/search.pl?search_terms=\(searchText)&search_simple=1&action=process&json=1&page_size=100&page=\(page)"
-        guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else { return }
-        
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
-        let bundleIdentifier = Bundle.main.bundleIdentifier ?? "unknown"
-        
-        // Создание строки User-Agent
-        let userAgent = "\(bundleIdentifier)/\(appVersion)"
-        var request = URLRequest(url: url)
-        request.setValue(userAgent, forHTTPHeaderField: "User-Agent")
-        request.cachePolicy = .returnCacheDataElseLoad
-        
-        currentDataTask = URLSession.shared.dataTask(with: request) {[unowned self] data, response, error in
-            
-            // Error
-            if let error = error as NSError? {
-                if error.code == NSURLErrorCancelled {
-                    return
-                }
-                
-                DispatchQueue.main.async { [unowned self] in
-                    activityIndicator.stopAnimating()
-                    setVisibleForAddNewProductButton()
-                    setValueForLoadProductsProgress(currentValue: 0, maxValue: 0)
-                    
-                    switch error.code {
-                    case NSURLErrorNotConnectedToInternet:
-                        Analytics.logEvent("connection_error_from_Api", parameters: nil)
-                        showAlert(title: String.connectErrorTitle, message: String.connectionErrorMessage)
-                    case NSURLErrorTimedOut:
-                        Analytics.logEvent("timeout_error_from_Api", parameters: nil)
-                        showAlert(title: String.timeoutErrorTitle, message: String.timeoutErrorMessage)
-                    default:
-                        Analytics.logEvent("error_from_Api", parameters: ["error": error.localizedDescription])
-                        showAlert(title: String.error, message: String.unexpectedErrorMessage)
-                    }
-                }
-                return
-            }
-            
-            // Data
-            guard let data = data else {
-                DispatchQueue.main.async { [unowned self] in
-                    Analytics.logEvent("data_error_from_Api", parameters: nil)
-                    setValueForLoadProductsProgress(currentValue: 0, maxValue: 0)
-                    showAlert(title: String.dataErrorTitle, message: String.dataErrorMessage)
-                }
-                return
-            }
-            
-            do {
-                let response = try JSONDecoder().decode(ProductsResponse.self, from: data)
-                let products = response.products.compactMap { [unowned self] apiProduct -> Product? in
-                    guard let name = apiProduct.productName, !name.isEmpty else { return nil }
-                    return self.storageManager.createProductFrom(apiProduct: apiProduct, index: 0)
-                }
-                Analytics.logEvent("connection_success_from_Api", parameters: nil)
-                
-                DispatchQueue.main.async { [unowned self] in
-                    let pageCount = response.count / 100 + 1
-                    updateFilteredProducts(with: products, searchText: searchText)
-                    setValueForLoadProductsProgress(
-                        currentValue: page,
-                        maxValue: pageCount < 10 ? pageCount : 10
-                    )
-                    if page < 10 && page < pageCount {
-                        fetchProductsFromAPI(searchText: searchText, page: page + 1)
-                    }
-                    if !storageManager.didAskedForScanBarcode() {
-                        showAlertForBarcodeScanner()
-                    }
-                }
-            } catch {
-                Analytics.logEvent("decoding_error_from_Api", parameters: nil)
-            }
-        }
-        currentDataTask?.resume()
-    }
-
-    private func updateFilteredProducts(with products: [Product], searchText: String) {
-        var uniqueProducts = [String: Product]()
-        for product in products {
-            // Рассчитываем теоретическую калорийность
-            let calculatedCalories = (product.protein + product.carbohydrates) * 4 + product.fats * 9
-            let deviation = abs(calculatedCalories - product.calories) / product.calories * 100
-
-            // Фильтрация по калориям и БЖУ
-            if deviation <= 5 {
-                if let existing = uniqueProducts[product.name.lowercased()] {
-                    // Если продукт уже есть, заменяем его, если новый продукт лучше соответствует условиям
-                    if existing.calories < product.calories {
-                        uniqueProducts[product.name.lowercased()] = product
-                    }
-                } else {
-                    uniqueProducts[product.name.lowercased()] = product
-                }
-            }
-        }
-
-        // Отфильтровываем продукты, строго соответствующие поиску
-        let filteredUniqueProducts = uniqueProducts.values.filter { product in
-            product.name.localizedCaseInsensitiveContains(searchText)
-        }.sorted { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending }
-
-        DispatchQueue.main.async { [unowned self] in
-            activityIndicator.stopAnimating()
-            filteredProducts.append(contentsOf: filteredUniqueProducts)
-            setVisibleForAddNewProductButton()
-            tableView.reloadData()
-        }
     }
     
     private func showAlertForBarcodeScanner() {
