@@ -6,11 +6,6 @@
 //
 import Foundation
 
-struct ProductsResponse: Codable {
-    let products: [FoundProduct]
-    let count: Int
-}
-
 struct SearchProduct: Codable {
     let product: FoundProduct?
     let errors: [ErrorItem]?
