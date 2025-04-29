@@ -1,0 +1,357 @@
+
+/* Class = "UILabel"; text = "Вес:"; ObjectID = "0CS-1S-DQl"; */
+"0CS-1S-DQl.text" = "Вес:";
+
+/* Class = "UILabel"; text = "Жиры"; ObjectID = "0qd-xJ-US2"; */
+"0qd-xJ-US2.text" = "Жиры";
+
+/* Class = "UILabel"; text = "ЗАПОЛНИТЕ ПРОФИЛЬ ДЛЯ ОТОБРАЖЕНИЯ СТАТИСТИКИ"; ObjectID = "1Cn-vb-Dds"; */
+"1Cn-vb-Dds.text" = "ЗАПОЛНИТЕ ПРОФИЛЬ ДЛЯ ОТОБРАЖЕНИЯ СТАТИСТИКИ";
+
+/* Class = "UIButton"; configuration.title = "Профиль"; ObjectID = "2iQ-jW-k1c"; */
+"2iQ-jW-k1c.configuration.title" = "Профиль";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "2iQ-jW-k1c"; */
+"2iQ-jW-k1c.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Пусто"; ObjectID = "2wD-6b-xWs"; */
+"2wD-6b-xWs.text" = "Пусто";
+
+/* Class = "UIViewController"; title = "Profile"; ObjectID = "3C5-33-jXe"; */
+"3C5-33-jXe.title" = "Profile";
+
+/* Class = "UINavigationItem"; title = "Настройки"; ObjectID = "3O6-wO-TlN"; */
+"3O6-wO-TlN.title" = "Настройки";
+
+/* Class = "UILabel"; text = "Название продукта"; ObjectID = "3QK-6e-8Ho"; */
+"3QK-6e-8Ho.text" = "Название продукта";
+
+/* Class = "UILabel"; text = "86"; ObjectID = "4da-Ra-UME"; */
+"4da-Ra-UME.text" = "86";
+
+/* Class = "UILabel"; text = "100 г."; ObjectID = "5Tx-gg-HdD"; */
+"5Tx-gg-HdD.text" = "100 г.";
+
+/* Class = "UILabel"; text = "100г."; ObjectID = "6af-MO-ozV"; */
+"6af-MO-ozV.text" = "100г.";
+
+/* Class = "UILabel"; text = "Название продукта"; ObjectID = "7JG-lx-O9x"; */
+"7JG-lx-O9x.text" = "Название продукта";
+
+/* Class = "UILabel"; text = "340"; ObjectID = "7fu-VO-U4E"; */
+"7fu-VO-U4E.text" = "340";
+
+/* Class = "UILabel"; text = "210"; ObjectID = "7hN-aQ-uRO"; */
+"7hN-aQ-uRO.text" = "210";
+
+/* Class = "UILabel"; text = "333 / 333 / 333"; ObjectID = "8yu-ND-w6a"; */
+"8yu-ND-w6a.text" = "333 / 333 / 333";
+
+/* Class = "UILabel"; text = "Калории:"; ObjectID = "9yN-TI-AXb"; */
+"9yN-TI-AXb.text" = "Калории:";
+
+/* Class = "UINavigationItem"; title = "Профиль"; ObjectID = "AVw-UN-fWX"; */
+"AVw-UN-fWX.title" = "Профиль";
+
+/* Class = "UILabel"; text = "Белки:"; ObjectID = "AWz-Am-QzZ"; */
+"AWz-Am-QzZ.text" = "Белки:";
+
+/* Class = "UITextField"; placeholder = "г."; ObjectID = "AXO-yT-lxp"; */
+"AXO-yT-lxp.placeholder" = "г.";
+
+/* Class = "UILabel"; text = "Использовать рекомендуемую суточную норму воды:"; ObjectID = "Ad7-Ej-25X"; */
+"Ad7-Ej-25X.text" = "Использовать рекомендуемую суточную норму воды:";
+
+/* Class = "UIViewController"; title = "Main Screen"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "Main Screen";
+
+/* Class = "UILabel"; text = "Вода:"; ObjectID = "BtX-Ya-cE9"; */
+"BtX-Ya-cE9.text" = "Вода:";
+
+/* Class = "UILabel"; text = "Жиры:"; ObjectID = "C8o-g0-u94"; */
+"C8o-g0-u94.text" = "Жиры:";
+
+/* Class = "UILabel"; text = "Углев."; ObjectID = "DBu-EC-eDs"; */
+"DBu-EC-eDs.text" = "Углев.";
+
+/* Class = "UILabel"; text = "БЕЛКИ: 24,5"; ObjectID = "DP1-nz-aL3"; */
+"DP1-nz-aL3.text" = "БЕЛКИ: 24,5";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "DaZ-Qm-z3t"; */
+"DaZ-Qm-z3t.text" = "-";
+
+/* Class = "UIBarButtonItem"; title = "Сохранить"; ObjectID = "FEt-XD-tSq"; */
+"FEt-XD-tSq.title" = "Сохранить";
+
+/* Class = "UISegmentedControl"; FS6-Xi-Pcw.segmentTitles[0] = "Питание"; ObjectID = "FS6-Xi-Pcw"; */
+"FS6-Xi-Pcw.segmentTitles[0]" = "Питание";
+
+/* Class = "UISegmentedControl"; FS6-Xi-Pcw.segmentTitles[1] = "Вода"; ObjectID = "FS6-Xi-Pcw"; */
+"FS6-Xi-Pcw.segmentTitles[1]" = "Вода";
+
+/* Class = "UILabel"; text = "ККАЛ: 327 НА 100 Г."; ObjectID = "FgY-v1-oAg"; */
+"FgY-v1-oAg.text" = "ККАЛ: 327 НА 100 Г.";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "G7F-rB-Aff"; */
+"G7F-rB-Aff.text" = "-";
+
+/* Class = "UILabel"; text = "Вес продукта:"; ObjectID = "GPK-1d-5Lr"; */
+"GPK-1d-5Lr.text" = "Вес продукта:";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "HK8-kz-F4M"; */
+"HK8-kz-F4M.text" = "0";
+
+/* Class = "UIBarButtonItem"; title = "Отмена"; ObjectID = "Hoa-fy-4yQ"; */
+"Hoa-fy-4yQ.title" = "Отмена";
+
+/* Class = "UILabel"; text = "Углеводы:"; ObjectID = "IIR-bZ-zQp"; */
+"IIR-bZ-zQp.text" = "Углеводы:";
+
+/* Class = "UINavigationItem"; title = "Новый продукт"; ObjectID = "Igk-jL-08R"; */
+"Igk-jL-08R.title" = "Новый продукт";
+
+/* Class = "UITextField"; placeholder = "г."; ObjectID = "JYL-qj-11U"; */
+"JYL-qj-11U.placeholder" = "г.";
+
+/* Class = "UILabel"; text = "Калории:"; ObjectID = "MWF-iR-NLp"; */
+"MWF-iR-NLp.text" = "Калории:";
+
+/* Class = "UINavigationItem"; title = "История"; ObjectID = "Mvy-gW-c16"; */
+"Mvy-gW-c16.title" = "История";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "NAS-1P-CIv"; */
+"NAS-1P-CIv.text" = "-";
+
+/* Class = "UILabel"; text = "Использовать своё значение:"; ObjectID = "NVY-Lt-U7c"; */
+"NVY-Lt-U7c.text" = "Использовать своё значение:";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "NhD-BO-c2v"; */
+"NhD-BO-c2v.title" = "Item";
+
+/* Class = "UISearchBar"; placeholder = "Поиск"; ObjectID = "OMz-5R-Q5X"; */
+"OMz-5R-Q5X.placeholder" = "Поиск";
+
+/* Class = "UILabel"; text = "Дата:"; ObjectID = "OYK-LR-9b1"; */
+"OYK-LR-9b1.text" = "Дата:";
+
+/* Class = "UILabel"; text = "Углеводы:"; ObjectID = "Oxx-A7-qxf"; */
+"Oxx-A7-qxf.text" = "Углеводы:";
+
+/* Class = "UILabel"; text = "ЖИРЫ: 13,7"; ObjectID = "PNC-oY-jAP"; */
+"PNC-oY-jAP.text" = "ЖИРЫ: 13,7";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "PfG-hZ-WcI"; */
+"PfG-hZ-WcI.normalTitle" = "Button";
+
+/* Class = "UIBarButtonItem"; title = "Отмена"; ObjectID = "Pyi-Yj-Ea5"; */
+"Pyi-Yj-Ea5.title" = "Отмена";
+
+/* Class = "UILabel"; text = "100г."; ObjectID = "Qd2-Ng-OkJ"; */
+"Qd2-Ng-OkJ.text" = "100г.";
+
+/* Class = "UILabel"; text = "95"; ObjectID = "QkO-Mh-02N"; */
+"QkO-Mh-02N.text" = "95";
+
+/* Class = "UIBarButtonItem"; title = "Отмена"; ObjectID = "R66-gb-NsP"; */
+"R66-gb-NsP.title" = "Отмена";
+
+/* Class = "UILabel"; text = "1230"; ObjectID = "RpC-e5-DIQ"; */
+"RpC-e5-DIQ.text" = "1230";
+
+/* Class = "UILabel"; text = "140"; ObjectID = "SmI-bG-gKv"; */
+"SmI-bG-gKv.text" = "140";
+
+/* Class = "UIBarButtonItem"; title = "Добавить"; ObjectID = "T60-aV-gJo"; */
+"T60-aV-gJo.title" = "Добавить";
+
+/* Class = "UITextField"; placeholder = "выбрать активность"; ObjectID = "U9h-t0-fdM"; */
+"U9h-t0-fdM.placeholder" = "выбрать активность";
+
+/* Class = "UITextField"; placeholder = "см."; ObjectID = "UDI-vA-5sW"; */
+"UDI-vA-5sW.placeholder" = "см.";
+
+/* Class = "UILabel"; text = "Нажмите, чтобы редактировать или удалить"; ObjectID = "UzJ-Cy-mdg"; */
+"UzJ-Cy-mdg.text" = "Нажмите, чтобы редактировать или удалить";
+
+/* Class = "UILabel"; text = "9999"; ObjectID = "V51-mg-3CI"; */
+"V51-mg-3CI.text" = "9999";
+
+/* Class = "UILabel"; text = "Углеводы:"; ObjectID = "VLu-Wn-bRx"; */
+"VLu-Wn-bRx.text" = "Углеводы:";
+
+/* Class = "UIButton"; configuration.title = "Главная"; ObjectID = "WeN-0J-aHE"; */
+"WeN-0J-aHE.configuration.title" = "Главная";
+
+/* Class = "UIButton"; normalTitle = "Главная"; ObjectID = "WeN-0J-aHE"; */
+"WeN-0J-aHE.normalTitle" = "Главная";
+
+/* Class = "UILabel"; text = "Ккал."; ObjectID = "Wjh-UR-YYJ"; */
+"Wjh-UR-YYJ.text" = "Ккал.";
+
+/* Class = "UITextField"; text = "СЕГОДНЯ"; ObjectID = "Y1w-lQ-tPB"; */
+"Y1w-lQ-tPB.text" = "СЕГОДНЯ";
+
+/* Class = "UILabel"; text = "100 на 100 г."; ObjectID = "Y6r-sz-VmS"; */
+"Y6r-sz-VmS.text" = "100 на 100 г.";
+
+/* Class = "UILabel"; text = "Белки"; ObjectID = "YhO-Qz-ohO"; */
+"YhO-Qz-ohO.text" = "Белки";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "ZT8-0V-9gb"; */
+"ZT8-0V-9gb.text" = "0";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "ZmA-h7-mrd"; */
+"ZmA-h7-mrd.title" = "Item";
+
+/* Class = "UILabel"; text = "1920"; ObjectID = "b6u-Oz-2UA"; */
+"b6u-Oz-2UA.text" = "1920";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "c0N-Ye-oNa"; */
+"c0N-Ye-oNa.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "г."; ObjectID = "czP-3V-CMy"; */
+"czP-3V-CMy.placeholder" = "г.";
+
+/* Class = "UILabel"; text = "Б / Ж / У  Ккал"; ObjectID = "dEC-nW-scK"; */
+"dEC-nW-scK.text" = "Б / Ж / У  Ккал";
+
+/* Class = "UIButton"; normalTitle = "Источник расчёта формул"; ObjectID = "eoG-gB-HQJ"; */
+"eoG-gB-HQJ.normalTitle" = "Источник расчёта формул";
+
+/* Class = "UISegmentedControl"; fCC-di-l88.segmentTitles[0] = "Муж."; ObjectID = "fCC-di-l88"; */
+"fCC-di-l88.segmentTitles[0]" = "Муж.";
+
+/* Class = "UISegmentedControl"; fCC-di-l88.segmentTitles[1] = "Жен."; ObjectID = "fCC-di-l88"; */
+"fCC-di-l88.segmentTitles[1]" = "Жен.";
+
+/* Class = "UINavigationItem"; title = "Мои калории"; ObjectID = "fZN-1a-zcP"; */
+"fZN-1a-zcP.title" = "Мои калории";
+
+/* Class = "UITextField"; placeholder = "выбрать дату"; ObjectID = "fbr-q3-beH"; */
+"fbr-q3-beH.placeholder" = "выбрать дату";
+
+/* Class = "UILabel"; text = "Дата рождения:"; ObjectID = "gKC-Vr-8QP"; */
+"gKC-Vr-8QP.text" = "Дата рождения:";
+
+/* Class = "UILabel"; text = "Рост:"; ObjectID = "gV3-O0-jR4"; */
+"gV3-O0-jR4.text" = "Рост:";
+
+/* Class = "UIButton"; configuration.title = "История"; ObjectID = "gqm-0R-mCd"; */
+"gqm-0R-mCd.configuration.title" = "История";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gqm-0R-mCd"; */
+"gqm-0R-mCd.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Использовать рекомендуемое значение БЖУ:"; ObjectID = "h1m-05-03L"; */
+"h1m-05-03L.text" = "Использовать рекомендуемое значение БЖУ:";
+
+/* Class = "UILabel"; text = "Использовать своё значение:"; ObjectID = "h59-sP-Liw"; */
+"h59-sP-Liw.text" = "Использовать своё значение:";
+
+/* Class = "UILabel"; text = "Жиры:"; ObjectID = "haa-YX-xW1"; */
+"haa-YX-xW1.text" = "Жиры:";
+
+/* Class = "UILabel"; text = "Белки:"; ObjectID = "iw7-1W-v0c"; */
+"iw7-1W-v0c.text" = "Белки:";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "jKZ-fm-FBg"; */
+"jKZ-fm-FBg.text" = "-";
+
+/* Class = "UIBarButtonItem"; title = "Добавить"; ObjectID = "k0R-kf-ctf"; */
+"k0R-kf-ctf.title" = "Добавить";
+
+/* Class = "UILabel"; text = "Название продукта"; ObjectID = "l9Q-nH-gsc"; */
+"l9Q-nH-gsc.text" = "Название продукта";
+
+/* Class = "UILabel"; text = "Жиры:"; ObjectID = "lQT-k2-mpl"; */
+"lQT-k2-mpl.text" = "Жиры:";
+
+/* Class = "UILabel"; text = "Вода"; ObjectID = "lf4-nJ-7Gb"; */
+"lf4-nJ-7Gb.text" = "Вода";
+
+/* Class = "UITextField"; text = "9999"; ObjectID = "lkW-MT-zie"; */
+"lkW-MT-zie.text" = "9999";
+
+/* Class = "UILabel"; text = "Использовать своё значение:"; ObjectID = "lzT-cf-lkF"; */
+"lzT-cf-lkF.text" = "Использовать своё значение:";
+
+/* Class = "UITextField"; placeholder = "кг."; ObjectID = "mdB-2L-v33"; */
+"mdB-2L-v33.placeholder" = "кг.";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "mgi-gz-g93"; */
+"mgi-gz-g93.text" = "0";
+
+/* Class = "UIBarButtonItem"; title = "Сохранить"; ObjectID = "mvX-q9-SVC"; */
+"mvX-q9-SVC.title" = "Сохранить";
+
+/* Class = "UILabel"; text = "Активность:"; ObjectID = "nHo-wf-WXM"; */
+"nHo-wf-WXM.text" = "Активность:";
+
+/* Class = "UILabel"; text = "200"; ObjectID = "o7J-Jw-qD1"; */
+"o7J-Jw-qD1.text" = "200";
+
+/* Class = "UILabel"; text = "Белки:"; ObjectID = "oKS-i3-Yon"; */
+"oKS-i3-Yon.text" = "Белки:";
+
+/* Class = "UILabel"; text = "Пол:"; ObjectID = "oZb-0K-wmU"; */
+"oZb-0K-wmU.text" = "Пол:";
+
+/* Class = "UITextField"; placeholder = "кКал."; ObjectID = "ofC-8A-LxZ"; */
+"ofC-8A-LxZ.placeholder" = "кКал.";
+
+/* Class = "UITextField"; placeholder = "Название продукта"; ObjectID = "qLk-4G-uCu"; */
+"qLk-4G-uCu.placeholder" = "Название продукта";
+
+/* Class = "UINavigationItem"; title = "Продукт"; ObjectID = "qwu-Ly-e75"; */
+"qwu-Ly-e75.title" = "Продукт";
+
+/* Class = "UILabel"; text = "на 100 г."; ObjectID = "qwx-8e-4wK"; */
+"qwx-8e-4wK.text" = "на 100 г.";
+
+/* Class = "UILabel"; text = "2400"; ObjectID = "rEK-I4-vgb"; */
+"rEK-I4-vgb.text" = "2400";
+
+/* Class = "UIButton"; configuration.title = "Настройки"; ObjectID = "rn3-Yb-udI"; */
+"rn3-Yb-udI.configuration.title" = "Настройки";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "rn3-Yb-udI"; */
+"rn3-Yb-udI.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Жиры:"; ObjectID = "rq5-yy-L7s"; */
+"rq5-yy-L7s.text" = "Жиры:";
+
+/* Class = "UILabel"; text = "Белки:"; ObjectID = "s3p-jf-Di4"; */
+"s3p-jf-Di4.text" = "Белки:";
+
+/* Class = "UILabel"; text = "2480"; ObjectID = "sB8-rb-5vd"; */
+"sB8-rb-5vd.text" = "2480";
+
+/* Class = "UILabel"; text = "Углеводы:"; ObjectID = "tlg-Ia-J35"; */
+"tlg-Ia-J35.text" = "Углеводы:";
+
+/* Class = "UITextField"; placeholder = "г."; ObjectID = "uMt-kF-gBy"; */
+"uMt-kF-gBy.placeholder" = "г.";
+
+/* Class = "UITextField"; placeholder = "выбрать цель"; ObjectID = "ueP-x3-FgP"; */
+"ueP-x3-FgP.placeholder" = "выбрать цель";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "uoK-Xd-FDv"; */
+"uoK-Xd-FDv.text" = "-";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "vae-De-gQw"; */
+"vae-De-gQw.text" = "0";
+
+/* Class = "UILabel"; text = "Калории:"; ObjectID = "vcn-Jc-6os"; */
+"vcn-Jc-6os.text" = "Калории:";
+
+/* Class = "UILabel"; text = "УГЛЕВОДЫ: 27"; ObjectID = "xAB-QI-u3h"; */
+"xAB-QI-u3h.text" = "УГЛЕВОДЫ: 27";
+
+/* Class = "UILabel"; text = "Ежедневная рекомендуемая норма:"; ObjectID = "xXV-TW-x1Q"; */
+"xXV-TW-x1Q.text" = "Ежедневная рекомендуемая норма:";
+
+/* Class = "UILabel"; text = "Использовать рекомендуемое значение килокалорий:"; ObjectID = "zaH-UC-hP5"; */
+"zaH-UC-hP5.text" = "Использовать рекомендуемое значение килокалорий:";
+
+/* Class = "UILabel"; text = "Цель:"; ObjectID = "zgM-HP-VXM"; */
+"zgM-HP-VXM.text" = "Цель:";
