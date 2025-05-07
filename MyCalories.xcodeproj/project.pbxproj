@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -57,6 +57,7 @@
 		79BD10562BF69B20005C049A /* UIViewController + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79BD10552BF69B20005C049A /* UIViewController + Ext.swift */; };
 		79CBA7912C08E599008EED18 /* BarcodeScanner in Frameworks */ = {isa = PBXBuildFile; productRef = 79CBA7902C08E599008EED18 /* BarcodeScanner */; };
 		79CBA7932C0A2E7D008EED18 /* SearchProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */; };
+		79EF3B4F2DC63CAE0076DE6B /* MyCaloriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79EF3B4E2DC63CAE0076DE6B /* MyCaloriesApp.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,8 +103,16 @@
 		79ADA4742C3F0FEF004EC09E /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProduct.swift; sourceTree = "<group>"; };
+		79EF3B4E2DC63CAE0076DE6B /* MyCaloriesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCaloriesApp.swift; sourceTree = "<group>"; };
 		79FE15352C1B0B42001A9384 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		79EF3B4C2DC63C050076DE6B /* Screens */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Screens; sourceTree = "<group>"; };
+		79EF3B5A2DC6429F0076DE6B /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
+		79EF3B612DCBC5720076DE6B /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
+		79EF3B642DCBC76A0076DE6B /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		792DB1842BBADF4800209193 /* Frameworks */ = {
@@ -140,6 +149,7 @@
 		792DB17E2BBADF4800209193 = {
 			isa = PBXGroup;
 			children = (
+				79EF3B4E2DC63CAE0076DE6B /* MyCaloriesApp.swift */,
 				792DB1892BBADF4800209193 /* MyCalories */,
 				792DB1882BBADF4800209193 /* Products */,
 				79658B472C0240E8000BD566 /* Frameworks */,
@@ -157,31 +167,35 @@
 		792DB1892BBADF4800209193 /* MyCalories */ = {
 			isa = PBXGroup;
 			children = (
+				79EF3B642DCBC76A0076DE6B /* Resources */,
+				79EF3B612DCBC5720076DE6B /* Extensions */,
+				79EF3B5A2DC6429F0076DE6B /* Services */,
+				79EF3B4C2DC63C050076DE6B /* Screens */,
 				79658B3E2C02338A000BD566 /* GoogleService-Info.plist */,
 				79658B3D2C021100000BD566 /* MyCalories.entitlements */,
-				792DB19F2BBADFE300209193 /* ViewControllers */,
-				792DB1A02BBADFEE00209193 /* Storyboards */,
-				7946F82C2BC1F6A1005C3F33 /* Services */,
-				7946F8292BC1F60E005C3F33 /* Models */,
-				7946F83F2BC2F904005C3F33 /* Views */,
-				7946F8322BC28E49005C3F33 /* Extensions */,
-				792DB19E2BBADFDC00209193 /* App */,
-				7946F84B2BC5AE6C005C3F33 /* Resources */,
+				792DB19F2BBADFE300209193 /* ViewControllersOld */,
+				792DB1A02BBADFEE00209193 /* StoryboardsOld */,
+				7946F82C2BC1F6A1005C3F33 /* ServicesOld */,
+				7946F8292BC1F60E005C3F33 /* ModelsOld */,
+				7946F83F2BC2F904005C3F33 /* ViewsOld */,
+				7946F8322BC28E49005C3F33 /* ExtensionsOld */,
+				792DB19E2BBADFDC00209193 /* AppOld */,
+				7946F84B2BC5AE6C005C3F33 /* ResourcesOld */,
 			);
 			path = MyCalories;
 			sourceTree = "<group>";
 		};
-		792DB19E2BBADFDC00209193 /* App */ = {
+		792DB19E2BBADFDC00209193 /* AppOld */ = {
 			isa = PBXGroup;
 			children = (
 				792DB18A2BBADF4800209193 /* AppDelegate.swift */,
 				792DB18C2BBADF4800209193 /* SceneDelegate.swift */,
 				79FE15352C1B0B42001A9384 /* Info.plist */,
 			);
-			path = App;
+			path = AppOld;
 			sourceTree = "<group>";
 		};
-		792DB19F2BBADFE300209193 /* ViewControllers */ = {
+		792DB19F2BBADFE300209193 /* ViewControllersOld */ = {
 			isa = PBXGroup;
 			children = (
 				792DB18E2BBADF4800209193 /* MainViewController.swift */,
@@ -194,19 +208,19 @@
 				795D99C62C06375A009AC9CA /* PurchasesViewController.swift */,
 				79681EBF2C121F85005D268E /* FAQViewController.swift */,
 			);
-			path = ViewControllers;
+			path = ViewControllersOld;
 			sourceTree = "<group>";
 		};
-		792DB1A02BBADFEE00209193 /* Storyboards */ = {
+		792DB1A02BBADFEE00209193 /* StoryboardsOld */ = {
 			isa = PBXGroup;
 			children = (
 				792DB1902BBADF4800209193 /* Main.storyboard */,
 				792DB1952BBADF4900209193 /* LaunchScreen.storyboard */,
 			);
-			path = Storyboards;
+			path = StoryboardsOld;
 			sourceTree = "<group>";
 		};
-		7946F8292BC1F60E005C3F33 /* Models */ = {
+		7946F8292BC1F60E005C3F33 /* ModelsOld */ = {
 			isa = PBXGroup;
 			children = (
 				7946F8CC2BCA9904005C3F33 /* Person.swift */,
@@ -216,19 +230,19 @@
 				7946F82A2BC1F630005C3F33 /* Settings.swift */,
 				79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */,
 			);
-			path = Models;
+			path = ModelsOld;
 			sourceTree = "<group>";
 		};
-		7946F82C2BC1F6A1005C3F33 /* Services */ = {
+		7946F82C2BC1F6A1005C3F33 /* ServicesOld */ = {
 			isa = PBXGroup;
 			children = (
 				7946F82D2BC1F6AF005C3F33 /* StorageManager.swift */,
 				795D99C22C05DDE8009AC9CA /* PurchasesManager.swift */,
 			);
-			path = Services;
+			path = ServicesOld;
 			sourceTree = "<group>";
 		};
-		7946F8322BC28E49005C3F33 /* Extensions */ = {
+		7946F8322BC28E49005C3F33 /* ExtensionsOld */ = {
 			isa = PBXGroup;
 			children = (
 				7946F8332BC28E60005C3F33 /* UIScrollView + Ext.swift */,
@@ -239,10 +253,10 @@
 				79BD10552BF69B20005C049A /* UIViewController + Ext.swift */,
 				7916A8B62C1ACA600032B3C0 /* String + Ext.swift */,
 			);
-			path = Extensions;
+			path = ExtensionsOld;
 			sourceTree = "<group>";
 		};
-		7946F83F2BC2F904005C3F33 /* Views */ = {
+		7946F83F2BC2F904005C3F33 /* ViewsOld */ = {
 			isa = PBXGroup;
 			children = (
 				7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */,
@@ -250,10 +264,10 @@
 				7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */,
 				790457252BE3E5AF0009FA34 /* TexturedView.swift */,
 			);
-			path = Views;
+			path = ViewsOld;
 			sourceTree = "<group>";
 		};
-		7946F84B2BC5AE6C005C3F33 /* Resources */ = {
+		7946F84B2BC5AE6C005C3F33 /* ResourcesOld */ = {
 			isa = PBXGroup;
 			children = (
 				7904571E2BE2972F0009FA34 /* productsFromProject.realm */,
@@ -261,7 +275,7 @@
 				7904571D2BE2972F0009FA34 /* productsFromProject.realm.management */,
 				792DB1932BBADF4900209193 /* Assets.xcassets */,
 			);
-			path = Resources;
+			path = ResourcesOld;
 			sourceTree = "<group>";
 		};
 		79658B472C0240E8000BD566 /* Frameworks */ = {
@@ -286,6 +300,12 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				79EF3B4C2DC63C050076DE6B /* Screens */,
+				79EF3B5A2DC6429F0076DE6B /* Services */,
+				79EF3B612DCBC5720076DE6B /* Extensions */,
+				79EF3B642DCBC76A0076DE6B /* Resources */,
 			);
 			name = MyCalories;
 			packageProductDependencies = (
@@ -385,6 +405,7 @@
 				7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */,
 				7946F8492BC455F9005C3F33 /* History.swift in Sources */,
 				790456BF2BE193EE0009FA34 /* EditWeightViewController.swift in Sources */,
+				79EF3B4F2DC63CAE0076DE6B /* MyCaloriesApp.swift in Sources */,
 				790456C32BE22C290009FA34 /* UITextField + Ext.swift in Sources */,
 				795D99C72C06375A009AC9CA /* PurchasesViewController.swift in Sources */,
 				7946F7EE2BBB1B58005C3F33 /* ProfileViewController.swift in Sources */,
@@ -556,18 +577,17 @@
 				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyCalories/App/Info.plist;
+				INFOPLIST_FILE = MyCalories/AppOld/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Мои Калории";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Для сканирования продуктов разрешите доступ к камере.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Это поможет нам поддерживать приложение бесплатным для вас и показывать только персонализированную рекламу.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -598,18 +618,17 @@
 				CURRENT_PROJECT_VERSION = 14;
 				DEVELOPMENT_TEAM = GNN7DQ637Y;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MyCalories/App/Info.plist;
+				INFOPLIST_FILE = MyCalories/AppOld/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Мои Калории";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Для сканирования продуктов разрешите доступ к камере.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Это поможет нам поддерживать приложение бесплатным для вас и показывать только персонализированную рекламу.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

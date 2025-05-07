@@ -30,3 +30,21 @@ final class Water: Object {
     @Persisted var date = Date()
     @Persisted var ml = 0
 }
+
+// fake data for prewiew
+extension Product {
+    static func fake(name: String) -> Product {
+        let product = Product()
+        product.name = name
+        product.protein = 12.5
+        product.fats = 8.0
+        product.carbohydrates = 20.0
+        product.calories = 250
+        product.date = Date()
+        product.weight = 100
+        product.index = 0
+        product.color = "colorApp"
+        
+        return product
+    }
+}

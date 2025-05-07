@@ -1,0 +1,497 @@
+
+/* Class = "UILabel"; text = "Вес:"; ObjectID = "0CS-1S-DQl"; */
+"0CS-1S-DQl.text" = "Weight:";
+
+/* Class = "UILabel"; text = "Жиры"; ObjectID = "0qd-xJ-US2"; */
+"0qd-xJ-US2.text" = "Fats";
+
+/* Class = "UILabel"; text = "ЗАПОЛНИТЕ ПРОФИЛЬ ДЛЯ ОТОБРАЖЕНИЯ СТАТИСТИКИ"; ObjectID = "1Cn-vb-Dds"; */
+"1Cn-vb-Dds.text" = "FILL OUT YOUR PROFILE TO DISPLAY STATISTICS";
+
+/* Class = "UILabel"; text = "    Мы используем обширную базу данных Open Food Facts, которая содержит информацию о более чем 1.7 миллионах продуктов из 150 стран. Однако, несмотря на её огромный размер, некоторые продукты могут отсутствовать в базе, особенно если они новые или редко встречающиеся. Мы постоянно работаем над расширением и обновлением нашей базы данных, чтобы предоставить вам максимально полную информацию."; ObjectID = "20b-nc-I83"; */
+"20b-nc-I83.text" = "    We utilize the extensive database of Open Food Facts, which contains information on over 1.7 million products from 150 countries. However, despite its vast size, some products may be missing from the database, especially if they are new or rare. We are continuously working on expanding and updating our database to provide you with the most comprehensive information.";
+
+/* Class = "UIButton"; configuration.title = "Профиль"; ObjectID = "2iQ-jW-k1c"; */
+"2iQ-jW-k1c.configuration.title" = "Profile";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "2iQ-jW-k1c"; */
+"2iQ-jW-k1c.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Пусто"; ObjectID = "2wD-6b-xWs"; */
+"2wD-6b-xWs.text" = "Empty";
+
+/* Class = "UILabel"; text = "Истекает: 29 Июня 2024г."; ObjectID = "396-T7-A7G"; */
+"396-T7-A7G.text" = "Истекает: 29 Июня 2024г.";
+
+/* Class = "UIViewController"; title = "Profile"; ObjectID = "3C5-33-jXe"; */
+"3C5-33-jXe.title" = "Profile";
+
+/* Class = "UINavigationItem"; title = "Настройки"; ObjectID = "3O6-wO-TlN"; */
+"3O6-wO-TlN.title" = "Settings";
+
+/* Class = "UILabel"; text = "Название продукта"; ObjectID = "3QK-6e-8Ho"; */
+"3QK-6e-8Ho.text" = "Product Name";
+
+/* Class = "UILabel"; text = "86"; ObjectID = "4da-Ra-UME"; */
+"4da-Ra-UME.text" = "86";
+
+/* Class = "UILabel"; text = "100 г."; ObjectID = "5Tx-gg-HdD"; */
+"5Tx-gg-HdD.text" = "100 g.";
+
+/* Class = "UILabel"; text = "100г."; ObjectID = "6af-MO-ozV"; */
+"6af-MO-ozV.text" = "100g.";
+
+/* Class = "UILabel"; text = "Как мне отслеживать калории?"; ObjectID = "6ez-7H-mPW"; */
+"6ez-7H-mPW.text" = "How do I track calories?";
+
+/* Class = "UILabel"; text = "Название продукта"; ObjectID = "7JG-lx-O9x"; */
+"7JG-lx-O9x.text" = "Product Name";
+
+/* Class = "UILabel"; text = "340"; ObjectID = "7fu-VO-U4E"; */
+"7fu-VO-U4E.text" = "340";
+
+/* Class = "UILabel"; text = "210"; ObjectID = "7hN-aQ-uRO"; */
+"7hN-aQ-uRO.text" = "210";
+
+/* Class = "UILabel"; text = "Месяц без рекламы."; ObjectID = "7xE-HK-iBW"; */
+"7xE-HK-iBW.text" = "A Month Without Ads.";
+
+/* Class = "UILabel"; text = "Информация предоставлена:"; ObjectID = "8fU-CH-Rz0"; */
+"8fU-CH-Rz0.text" = "Information provided:";
+
+/* Class = "UILabel"; text = "333 / 333 / 333"; ObjectID = "8yu-ND-w6a"; */
+"8yu-ND-w6a.text" = "333 / 333 / 333";
+
+/* Class = "UINavigationItem"; title = "F.A.Q."; ObjectID = "9xM-Jp-u43"; */
+"9xM-Jp-u43.title" = "F.A.Q.";
+
+/* Class = "UILabel"; text = "Калории:"; ObjectID = "9yN-TI-AXb"; */
+"9yN-TI-AXb.text" = "Calories:";
+
+/* Class = "UINavigationItem"; title = "Профиль"; ObjectID = "AVw-UN-fWX"; */
+"AVw-UN-fWX.title" = "Profile";
+
+/* Class = "UILabel"; text = "Белки:"; ObjectID = "AWz-Am-QzZ"; */
+"AWz-Am-QzZ.text" = "Proteins:";
+
+/* Class = "UITextField"; placeholder = "г."; ObjectID = "AXO-yT-lxp"; */
+"AXO-yT-lxp.placeholder" = "g";
+
+/* Class = "UILabel"; text = "Использовать рекомендуемую суточную норму воды:"; ObjectID = "Ad7-Ej-25X"; */
+"Ad7-Ej-25X.text" = "Use the Recommended Daily Water Intake:";
+
+/* Class = "UILabel"; text = "Почему в приложении показывается реклама?"; ObjectID = "BAg-cx-NlY"; */
+"BAg-cx-NlY.text" = "Why does the app show ads?";
+
+/* Class = "UIViewController"; title = "Main Screen"; ObjectID = "BYZ-38-t0r"; */
+"BYZ-38-t0r.title" = "Main Screen";
+
+/* Class = "UILabel"; text = "Вода:"; ObjectID = "BtX-Ya-cE9"; */
+"BtX-Ya-cE9.text" = "Water:";
+
+/* Class = "UILabel"; text = "Жиры:"; ObjectID = "C8o-g0-u94"; */
+"C8o-g0-u94.text" = "Fats:";
+
+/* Class = "UILabel"; text = "Почему при сканировании QR или штрих-кода продукт не находится?"; ObjectID = "CHR-6R-MjY"; */
+"CHR-6R-MjY.text" = "Why isn’t a product found when scanning its QR or barcode?";
+
+/* Class = "UILabel"; text = "Углев."; ObjectID = "DBu-EC-eDs"; */
+"DBu-EC-eDs.text" = "Carbs";
+
+/* Class = "UILabel"; text = "БЕЛКИ: 24,5"; ObjectID = "DP1-nz-aL3"; */
+"DP1-nz-aL3.text" = "PROTEINS: 24.5";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "DaZ-Qm-z3t"; */
+"DaZ-Qm-z3t.text" = "-";
+
+/* Class = "UIButton"; normalTitle = "Восстановить покупки"; ObjectID = "Djj-2E-ZH0"; */
+"Djj-2E-ZH0.normalTitle" = "Restore Purchases";
+
+/* Class = "UILabel"; text = "ПРЕМИУМ: 1 ГОД"; ObjectID = "F4v-QE-5Wn"; */
+"F4v-QE-5Wn.text" = "PREMIUM: 1 YEAR";
+
+/* Class = "UIBarButtonItem"; title = "Сохранить"; ObjectID = "FEt-XD-tSq"; */
+"FEt-XD-tSq.title" = "Save";
+
+/* Class = "UISegmentedControl"; FS6-Xi-Pcw.segmentTitles[0] = "Питание"; ObjectID = "FS6-Xi-Pcw"; */
+"FS6-Xi-Pcw.segmentTitles[0]" = "Diet";
+
+/* Class = "UISegmentedControl"; FS6-Xi-Pcw.segmentTitles[1] = "Вода"; ObjectID = "FS6-Xi-Pcw"; */
+"FS6-Xi-Pcw.segmentTitles[1]" = "Water";
+
+/* Class = "UILabel"; text = "ККАЛ: 327 НА 100 Г."; ObjectID = "FgY-v1-oAg"; */
+"FgY-v1-oAg.text" = "CAL: 327 PER 100 G.";
+
+/* Class = "UIButton"; normalTitle = "Версия: 1.2.0 (обновить)"; ObjectID = "G5G-wx-BOU"; */
+"G5G-wx-BOU.normalTitle" = "Version: 1.2.0 (update)";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "G7F-rB-Aff"; */
+"G7F-rB-Aff.text" = "-";
+
+/* Class = "UILabel"; text = "Вес продукта:"; ObjectID = "GPK-1d-5Lr"; */
+"GPK-1d-5Lr.text" = "Product Weight:";
+
+/* Class = "UIButton"; configuration.title = "Оценить приложение"; ObjectID = "GeB-RE-AvQ"; */
+"GeB-RE-AvQ.configuration.title" = "Rate the App";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "GeB-RE-AvQ"; */
+"GeB-RE-AvQ.normalTitle" = "Button";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "HK8-kz-F4M"; */
+"HK8-kz-F4M.text" = "0";
+
+/* Class = "UIBarButtonItem"; title = "Отмена"; ObjectID = "Hoa-fy-4yQ"; */
+"Hoa-fy-4yQ.title" = "Cancel";
+
+/* Class = "UILabel"; text = "Углеводы:"; ObjectID = "IIR-bZ-zQp"; */
+"IIR-bZ-zQp.text" = "Carbohydrates:";
+
+/* Class = "UILabel"; text = "    В нашем приложении мы учитываем только чистую воду в вашем дневном потреблении жидкости для более точного контроля гидратации. Напитки и коктейли могут содержать калории, сахар и другие добавки, которые не идентифицируются как чистая вода, поэтому они учитываются отдельно."; ObjectID = "IcY-jj-Vn0"; */
+"IcY-jj-Vn0.text" = "    In our app, we only account for pure water in your daily fluid intake to more accurately monitor hydration. Beverages and cocktails may contain calories, sugar, and other additives that are not identified as pure water, so they are accounted for separately.";
+
+/* Class = "UINavigationItem"; title = "Новый продукт"; ObjectID = "Igk-jL-08R"; */
+"Igk-jL-08R.title" = "New Product";
+
+/* Class = "UITextField"; placeholder = "г."; ObjectID = "JYL-qj-11U"; */
+"JYL-qj-11U.placeholder" = "g";
+
+/* Class = "UILabel"; text = "Как начать пользоваться приложением?"; ObjectID = "JqY-X5-gfz"; */
+"JqY-X5-gfz.text" = "How to Start Using the App?";
+
+/* Class = "UIButton"; normalTitle = "Open Food Facts"; ObjectID = "Jzu-aa-wJk"; */
+"Jzu-aa-wJk.normalTitle" = "Open Food Facts";
+
+/* Class = "UIButton"; normalTitle = "Оформить подписку"; ObjectID = "Lyi-aV-LH0"; */
+"Lyi-aV-LH0.normalTitle" = "Subscribe";
+
+/* Class = "UILabel"; text = "Калории:"; ObjectID = "MWF-iR-NLp"; */
+"MWF-iR-NLp.text" = "Calories:";
+
+/* Class = "UINavigationItem"; title = "История"; ObjectID = "Mvy-gW-c16"; */
+"Mvy-gW-c16.title" = "History";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "NAS-1P-CIv"; */
+"NAS-1P-CIv.text" = "-";
+
+/* Class = "UILabel"; text = "Использовать своё значение:"; ObjectID = "NVY-Lt-U7c"; */
+"NVY-Lt-U7c.text" = "Use Your Own Value:";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "NhD-BO-c2v"; */
+"NhD-BO-c2v.title" = "Item";
+
+/* Class = "UISearchBar"; placeholder = "Поиск"; ObjectID = "OMz-5R-Q5X"; */
+"OMz-5R-Q5X.placeholder" = "Search";
+
+/* Class = "UILabel"; text = "Дата:"; ObjectID = "OYK-LR-9b1"; */
+"OYK-LR-9b1.text" = "Date:";
+
+/* Class = "UILabel"; text = "Углеводы:"; ObjectID = "Oxx-A7-qxf"; */
+"Oxx-A7-qxf.text" = "Carbohydrates:";
+
+/* Class = "UILabel"; text = "ЖИРЫ: 13,7"; ObjectID = "PNC-oY-jAP"; */
+"PNC-oY-jAP.text" = "FATS: 13.7";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "PfG-hZ-WcI"; */
+"PfG-hZ-WcI.normalTitle" = "Button";
+
+/* Class = "UIBarButtonItem"; title = "Отмена"; ObjectID = "Pyi-Yj-Ea5"; */
+"Pyi-Yj-Ea5.title" = "Cancel";
+
+/* Class = "UILabel"; text = "    Прогресс-бары на главном экране вашего приложения отображают текущие показатели потребления нутриентов и воды за день. Верхний ряд показывает количество употребленных белков, жиров, углеводов и калорий в процентном соотношении от рекомендуемых дневных целей. Последний ряд демонстрирует вашу общую цель по каждому из этих показателей на текущий день, помогая вам следить за сбалансированным питанием. Это эффективный способ визуализировать ваш прогресс и поддерживать здоровый режим питания."; ObjectID = "QJG-sY-ShL"; */
+"QJG-sY-ShL.text" = "    Progress bars on your app’s main screen display current daily nutrient and water consumption metrics. The top row shows the percentage of proteins, fats, carbohydrates, and calories consumed relative to recommended daily targets. The bottom row displays your total goal for each of these metrics for the current day, helping you maintain a balanced diet. This is an effective way to visualize your progress and support a healthy eating regimen.";
+
+/* Class = "UILabel"; text = "100г."; ObjectID = "Qd2-Ng-OkJ"; */
+"Qd2-Ng-OkJ.text" = "100g.";
+
+/* Class = "UILabel"; text = "95"; ObjectID = "QkO-Mh-02N"; */
+"QkO-Mh-02N.text" = "95";
+
+/* Class = "UIBarButtonItem"; title = "Отмена"; ObjectID = "R66-gb-NsP"; */
+"R66-gb-NsP.title" = "Cancel";
+
+/* Class = "UILabel"; text = "    Точность данных важна для корректного подсчета потребляемых калорий и питательных веществ. Это помогает приложению более эффективно анализировать ваше питание и делать точные рекомендации."; ObjectID = "RPi-0f-uQZ"; */
+"RPi-0f-uQZ.text" = "    Точность данных важна для корректного подсчета потребляемых калорий и питательных веществ. Это помогает приложению более эффективно анализировать ваше питание и делать точные рекомендации.";
+
+/* Class = "UILabel"; text = "ПРЕМИУМ: 1 МЕСЯЦ"; ObjectID = "Rkp-H6-5eB"; */
+"Rkp-H6-5eB.text" = "PREMIUM: 1 MONTH";
+
+/* Class = "UILabel"; text = "1230"; ObjectID = "RpC-e5-DIQ"; */
+"RpC-e5-DIQ.text" = "1230";
+
+/* Class = "UILabel"; text = "Почему важно вводить точные данные?"; ObjectID = "SZO-Om-9Kg"; */
+"SZO-Om-9Kg.text" = "Why is it important to enter accurate data?";
+
+/* Class = "UILabel"; text = "140"; ObjectID = "SmI-bG-gKv"; */
+"SmI-bG-gKv.text" = "140";
+
+/* Class = "UIBarButtonItem"; title = "Добавить"; ObjectID = "T60-aV-gJo"; */
+"T60-aV-gJo.title" = "Add";
+
+/* Class = "UITextField"; placeholder = "выбрать активность"; ObjectID = "U9h-t0-fdM"; */
+"U9h-t0-fdM.placeholder" = "Choose activity";
+
+/* Class = "UITextField"; placeholder = "см."; ObjectID = "UDI-vA-5sW"; */
+"UDI-vA-5sW.placeholder" = "cm.";
+
+/* Class = "UILabel"; text = "Нажмите, чтобы редактировать или удалить"; ObjectID = "UzJ-Cy-mdg"; */
+"UzJ-Cy-mdg.text" = "Click to edit or delete";
+
+/* Class = "UILabel"; text = "Подписки"; ObjectID = "V4B-EH-6pH"; */
+"V4B-EH-6pH.text" = "Subscriptions";
+
+/* Class = "UILabel"; text = "9999"; ObjectID = "V51-mg-3CI"; */
+"V51-mg-3CI.text" = "9999";
+
+/* Class = "UILabel"; text = "Углеводы:"; ObjectID = "VLu-Wn-bRx"; */
+"VLu-Wn-bRx.text" = "Carbohydrates:";
+
+/* Class = "UIButton"; configuration.title = "Главная"; ObjectID = "WeN-0J-aHE"; */
+"WeN-0J-aHE.configuration.title" = "Home";
+
+/* Class = "UIButton"; normalTitle = "Главная"; ObjectID = "WeN-0J-aHE"; */
+"WeN-0J-aHE.normalTitle" = "Home";
+
+/* Class = "UILabel"; text = "Ккал."; ObjectID = "Wjh-UR-YYJ"; */
+"Wjh-UR-YYJ.text" = "Kcal.";
+
+/* Class = "UILabel"; text = "4.99 PLN"; ObjectID = "XON-uk-SD7"; */
+"XON-uk-SD7.text" = "4.99 PLN";
+
+/* Class = "UITextField"; text = "СЕГОДНЯ"; ObjectID = "Y1w-lQ-tPB"; */
+"Y1w-lQ-tPB.text" = "TODAY";
+
+/* Class = "UILabel"; text = "100 на 100 г."; ObjectID = "Y6r-sz-VmS"; */
+"Y6r-sz-VmS.text" = "100 per 100 g.";
+
+/* Class = "UILabel"; text = "    Чтобы использовать приложение без рекламы, вы можете приобрести платную подписку. Это не только уберет рекламные блоки, но и поможет в дальнейшей разработке и улучшении нашего приложения. Ваш вклад поддержит нашу команду в создании новых функций и улучшении сервиса, делая его еще лучше и удобнее для вас."; ObjectID = "YPK-vU-vMw"; */
+"YPK-vU-vMw.text" = "    To use the app without ads, you can purchase a paid subscription. This will not only remove advertising blocks, but also assist in further development and improvement of our app. Your contribution will support our team in creating new features and enhancing the service, making it even better and more convenient for you.";
+
+/* Class = "UILabel"; text = "Белки"; ObjectID = "YhO-Qz-ohO"; */
+"YhO-Qz-ohO.text" = "Prot.";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "ZT8-0V-9gb"; */
+"ZT8-0V-9gb.text" = "0";
+
+/* Class = "UIBarButtonItem"; title = "Item"; ObjectID = "ZmA-h7-mrd"; */
+"ZmA-h7-mrd.title" = "Item";
+
+/* Class = "UILabel"; text = "    Если вы не нашли нужный продукт, вы можете легко добавить его в базу данных вручную. Введите информацию о продукте, включая название, количество калорий, белков, жиров и углеводов, и он автоматически добавится в базу данных."; ObjectID = "apE-bZ-fvD"; */
+"apE-bZ-fvD.text" = "    If you cannot find the required product, you can easily add it manually to the database. Enter information about the product, including its name, amount of calories, proteins, fats, and carbohydrates, and it will automatically be added to the database.";
+
+/* Class = "UILabel"; text = "1920"; ObjectID = "b6u-Oz-2UA"; */
+"b6u-Oz-2UA.text" = "1920";
+
+/* Class = "UILabel"; text = "2.50 PLN / мес."; ObjectID = "bQA-PR-S1A"; */
+"bQA-PR-S1A.text" = "2.50 PLN / мес.";
+
+/* Class = "UILabel"; text = "29.99 PLN"; ObjectID = "bXe-aN-ivj"; */
+"bXe-aN-ivj.text" = "29.99 PLN";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "c0N-Ye-oNa"; */
+"c0N-Ye-oNa.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "г."; ObjectID = "czP-3V-CMy"; */
+"czP-3V-CMy.placeholder" = "g";
+
+/* Class = "UILabel"; text = "Могу ли я установить индивидуальные цели?"; ObjectID = "dDX-c9-gdp"; */
+"dDX-c9-gdp.text" = "Can I set individual goals?";
+
+/* Class = "UILabel"; text = "Б / Ж / У  Ккал"; ObjectID = "dEC-nW-scK"; */
+"dEC-nW-scK.text" = "P / F / C  Kcal";
+
+/* Class = "UIButton"; normalTitle = "Источник расчёта формул"; ObjectID = "eoG-gB-HQJ"; */
+"eoG-gB-HQJ.normalTitle" = "Calculation Formula Source";
+
+/* Class = "UISegmentedControl"; fCC-di-l88.segmentTitles[0] = "Муж."; ObjectID = "fCC-di-l88"; */
+"fCC-di-l88.segmentTitles[0]" = "Male";
+
+/* Class = "UISegmentedControl"; fCC-di-l88.segmentTitles[1] = "Жен."; ObjectID = "fCC-di-l88"; */
+"fCC-di-l88.segmentTitles[1]" = "Female";
+
+/* Class = "UIButton"; configuration.title = "Отключить рекламу"; ObjectID = "fTV-Rn-AKa"; */
+"fTV-Rn-AKa.configuration.title" = "Disable Ads";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "fTV-Rn-AKa"; */
+"fTV-Rn-AKa.normalTitle" = "Button";
+
+/* Class = "UINavigationItem"; title = "Мои калории"; ObjectID = "fZN-1a-zcP"; */
+"fZN-1a-zcP.title" = "My Calories";
+
+/* Class = "UITextField"; placeholder = "выбрать дату"; ObjectID = "fbr-q3-beH"; */
+"fbr-q3-beH.placeholder" = "Select date";
+
+/* Class = "UILabel"; text = "Дата рождения:"; ObjectID = "gKC-Vr-8QP"; */
+"gKC-Vr-8QP.text" = "Date of Birth:";
+
+/* Class = "UILabel"; text = "Экономия 50%!"; ObjectID = "gM2-hY-0tf"; */
+"gM2-hY-0tf.text" = "Save 50%!";
+
+/* Class = "UILabel"; text = "Рост:"; ObjectID = "gV3-O0-jR4"; */
+"gV3-O0-jR4.text" = "Height:";
+
+/* Class = "UIButton"; configuration.title = "История"; ObjectID = "gqm-0R-mCd"; */
+"gqm-0R-mCd.configuration.title" = "History";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "gqm-0R-mCd"; */
+"gqm-0R-mCd.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Использовать рекомендуемое значение БЖУ:"; ObjectID = "h1m-05-03L"; */
+"h1m-05-03L.text" = "Use Recommended Macronutrient Intake:";
+
+/* Class = "UILabel"; text = "Использовать своё значение:"; ObjectID = "h59-sP-Liw"; */
+"h59-sP-Liw.text" = "Use Your Own Values:";
+
+/* Class = "UILabel"; text = "    Вы можете добавлять продукты в ваш дневник питания, выбирая их из предложенной базы данных или сканируя штрих-коды. Приложение автоматически подсчитает калории и другие питательные вещества."; ObjectID = "hIW-o0-9pD"; */
+"hIW-o0-9pD.text" = "    You can add products to your daily food diary by selecting them from the provided database or by scanning barcodes. The app will automatically calculate calories and other nutrients.";
+
+/* Class = "UILabel"; text = "Как работают показатели на прогресс-барах в нижней части на главном экране?"; ObjectID = "hNc-Gx-QQS"; */
+"hNc-Gx-QQS.text" = "How do the progress bars at the bottom of the main screen work?";
+
+/* Class = "UILabel"; text = "Жиры:"; ObjectID = "haa-YX-xW1"; */
+"haa-YX-xW1.text" = "Fats:";
+
+/* Class = "UIButton"; configuration.title = "F.A.Q."; ObjectID = "hv8-zI-J99"; */
+"hv8-zI-J99.configuration.title" = "F.A.Q.";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "hv8-zI-J99"; */
+"hv8-zI-J99.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Белки:"; ObjectID = "iw7-1W-v0c"; */
+"iw7-1W-v0c.text" = "Proteins:";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "jKZ-fm-FBg"; */
+"jKZ-fm-FBg.text" = "-";
+
+/* Class = "UIBarButtonItem"; title = "Добавить"; ObjectID = "k0R-kf-ctf"; */
+"k0R-kf-ctf.title" = "Add";
+
+/* Class = "UIButton"; normalTitle = "Политика конфиденциальности"; ObjectID = "l0h-MA-ojN"; */
+"l0h-MA-ojN.normalTitle" = "Privacy Policy";
+
+/* Class = "UILabel"; text = "Название продукта"; ObjectID = "l9Q-nH-gsc"; */
+"l9Q-nH-gsc.text" = "Product Name";
+
+/* Class = "UILabel"; text = "Жиры:"; ObjectID = "lQT-k2-mpl"; */
+"lQT-k2-mpl.text" = "Fats:";
+
+/* Class = "UILabel"; text = "Вода"; ObjectID = "lf4-nJ-7Gb"; */
+"lf4-nJ-7Gb.text" = "Water";
+
+/* Class = "UITextField"; text = "9999"; ObjectID = "lkW-MT-zie"; */
+"lkW-MT-zie.text" = "9999";
+
+/* Class = "UILabel"; text = "Использовать своё значение:"; ObjectID = "lzT-cf-lkF"; */
+"lzT-cf-lkF.text" = "Use Your Own Values:";
+
+/* Class = "UITextField"; placeholder = "кг."; ObjectID = "mdB-2L-v33"; */
+"mdB-2L-v33.placeholder" = "kg.";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "mgi-gz-g93"; */
+"mgi-gz-g93.text" = "0";
+
+/* Class = "UIBarButtonItem"; title = "Сохранить"; ObjectID = "mvX-q9-SVC"; */
+"mvX-q9-SVC.title" = "Save";
+
+/* Class = "UILabel"; text = "Активность:"; ObjectID = "nHo-wf-WXM"; */
+"nHo-wf-WXM.text" = "Activity:";
+
+/* Class = "UILabel"; text = "Выберите подписку:"; ObjectID = "nI6-CN-MFA"; */
+"nI6-CN-MFA.text" = "Choose a Subscription:";
+
+/* Class = "UILabel"; text = "200"; ObjectID = "o7J-Jw-qD1"; */
+"o7J-Jw-qD1.text" = "200";
+
+/* Class = "UILabel"; text = "Белки:"; ObjectID = "oKS-i3-Yon"; */
+"oKS-i3-Yon.text" = "Proteins:";
+
+/* Class = "UILabel"; text = "Пол:"; ObjectID = "oZb-0K-wmU"; */
+"oZb-0K-wmU.text" = "Gender:";
+
+/* Class = "UILabel"; text = "Почему добавленные напитки или коктейли не учитываются в дневной норме воды?"; ObjectID = "oZx-VU-UpM"; */
+"oZx-VU-UpM.text" = "Why aren’t added drinks or cocktails counted in the daily water intake?";
+
+/* Class = "UITextField"; placeholder = "кКал."; ObjectID = "ofC-8A-LxZ"; */
+"ofC-8A-LxZ.placeholder" = "kcal.";
+
+/* Class = "UILabel"; text = "Истекает: 29 Июня 2024г."; ObjectID = "pnq-lH-q7i"; */
+"pnq-lH-q7i.text" = "Истекает: 29 Июня 2024г.";
+
+/* Class = "UITextField"; placeholder = "Название продукта"; ObjectID = "qLk-4G-uCu"; */
+"qLk-4G-uCu.placeholder" = "Product Name";
+
+/* Class = "UINavigationItem"; title = "Продукт"; ObjectID = "qwu-Ly-e75"; */
+"qwu-Ly-e75.title" = "Product";
+
+/* Class = "UILabel"; text = "на 100 г."; ObjectID = "qwx-8e-4wK"; */
+"qwx-8e-4wK.text" = "per 100 g.";
+
+/* Class = "UILabel"; text = "2400"; ObjectID = "rEK-I4-vgb"; */
+"rEK-I4-vgb.text" = "2400";
+
+/* Class = "UILabel"; text = "    Реклама в нашем приложении помогает поддерживать его бесплатное использование и финансировать постоянное обновление и улучшение сервиса. Мы стремимся делать рекламу максимально ненавязчивой и релевантной."; ObjectID = "rhb-gc-51P"; */
+"rhb-gc-51P.text" = "    Ads in our app support its free use and fund ongoing updates and improvements to the service. We strive to make the advertising as unobtrusive and relevant as possible.";
+
+/* Class = "UIButton"; configuration.title = "Настройки"; ObjectID = "rn3-Yb-udI"; */
+"rn3-Yb-udI.configuration.title" = "Settings";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "rn3-Yb-udI"; */
+"rn3-Yb-udI.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Жиры:"; ObjectID = "rq5-yy-L7s"; */
+"rq5-yy-L7s.text" = "Fats:";
+
+/* Class = "UILabel"; text = "Как избавиться от рекламы?"; ObjectID = "rvw-zc-Jnz"; */
+"rvw-zc-Jnz.text" = "How to Remove Ads?";
+
+/* Class = "UILabel"; text = "Белки:"; ObjectID = "s3p-jf-Di4"; */
+"s3p-jf-Di4.text" = "Proteins:";
+
+/* Class = "UILabel"; text = "2480"; ObjectID = "sB8-rb-5vd"; */
+"sB8-rb-5vd.text" = "2480";
+
+/* Class = "UILabel"; text = "Углеводы:"; ObjectID = "tlg-Ia-J35"; */
+"tlg-Ia-J35.text" = "Carbohydrates:";
+
+/* Class = "UIButton"; normalTitle = "Условия использования"; ObjectID = "twP-5p-mI0"; */
+"twP-5p-mI0.normalTitle" = "Terms of Use";
+
+/* Class = "UITextField"; placeholder = "г."; ObjectID = "uMt-kF-gBy"; */
+"uMt-kF-gBy.placeholder" = "g.";
+
+/* Class = "UITextField"; placeholder = "выбрать цель"; ObjectID = "ueP-x3-FgP"; */
+"ueP-x3-FgP.placeholder" = "Choose a goal";
+
+/* Class = "UILabel"; text = "-"; ObjectID = "uoK-Xd-FDv"; */
+"uoK-Xd-FDv.text" = "-";
+
+/* Class = "UILabel"; text = "    Чтобы начать пользоваться приложением, создайте свой профиль, введя свои базовые данные и цели по питанию. После этого вы можете начать добавлять продукты, которые вы употребляете, используя базу данных или сканер штрих-кодов."; ObjectID = "uzc-zX-hjf"; */
+"uzc-zX-hjf.text" = "    To start using the app, create your profile by entering your basic information and nutrition goals. After that, you can start adding products you consume, using the database or barcode scanner.";
+
+/* Class = "UITextField"; text = "0"; ObjectID = "vae-De-gQw"; */
+"vae-De-gQw.text" = "0";
+
+/* Class = "UILabel"; text = "Калории:"; ObjectID = "vcn-Jc-6os"; */
+"vcn-Jc-6os.text" = "Calories:";
+
+/* Class = "UILabel"; text = "    Да, вы можете установить индивидуальные цели для калорий, белков, жиров и углеводов в разделе настроек. Это поможет вам достичь ваших уникальных целей здоровья и фитнеса."; ObjectID = "vzi-ac-caB"; */
+"vzi-ac-caB.text" = "    Yes, you can set individual goals for calories, proteins, fats, and carbohydrates in the settings section. This will help you achieve your unique health and fitness goals.";
+
+/* Class = "UILabel"; text = "УГЛЕВОДЫ: 27"; ObjectID = "xAB-QI-u3h"; */
+"xAB-QI-u3h.text" = "CARBOHYDRATES: 27";
+
+/* Class = "UILabel"; text = "Ежедневная рекомендуемая норма:"; ObjectID = "xXV-TW-x1Q"; */
+"xXV-TW-x1Q.text" = "Daily Recommended Intake:";
+
+/* Class = "UILabel"; text = "Что делать, если я не нашел продукт в базе?"; ObjectID = "yaV-ex-8mi"; */
+"yaV-ex-8mi.text" = "What to do if I can’t find a product in the database?";
+
+/* Class = "UILabel"; text = "Использовать рекомендуемое значение килокалорий:"; ObjectID = "zaH-UC-hP5"; */
+"zaH-UC-hP5.text" = "Use the Recommended Caloric Value:";
+
+/* Class = "UILabel"; text = "4,99 PLN / мес."; ObjectID = "zfo-uG-thk"; */
+"zfo-uG-thk.text" = "4,99 PLN / мес.";
+
+/* Class = "UILabel"; text = "Цель:"; ObjectID = "zgM-HP-VXM"; */
+"zgM-HP-VXM.text" = "Goal:";
+
+"17g-RT-J2R.text" = "My Calories";
