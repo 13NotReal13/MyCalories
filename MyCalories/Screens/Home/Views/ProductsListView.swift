@@ -11,31 +11,39 @@ struct ProductsListView: View {
     var filteredProducts: [Product]
     
     var body: some View {
-        List(filteredProducts, id: \.self) { product in
-            VStack(alignment: .leading) {
-                Text(product.name)
-                
-                HStack {
-                    Spacer()
-                    Text("Б: \(String(format: "%.2f", product.protein))")
+        ScrollView {
+            LazyVStack(alignment: .leading, spacing: 12) {
+                ForEach(filteredProducts, id: \.self) { product in
+                    Text(product.name)
                         .customFont()
-                    Spacer()
-                    Text("Ж: \(String(format: "%.2f", product.fats))")
-                        .customFont()
-                    Spacer()
-                    Text("У: \(String(format: "%.2f", product.carbohydrates))")
-                    Spacer()
+                    
+                    VStack(spacing: 4) {
+                        HStack {
+                            Text("БЕЛКИ: \(String(format: "%.2f", product.protein))")
+                            Spacer()
+                            Text("ЖИРЫ: \(String(format: "%.2f", product.fats))")
+                            Spacer()
+                            Text("УГЛЕВОДЫ: \(String(format: "%.2f", product.carbohydrates))")
+                        }
+                        
+                        Text("Ккал: \(String(format: "%.2f", product.calories)) НА 100 Г.")
+                            .frame(maxWidth: .infinity, alignment: .center)
+                    }
+                    .customFont(size: 13, color: .gray)
+                    
+                    Divider()
                 }
-                
-                Text("Ккал: \(String(format: "%.2f", product.calories))")
-                    .frame(maxWidth: .infinity)
-                    .multilineTextAlignment(.center)
             }
-                
         }
-        .clipShape(RoundedRectangle(cornerRadius: 20))
         .padding()
-        .shadow(color: .black.opacity(0.5), radius: 10)
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .background {
+            RoundedRectangle(cornerRadius: 20)
+                .foregroundStyle(.white)
+                .shadow(color: .black.opacity(0.3), radius: 8)
+        }
+        .padding(.horizontal)
+        .padding(.top, 8)
     }
 }
 
