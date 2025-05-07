@@ -112,6 +112,7 @@
 		79EF3B5A2DC6429F0076DE6B /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		79EF3B612DCBC5720076DE6B /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
 		79EF3B642DCBC76A0076DE6B /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
+		79EF3B692DCBC93E0076DE6B /* Modifiers */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Modifiers; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,6 +168,7 @@
 		792DB1892BBADF4800209193 /* MyCalories */ = {
 			isa = PBXGroup;
 			children = (
+				79EF3B692DCBC93E0076DE6B /* Modifiers */,
 				79EF3B642DCBC76A0076DE6B /* Resources */,
 				79EF3B612DCBC5720076DE6B /* Extensions */,
 				79EF3B5A2DC6429F0076DE6B /* Services */,
@@ -306,6 +308,7 @@
 				79EF3B5A2DC6429F0076DE6B /* Services */,
 				79EF3B612DCBC5720076DE6B /* Extensions */,
 				79EF3B642DCBC76A0076DE6B /* Resources */,
+				79EF3B692DCBC93E0076DE6B /* Modifiers */,
 			);
 			name = MyCalories;
 			packageProductDependencies = (

@@ -18,8 +18,10 @@ struct ProductsListView: View {
                 HStack {
                     Spacer()
                     Text("Б: \(String(format: "%.2f", product.protein))")
+                        .customFont()
                     Spacer()
                     Text("Ж: \(String(format: "%.2f", product.fats))")
+                        .customFont()
                     Spacer()
                     Text("У: \(String(format: "%.2f", product.carbohydrates))")
                     Spacer()
