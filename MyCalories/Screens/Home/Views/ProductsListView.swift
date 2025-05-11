@@ -29,7 +29,7 @@ struct ProductsListView: View {
                         Text("Ккал: \(String(format: "%.2f", product.calories)) НА 100 Г.")
                             .frame(maxWidth: .infinity, alignment: .center)
                     }
-                    .customFont(size: 13, color: .gray)
+                    .customFont(size: 11, color: .gray)
                     
                     Divider()
                 }

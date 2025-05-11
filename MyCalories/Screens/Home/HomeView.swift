@@ -18,18 +18,42 @@ struct HomeView: View {
         NavigationStack(path: $coordinator.path) {
             ZStack {
                 VStack {
+                    HStack {
+                        Button {
+                            withAnimation {
+                                homeViewModel.isMenuOpen.toggle()
+                            }
+                        } label: {
+                            Image(systemName: "line.3.horizontal")
+                                .foregroundStyle(.white)
+                        }
+                        
+                        Spacer()
+                        
+                        Button {
+                            
+                        } label: {
+                            Image(systemName: "plus")
+                                .foregroundStyle(.white)
+                        }
+                    }
+                    .customFont(size: 24)
+                    .padding(.horizontal)
+                    
                     SearchTextFieldView(searchText: $searchText)
                     
                     ProductsListView(filteredProducts: homeViewModel.filteredProducts)
                 }
                 
                 CircularProgressBarView(
-                    protein: $homeViewModel.protein,
-                    fats: $homeViewModel.fats,
-                    carbohydrates: $homeViewModel.carbohydrates,
-                    calories: $homeViewModel.calories,
-                    water: $homeViewModel.water
+                    protein: homeViewModel.protein,
+                    fats: homeViewModel.fats,
+                    carbohydrates: homeViewModel.carbohydrates,
+                    calories: homeViewModel.calories,
+                    water: homeViewModel.water
                 )
+                
+                LeftMenuView(isMenuOpen: $homeViewModel.isMenuOpen)
             }
             .background {
                 VStack {
@@ -39,25 +63,6 @@ struct HomeView: View {
                         .frame(height: 120)
                     
                     Spacer()
-                }
-            }
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "line.3.horizontal")
-                            .foregroundStyle(.white)
-                    }
-                }
-                
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        
-                    } label: {
-                        Image(systemName: "plus")
-                            .foregroundStyle(.white)
-                    }
                 }
             }
         }

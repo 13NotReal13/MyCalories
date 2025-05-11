@@ -37,6 +37,9 @@ extension HomeViewModel {
     static var prewiew: HomeViewModel {
         let viewModel = HomeViewModel()
         
+        viewModel.searchText =  ""
+        viewModel.isMenuOpen = false
+        
         viewModel.filteredProducts = [
             Product.fake(name: "Авокадо"),
             Product.fake(name: "Яйцо варёное"),
