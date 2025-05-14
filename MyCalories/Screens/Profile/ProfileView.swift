@@ -12,49 +12,23 @@ struct ProfileView: View {
     @StateObject private var profileViewModel = ProfileViewModel.shared
     @State private var segmentedTab = 0
     
-    @State private var gender: String = ""
-    @State private var dateOfBirth: Date = Date()
-    @State private var height: String = ""
-    @State private var weight: String = ""
+    @State private var gender: Gender = .male
+    @State private var dateBirth: Date = Date()
+    @State private var height: Double = 170
+    @State private var weight: (kg: Double, gramm: Double) = (0, 0)
+    @State private var activityLevel: Activity = .low
+    @State private var goal: Goal = .downWeight
     
     var body: some View {
         VStack {
             VStack(spacing: 16) {
-                ProfileRowView(
-                    title: "Пол",
-                    value: gender) {
-                        
-                    }
-                
-                ProfileRowView(
-                    title: "Дата Рождения:",
-                    value: gender) {
-                        
-                    }
-                
-                ProfileRowView(
-                    title: "Рост:",
-                    value: gender) {
-                        
-                    }
-                
-                ProfileRowView(
-                    title: "Вес:",
-                    value: gender) {
-                        
-                    }
-                
-                ProfileRowView(
-                    title: "Активность:",
-                    value: gender) {
-                        
-                    }
-                
-                ProfileRowView(
-                    title: "Цель:",
-                    value: gender) {
-                        
-                    }
+                ForEach(PickerModalDisplay.allCases, id: \.rawValue) { item in
+                    ProfileRowView(
+                        title: item.rawValue,
+                        value: "",
+                        onTap: { coordinator.presentModal(.profilePicker(display: item)) }
+                    )
+                }
             }
             .padding()
             .background {
@@ -72,6 +46,8 @@ struct ProfileView: View {
 }
 
 #Preview {
-    ProfileView()
-        .environmentObject(NavigationCoordinator.shared)
+    NavigationStack {
+        ProfileView()
+            .environmentObject(NavigationCoordinator.shared)
+    }
 }

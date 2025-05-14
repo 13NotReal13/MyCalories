@@ -13,8 +13,13 @@ enum AppPage {
     case profile
 }
 
+enum AppModal {
+    case profilePicker(display: PickerModalDisplay)
+}
+
 final class NavigationCoordinator: ObservableObject {
     @Published var path = NavigationPath()
+    @Published var activeModal: AppModal?
     
     static let shared = NavigationCoordinator()
     
@@ -24,5 +29,13 @@ final class NavigationCoordinator: ObservableObject {
     
     func pop() {
         path.removeLast()
+    }
+    
+    func presentModal(_ modal: AppModal) {
+        activeModal = modal
+    }
+    
+    func dismissModal() {
+        activeModal = nil
     }
 }

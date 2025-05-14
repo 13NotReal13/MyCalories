@@ -44,6 +44,11 @@ struct LeftMenuView: View {
         ZStack(alignment: .leading) {
             Color.black.opacity(isMenuOpen ? 0.4 : 0)
                 .ignoresSafeArea()
+                .onTapGesture {
+                    withAnimation {
+                        isMenuOpen = false
+                    }
+                }
             
             ZStack {
                 LeftMenuBackgroundView()

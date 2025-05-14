@@ -14,7 +14,7 @@ enum Gender: String, CaseIterable, Identifiable {
     var id: Self { self }
 }
 
-enum Activity: String {
+enum Activity: String, CaseIterable {
     case low = "Низкая"
     case medium = "Средняя"
     case high = "Высокая"
@@ -22,16 +22,16 @@ enum Activity: String {
     var description: String {
         switch self {
         case .low:
-            "Низкая (1-2 тренировки в неделю или сидячий образ жизни)"
+            "Низкая (сидячий образ жизни)"
         case .medium:
-            "Средняя (3-5 тренировок в неделю или лёгкие физические нагрузки)"
+            "Средняя (лёгкие физ. нагрузки)"
         case .high:
-            "Высокая (6-7 тренировок в неделю или тяжёлые физические нагрузки)"
+            "Высокая (тяжёлые физ. нагрузки)"
         }
     }
 }
 
-enum Goal: String {
+enum Goal: String, CaseIterable {
     case downWeight = "Снизить вес"
     case maintainWeight = "Удержать вес"
     case upWeight = "Набрать вес"
