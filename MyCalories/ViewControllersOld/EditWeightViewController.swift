@@ -20,7 +20,7 @@ final class EditWeightViewController: UIViewController {
     var choosedWater: Water?
     weak var delegate: HistoryViewControllerDelegate?
     
-    private let storageManager = StorageManager.shared
+    private let storageManager = StorageManagerOld.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()

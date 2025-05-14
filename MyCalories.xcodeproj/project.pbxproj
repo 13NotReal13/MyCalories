@@ -27,7 +27,7 @@
 		7946F7EE2BBB1B58005C3F33 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F7ED2BBB1B58005C3F33 /* ProfileViewController.swift */; };
 		7946F8282BC068C8005C3F33 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8272BC068C8005C3F33 /* SettingsViewController.swift */; };
 		7946F82B2BC1F631005C3F33 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F82A2BC1F630005C3F33 /* Settings.swift */; };
-		7946F82E2BC1F6AF005C3F33 /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F82D2BC1F6AF005C3F33 /* StorageManager.swift */; };
+		7946F82E2BC1F6AF005C3F33 /* StorageManagerOld.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F82D2BC1F6AF005C3F33 /* StorageManagerOld.swift */; };
 		7946F8342BC28E60005C3F33 /* UIScrollView + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8332BC28E60005C3F33 /* UIScrollView + Ext.swift */; };
 		7946F8392BC2B0BE005C3F33 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 7946F8382BC2B0BE005C3F33 /* Realm */; };
 		7946F83B2BC2B0BE005C3F33 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7946F83A2BC2B0BE005C3F33 /* RealmSwift */; };
@@ -81,7 +81,7 @@
 		7946F7ED2BBB1B58005C3F33 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		7946F8272BC068C8005C3F33 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		7946F82A2BC1F630005C3F33 /* Settings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		7946F82D2BC1F6AF005C3F33 /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		7946F82D2BC1F6AF005C3F33 /* StorageManagerOld.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManagerOld.swift; sourceTree = "<group>"; };
 		7946F8332BC28E60005C3F33 /* UIScrollView + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIScrollView + Ext.swift"; sourceTree = "<group>"; };
 		7946F8402BC2F914005C3F33 /* CircularProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProgressBar.swift; sourceTree = "<group>"; };
 		7946F8422BC44B61005C3F33 /* ProductsListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductsListViewCell.swift; sourceTree = "<group>"; };
@@ -99,11 +99,11 @@
 		79658B3D2C021100000BD566 /* MyCalories.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MyCalories.entitlements; sourceTree = "<group>"; };
 		79658B3E2C02338A000BD566 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		79681EBF2C121F85005D268E /* FAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQViewController.swift; sourceTree = "<group>"; };
-		79ADA4732C3F0FEF004EC09E /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/Main.storyboard; sourceTree = "<group>"; };
-		79ADA4742C3F0FEF004EC09E /* ru */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = ru; path = ru.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79BD10552BF69B20005C049A /* UIViewController + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Ext.swift"; sourceTree = "<group>"; };
 		79CBA7922C0A2E7D008EED18 /* SearchProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchProduct.swift; sourceTree = "<group>"; };
 		79EF3B4E2DC63CAE0076DE6B /* MyCaloriesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCaloriesApp.swift; sourceTree = "<group>"; };
+		79EF3BA32DD0DDA50076DE6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		79EF3BA42DD0DDA50076DE6B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		79FE15352C1B0B42001A9384 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -238,7 +238,7 @@
 		7946F82C2BC1F6A1005C3F33 /* ServicesOld */ = {
 			isa = PBXGroup;
 			children = (
-				7946F82D2BC1F6AF005C3F33 /* StorageManager.swift */,
+				7946F82D2BC1F6AF005C3F33 /* StorageManagerOld.swift */,
 				795D99C22C05DDE8009AC9CA /* PurchasesManager.swift */,
 			);
 			path = ServicesOld;
@@ -348,6 +348,7 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				ru,
+				Base,
 			);
 			mainGroup = 792DB17E2BBADF4800209193;
 			packageReferences = (
@@ -420,7 +421,7 @@
 				7946F8ED2BCD50E4005C3F33 /* HistoryViewController.swift in Sources */,
 				7946F8342BC28E60005C3F33 /* UIScrollView + Ext.swift in Sources */,
 				7946F8EB2BCC2DF2005C3F33 /* AddNewProductViewController.swift in Sources */,
-				7946F82E2BC1F6AF005C3F33 /* StorageManager.swift in Sources */,
+				7946F82E2BC1F6AF005C3F33 /* StorageManagerOld.swift in Sources */,
 				792DB18D2BBADF4800209193 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,7 +432,7 @@
 		792DB1902BBADF4800209193 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				79ADA4732C3F0FEF004EC09E /* ru */,
+				79EF3BA32DD0DDA50076DE6B /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -439,7 +440,7 @@
 		792DB1952BBADF4900209193 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				79ADA4742C3F0FEF004EC09E /* ru */,
+				79EF3BA42DD0DDA50076DE6B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";

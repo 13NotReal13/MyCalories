@@ -38,7 +38,7 @@ final class SettingsViewController: UIViewController {
     
     weak var delegate: MainScreenDelegate?
     
-    private let storageManager = StorageManager.shared
+    private let storageManager = StorageManagerOld.shared
     private var userProgramm: UserProgramm?
     private var activeTextField: UITextField?
     

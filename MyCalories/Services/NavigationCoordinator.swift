@@ -10,18 +10,13 @@ import SwiftUI
 
 enum AppPage {
     case home
+    case profile
 }
 
 final class NavigationCoordinator: ObservableObject {
     @Published var path = NavigationPath()
     
     static let shared = NavigationCoordinator()
-    
-    func view(for page: AppPage) -> some View {
-        switch page {
-        case .home: HomeView(homeViewModel: .prewiew)
-        }
-    }
     
     func push(_ page: AppPage) {
         path.append(page)

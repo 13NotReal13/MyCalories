@@ -56,7 +56,7 @@ final class MainViewController: UIViewController {
     @IBOutlet var versionAppButton: UIButton!
     
     // MARK: - Private Properties
-    private let storageManager = StorageManager.shared
+    private let storageManager = StorageManagerOld.shared
     
     private var allProducts: Results<Product>!
     private var filteredProducts: Results<Product>!

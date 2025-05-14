@@ -16,8 +16,8 @@ enum Nutrition {
     case water
 }
 
-final class StorageManager {
-    static let shared = StorageManager()
+final class StorageManagerOld {
+    static let shared = StorageManagerOld()
     
     private let userDefaults = UserDefaults.standard
     private let caloriesKey = "caloriesEnabled"

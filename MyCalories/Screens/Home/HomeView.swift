@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct HomeView: View {
-    @StateObject private var coordinator = NavigationCoordinator.shared
+    @EnvironmentObject private var coordinator: NavigationCoordinator
 //    @StateObject private var homeViewModel = HomeViewModel()
     @StateObject var homeViewModel: HomeViewModel
     
@@ -55,23 +55,20 @@ struct HomeView: View {
                 
                 LeftMenuView(isMenuOpen: $homeViewModel.isMenuOpen)
             }
-            .background {
-                VStack {
-                    RoundedRectangle(cornerRadius: 60)
-                        .foregroundStyle(.colorApp)
-                        .ignoresSafeArea()
-                        .frame(height: 120)
-                    
-                    Spacer()
-                }
-            }
+            .background(BackgroundHeaderView(height: 140))
         }
         .navigationDestination(for: AppPage.self) { page in
-            coordinator.view(for: page)
+            switch page {
+            case .home:
+                HomeView(homeViewModel: .prewiew)
+            case .profile:
+                ProfileView()
+            }
         }
     }
 }
 
 #Preview {
     HomeView(homeViewModel: .prewiew)
+        .environmentObject(NavigationCoordinator.shared)
 }

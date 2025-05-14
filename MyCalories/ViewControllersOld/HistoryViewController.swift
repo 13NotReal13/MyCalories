@@ -21,7 +21,7 @@ final class HistoryViewController: UIViewController {
     @IBOutlet var shadowTableViewView: UIView!
     @IBOutlet var extendingNavigationBarView: UIView!
     
-    private let storageManager = StorageManager.shared
+    private let storageManager = StorageManagerOld.shared
     private let hiddenTextField = UITextField(frame: .zero)
     private let datePicker = UIDatePicker()
     private var history: Results<History>!

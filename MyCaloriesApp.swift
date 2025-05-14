@@ -10,9 +10,12 @@ import SwiftUI
 
 @main
 struct MyCaloriesApp: App {
+    @StateObject private var coordinator = NavigationCoordinator.shared
+    
     var body: some Scene {
         WindowGroup {
             HomeView(homeViewModel: .prewiew)
+                .environmentObject(coordinator)
         }
     }
 }

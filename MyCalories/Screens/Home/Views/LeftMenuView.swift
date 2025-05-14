@@ -37,6 +37,7 @@ enum MenuButton: String, CaseIterable {
 }
 
 struct LeftMenuView: View {
+    @EnvironmentObject var coordinator: NavigationCoordinator
     @Binding var isMenuOpen: Bool
     
     var body: some View {
@@ -56,17 +57,22 @@ struct LeftMenuView: View {
 }
 
 struct LeftMenuButtonsView : View {
+    @EnvironmentObject var coordinator: NavigationCoordinator
     @Binding var isMenuOpen: Bool
     
     var body: some View {
         VStack(alignment: .leading) {
             ForEach(MenuButton.allCases, id: \.self) { button in
                 Button {
+                    isMenuOpen = false
+                    
                     switch button {
                     case .main:
                         withAnimation {
                             isMenuOpen = false
                         }
+                    case .profile:
+                        coordinator.push(.profile)
                     default:
                         break
                     }
@@ -118,4 +124,5 @@ struct LeftMenuBackgroundView: View {
 
 #Preview {
     LeftMenuView(isMenuOpen: .constant(true))
+        .environmentObject(NavigationCoordinator.shared)
 }

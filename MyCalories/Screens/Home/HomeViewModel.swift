@@ -26,7 +26,7 @@ final class HomeViewModel: ObservableObject {
     }
     
     private func loadProducts() {
-        StorageManager.shared.fetchAllProducts { [weak self] products in
+        StorageManagerOld.shared.fetchAllProducts { [weak self] products in
             self?.allProducts = products
         }
     }

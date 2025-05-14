@@ -26,7 +26,7 @@ final class AddProductToHistoryViewController: UIViewController {
     
     var selectedProduct: Product!
     
-    private let storageManager = StorageManager.shared
+    private let storageManager = StorageManagerOld.shared
     private let datePicker = UIDatePicker()
     private var activeTextField: UITextField?
     

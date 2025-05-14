@@ -7,51 +7,6 @@
 
 import UIKit
 
-enum Activity {
-    case low
-    case medium
-    case high
-    
-    var title: String {
-        switch self {
-        case .low:
-            "Низкая"
-        case .medium:
-            "Средняя"
-        case .high:
-            "Высокая"
-        }
-    }
-    
-    var description: String {
-        switch self {
-        case .low:
-            "Низкая (1-2 тренировки в неделю или сидячий образ жизни)"
-        case .medium:
-            "Средняя (3-5 тренировок в неделю или лёгкие физические нагрузки)"
-        case .high:
-            "Высокая (6-7 тренировок в неделю или тяжёлые физические нагрузки)"
-        }
-    }
-}
-
-enum Goal {
-    case downWeight
-    case maintainWeight
-    case upWeight
-    
-    var title: String {
-        switch self {
-        case .downWeight:
-            "Снизить вес"
-        case .maintainWeight:
-            "Удержать вес"
-        case .upWeight:
-            "Набрать вес"
-        }
-    }
-}
-
 final class ProfileViewController: UIViewController {
     
     // MARK: - IBOutlets
@@ -78,7 +33,7 @@ final class ProfileViewController: UIViewController {
     @IBOutlet var formulaSourceButton: UIButton!
     
     // MARK: - Private Properties
-    private let storageManager = StorageManager.shared
+    private let storageManager = StorageManagerOld.shared
     private var person: Person?
     
     private let datePicker = UIDatePicker()
@@ -191,9 +146,9 @@ private extension ProfileViewController {
         case heightTF, weightTF:
             checkTextOfTextField(textField)
         case activityTF:
-            activityTF.text = activities[selectedRow].title
+            activityTF.text = activities[selectedRow].rawValue
         default:
-            goalTF.text = goals[selectedRow].title
+            goalTF.text = goals[selectedRow].rawValue
         }
         
         textField.resignFirstResponder()
@@ -361,7 +316,7 @@ extension ProfileViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         label.textAlignment = .center
-        label.text = (textField == activityTF) ? activities[row].description : goals[row].title
+        label.text = (textField == activityTF) ? activities[row].description : goals[row].rawValue
         
         return label
     }

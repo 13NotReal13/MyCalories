@@ -12,7 +12,8 @@ struct SearchTextFieldView: View {
     
     var body: some View {
         TextField("Поиск", text: $searchText)
-            .padding(10)
+            .padding(.vertical, 8)
+            .padding(.horizontal, 16)
             .background(Color(.systemGray6))
             .clipShape(.capsule)
             .padding(.horizontal)

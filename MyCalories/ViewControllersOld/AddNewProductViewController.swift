@@ -29,7 +29,7 @@ final class AddNewProductViewController: UIViewController {
     
     var segueFromBarcodeButton: Bool!
     
-    private let storageManager = StorageManager.shared
+    private let storageManager = StorageManagerOld.shared
     private var activeTextField: UITextField?
     
     private var activityIndicator: UIActivityIndicatorView!
