@@ -41,7 +41,17 @@ struct ProfileView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(BackgroundHeaderView(height: 120))
+        .background(BackgroundHeaderView(height: 100))
+        .navigationBarBackButtonHidden()
+        .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                NavigationBackButtonView(
+                    title: "Главная",
+                    dismiss: coordinator.pop
+                )
+            }
+        }
     }
 }
 

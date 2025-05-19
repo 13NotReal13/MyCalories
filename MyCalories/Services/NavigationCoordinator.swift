@@ -13,8 +13,10 @@ enum AppPage {
     case profile
 }
 
-enum AppModal {
+enum AppModal: Identifiable, Hashable {
     case profilePicker(display: PickerModalDisplay)
+    
+    var id: Int { self.hashValue }
 }
 
 final class NavigationCoordinator: ObservableObject {

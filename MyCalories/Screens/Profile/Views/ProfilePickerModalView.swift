@@ -46,6 +46,7 @@ struct ProfilePickerModalView: View {
                         displayedComponents: .date
                     )
                     .labelsHidden()
+                    .datePickerStyle(.wheel)
                     
                 case .height:
                     Picker("Выберите рост:", selection: $height) {

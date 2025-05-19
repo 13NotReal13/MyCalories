@@ -12,8 +12,8 @@ struct BackgroundHeaderView: View {
     
     var body: some View {
         VStack {
-            RoundedRectangle(cornerRadius: 60)
-                .foregroundStyle(.colorApp)
+            Color.colorApp
+                .roundedCorners(radius: 60, corners: [.bottomLeft, .bottomRight])
                 .ignoresSafeArea()
                 .frame(height: height)
             

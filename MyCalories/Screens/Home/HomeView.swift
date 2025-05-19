@@ -56,13 +56,20 @@ struct HomeView: View {
                 LeftMenuView(isMenuOpen: $homeViewModel.isMenuOpen)
             }
             .background(BackgroundHeaderView(height: 140))
-        }
-        .navigationDestination(for: AppPage.self) { page in
-            switch page {
-            case .home:
-                HomeView(homeViewModel: .prewiew)
-            case .profile:
-                ProfileView()
+            .navigationDestination(for: AppPage.self) { page in
+                switch page {
+                case .home:
+                    HomeView(homeViewModel: .prewiew)
+                case .profile:
+                    ProfileView()
+                }
+            }
+            .sheet(item: $coordinator.activeModal) { modal in
+                switch modal {
+                case .profilePicker(let display):
+                    ProfilePickerModalView(display: display)
+                        .presentationDetents([.fraction(0.3)])
+                }
             }
         }
     }

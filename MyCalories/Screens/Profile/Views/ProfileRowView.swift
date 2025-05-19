@@ -32,7 +32,3 @@ struct ProfileRowView: View {
         }
     }
 }
-
-//#Preview {
-//    ProfileRowView(title: "", value: "", action: )
-//}
