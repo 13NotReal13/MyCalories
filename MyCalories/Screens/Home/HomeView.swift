@@ -64,13 +64,6 @@ struct HomeView: View {
                     ProfileView()
                 }
             }
-            .sheet(item: $coordinator.activeModal) { modal in
-                switch modal {
-                case .profilePicker(let display):
-                    ProfilePickerModalView(display: display)
-                        .presentationDetents([.fraction(0.3)])
-                }
-            }
         }
     }
 }

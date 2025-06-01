@@ -38,19 +38,53 @@ enum Goal: String, CaseIterable {
 }
 
 final class ProfileViewModel: ObservableObject {
-//    @Published var person: Person?
-    
-    @Published var gender: Gender = .male
-    @Published var dateOfBirthday: Date = .now
-    @Published var dateOfBirthdayText = "выбрать дату"
-    @Published var height: Double = 0.0
-    @Published var weight: Double = 0.0
-    @Published var activity: String = Activity.medium.rawValue
-    @Published var goal: String = Goal.maintainWeight.rawValue
-    
     static let shared = ProfileViewModel()
     
-    init() {
+    @Published var person: Person?
+    
+    @Published var gender: Gender?
+    @Published var dateOfBirthday: Date?
+    @Published var height: Double?
+    @Published var weight: (kg: Double, gr: Double)?
+    @Published var activityLevel: Activity?
+    @Published var goal: Goal?
+    
+    @Published var isPresentingPicker = false
+    @Published var selectedDisplay: PickerModalDisplay = .gender
+    
+    var saveButtonIsEnabled: Bool {
+        gender != nil
+        && dateOfBirthday != nil
+        && height != nil
+        && weight != nil
+        && activityLevel != nil
+        && goal != nil
+    }
+    
+    init() {}
+    
+    func setValue(for item: PickerModalDisplay) -> String {
+        switch item {
+        case .gender:
+            return gender?.rawValue ?? "выбрать"
+        case .dateBirth:
+            guard let dateOfBirthday else { return "выбрать" }
+            return DateFormatter.localizedString(from: dateOfBirthday, dateStyle: .medium, timeStyle: .none)
+        case .height:
+            guard let height else { return "выбрать" }
+            return "\(Int(height)) см."
+        case .weight:
+            guard let weight else { return "выбрать" }
+            return "\(Int(weight.kg)) кг. \(Int(weight.gr)) гр."
+        case .activityLevel:
+            return activityLevel?.rawValue ?? "выбрать"
+        case .goal:
+            return goal?.rawValue ?? "выбрать"
+        }
+    }
+    
+    func savePersonData() {
+    
     }
     
     private func fetchPerson() {

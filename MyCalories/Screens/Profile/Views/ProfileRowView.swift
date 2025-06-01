@@ -12,6 +12,10 @@ struct ProfileRowView: View {
     var value: String
     var onTap: () -> Void
     
+    private var shadowColor: Color {
+        return value == "выбрать" ? Color.yellow : Color.black.opacity(0.2)
+    }
+    
     var body: some View {
         HStack {
             Text(title)
@@ -19,14 +23,14 @@ struct ProfileRowView: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             Button(action: onTap) {
-                Text(value.isEmpty ? "выбрать" : value)
-                    .customFont(color: .gray)
+                Text(value)
+                    .customFont(color: value == "выбрать" ? .gray : .black.opacity(0.8))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(5)
                     .background {
                         Color.white
                             .roundedCorners(radius: 8)
-                            .shadow(color: .black.opacity(0.2), radius: 3)
+                            .shadow(color: shadowColor, radius: 3)
                     }
             }
         }

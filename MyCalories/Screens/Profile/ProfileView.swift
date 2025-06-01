@@ -10,14 +10,6 @@ import SwiftUI
 struct ProfileView: View {
     @EnvironmentObject private var coordinator: NavigationCoordinator
     @StateObject private var profileViewModel = ProfileViewModel.shared
-    @State private var segmentedTab = 0
-    
-    @State private var gender: Gender = .male
-    @State private var dateBirth: Date = Date()
-    @State private var height: Double = 170
-    @State private var weight: (kg: Double, gramm: Double) = (0, 0)
-    @State private var activityLevel: Activity = .low
-    @State private var goal: Goal = .downWeight
     
     var body: some View {
         VStack {
@@ -25,8 +17,11 @@ struct ProfileView: View {
                 ForEach(PickerModalDisplay.allCases, id: \.rawValue) { item in
                     ProfileRowView(
                         title: item.rawValue,
-                        value: "",
-                        onTap: { coordinator.presentModal(.profilePicker(display: item)) }
+                        value: profileViewModel.setValue(for: item),
+                        onTap: {
+                            profileViewModel.selectedDisplay = item
+                            profileViewModel.isPresentingPicker = true
+                        }
                     )
                 }
             }
@@ -51,6 +46,33 @@ struct ProfileView: View {
                     dismiss: coordinator.pop
                 )
             }
+            
+            ToolbarItem(placement: .principal) {
+                Text("Профиль")
+                    .customFont(font: .bold, size: 19, color: .white)
+            }
+            
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    profileViewModel.savePersonData()
+                } label: {
+                    Text("Сохранить")
+                        .customFont(color: profileViewModel.saveButtonIsEnabled ? .white : .white.opacity(0.6))
+                }
+                .disabled(!profileViewModel.saveButtonIsEnabled)
+            }
+        }
+        .sheet(isPresented: $profileViewModel.isPresentingPicker) {
+            ProfilePickerModalView(
+                display: profileViewModel.selectedDisplay,
+                gender: $profileViewModel.gender,
+                dateBirth: $profileViewModel.dateOfBirthday,
+                height: $profileViewModel.height,
+                weight: $profileViewModel.weight,
+                activityLevel: $profileViewModel.activityLevel,
+                goal: $profileViewModel.goal
+            )
+            .presentationDetents([profileViewModel.selectedDisplay.preferredDetent])
         }
     }
 }
