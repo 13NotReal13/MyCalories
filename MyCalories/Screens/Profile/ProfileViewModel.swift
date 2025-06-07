@@ -40,6 +40,7 @@ enum Goal: String, CaseIterable {
 final class ProfileViewModel: ObservableObject {
     static let shared = ProfileViewModel()
     
+    // Person Data
     @Published var person: Person?
     
     @Published var gender: Gender?
@@ -49,9 +50,20 @@ final class ProfileViewModel: ObservableObject {
     @Published var activityLevel: Activity?
     @Published var goal: Goal?
     
+    // Picker modal
     @Published var isPresentingPicker = false
     @Published var selectedDisplay: PickerModalDisplay = .gender
     
+    // Recommended programm data
+    @Published var recommendedProgramm: RecommendedProgramm?
+    
+    @Published var protein: Int?
+    @Published var fats: Int?
+    @Published var carbohydrates: Int?
+    @Published var calories: Int?
+    @Published var water: Int?
+    
+    @Published var hasUnsavedChanges = false
     var saveButtonIsEnabled: Bool {
         gender != nil
         && dateOfBirthday != nil
@@ -59,11 +71,21 @@ final class ProfileViewModel: ObservableObject {
         && weight != nil
         && activityLevel != nil
         && goal != nil
+        && hasUnsavedChanges
     }
     
-    init() {}
+    init() {
+        Task {
+            fetchPerson()
+            fetchRecommendedProgramm()
+        }
+    }
     
-    func setValue(for item: PickerModalDisplay) -> String {
+    func savePersonData() {
+        hasUnsavedChanges = false
+    }
+    
+    func setPersonDataValues(for item: PickerModalDisplay) -> String {
         switch item {
         case .gender:
             return gender?.rawValue ?? "выбрать"
@@ -83,19 +105,23 @@ final class ProfileViewModel: ObservableObject {
         }
     }
     
-    func savePersonData() {
-    
+    func calculateRecommendedProgramm() {
+        
     }
     
     private func fetchPerson() {
 //        guard let person = StorageManager.shared.fetchPerson() else { return }
 //        self.person = person
-//        
+//
 //        genderSegmentedControl = person.gender == "Мужской" ? .male : .female
 //        dateOfBirthday = person.dateOfBirthday
 //        height = person.height
 //        weight = person.weight
 //        activity = person.activity
 //        goal = person.goal
+    }
+    
+    private func fetchRecommendedProgramm() {
+        
     }
 }

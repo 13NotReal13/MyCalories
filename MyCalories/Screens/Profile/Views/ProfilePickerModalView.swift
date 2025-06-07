@@ -12,20 +12,13 @@ enum PickerModalDisplay: String, CaseIterable {
     case dateBirth = "Дата рождения:"
     case height = "Рост:"
     case weight = "Вес:"
-    case activityLevel = "Уровень активности:"
+    case activityLevel = "Ативность:"
     case goal = "Цель:"
 }
 
 struct ProfilePickerModalView: View {
+    @EnvironmentObject var profileViewModel: ProfileViewModel
     @Environment(\.dismiss) var dismiss
-    let display: PickerModalDisplay
-
-    @Binding var gender: Gender?
-    @Binding var dateBirth: Date?
-    @Binding var height: Double?
-    @Binding var weight: (kg: Double, gr: Double)?
-    @Binding var activityLevel: Activity?
-    @Binding var goal: Goal?
 
     // Временные локальные значения
     @State private var localGender: Gender = .male
@@ -38,7 +31,7 @@ struct ProfilePickerModalView: View {
     var body: some View {
         VStack {
             Group {
-                switch display {
+                switch profileViewModel.selectedDisplay {
                 case .gender:
                     Picker("Выберите пол:", selection: $localGender) {
                         ForEach(Gender.allCases, id: \.self) {
@@ -97,21 +90,22 @@ struct ProfilePickerModalView: View {
 
             Button("Выбрать") {
                 // Сохраняем локальные значения в @Binding
-                switch display {
+                switch profileViewModel.selectedDisplay {
                 case .gender:
-                    gender = localGender
+                    profileViewModel.gender = localGender
                 case .dateBirth:
-                    dateBirth = localDate
+                    profileViewModel.dateOfBirthday = localDate
                 case .height:
-                    height = localHeight
+                    profileViewModel.height = localHeight
                 case .weight:
-                    weight = localWeight
+                    profileViewModel.weight = localWeight
                 case .activityLevel:
-                    activityLevel = localActivity
+                    profileViewModel.activityLevel = localActivity
                 case .goal:
-                    goal = localGoal
+                    profileViewModel.goal = localGoal
                 }
 
+                profileViewModel.hasUnsavedChanges = true
                 dismiss()
             }
             .customFont(font: .bold, color: .white)
@@ -121,12 +115,12 @@ struct ProfilePickerModalView: View {
         }
         .onAppear {
             // Передаём начальные значения в локальные
-            if let g = gender { localGender = g }
-            if let d = dateBirth { localDate = d }
-            if let h = height { localHeight = h }
-            if let w = weight { localWeight = w }
-            if let a = activityLevel { localActivity = a }
-            if let go = goal { localGoal = go }
+            if let g = profileViewModel.gender { localGender = g }
+            if let d = profileViewModel.dateOfBirthday { localDate = d }
+            if let h = profileViewModel.height { localHeight = h }
+            if let w = profileViewModel.weight { localWeight = w }
+            if let a = profileViewModel.activityLevel { localActivity = a }
+            if let go = profileViewModel.goal { localGoal = go }
         }
     }
 }

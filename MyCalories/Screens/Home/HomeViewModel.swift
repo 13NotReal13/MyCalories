@@ -9,7 +9,14 @@ import Foundation
 import RealmSwift
 
 final class HomeViewModel: ObservableObject {
-    @Published var searchText: String = ""
+    private let realmManager: RealmManager
+    
+    @Published var searchText: String = "" {
+        didSet {
+            applyFilter()
+        }
+    }
+    
     @Published var filteredProducts: [Product] = []
     @Published var isMenuOpen: Bool = false
     
@@ -21,37 +28,40 @@ final class HomeViewModel: ObservableObject {
     
     private var allProducts: Results<Product>?
     
-    init() {
-//        loadProducts()
+    init(realmManager: RealmManager) {
+        self.realmManager = realmManager
+        loadProducts()
+    }
+    
+    private func applyFilter() {
+        guard let allProducts = allProducts else {
+            filteredProducts = []
+            return
+        }
+        
+        let trimmed = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
+        if trimmed.isEmpty {
+            filteredProducts = Array(allProducts)
+        } else {
+            let predicate = NSPredicate(format: "name CONTAINS[c] %@", trimmed)
+            filteredProducts = Array(allProducts.filter(predicate))
+        }
     }
     
     private func loadProducts() {
-        StorageManagerOld.shared.fetchAllProducts { [weak self] products in
-            self?.allProducts = products
+        realmManager.fetchAllProducts { [weak self] products in
+            DispatchQueue.main.async {
+                self?.allProducts = products
+                self?.filteredProducts = Array(products)
+            }
         }
     }
-}
 
-// fake data for prewiew
-extension HomeViewModel {
-    static var prewiew: HomeViewModel {
-        let viewModel = HomeViewModel()
-        
-        viewModel.searchText =  ""
-        viewModel.isMenuOpen = false
-        
-        viewModel.filteredProducts = [
-            Product.fake(name: "Авокадо"),
-            Product.fake(name: "Яйцо варёное"),
-            Product.fake(name: "Рис коричневый")
-        ]
-        
-        viewModel.protein = (used: 50, goal: 120)
-        viewModel.fats = (used: 30, goal: 60)
-        viewModel.carbohydrates = (used: 100, goal: 200)
-        viewModel.calories = (used: 1200, goal: 2200)
-        viewModel.water = (used: 900, goal: 2000)
-        
-        return viewModel
+    private func fetchRecommendedValues() {
+        guard let recommendedValues = realmManager.fetchRecommendedProgramm() else { return }
+        protein.goal = recommendedValues.proteins
+        fats.goal = recommendedValues.fats
+        carbohydrates.goal = recommendedValues.carbohydrates
+        calories.goal = recommendedValues.calories
     }
 }

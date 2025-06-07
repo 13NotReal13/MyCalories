@@ -9,10 +9,9 @@ import SwiftUI
 
 struct HomeView: View {
     @EnvironmentObject private var coordinator: NavigationCoordinator
-//    @StateObject private var homeViewModel = HomeViewModel()
-    @StateObject var homeViewModel: HomeViewModel
+    @EnvironmentObject private var realmManager: RealmManager
     
-    @State private var searchText = ""
+    @StateObject var homeViewModel: HomeViewModel
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
@@ -40,7 +39,7 @@ struct HomeView: View {
                     .customFont(size: 24)
                     .padding(.horizontal)
                     
-                    SearchTextFieldView(searchText: $searchText)
+                    SearchTextFieldView(searchText: $homeViewModel.searchText)
                     
                     ProductsListView(filteredProducts: homeViewModel.filteredProducts)
                 }
@@ -59,7 +58,7 @@ struct HomeView: View {
             .navigationDestination(for: AppPage.self) { page in
                 switch page {
                 case .home:
-                    HomeView(homeViewModel: .prewiew)
+                    HomeView(homeViewModel: HomeViewModel(realmManager: realmManager))
                 case .profile:
                     ProfileView()
                 }
@@ -69,6 +68,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(homeViewModel: .prewiew)
-        .environmentObject(NavigationCoordinator.shared)
+    HomeView(homeViewModel: HomeViewModel(realmManager: RealmManager.shared))
+        .environmentObject(RealmManager.shared)
 }

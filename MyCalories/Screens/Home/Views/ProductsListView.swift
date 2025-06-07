@@ -48,5 +48,5 @@ struct ProductsListView: View {
 }
 
 #Preview {
-    ProductsListView(filteredProducts: HomeViewModel.prewiew.filteredProducts)
+//    ProductsListView(filteredProducts: HomeViewModel.filteredProducts)
 }

@@ -17,13 +17,26 @@ struct ProfileView: View {
                 ForEach(PickerModalDisplay.allCases, id: \.rawValue) { item in
                     ProfileRowView(
                         title: item.rawValue,
-                        value: profileViewModel.setValue(for: item),
+                        value: profileViewModel.setPersonDataValues(for: item),
                         onTap: {
                             profileViewModel.selectedDisplay = item
                             profileViewModel.isPresentingPicker = true
                         }
                     )
                 }
+                
+                Divider()
+                
+                Button {
+                    profileViewModel.savePersonData()
+                } label: {
+                    Text("Сохранить")
+                        .customFont(font: .bold, color: .white)
+                        .padding(.vertical, 12)
+                        .frame(width: 150)
+                        .background(Capsule().foregroundStyle(profileViewModel.saveButtonIsEnabled ? .colorApp : .gray))
+                }
+                .disabled(!profileViewModel.saveButtonIsEnabled)
             }
             .padding()
             .background {
@@ -33,10 +46,13 @@ struct ProfileView: View {
             }
             .padding()
             
+            RecommendedProgrammView()
+                .environmentObject(profileViewModel)
+            
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(BackgroundHeaderView(height: 100))
+        .background(BackgroundHeaderView(height: 80))
         .navigationBarBackButtonHidden()
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
@@ -51,27 +67,10 @@ struct ProfileView: View {
                 Text("Профиль")
                     .customFont(font: .bold, size: 19, color: .white)
             }
-            
-            ToolbarItem(placement: .topBarTrailing) {
-                Button {
-                    profileViewModel.savePersonData()
-                } label: {
-                    Text("Сохранить")
-                        .customFont(color: profileViewModel.saveButtonIsEnabled ? .white : .white.opacity(0.6))
-                }
-                .disabled(!profileViewModel.saveButtonIsEnabled)
-            }
         }
         .sheet(isPresented: $profileViewModel.isPresentingPicker) {
-            ProfilePickerModalView(
-                display: profileViewModel.selectedDisplay,
-                gender: $profileViewModel.gender,
-                dateBirth: $profileViewModel.dateOfBirthday,
-                height: $profileViewModel.height,
-                weight: $profileViewModel.weight,
-                activityLevel: $profileViewModel.activityLevel,
-                goal: $profileViewModel.goal
-            )
+            ProfilePickerModalView()
+                .environmentObject(profileViewModel)
             .presentationDetents([profileViewModel.selectedDisplay.preferredDetent])
         }
     }

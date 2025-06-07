@@ -32,12 +32,12 @@ struct CircularProgressBarView: View {
                 Spacer()
                 
                 ForEach(nutrientsData, id: \.title) { nutrient in
-                    NutrientCircleView(
-                        title: nutrient.title,
-                        used: nutrient.value.used,
-                        goal: nutrient.value.goal,
-                        color: nutrient.color
-                    )
+//                    NutrientCircleView(
+//                        title: nutrient.title,
+//                        used: nutrient.value.used,
+//                        goal: nutrient.value.goal,
+//                        color: nutrient.color
+//                    )
                     Spacer()
                 }
             }
