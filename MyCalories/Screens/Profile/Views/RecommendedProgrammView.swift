@@ -34,27 +34,27 @@ struct RecommendedProgrammView: View {
             VStack(spacing: 16) {
                 NutritionRowView(
                     title: "Белки:",
-                    value: profileViewModel.protein,
+                    value: profileViewModel.recommendedProgramm?.proteins,
                     unit: "гр."
                 )
                 NutritionRowView(
                     title: "Жиры:",
-                    value: profileViewModel.fats,
+                    value: profileViewModel.recommendedProgramm?.fats,
                     unit: "гр."
                 )
                 NutritionRowView(
                     title: "Углеводы:",
-                    value: profileViewModel.carbohydrates,
+                    value: profileViewModel.recommendedProgramm?.carbohydrates,
                     unit: "гр."
                 )
                 NutritionRowView(
                     title: "Калории:",
-                    value: profileViewModel.calories,
+                    value: profileViewModel.recommendedProgramm?.calories,
                     unit: "ккал"
                 )
                 NutritionRowView(
                     title: "Вода:",
-                    value: profileViewModel.water,
+                    value: profileViewModel.recommendedProgramm?.water,
                     unit: "мл"
                 )
             }
@@ -98,5 +98,5 @@ struct NutritionRowView: View {
 
 #Preview {
     RecommendedProgrammView()
-        .environmentObject(ProfileViewModel.shared)
+        .environmentObject(ProfileViewModel(realmManager: RealmManager.shared))
 }

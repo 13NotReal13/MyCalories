@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject private var coordinator: NavigationCoordinator
-    @StateObject private var profileViewModel = ProfileViewModel.shared
+    @StateObject var profileViewModel: ProfileViewModel
     
     var body: some View {
         VStack {
@@ -78,7 +78,7 @@ struct ProfileView: View {
 
 #Preview {
     NavigationStack {
-        ProfileView()
+        ProfileView(profileViewModel: ProfileViewModel(realmManager: RealmManager.shared))
             .environmentObject(NavigationCoordinator.shared)
     }
 }

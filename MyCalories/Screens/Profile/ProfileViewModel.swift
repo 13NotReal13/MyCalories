@@ -38,7 +38,7 @@ enum Goal: String, CaseIterable {
 }
 
 final class ProfileViewModel: ObservableObject {
-    static let shared = ProfileViewModel()
+    private let realmManager: RealmManager
     
     // Person Data
     @Published var person: Person?
@@ -50,6 +50,8 @@ final class ProfileViewModel: ObservableObject {
     @Published var activityLevel: Activity?
     @Published var goal: Goal?
     
+    @Published var hasUnsavedChanges = false
+    
     // Picker modal
     @Published var isPresentingPicker = false
     @Published var selectedDisplay: PickerModalDisplay = .gender
@@ -57,13 +59,6 @@ final class ProfileViewModel: ObservableObject {
     // Recommended programm data
     @Published var recommendedProgramm: RecommendedProgramm?
     
-    @Published var protein: Int?
-    @Published var fats: Int?
-    @Published var carbohydrates: Int?
-    @Published var calories: Int?
-    @Published var water: Int?
-    
-    @Published var hasUnsavedChanges = false
     var saveButtonIsEnabled: Bool {
         gender != nil
         && dateOfBirthday != nil
@@ -74,15 +69,105 @@ final class ProfileViewModel: ObservableObject {
         && hasUnsavedChanges
     }
     
-    init() {
-        Task {
-            fetchPerson()
-            fetchRecommendedProgramm()
-        }
+    init(realmManager: RealmManager) {
+        self.realmManager = realmManager
+        
+        fetchPerson()
+        fetchRecommendedProgramm()
     }
     
     func savePersonData() {
+        guard let gender, let dateOfBirthday, let height, let weight, let activityLevel, let goal else {
+            return
+        }
+        
+        let newPersonData = Person()
+        
+        newPersonData.gender = gender == .male ? Gender.male.rawValue : Gender.female.rawValue
+        newPersonData.dateOfBirthday = dateOfBirthday
+        newPersonData.height = height
+        newPersonData.weight = weight.kg + weight.gr
+        
+        switch activityLevel {
+            case .low:
+            newPersonData.activity = Activity.low.rawValue
+        case .medium:
+            newPersonData.activity = Activity.medium.rawValue
+        default:
+            newPersonData.activity = Activity.high.rawValue
+        }
+        
+        switch goal {
+        case .downWeight:
+            newPersonData.goal = Goal.downWeight.rawValue
+        case .maintainWeight:
+            newPersonData.goal = Goal.maintainWeight.rawValue
+        default:
+            newPersonData.goal = Goal.upWeight.rawValue
+        }
+        
+        realmManager.savePerson(newPersonData)
+        calculateRecommendedProgramm()
         hasUnsavedChanges = false
+    }
+    
+    func calculateRecommendedProgramm() {
+        guard let person else { return }
+        let personAge = Date.getAge(fromDate: person.dateOfBirthday)
+        
+        var protein: Double
+        var fats: Double
+        var carbohydrates: Double
+        var calories: Double
+        var water: Double
+        
+        calories = person.gender == "Мужчина"
+            ? (person.weight * 10.0) + (person.height * 6.25) - (personAge * 5) + 5
+            : (person.weight * 10.0) + (person.height * 6.25) - (personAge * 5) - 161
+        
+        water = person.gender == "Мужчина" ? person.weight * 30 : person.weight * 25
+        
+        switch person.activity {
+        case "Низкая":
+            calories *= 1.2
+            water += person.gender == "Мужчина" ? (0.57 * 500) : (0.57 * 400)
+        case "Средняя":
+            calories *= 1.4
+            water += person.gender == "Мужчина" ? (1.42 * 500) : (1.42 * 400)
+        default:
+            calories *= 1.8
+            water += person.gender == "Мужчина" ? (2.0 * 500) : (2.0 * 400)
+        }
+        
+        switch person.goal {
+        case "Снизить вес":
+            calories *= 0.8
+            protein = calories * 0.5 / 4
+            fats = calories * 0.2 / 9
+            carbohydrates = calories * 0.3 / 4
+        case "Удержать вес":
+            protein = calories * 0.3 / 4
+            fats = calories * 0.3 / 9
+            carbohydrates = calories * 0.4 / 4
+        default:
+            calories *= 1.25
+            protein = calories * 0.3 / 4
+            fats = calories * 0.2 / 9
+            carbohydrates = calories * 0.5 / 4
+        }
+        
+        let recommendedProgramm = RecommendedProgramm(
+            value: [
+                Int(protein),
+                Int(fats),
+                Int(carbohydrates),
+                Int(calories),
+                Int(water)
+            ]
+        )
+        
+        self.recommendedProgramm = recommendedProgramm
+        realmManager.saveRecommendedProgramm(recommendedProgramm)
     }
     
     func setPersonDataValues(for item: PickerModalDisplay) -> String {
@@ -105,23 +190,39 @@ final class ProfileViewModel: ObservableObject {
         }
     }
     
-    func calculateRecommendedProgramm() {
-        
-    }
-    
     private func fetchPerson() {
-//        guard let person = StorageManager.shared.fetchPerson() else { return }
-//        self.person = person
-//
-//        genderSegmentedControl = person.gender == "Мужской" ? .male : .female
-//        dateOfBirthday = person.dateOfBirthday
-//        height = person.height
-//        weight = person.weight
-//        activity = person.activity
-//        goal = person.goal
+        guard let person = realmManager.fetchPerson() else { return }
+        self.person = person
+
+        gender = person.gender == "Мужской" ? .male : .female
+        dateOfBirthday = person.dateOfBirthday
+        height = person.height
+        
+        let kg = floor(person.weight)
+        let gr = (person.weight - kg) * 1000
+        weight = (kg, gr)
+        
+        switch person.activity {
+        case "Низкий":
+            activityLevel = .low
+        case "Средний":
+            activityLevel = .medium
+        default:
+            activityLevel = .high
+        }
+        
+        switch person.goal {
+        case "Снизить вес":
+            goal = .downWeight
+        case "Удержать вес":
+            goal = .maintainWeight
+        default:
+            goal = .upWeight
+        }
     }
     
     private func fetchRecommendedProgramm() {
-        
+        guard let recommendedValues = realmManager.fetchRecommendedProgramm() else { return }
+        recommendedProgramm = recommendedValues
     }
 }

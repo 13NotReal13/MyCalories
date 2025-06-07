@@ -55,12 +55,15 @@ struct HomeView: View {
                 LeftMenuView(isMenuOpen: $homeViewModel.isMenuOpen)
             }
             .background(BackgroundHeaderView(height: 140))
+            .onAppear {
+                homeViewModel.fetchRecommendedValues()
+            }
             .navigationDestination(for: AppPage.self) { page in
                 switch page {
                 case .home:
-                    HomeView(homeViewModel: HomeViewModel(realmManager: realmManager))
+                    HomeView(homeViewModel: homeViewModel)
                 case .profile:
-                    ProfileView()
+                    ProfileView(profileViewModel: ProfileViewModel(realmManager: realmManager))
                 }
             }
         }

@@ -95,6 +95,26 @@ final class RealmManager: ObservableObject {
         }
     }
     
+    // Person
+    func fetchPerson() -> Person? {
+        realmDevice.objects(Person.self).first
+    }
+    
+    func savePerson(_ person: Person) {
+        writeDeviceRealm {
+            if let existingPerson = fetchPerson() {
+                existingPerson.gender = person.gender
+                existingPerson.dateOfBirthday = person.dateOfBirthday
+                existingPerson.height = person.height
+                existingPerson.weight = person.weight
+                existingPerson.activity = person.activity
+                existingPerson.goal = person.goal
+            } else {
+                realmDevice.add(person)
+            }
+        }
+    }
+    
     private func writeDeviceRealm(completion: () -> Void) {
         do {
             try realmDevice.write {

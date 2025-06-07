@@ -31,6 +31,7 @@ final class HomeViewModel: ObservableObject {
     init(realmManager: RealmManager) {
         self.realmManager = realmManager
         loadProducts()
+        fetchRecommendedValues()
     }
     
     private func applyFilter() {
@@ -57,11 +58,13 @@ final class HomeViewModel: ObservableObject {
         }
     }
 
-    private func fetchRecommendedValues() {
+    func fetchRecommendedValues() {
         guard let recommendedValues = realmManager.fetchRecommendedProgramm() else { return }
         protein.goal = recommendedValues.proteins
         fats.goal = recommendedValues.fats
         carbohydrates.goal = recommendedValues.carbohydrates
         calories.goal = recommendedValues.calories
+        water.goal = recommendedValues.water
+        print("Ok")
     }
 }

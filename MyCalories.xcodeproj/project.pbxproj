@@ -39,7 +39,7 @@
 		7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */; };
 		7946F8EB2BCC2DF2005C3F33 /* AddNewProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */; };
 		7946F8ED2BCD50E4005C3F33 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */; };
-		7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */; };
+		7946F8EF2BCD5C34005C3F33 /* Date + Ext (Old).swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EE2BCD5C34005C3F33 /* Date + Ext (Old).swift */; };
 		7946F8F12BCE7C78005C3F33 /* HistoryProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */; };
 		795D99BA2C02774E009AC9CA /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 795D99B92C02774E009AC9CA /* FirebaseCrashlytics */; };
 		795D99BD2C04C78D009AC9CA /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 795D99BC2C04C78D009AC9CA /* GoogleMobileAds */; };
@@ -91,7 +91,7 @@
 		7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDatePicker + Ext.swift"; sourceTree = "<group>"; };
 		7946F8EA2BCC2DF2005C3F33 /* AddNewProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewProductViewController.swift; sourceTree = "<group>"; };
 		7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Ext.swift"; sourceTree = "<group>"; };
+		7946F8EE2BCD5C34005C3F33 /* Date + Ext (Old).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Ext (Old).swift"; sourceTree = "<group>"; };
 		7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryProductViewCell.swift; sourceTree = "<group>"; };
 		795D99C02C05DD2B009AC9CA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		795D99C22C05DDE8009AC9CA /* PurchasesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesManager.swift; sourceTree = "<group>"; };
@@ -249,7 +249,7 @@
 			children = (
 				7946F8332BC28E60005C3F33 /* UIScrollView + Ext.swift */,
 				7946F8D02BCBE6B8005C3F33 /* UIDatePicker + Ext.swift */,
-				7946F8EE2BCD5C34005C3F33 /* Date + Ext.swift */,
+				7946F8EE2BCD5C34005C3F33 /* Date + Ext (Old).swift */,
 				790456702BDD0C040009FA34 /* UIView + Ext.swift */,
 				790456C22BE22C290009FA34 /* UITextField + Ext.swift */,
 				79BD10552BF69B20005C049A /* UIViewController + Ext.swift */,
@@ -406,7 +406,7 @@
 				790456C52BE26DB80009FA34 /* AllProducts.swift in Sources */,
 				7916A8B72C1ACA600032B3C0 /* String + Ext.swift in Sources */,
 				790456712BDD0C040009FA34 /* UIView + Ext.swift in Sources */,
-				7946F8EF2BCD5C34005C3F33 /* Date + Ext.swift in Sources */,
+				7946F8EF2BCD5C34005C3F33 /* Date + Ext (Old).swift in Sources */,
 				7946F8492BC455F9005C3F33 /* History.swift in Sources */,
 				790456BF2BE193EE0009FA34 /* EditWeightViewController.swift in Sources */,
 				79EF3B4F2DC63CAE0076DE6B /* MyCaloriesApp.swift in Sources */,

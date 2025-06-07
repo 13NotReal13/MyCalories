@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct CircularProgressBarView: View {
-    @State var protein: (used: Int, goal: Int)
-    @State var fats: (used: Int, goal: Int)
-    @State var carbohydrates: (used: Int, goal: Int)
-    @State var calories: (used: Int, goal: Int)
-    @State var water: (used: Int, goal: Int)
+    let protein: (used: Int, goal: Int)
+    let fats: (used: Int, goal: Int)
+    let carbohydrates: (used: Int, goal: Int)
+    let calories: (used: Int, goal: Int)
+    let water: (used: Int, goal: Int)
     
     private var nutrientsData: [(title: String, value: (used: Int, goal: Int), color: Color)] {
         [
@@ -32,12 +32,12 @@ struct CircularProgressBarView: View {
                 Spacer()
                 
                 ForEach(nutrientsData, id: \.title) { nutrient in
-//                    NutrientCircleView(
-//                        title: nutrient.title,
-//                        used: nutrient.value.used,
-//                        goal: nutrient.value.goal,
-//                        color: nutrient.color
-//                    )
+                    NutrientCircleView(
+                        title: nutrient.title,
+                        used: nutrient.value.used,
+                        goal: nutrient.value.goal,
+                        color: nutrient.color
+                    )
                     Spacer()
                 }
             }
@@ -68,7 +68,13 @@ struct NutrientCircleView: View {
     let color: Color
     
     var body: some View {
-        let progress = min(Double(used) / Double(goal), 1.0)
+        let progress: Double
+        if goal > 0 {
+            progress = min(Double(used) / Double(goal), 1.0)
+        } else {
+            progress = 0.0
+        }
+        
         let percentage = Int(progress * 100)
         let isGoalCompleted = used > goal
         

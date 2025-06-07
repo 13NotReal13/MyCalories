@@ -22,12 +22,4 @@ extension Date {
         let timeInString = dateFormatter.string(from: date)
         return timeInString
     }
-    
-    static func getAge(fromDate date: Date) -> Double {
-        let currentDate = Date()
-        let calendar = Calendar.current
-        
-        let ageComponents = calendar.dateComponents([.year], from: date, to: currentDate)
-        return Double(ageComponents.year ?? 0)
-    }
 }
