@@ -107,8 +107,10 @@ final class ProfileViewModel: ObservableObject {
         }
         
         realmManager.savePerson(newPersonData)
-        calculateRecommendedProgramm()
+        person = newPersonData
         hasUnsavedChanges = false
+        
+        calculateRecommendedProgramm()
     }
     
     func calculateRecommendedProgramm() {

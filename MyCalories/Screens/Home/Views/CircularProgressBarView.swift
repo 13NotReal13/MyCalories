@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct CircularProgressBarView: View {
+    @EnvironmentObject var navigationCoordinator: NavigationCoordinator
+    
+    var profileIsComplete: Bool
     let protein: (used: Int, goal: Int)
     let fats: (used: Int, goal: Int)
     let carbohydrates: (used: Int, goal: Int)
@@ -18,9 +21,9 @@ struct CircularProgressBarView: View {
         [
             ("Белки", protein, .white),
             ("Жиры", fats, .orange),
-            ("Углев.", carbohydrates, .pink),
+            ("Углев.", carbohydrates, Color(UIColor.cyan)),
             ("Ккал.", calories, .yellow),
-            ("Вода", water, .blue)
+            ("Вода", water, Color(UIColor.blue))
         ]
     }
     
@@ -28,20 +31,39 @@ struct CircularProgressBarView: View {
         VStack {
             Spacer()
             
-            HStack {
-                Spacer()
-                
-                ForEach(nutrientsData, id: \.title) { nutrient in
-                    NutrientCircleView(
-                        title: nutrient.title,
-                        used: nutrient.value.used,
-                        goal: nutrient.value.goal,
-                        color: nutrient.color
-                    )
+            ZStack {
+                HStack {
                     Spacer()
+                    
+                    ForEach(nutrientsData, id: \.title) { nutrient in
+                        NutrientCircleView(
+                            title: nutrient.title,
+                            used: nutrient.value.used,
+                            goal: nutrient.value.goal,
+                            color: nutrient.color
+                        )
+                        Spacer()
+                    }
+                }
+                .padding(.top, 8)
+                .opacity(profileIsComplete ? 1 : 0.1)
+                
+                if !profileIsComplete {
+                    VStack {
+                        Text("Для отображения дневной статистики необходимо заполнить профиль")
+                            .padding()
+                            .multilineTextAlignment(.center)
+                            .customFont(size: 17, color: .white)
+                        
+                        Button {
+                            navigationCoordinator.push(.profile)
+                        } label: {
+                            Text("Профиль")
+                                .customFont(font: .bold, color: .white)
+                        }
+                    }
                 }
             }
-            .padding(.top, 8)
             .background {
                 RoundedRectangle(cornerRadius: 30)
                     .fill (
@@ -84,14 +106,14 @@ struct NutrientCircleView: View {
             ZStack {
                 Circle()
                     .stroke(lineWidth: 3)
-                    .foregroundStyle(.white.opacity(0.5))
+                    .foregroundStyle(.white.opacity(0.2))
                     .frame(width: UIScreen.main.bounds.width * 0.14)
+                    .shadow(color: color, radius: 1)
                 
                 Circle()
                     .trim(from: 0, to: progress)
                     .stroke(lineWidth: 3)
                     .foregroundStyle(color)
-                    .shadow(color: color, radius: 2)
                     .frame(width: UIScreen.main.bounds.width * 0.14)
                     .rotationEffect(.degrees(-90))
                     .animation(.easeInOut(duration: 0.5), value: progress)
@@ -112,10 +134,12 @@ struct NutrientCircleView: View {
 
 #Preview {
     CircularProgressBarView(
-        protein: (0, 100),
-        fats: (25, 100),
-        carbohydrates: (700, 100),
-        calories: (140, 100),
-        water: (1347, 3000)
+        profileIsComplete: false,
+        protein: (50, 100),
+        fats: (0, 100),
+        carbohydrates: (0, 100),
+        calories: (0, 100),
+        water: (0, 3000)
     )
+    .environmentObject(NavigationCoordinator())
 }

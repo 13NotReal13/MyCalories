@@ -62,7 +62,10 @@ struct RecommendedProgrammView: View {
             .background {
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundStyle(.white)
-                    .shadow(color: .black.opacity(0.2), radius: 8)
+                    .shadow(color: profileViewModel.person == nil
+                            ? .black.opacity(0.2)
+                            : .colorApp
+                            , radius: 8)
             }
             
             Button {

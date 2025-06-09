@@ -28,7 +28,9 @@ struct ProfileView: View {
                 Divider()
                 
                 Button {
-                    profileViewModel.savePersonData()
+                    withAnimation {
+                        profileViewModel.savePersonData()
+                    }
                 } label: {
                     Text("Сохранить")
                         .customFont(font: .bold, color: .white)

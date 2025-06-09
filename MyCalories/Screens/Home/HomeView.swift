@@ -45,6 +45,7 @@ struct HomeView: View {
                 }
                 
                 CircularProgressBarView(
+                    profileIsComplete: realmManager.fetchPerson() != nil,
                     protein: homeViewModel.protein,
                     fats: homeViewModel.fats,
                     carbohydrates: homeViewModel.carbohydrates,
@@ -71,6 +72,6 @@ struct HomeView: View {
 }
 
 #Preview {
-    HomeView(homeViewModel: HomeViewModel(realmManager: RealmManager.shared))
-        .environmentObject(RealmManager.shared)
+//    HomeView(homeViewModel: HomeViewModel(realmManager: RealmManager.shared))
+//        .environmentObject(RealmManager.shared)
 }
