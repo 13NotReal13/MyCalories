@@ -115,6 +115,22 @@ final class RealmManager: ObservableObject {
         }
     }
     
+    func addProductToHistory(_ product: Product) {
+        let productDate = Calendar.current.startOfDay(for: product.date)
+
+        writeDeviceRealm {
+            if let historyOfProducts = realmDevice.objects(History.self).filter("date == %@", productDate).first {
+                historyOfProducts.productList.append(product)
+            } else {
+                let newHistoryOfProducts = History()
+                newHistoryOfProducts.date = productDate
+                newHistoryOfProducts.productList.append(product)
+                realmDevice.add(newHistoryOfProducts)
+            }
+            
+        }
+    }
+    
     private func writeDeviceRealm(completion: () -> Void) {
         do {
             try realmDevice.write {

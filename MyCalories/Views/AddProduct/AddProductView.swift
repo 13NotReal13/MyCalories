@@ -108,11 +108,9 @@ struct AddProductView: View {
                     Button {
                         addProductViewModel.isPresentingDatePicker = true
                     } label: {
-                        Text(addProductViewModel.selectedDate.map {
-                            DateFormatter.localizedString(from: $0, dateStyle: .medium, timeStyle: .none)
-                        } ?? "выбрать")
-                        .customFont(color: addProductViewModel.selectedDate == nil ? .gray : .black)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        Text(Date.dateToString(addProductViewModel.selectedDate))
+                        .customFont(color: .black)
+                        .frame(maxWidth: .infinity, alignment: .center)
                         .padding(5)
                         .padding(.horizontal, 8)
                         .background(BackgroundListView(radius: 2))
@@ -122,12 +120,14 @@ struct AddProductView: View {
                 Divider()
                 
                 Button {
-                    
+                    addProductViewModel.saveProductToHistory()
+                    coordinator.dismissModal()
                 } label: {
                     Text("Добавить")
                         .customFont(font: .bold, color: .white)
                 }
-                .customCapsuleButton()
+                .customCapsuleButton(backgroundColor: addProductViewModel.isReadyForAdd() ? .colorApp : .gray)
+                .disabled(!addProductViewModel.isReadyForAdd())
             }
             .padding()
             .background(BackgroundListView())

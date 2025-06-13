@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct DatePickerSheet: View {
-    @Binding var selectedDate: Date?
+    @Binding var selectedDate: Date
     @Binding var isPresented: Bool
     
     var body: some View {
         VStack {
             DatePicker("Дата", selection: Binding(
-                get: { selectedDate ?? Date() },
+                get: { selectedDate },
                 set: { selectedDate = $0 }
             ), displayedComponents: .date)
             .datePickerStyle(.wheel)
