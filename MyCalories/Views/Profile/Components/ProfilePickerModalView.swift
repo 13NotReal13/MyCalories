@@ -109,9 +109,7 @@ struct ProfilePickerModalView: View {
                 dismiss()
             }
             .customFont(font: .bold, color: .white)
-            .padding(.vertical, 12)
-            .frame(width: 150)
-            .background(Capsule().foregroundStyle(.colorApp))
+            .customCapsuleButton()
         }
         .onAppear {
             // Передаём начальные значения в локальные

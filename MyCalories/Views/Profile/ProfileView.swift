@@ -34,18 +34,15 @@ struct ProfileView: View {
                 } label: {
                     Text("Сохранить")
                         .customFont(font: .bold, color: .white)
-                        .padding(.vertical, 12)
-                        .frame(width: 150)
-                        .background(Capsule().foregroundStyle(profileViewModel.saveButtonIsEnabled ? .colorApp : .gray))
                 }
+                .customCapsuleButton(
+                    backgroundColor:
+                        profileViewModel.saveButtonIsEnabled ? .colorApp : .gray
+                )
                 .disabled(!profileViewModel.saveButtonIsEnabled)
             }
             .padding()
-            .background {
-                RoundedRectangle(cornerRadius: 20)
-                    .foregroundStyle(.white)
-                    .shadow(color: .black.opacity(0.3), radius: 8)
-            }
+            .background(BackgroundListView())
             .padding()
             
             RecommendedProgrammView()

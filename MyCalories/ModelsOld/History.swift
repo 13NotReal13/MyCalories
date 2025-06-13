@@ -26,6 +26,26 @@ final class Product: Object {
     @Persisted var color = "colorApp"
 }
 
+extension Product {
+    var proteinToString: String {
+        "\(String(format: "%.2f", protein))"
+    }
+    var fatsToString: String {
+        "\(String(format: "%.2f", fats))"
+    }
+    var carbohydratesToString: String {
+        "\(String(format: "%.2f", carbohydrates))"
+    }
+    var caloriesToString: String {
+        "\(String(format: "%.2f", calories))"
+    }
+    
+    func formattedBy(weight: Int, for value: Double) -> String {
+        let result = value * Double(weight) / 100.0
+        return String(format: "%.1f", result)
+    }
+}
+
 final class Water: Object {
     @Persisted var date = Date()
     @Persisted var ml = 0

@@ -108,7 +108,8 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		79EF3B4C2DC63C050076DE6B /* Screens */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Screens; sourceTree = "<group>"; };
+		79CBFFEB2DF719EF0034B6D3 /* ViewModels */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = ViewModels; sourceTree = "<group>"; };
+		79EF3B4C2DC63C050076DE6B /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 		79EF3B5A2DC6429F0076DE6B /* Services */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Services; sourceTree = "<group>"; };
 		79EF3B612DCBC5720076DE6B /* Extensions */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Extensions; sourceTree = "<group>"; };
 		79EF3B642DCBC76A0076DE6B /* Resources */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Resources; sourceTree = "<group>"; };
@@ -168,11 +169,12 @@
 		792DB1892BBADF4800209193 /* MyCalories */ = {
 			isa = PBXGroup;
 			children = (
+				79CBFFEB2DF719EF0034B6D3 /* ViewModels */,
 				79EF3B692DCBC93E0076DE6B /* Modifiers */,
 				79EF3B642DCBC76A0076DE6B /* Resources */,
 				79EF3B612DCBC5720076DE6B /* Extensions */,
 				79EF3B5A2DC6429F0076DE6B /* Services */,
-				79EF3B4C2DC63C050076DE6B /* Screens */,
+				79EF3B4C2DC63C050076DE6B /* Views */,
 				79658B3E2C02338A000BD566 /* GoogleService-Info.plist */,
 				79658B3D2C021100000BD566 /* MyCalories.entitlements */,
 				792DB19F2BBADFE300209193 /* ViewControllersOld */,
@@ -304,7 +306,8 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				79EF3B4C2DC63C050076DE6B /* Screens */,
+				79CBFFEB2DF719EF0034B6D3 /* ViewModels */,
+				79EF3B4C2DC63C050076DE6B /* Views */,
 				79EF3B5A2DC6429F0076DE6B /* Services */,
 				79EF3B612DCBC5720076DE6B /* Extensions */,
 				79EF3B642DCBC76A0076DE6B /* Resources */,

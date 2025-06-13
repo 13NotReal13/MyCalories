@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct SearchTextFieldView: View {
-    @Binding var searchText: String
+    @EnvironmentObject var homeViewModel: HomeViewModel
     
     var body: some View {
-        TextField("Поиск", text: $searchText)
+        TextField("Поиск", text: $homeViewModel.searchText)
             .padding(.vertical, 8)
             .padding(.horizontal, 16)
             .background(Color(.systemGray6))
@@ -19,8 +19,4 @@ struct SearchTextFieldView: View {
             .padding(.horizontal)
             .padding(.top, 8)
     }
-}
-
-#Preview {
-    SearchTextFieldView(searchText: .constant("some product"))
 }

@@ -69,7 +69,9 @@ struct LeftMenuButtonsView : View {
         VStack(alignment: .leading) {
             ForEach(MenuButton.allCases, id: \.self) { button in
                 Button {
-                    isMenuOpen = false
+                    withAnimation {
+                        isMenuOpen = false
+                    }
                     
                     switch button {
                     case .main:

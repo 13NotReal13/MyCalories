@@ -86,7 +86,7 @@ final class ProfileViewModel: ObservableObject {
         newPersonData.gender = gender == .male ? Gender.male.rawValue : Gender.female.rawValue
         newPersonData.dateOfBirthday = dateOfBirthday
         newPersonData.height = height
-        newPersonData.weight = weight.kg + weight.gr
+        newPersonData.weight = weight.kg + weight.gr / 1000
         
         switch activityLevel {
             case .low:
@@ -205,9 +205,9 @@ final class ProfileViewModel: ObservableObject {
         weight = (kg, gr)
         
         switch person.activity {
-        case "Низкий":
+        case "Низкая":
             activityLevel = .low
-        case "Средний":
+        case "Средняя":
             activityLevel = .medium
         default:
             activityLevel = .high

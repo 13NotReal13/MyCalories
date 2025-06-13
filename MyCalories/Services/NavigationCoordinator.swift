@@ -8,12 +8,13 @@
 import Foundation
 import SwiftUI
 
-enum AppPage {
+enum AppPage: Hashable {
     case home
     case profile
 }
 
 enum AppModal: Identifiable, Hashable {
+    case addProduct(Product)
     
     var id: Int { self.hashValue }
 }
@@ -33,7 +34,7 @@ final class NavigationCoordinator: ObservableObject {
     }
     
     func presentModal(_ modal: AppModal) {
-//        activeModal = modal
+        activeModal = modal
     }
     
     func dismissModal() {

@@ -19,6 +19,7 @@ struct BackgroundHeaderView: View {
             
             Spacer()
         }
+        .background(Color.colorApp.opacity(0.05))
     }
 }
 

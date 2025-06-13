@@ -64,7 +64,7 @@ struct RecommendedProgrammView: View {
                     .foregroundStyle(.white)
                     .shadow(color: profileViewModel.person == nil
                             ? .black.opacity(0.2)
-                            : .colorApp
+                            : .colorApp.opacity(0.7)
                             , radius: 8)
             }
             

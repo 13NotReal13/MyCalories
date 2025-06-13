@@ -39,9 +39,9 @@ struct HomeView: View {
                     .customFont(size: 24)
                     .padding(.horizontal)
                     
-                    SearchTextFieldView(searchText: $homeViewModel.searchText)
+                    SearchTextFieldView()
                     
-                    ProductsListView(filteredProducts: homeViewModel.filteredProducts)
+                    ProductsListView()
                 }
                 
                 CircularProgressBarView(
@@ -55,6 +55,7 @@ struct HomeView: View {
                 
                 LeftMenuView(isMenuOpen: $homeViewModel.isMenuOpen)
             }
+            .environmentObject(homeViewModel)
             .background(BackgroundHeaderView(height: 140))
             .onAppear {
                 homeViewModel.fetchRecommendedValues()
@@ -65,6 +66,12 @@ struct HomeView: View {
                     HomeView(homeViewModel: homeViewModel)
                 case .profile:
                     ProfileView(profileViewModel: ProfileViewModel(realmManager: realmManager))
+                }
+            }
+            .sheet(item: $coordinator.activeModal) { modal in
+                switch modal {
+                case .addProduct(let product):
+                    AddProductView(addProductViewModel: AddProductViewModel(realmManager: realmManager, selectedProduct: product))
                 }
             }
         }

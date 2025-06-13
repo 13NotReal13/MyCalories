@@ -27,11 +27,8 @@ struct ProfileRowView: View {
                     .customFont(color: value == "выбрать" ? .gray : .black.opacity(0.8))
                     .frame(maxWidth: .infinity, alignment: .leading)
                     .padding(5)
-                    .background {
-                        Color.white
-                            .roundedCorners(radius: 8)
-                            .shadow(color: shadowColor, radius: 3)
-                    }
+                    .padding(.horizontal, 8)
+                    .background(BackgroundListView(radius: 3))
             }
         }
     }
