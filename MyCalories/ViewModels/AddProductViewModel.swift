@@ -18,6 +18,7 @@ final class AddProductViewModel: ObservableObject {
     var weight: Int {
         Int(weightText) ?? 0
     }
+    var onSave: (() -> Void)?
     
     init(realmManager: RealmManager, selectedProduct: Product) {
         self.realmManager = realmManager
@@ -29,8 +30,6 @@ final class AddProductViewModel: ObservableObject {
     }
     
     func saveProductToHistory() {
-//        guard weight > 0, let selectedDate else { return }
-
         let newProduct = Product()
         newProduct.name = selectedProduct.name
         newProduct.protein = (selectedProduct.protein / 100) * Double(weight)
@@ -43,5 +42,6 @@ final class AddProductViewModel: ObservableObject {
         newProduct.index = selectedProduct.index
 
         realmManager.addProductToHistory(newProduct)
+        onSave?()
     }
 }

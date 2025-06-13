@@ -31,6 +31,7 @@ final class HomeViewModel: ObservableObject {
     init(realmManager: RealmManager) {
         self.realmManager = realmManager
         loadProducts()
+        fetchUsedTodayNutrients()
         fetchRecommendedValues()
     }
     
@@ -56,6 +57,15 @@ final class HomeViewModel: ObservableObject {
                 self?.filteredProducts = Array(products)
             }
         }
+    }
+    
+    func fetchUsedTodayNutrients() {
+        let todayNutrients = realmManager.fetchTodayTotalNutrients()
+        protein.used = Int(todayNutrients.proteins)
+        fats.used = Int(todayNutrients.fats)
+        carbohydrates.used = Int(todayNutrients.carbohydrates)
+        calories.used = Int(todayNutrients.calories)
+        water.used = Int(todayNutrients.water)
     }
 
     func fetchRecommendedValues() {

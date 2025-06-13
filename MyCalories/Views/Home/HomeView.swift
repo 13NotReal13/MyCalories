@@ -58,6 +58,7 @@ struct HomeView: View {
             .environmentObject(homeViewModel)
             .background(BackgroundHeaderView(height: 140))
             .onAppear {
+                homeViewModel.fetchUsedTodayNutrients()
                 homeViewModel.fetchRecommendedValues()
             }
             .navigationDestination(for: AppPage.self) { page in
@@ -71,7 +72,15 @@ struct HomeView: View {
             .sheet(item: $coordinator.activeModal) { modal in
                 switch modal {
                 case .addProduct(let product):
-                    AddProductView(addProductViewModel: AddProductViewModel(realmManager: realmManager, selectedProduct: product))
+                    AddProductView(
+                        addProductViewModel: {
+                            let viewModel = AddProductViewModel(realmManager: realmManager, selectedProduct: product)
+                            viewModel.onSave = {
+                                homeViewModel.fetchUsedTodayNutrients()
+                            }
+                            return viewModel
+                        }()
+                    )
                 }
             }
         }

@@ -131,6 +131,43 @@ final class RealmManager: ObservableObject {
         }
     }
     
+    func fetchTodayTotalNutrients() -> AllNutritions {
+        let startOfDay = Calendar.current.startOfDay(for: Date())
+        let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!
+        
+        let history = realmDevice.objects(History.self).filter("date >= %@ AND date < %@", startOfDay, endOfDay)
+        
+        var totalProtein = 0
+        var totalFats = 0
+        var totalCarbohydrates = 0
+        var totalCalories = 0
+        var totalWater = 0
+        
+        // Перебираем все записи за сегодня и суммируем значения
+        for historyEntry in history {
+            for product in historyEntry.productList {
+                totalProtein += Int(product.protein)
+                totalFats += Int(product.fats)
+                totalCarbohydrates += Int(product.carbohydrates)
+                totalCalories += Int(product.calories)
+            }
+        }
+        
+        for historyEntry in history {
+            for water in historyEntry.waterList {
+                totalWater += water.ml
+            }
+        }
+        
+        return AllNutritions(
+            proteins: totalProtein,
+            fats: totalFats,
+            carbohydrates: totalCarbohydrates,
+            calories: totalCalories,
+            water: totalWater
+        )
+    }
+    
     private func writeDeviceRealm(completion: () -> Void) {
         do {
             try realmDevice.write {
