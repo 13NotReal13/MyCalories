@@ -20,7 +20,6 @@ struct AddProductView: View {
                     Text("Отмена")
                         .customFont(color: .white)
                 }
-                .padding(.bottom)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 
                 Text("Продукт")
@@ -30,6 +29,7 @@ struct AddProductView: View {
                 Spacer()
                     .frame(maxWidth: .infinity)
             }
+            .padding(.bottom)
             
             VStack(spacing: 16) {
                 

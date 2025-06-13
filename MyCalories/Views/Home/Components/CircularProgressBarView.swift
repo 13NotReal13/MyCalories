@@ -46,6 +46,7 @@ struct CircularProgressBarView: View {
                     }
                 }
                 .padding(.top, 8)
+                .padding(.bottom, 24)
                 .opacity(profileIsComplete ? 1 : 0.1)
                 
                 if !profileIsComplete {
@@ -80,6 +81,7 @@ struct CircularProgressBarView: View {
                     .shadow(color: .black.opacity(0.4), radius: 8)
             }
         }
+        .ignoresSafeArea(edges: .bottom)
     }
 }
 
@@ -134,7 +136,7 @@ struct NutrientCircleView: View {
 
 #Preview {
     CircularProgressBarView(
-        profileIsComplete: false,
+        profileIsComplete: true,
         protein: (50, 100),
         fats: (0, 100),
         carbohydrates: (0, 100),

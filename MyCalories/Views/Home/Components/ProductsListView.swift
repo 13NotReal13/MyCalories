@@ -13,25 +13,33 @@ struct ProductsListView: View {
     
     var body: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: 12) {
+            LazyVStack(alignment: .leading, spacing: 6) {
                 ForEach(homeViewModel.filteredProducts, id: \.self) { product in
-                    VStack(alignment: .leading, spacing: 12) {
+                    VStack(alignment: .leading, spacing: 6) {
                         Text(product.name)
                             .customFont()
                         
                         VStack(spacing: 4) {
                             HStack {
-                                Text("БЕЛКИ: \(String(format: "%.2f", product.protein))")
                                 Spacer()
-                                Text("ЖИРЫ: \(String(format: "%.2f", product.fats))")
+                                
+                                Text("белки: \(String(format: "%.2f", product.protein))")
+                                
                                 Spacer()
-                                Text("УГЛЕВОДЫ: \(String(format: "%.2f", product.carbohydrates))")
+                                
+                                Text("жиры: \(String(format: "%.2f", product.fats))")
+                                
+                                Spacer()
+                                
+                                Text("углеводы: \(String(format: "%.2f", product.carbohydrates))")
+                                
+                                Spacer()
                             }
                             
-                            Text("Ккал: \(String(format: "%.2f", product.calories)) НА 100 Г.")
+                            Text("кКал: \(String(format: "%.2f", product.calories)) на 100 г.")
                                 .frame(maxWidth: .infinity, alignment: .center)
                         }
-                        .customFont(size: 11, color: .gray)
+                        .customFont(size: 13, color: .gray)
                         
                         Divider()
                     }
