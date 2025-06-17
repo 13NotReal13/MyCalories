@@ -38,7 +38,7 @@ enum Goal: String, CaseIterable {
 }
 
 final class ProfileViewModel: ObservableObject {
-    private let realmManager: RealmManager
+    private let realm: RealmManager
     
     // Person Data
     @Published var person: Person?
@@ -70,7 +70,7 @@ final class ProfileViewModel: ObservableObject {
     }
     
     init(realmManager: RealmManager) {
-        self.realmManager = realmManager
+        self.realm = realmManager
         
         fetchPerson()
         fetchRecommendedProgramm()
@@ -106,7 +106,7 @@ final class ProfileViewModel: ObservableObject {
             newPersonData.goal = Goal.upWeight.rawValue
         }
         
-        realmManager.savePerson(newPersonData)
+        realm.savePerson(newPersonData)
         person = newPersonData
         hasUnsavedChanges = false
         
@@ -169,7 +169,7 @@ final class ProfileViewModel: ObservableObject {
         )
         
         self.recommendedProgramm = recommendedProgramm
-        realmManager.saveRecommendedProgramm(recommendedProgramm)
+        realm.saveRecommendedProgramm(recommendedProgramm)
     }
     
     func setPersonDataValues(for item: PickerModalDisplay) -> String {
@@ -193,7 +193,7 @@ final class ProfileViewModel: ObservableObject {
     }
     
     private func fetchPerson() {
-        guard let person = realmManager.fetchPerson() else { return }
+        guard let person = realm.fetchPerson() else { return }
         self.person = person
 
         gender = person.gender == "Мужской" ? .male : .female
@@ -224,7 +224,7 @@ final class ProfileViewModel: ObservableObject {
     }
     
     private func fetchRecommendedProgramm() {
-        guard let recommendedValues = realmManager.fetchRecommendedProgramm() else { return }
+        guard let recommendedValues = realm.fetchRecommendedProgramm() else { return }
         recommendedProgramm = recommendedValues
     }
 }

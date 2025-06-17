@@ -10,14 +10,19 @@ import SwiftUI
 
 @main
 struct MyCaloriesApp: App {
-    @StateObject private var coordinator = NavigationCoordinator.shared
-    @StateObject private var realmManager = RealmManager.shared
+    @StateObject private var realm: RealmManager
+    @StateObject private var coordinator: Coordinator
+    
+    init() {
+        let realmManager = RealmManager()
+        _realm = StateObject(wrappedValue: realmManager)
+        _coordinator = StateObject(wrappedValue: Coordinator(realm: realmManager))
+    }
     
     var body: some Scene {
         WindowGroup {
-            HomeView(homeViewModel: HomeViewModel(realmManager: realmManager))
+            CoordinatorView()
                 .environmentObject(coordinator)
-                .environmentObject(realmManager)
         }
     }
 }

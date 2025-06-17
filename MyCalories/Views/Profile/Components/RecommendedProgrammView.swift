@@ -101,5 +101,5 @@ struct NutritionRowView: View {
 
 #Preview {
     RecommendedProgrammView()
-        .environmentObject(ProfileViewModel(realmManager: RealmManager.shared))
+        .environmentObject(ProfileViewModel(realmManager: RealmManager()))
 }

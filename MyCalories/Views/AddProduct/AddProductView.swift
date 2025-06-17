@@ -8,14 +8,14 @@
 import SwiftUI
 
 struct AddProductView: View {
-    @EnvironmentObject var coordinator: NavigationCoordinator
+    @EnvironmentObject var coordinator: Coordinator
     @StateObject var addProductViewModel: AddProductViewModel
     
     var body: some View {
         VStack {
             HStack {
                 Button {
-                    coordinator.dismissModal()
+                    coordinator.dismissSheet()
                 } label: {
                     Text("Отмена")
                         .customFont(color: .white)
@@ -121,7 +121,7 @@ struct AddProductView: View {
                 
                 Button {
                     addProductViewModel.saveProductToHistory()
-                    coordinator.dismissModal()
+                    coordinator.dismissSheet()
                 } label: {
                     Text("Добавить")
                         .customFont(font: .bold, color: .white)
@@ -167,7 +167,7 @@ struct ProductRowView: View {
 #Preview {
     NavigationStack {
         AddProductView(
-            addProductViewModel: AddProductViewModel(realmManager: RealmManager.shared, selectedProduct: Product.fake(name: ""))
+            addProductViewModel: AddProductViewModel(realmManager: RealmManager(), selectedProduct: Product.fake(name: ""))
         )
     }
 }

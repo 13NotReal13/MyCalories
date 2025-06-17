@@ -7,11 +7,9 @@
 
 import Foundation
 import RealmSwift
+import SwiftUI
 
 final class RealmManager: ObservableObject {
-    static let shared = RealmManager()
-    private init() {}
-    
     private var realmProject: Realm {
         let realmFileName = "productsFromProject.realm"
         let realmFileUrl = Bundle.main.resourceURL!.appendingPathComponent(realmFileName)

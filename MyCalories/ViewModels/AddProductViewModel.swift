@@ -8,7 +8,7 @@
 import Foundation
 
 final class AddProductViewModel: ObservableObject {
-    private let realmManager: RealmManager
+    private let realm: RealmManager
     
     @Published var selectedProduct: Product
     @Published var isPresentingDatePicker = false
@@ -21,7 +21,7 @@ final class AddProductViewModel: ObservableObject {
     var onSave: (() -> Void)?
     
     init(realmManager: RealmManager, selectedProduct: Product) {
-        self.realmManager = realmManager
+        self.realm = realmManager
         self.selectedProduct = selectedProduct
     }
     
@@ -41,7 +41,7 @@ final class AddProductViewModel: ObservableObject {
         newProduct.weight = Double(weight)
         newProduct.index = selectedProduct.index
 
-        realmManager.addProductToHistory(newProduct)
+        realm.addProductToHistory(newProduct)
         onSave?()
     }
 }

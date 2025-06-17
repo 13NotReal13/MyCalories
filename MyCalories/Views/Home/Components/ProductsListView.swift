@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ProductsListView: View {
-    @EnvironmentObject var navigationCoordinator: NavigationCoordinator
+    @EnvironmentObject var navigationCoordinator: Coordinator
     @EnvironmentObject var homeViewModel: HomeViewModel
     
     var body: some View {
@@ -44,7 +44,7 @@ struct ProductsListView: View {
                         Divider()
                     }
                     .onTapGesture {
-                        navigationCoordinator.presentModal(.addProduct(product))
+                        navigationCoordinator.present(sheet: .addProduct(product))
                     }
                 }
             }
@@ -59,8 +59,4 @@ struct ProductsListView: View {
         .padding(.horizontal)
         .padding(.top, 8)
     }
-}
-
-#Preview {
-//    ProductsListView(filteredProducts: HomeViewModel.filteredProducts)
 }

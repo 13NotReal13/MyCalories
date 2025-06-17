@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CircularProgressBarView: View {
-    @EnvironmentObject var navigationCoordinator: NavigationCoordinator
+    @EnvironmentObject var navigationCoordinator: Coordinator
     
     var profileIsComplete: Bool
     let protein: (used: Int, goal: Int)
@@ -143,5 +143,5 @@ struct NutrientCircleView: View {
         calories: (0, 100),
         water: (0, 3000)
     )
-    .environmentObject(NavigationCoordinator())
+    .environmentObject(Coordinator(realm: RealmManager()))
 }

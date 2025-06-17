@@ -8,10 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
-    @EnvironmentObject private var coordinator: NavigationCoordinator
-    @EnvironmentObject private var realmManager: RealmManager
-    
-    @StateObject var homeViewModel: HomeViewModel
+    @StateObject var viewModel: HomeViewModel
+    @EnvironmentObject private var coordinator: Coordinator
+    @EnvironmentObject private var realm: RealmManager
     
     var body: some View {
         NavigationStack(path: $coordinator.path) {
@@ -20,7 +19,7 @@ struct HomeView: View {
                     HStack {
                         Button {
                             withAnimation {
-                                homeViewModel.isMenuOpen.toggle()
+                                viewModel.isMenuOpen.toggle()
                             }
                         } label: {
                             Image(systemName: "line.3.horizontal")
@@ -45,43 +44,21 @@ struct HomeView: View {
                 }
                 
                 CircularProgressBarView(
-                    profileIsComplete: realmManager.fetchPerson() != nil,
-                    protein: homeViewModel.protein,
-                    fats: homeViewModel.fats,
-                    carbohydrates: homeViewModel.carbohydrates,
-                    calories: homeViewModel.calories,
-                    water: homeViewModel.water
+                    profileIsComplete: viewModel.isProgressBarUnlocked(),
+                    protein: viewModel.protein,
+                    fats: viewModel.fats,
+                    carbohydrates: viewModel.carbohydrates,
+                    calories: viewModel.calories,
+                    water: viewModel.water
                 )
                 
-                LeftMenuView(isMenuOpen: $homeViewModel.isMenuOpen)
+                LeftMenuView(isMenuOpen: $viewModel.isMenuOpen)
             }
-            .environmentObject(homeViewModel)
+            .environmentObject(viewModel)
             .background(BackgroundHeaderView(height: 140))
             .onAppear {
-                homeViewModel.fetchUsedTodayNutrients()
-                homeViewModel.fetchRecommendedValues()
-            }
-            .navigationDestination(for: AppPage.self) { page in
-                switch page {
-                case .home:
-                    HomeView(homeViewModel: homeViewModel)
-                case .profile:
-                    ProfileView(profileViewModel: ProfileViewModel(realmManager: realmManager))
-                }
-            }
-            .sheet(item: $coordinator.activeModal) { modal in
-                switch modal {
-                case .addProduct(let product):
-                    AddProductView(
-                        addProductViewModel: {
-                            let viewModel = AddProductViewModel(realmManager: realmManager, selectedProduct: product)
-                            viewModel.onSave = {
-                                homeViewModel.fetchUsedTodayNutrients()
-                            }
-                            return viewModel
-                        }()
-                    )
-                }
+                viewModel.fetchUsedTodayNutrients()
+                viewModel.fetchRecommendedValues()
             }
         }
     }

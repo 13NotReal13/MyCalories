@@ -41,6 +41,7 @@
 		7946F8ED2BCD50E4005C3F33 /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */; };
 		7946F8EF2BCD5C34005C3F33 /* Date + Ext (Old).swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8EE2BCD5C34005C3F33 /* Date + Ext (Old).swift */; };
 		7946F8F12BCE7C78005C3F33 /* HistoryProductViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */; };
+		795AE7DC2E01C2F50039CEAC /* CoordinatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795AE7DB2E01C2F50039CEAC /* CoordinatorView.swift */; };
 		795D99BA2C02774E009AC9CA /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 795D99B92C02774E009AC9CA /* FirebaseCrashlytics */; };
 		795D99BD2C04C78D009AC9CA /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = 795D99BC2C04C78D009AC9CA /* GoogleMobileAds */; };
 		795D99C32C05DDE8009AC9CA /* PurchasesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 795D99C22C05DDE8009AC9CA /* PurchasesManager.swift */; };
@@ -93,6 +94,7 @@
 		7946F8EC2BCD50E4005C3F33 /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 		7946F8EE2BCD5C34005C3F33 /* Date + Ext (Old).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date + Ext (Old).swift"; sourceTree = "<group>"; };
 		7946F8F02BCE7C78005C3F33 /* HistoryProductViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryProductViewCell.swift; sourceTree = "<group>"; };
+		795AE7DB2E01C2F50039CEAC /* CoordinatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorView.swift; sourceTree = "<group>"; };
 		795D99C02C05DD2B009AC9CA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		795D99C22C05DDE8009AC9CA /* PurchasesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesManager.swift; sourceTree = "<group>"; };
 		795D99C62C06375A009AC9CA /* PurchasesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchasesViewController.swift; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXGroup;
 			children = (
 				79EF3B4E2DC63CAE0076DE6B /* MyCaloriesApp.swift */,
+				795AE7DB2E01C2F50039CEAC /* CoordinatorView.swift */,
 				792DB1892BBADF4800209193 /* MyCalories */,
 				792DB1882BBADF4800209193 /* Products */,
 				79658B472C0240E8000BD566 /* Frameworks */,
@@ -400,6 +403,7 @@
 				790457262BE3E5AF0009FA34 /* TexturedView.swift in Sources */,
 				790456732BDD2A8B0009FA34 /* AllNutritions.swift in Sources */,
 				792DB18B2BBADF4800209193 /* AppDelegate.swift in Sources */,
+				795AE7DC2E01C2F50039CEAC /* CoordinatorView.swift in Sources */,
 				79CBA7932C0A2E7D008EED18 /* SearchProduct.swift in Sources */,
 				7946F8D12BCBE6B8005C3F33 /* UIDatePicker + Ext.swift in Sources */,
 				7946F8CD2BCA9904005C3F33 /* Person.swift in Sources */,

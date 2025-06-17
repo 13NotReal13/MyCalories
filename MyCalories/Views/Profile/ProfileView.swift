@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @EnvironmentObject private var coordinator: NavigationCoordinator
-    @StateObject var profileViewModel: ProfileViewModel
+    @EnvironmentObject private var coordinator: Coordinator
+    @StateObject var viewModel: ProfileViewModel
     
     var body: some View {
         VStack {
@@ -17,10 +17,10 @@ struct ProfileView: View {
                 ForEach(PickerModalDisplay.allCases, id: \.rawValue) { item in
                     ProfileRowView(
                         title: item.rawValue,
-                        value: profileViewModel.setPersonDataValues(for: item),
+                        value: viewModel.setPersonDataValues(for: item),
                         onTap: {
-                            profileViewModel.selectedDisplay = item
-                            profileViewModel.isPresentingPicker = true
+                            viewModel.selectedDisplay = item
+                            viewModel.isPresentingPicker = true
                         }
                     )
                 }
@@ -29,7 +29,7 @@ struct ProfileView: View {
                 
                 Button {
                     withAnimation {
-                        profileViewModel.savePersonData()
+                        viewModel.savePersonData()
                     }
                 } label: {
                     Text("Сохранить")
@@ -37,16 +37,16 @@ struct ProfileView: View {
                 }
                 .customCapsuleButton(
                     backgroundColor:
-                        profileViewModel.saveButtonIsEnabled ? .colorApp : .gray
+                        viewModel.saveButtonIsEnabled ? .colorApp : .gray
                 )
-                .disabled(!profileViewModel.saveButtonIsEnabled)
+                .disabled(!viewModel.saveButtonIsEnabled)
             }
             .padding()
             .background(BackgroundListView())
             .padding()
             
             RecommendedProgrammView()
-                .environmentObject(profileViewModel)
+                .environmentObject(viewModel)
             
             Spacer()
         }
@@ -67,17 +67,17 @@ struct ProfileView: View {
                     .customFont(font: .bold, size: 19, color: .white)
             }
         }
-        .sheet(isPresented: $profileViewModel.isPresentingPicker) {
+        .sheet(isPresented: $viewModel.isPresentingPicker) {
             ProfilePickerModalView()
-                .environmentObject(profileViewModel)
-            .presentationDetents([profileViewModel.selectedDisplay.preferredDetent])
+                .environmentObject(viewModel)
+            .presentationDetents([viewModel.selectedDisplay.preferredDetent])
         }
     }
 }
 
 #Preview {
     NavigationStack {
-        ProfileView(profileViewModel: ProfileViewModel(realmManager: RealmManager.shared))
-            .environmentObject(NavigationCoordinator.shared)
+        ProfileView(viewModel: ProfileViewModel(realmManager: RealmManager()))
+            .environmentObject(Coordinator(realm: RealmManager()))
     }
 }

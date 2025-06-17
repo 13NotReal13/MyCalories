@@ -37,7 +37,7 @@ enum MenuButton: String, CaseIterable {
 }
 
 struct LeftMenuView: View {
-    @EnvironmentObject var coordinator: NavigationCoordinator
+    @EnvironmentObject var coordinator: Coordinator
     @Binding var isMenuOpen: Bool
     
     var body: some View {
@@ -62,7 +62,7 @@ struct LeftMenuView: View {
 }
 
 struct LeftMenuButtonsView : View {
-    @EnvironmentObject var coordinator: NavigationCoordinator
+    @EnvironmentObject var coordinator: Coordinator
     @Binding var isMenuOpen: Bool
     
     var body: some View {
@@ -131,5 +131,5 @@ struct LeftMenuBackgroundView: View {
 
 #Preview {
     LeftMenuView(isMenuOpen: .constant(true))
-        .environmentObject(NavigationCoordinator.shared)
+        .environmentObject(Coordinator(realm: RealmManager()))
 }
