@@ -37,26 +37,26 @@ enum MenuButton: String, CaseIterable {
 }
 
 struct LeftMenuView: View {
-    @EnvironmentObject var coordinator: Coordinator
-    @Binding var isMenuOpen: Bool
+    @EnvironmentObject private var coordinator: Coordinator
+    @EnvironmentObject private var viewModel: HomeViewModel
     
     var body: some View {
         ZStack(alignment: .leading) {
-            Color.black.opacity(isMenuOpen ? 0.4 : 0)
+            Color.black.opacity(viewModel.isMenuOpen ? 0.4 : 0)
                 .ignoresSafeArea()
                 .onTapGesture {
                     withAnimation {
-                        isMenuOpen = false
+                        viewModel.isMenuOpen = false
                     }
                 }
             
             ZStack {
                 LeftMenuBackgroundView()
                 
-                LeftMenuButtonsView(isMenuOpen: $isMenuOpen)
+                LeftMenuButtonsView(isMenuOpen: $viewModel.isMenuOpen)
             }
             .frame(width: 280)
-            .offset(x: isMenuOpen ? 0 : -280)
+            .offset(x: viewModel.isMenuOpen ? 0 : -280)
         }
     }
 }
@@ -111,25 +111,4 @@ struct LeftMenuButtonsView : View {
         .ignoresSafeArea(edges: .top)
 
     }
-}
-
-struct LeftMenuBackgroundView: View {
-    var body: some View {
-        LinearGradient(
-            colors: [
-                .colorApp,
-                .textColorApp
-            ],
-            startPoint: .top,
-            endPoint: .bottom
-        )
-        .roundedCorners(corners: [.topRight, .bottomRight])
-        .ignoresSafeArea(edges: .vertical)
-        .shadow(color: .black.opacity(0.3), radius: 8)
-    }
-}
-
-#Preview {
-    LeftMenuView(isMenuOpen: .constant(true))
-        .environmentObject(Coordinator(realm: RealmManager()))
 }

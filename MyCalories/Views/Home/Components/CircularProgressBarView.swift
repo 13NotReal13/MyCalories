@@ -8,22 +8,16 @@
 import SwiftUI
 
 struct CircularProgressBarView: View {
-    @EnvironmentObject var navigationCoordinator: Coordinator
-    
-    var profileIsComplete: Bool
-    let protein: (used: Int, goal: Int)
-    let fats: (used: Int, goal: Int)
-    let carbohydrates: (used: Int, goal: Int)
-    let calories: (used: Int, goal: Int)
-    let water: (used: Int, goal: Int)
+    @EnvironmentObject private var coordinator: Coordinator
+    @EnvironmentObject private var viewModel: HomeViewModel
     
     private var nutrientsData: [(title: String, value: (used: Int, goal: Int), color: Color)] {
         [
-            ("Белки", protein, .white),
-            ("Жиры", fats, .orange),
-            ("Углев.", carbohydrates, Color(UIColor.cyan)),
-            ("Ккал.", calories, .yellow),
-            ("Вода", water, Color(UIColor.blue))
+            ("Белки", viewModel.protein, .white),
+            ("Жиры", viewModel.fats, .orange),
+            ("Углев.", viewModel.carbohydrates, Color(UIColor.cyan)),
+            ("Ккал.", viewModel.calories, .yellow),
+            ("Вода", viewModel.water, Color(UIColor.blue))
         ]
     }
     
@@ -47,9 +41,9 @@ struct CircularProgressBarView: View {
                 }
                 .padding(.top, 8)
                 .padding(.bottom, 24)
-                .opacity(profileIsComplete ? 1 : 0.1)
+                .opacity(viewModel.isProgressBarUnlocked() ? 1 : 0.1)
                 
-                if !profileIsComplete {
+                if !viewModel.isProgressBarUnlocked() {
                     VStack {
                         Text("Для отображения дневной статистики необходимо заполнить профиль")
                             .padding()
@@ -57,7 +51,7 @@ struct CircularProgressBarView: View {
                             .customFont(size: 17, color: .white)
                         
                         Button {
-                            navigationCoordinator.push(.profile)
+                            coordinator.push(.profile)
                         } label: {
                             Text("Профиль")
                                 .customFont(font: .bold, color: .white)
@@ -83,65 +77,4 @@ struct CircularProgressBarView: View {
         }
         .ignoresSafeArea(edges: .bottom)
     }
-}
-
-struct NutrientCircleView: View {
-    let title: String
-    let used: Int
-    let goal: Int
-    let color: Color
-    
-    var body: some View {
-        let progress: Double
-        if goal > 0 {
-            progress = min(Double(used) / Double(goal), 1.0)
-        } else {
-            progress = 0.0
-        }
-        
-        let percentage = Int(progress * 100)
-        let isGoalCompleted = used > goal
-        
-        return VStack {
-            Text(title)
-            
-            ZStack {
-                Circle()
-                    .stroke(lineWidth: 3)
-                    .foregroundStyle(.white.opacity(0.2))
-                    .frame(width: UIScreen.main.bounds.width * 0.14)
-                    .shadow(color: color, radius: 1)
-                
-                Circle()
-                    .trim(from: 0, to: progress)
-                    .stroke(lineWidth: 3)
-                    .foregroundStyle(color)
-                    .frame(width: UIScreen.main.bounds.width * 0.14)
-                    .rotationEffect(.degrees(-90))
-                    .animation(.easeInOut(duration: 0.5), value: progress)
-                
-                Text("\(percentage)%")
-                    .customFont(font: .bold, size: 15, color: percentage >= 100 ? .yellow : .white)
-            }
-            
-            Text("\(used)\(isGoalCompleted ? " !" : "")")
-                .foregroundStyle(isGoalCompleted ? .yellow : .white)
-            
-            Text(String(goal))
-                .foregroundStyle(.white.opacity(0.7))
-        }
-        .customFont(size: 13, color: .white)
-    }
-}
-
-#Preview {
-    CircularProgressBarView(
-        profileIsComplete: true,
-        protein: (50, 100),
-        fats: (0, 100),
-        carbohydrates: (0, 100),
-        calories: (0, 100),
-        water: (0, 3000)
-    )
-    .environmentObject(Coordinator(realm: RealmManager()))
 }
