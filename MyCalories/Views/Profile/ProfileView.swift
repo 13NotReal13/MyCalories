@@ -55,29 +55,14 @@ struct ProfileView: View {
         .navigationBarBackButtonHidden()
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            ToolbarItem(placement: .topBarLeading) {
-                NavigationBackButtonView(
-                    title: "Главная",
-                    dismiss: coordinator.pop
-                )
-            }
+            ToolbarBackButton(title: "Главная", dismiss: coordinator.pop)
             
-            ToolbarItem(placement: .principal) {
-                Text("Профиль")
-                    .customFont(font: .bold, size: 19, color: .white)
-            }
+            ToolbarTitle(title: "Профиль")
         }
         .sheet(isPresented: $viewModel.isPresentingPicker) {
             ProfilePickerModalView()
                 .environmentObject(viewModel)
             .presentationDetents([viewModel.selectedDisplay.preferredDetent])
         }
-    }
-}
-
-#Preview {
-    NavigationStack {
-        ProfileView(viewModel: ProfileViewModel(realmManager: RealmManager()))
-            .environmentObject(Coordinator(realm: RealmManager()))
     }
 }

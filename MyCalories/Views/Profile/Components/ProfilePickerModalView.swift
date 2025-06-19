@@ -113,12 +113,12 @@ struct ProfilePickerModalView: View {
         }
         .onAppear {
             // Передаём начальные значения в локальные
-            if let g = profileViewModel.gender { localGender = g }
-            if let d = profileViewModel.dateOfBirthday { localDate = d }
-            if let h = profileViewModel.height { localHeight = h }
-            if let w = profileViewModel.weight { localWeight = w }
-            if let a = profileViewModel.activityLevel { localActivity = a }
-            if let go = profileViewModel.goal { localGoal = go }
+            if let gender = profileViewModel.gender { localGender = gender }
+            if let dateOfBirthday = profileViewModel.dateOfBirthday { localDate = dateOfBirthday }
+            if let height = profileViewModel.height { localHeight = height }
+            if let weight = profileViewModel.weight { localWeight = weight }
+            if let activityLevel = profileViewModel.activityLevel { localActivity = activityLevel }
+            if let goal = profileViewModel.goal { localGoal = goal }
         }
     }
 }

@@ -38,8 +38,6 @@ enum Goal: String, CaseIterable {
 }
 
 final class ProfileViewModel: ObservableObject {
-    private let realm: RealmManager
-    
     // Person Data
     @Published var person: Person?
     
@@ -58,6 +56,8 @@ final class ProfileViewModel: ObservableObject {
     
     // Recommended programm data
     @Published var recommendedProgramm: RecommendedProgramm?
+    
+    private let realm: RealmManager
     
     var saveButtonIsEnabled: Bool {
         gender != nil

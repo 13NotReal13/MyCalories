@@ -13,7 +13,7 @@ struct ProfileRowView: View {
     var onTap: () -> Void
     
     private var shadowColor: Color {
-        return value == "выбрать" ? Color.yellow : Color.black.opacity(0.2)
+        value == "выбрать" ? Color.yellow : Color.black.opacity(0.2)
     }
     
     var body: some View {

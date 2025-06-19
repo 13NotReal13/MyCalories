@@ -10,7 +10,6 @@ import RealmSwift
 
 final class HomeViewModel: ObservableObject {
     @Published var filteredProducts: [Product] = []
-    @Published var isMenuOpen: Bool = false
     
     @Published var protein: (used: Int, goal: Int) = (0, 0)
     @Published var fats: (used: Int, goal: Int) = (0, 0)
@@ -18,6 +17,7 @@ final class HomeViewModel: ObservableObject {
     @Published var calories: (used: Int, goal: Int) = (0, 0)
     @Published var water: (used: Int, goal: Int) = (0, 0)
     
+    @Published var isMenuOpen: Bool = false
     @Published var searchText: String = "" {
         didSet {
             applyFilter()
@@ -28,7 +28,7 @@ final class HomeViewModel: ObservableObject {
     private var allProducts: Results<Product>?
     
     init(realmManager: RealmManager) {
-        self.realm = realmManager
+        realm = realmManager
         loadProducts()
         fetchUsedTodayNutrients()
         fetchRecommendedValues()
@@ -36,6 +36,24 @@ final class HomeViewModel: ObservableObject {
     
     func isProgressBarUnlocked() -> Bool {
         realm.fetchPerson() != nil
+    }
+    
+    func fetchUsedTodayNutrients() {
+        let todayNutrients = realm.fetchTodayTotalNutrients()
+        protein.used = Int(todayNutrients.proteins)
+        fats.used = Int(todayNutrients.fats)
+        carbohydrates.used = Int(todayNutrients.carbohydrates)
+        calories.used = Int(todayNutrients.calories)
+        water.used = Int(todayNutrients.water)
+    }
+    
+    func fetchRecommendedValues() {
+        guard let recommendedValues = realm.fetchRecommendedProgramm() else { return }
+        protein.goal = recommendedValues.proteins
+        fats.goal = recommendedValues.fats
+        carbohydrates.goal = recommendedValues.carbohydrates
+        calories.goal = recommendedValues.calories
+        water.goal = recommendedValues.water
     }
     
     private func applyFilter() {
@@ -62,22 +80,4 @@ final class HomeViewModel: ObservableObject {
         }
     }
     
-    func fetchUsedTodayNutrients() {
-        let todayNutrients = realm.fetchTodayTotalNutrients()
-        protein.used = Int(todayNutrients.proteins)
-        fats.used = Int(todayNutrients.fats)
-        carbohydrates.used = Int(todayNutrients.carbohydrates)
-        calories.used = Int(todayNutrients.calories)
-        water.used = Int(todayNutrients.water)
-    }
-
-    func fetchRecommendedValues() {
-        guard let recommendedValues = realm.fetchRecommendedProgramm() else { return }
-        protein.goal = recommendedValues.proteins
-        fats.goal = recommendedValues.fats
-        carbohydrates.goal = recommendedValues.carbohydrates
-        calories.goal = recommendedValues.calories
-        water.goal = recommendedValues.water
-        print("Ok")
-    }
 }
