@@ -8,12 +8,12 @@
 import Foundation
 
 final class AddProductViewModel: ObservableObject {
-    private let realm: RealmManager
-    
     @Published var selectedProduct: Product
     @Published var isPresentingDatePicker = false
     @Published var weightText: String = ""
     @Published var selectedDate: Date = Date()
+    
+    private let realm: RealmManager
     
     var weight: Int {
         Int(weightText) ?? 0

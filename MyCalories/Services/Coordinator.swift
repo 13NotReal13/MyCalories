@@ -90,7 +90,7 @@ final class Coordinator: ObservableObject {
         switch sheet {
         case .addProduct(let product):
             let viewModel = AddProductViewModel(realmManager: realm, selectedProduct: product)
-            AddProductView(addProductViewModel: viewModel)
+            AddProductView(viewModel: viewModel)
         }
     }
     
