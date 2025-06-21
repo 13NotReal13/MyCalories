@@ -129,6 +129,23 @@ final class RealmManager: ObservableObject {
         }
     }
     
+    // Add new product to base
+    func addNewProductToBase(_ product: Product) {
+        writeDeviceRealm {
+            let products = realmDevice.objects(Product.self).sorted(byKeyPath: "index", ascending: true)
+            
+            for productFromBase in products {
+                productFromBase.index += 1
+            }
+            
+            if let allProducts = realmDevice.objects(AllProducts.self).first {
+                product.index = 0
+                allProducts.productList.append(product)
+                realmDevice.add(product)
+            }
+        }
+    }
+    
     func fetchTodayTotalNutrients() -> AllNutritions {
         let startOfDay = Calendar.current.startOfDay(for: Date())
         let endOfDay = Calendar.current.date(byAdding: .day, value: 1, to: startOfDay)!

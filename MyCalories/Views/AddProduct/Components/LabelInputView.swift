@@ -1,5 +1,5 @@
 //
-//  LabelInputWeightView.swift
+//  LabelInputView.swift
 //  MyCalories
 //
 //  Created by Иван Семикин on 19/06/2025.
@@ -7,20 +7,22 @@
 
 import SwiftUI
 
-struct LabelInputWeightView: View {
-    @Binding var text: String
+struct LabelInputView: View {
+    let title: String
+    @Binding var value: String
     
     var body: some View {
         HStack {
-            Text("Вес продукта:")
+            Text(title)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
-            TextField("г.", text: $text)
+            TextField("г.", text: $value)
                 .keyboardType(.numberPad)
                 .frame(maxWidth: .infinity, alignment: .center)
                 .multilineTextAlignment(.center)
                 .padding(5)
                 .background(BackgroundListView(radius: 2))
         }
+        .customFont()
     }
 }

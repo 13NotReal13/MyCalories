@@ -11,6 +11,7 @@ import SwiftUI
 enum Page: String, Identifiable {
     case home
     case profile
+    case createNewProduct
     
     var id: String {
         return self.rawValue
@@ -82,6 +83,8 @@ final class Coordinator: ObservableObject {
             HomeView(viewModel: HomeViewModel(realmManager: self.realm))
         case .profile:
             ProfileView(viewModel: ProfileViewModel(realmManager: self.realm))
+        case .createNewProduct:
+            CreateNewProductView(viewModel: CreateNewProductViewModel(realmManager: self.realm))
         }
     }
     

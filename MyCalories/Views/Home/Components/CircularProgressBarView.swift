@@ -25,6 +25,12 @@ struct CircularProgressBarView: View {
         VStack {
             Spacer()
             
+            Button {
+                coordinator.push(.createNewProduct)
+            } label: {
+                Text("New Product")
+            }
+            
             ZStack {
                 HStack {
                     Spacer()

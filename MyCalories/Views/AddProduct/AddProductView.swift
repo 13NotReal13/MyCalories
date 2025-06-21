@@ -13,10 +13,10 @@ struct AddProductView: View {
     
     private var nutrientRows: [(String, Double)] {
         [
-            ("Белки:",     viewModel.selectedProduct.protein),
-            ("Жиры:",      viewModel.selectedProduct.fats),
-            ("Углеводы:",  viewModel.selectedProduct.carbohydrates),
-            ("Калории:",   viewModel.selectedProduct.calories)
+            ("Калории:", viewModel.selectedProduct.calories),
+            ("Белки:", viewModel.selectedProduct.protein),
+            ("Жиры:", viewModel.selectedProduct.fats),
+            ("Углеводы:", viewModel.selectedProduct.carbohydrates)
         ]
     }
     
@@ -52,7 +52,7 @@ struct AddProductView: View {
                 
                 Divider()
                 
-                LabelInputWeightView(text: $viewModel.weightText)
+                LabelInputView(title: "Вес продукта:", value: $viewModel.weightText)
                 
                 LabelChooseDateView(choosedDate: viewModel.selectedDate) {
                     viewModel.isPresentingDatePicker = true
