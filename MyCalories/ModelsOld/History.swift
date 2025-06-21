@@ -14,7 +14,8 @@ final class History: Object {
     @Persisted var waterList = List<Water>()
 }
 
-final class Product: Object {
+final class Product: Object, ObjectKeyIdentifiable {
+    @Persisted(primaryKey: true) var _id: ObjectId
     @Persisted var name = ""
     @Persisted var protein = 0.0
     @Persisted var fats = 0.0

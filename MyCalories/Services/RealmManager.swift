@@ -13,33 +13,70 @@ final class RealmManager: ObservableObject {
     private var realmProject: Realm {
         let realmFileName = "productsFromProject.realm"
         let realmFileUrl = Bundle.main.resourceURL!.appendingPathComponent(realmFileName)
-        var realmConfig = Realm.Configuration(fileURL: realmFileUrl, readOnly: true)
-        realmConfig.schemaVersion = 1
-        
-        let realm: Realm
+        let config = Realm.Configuration(
+            fileURL: realmFileUrl,
+            readOnly: true,
+            schemaVersion: 3,
+            objectTypes: [Product.self]
+        )
+
         do {
-            realm = try Realm(configuration: realmConfig)
+            return try Realm(configuration: config)
         } catch {
             fatalError("Failed to initialize Project Realm: \(error)")
         }
-        
-        return realm
     }
-    
+
     private var realmDevice: Realm {
-        let documentsDirectoryURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-        // Можно создавать базу данных с любыим другим именем, если нужна новая
-        let deviceRealmURL = documentsDirectoryURL.appendingPathComponent("default.realm")
-        let realmConfig = Realm.Configuration(fileURL: deviceRealmURL)
-        
-        let realm: Realm
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let realmFileURL = documentsURL.appendingPathComponent("default.realm")
+        let config = Realm.Configuration(
+            fileURL: realmFileURL,
+            schemaVersion: 3,
+            migrationBlock: { migration, oldSchemaVersion in
+                if oldSchemaVersion < 3 {
+                    migration.enumerateObjects(ofType: Product.className()) { _, newObject in
+                        newObject?["_id"] = ObjectId.generate()
+                    }
+                }
+            }
+        )
+
         do {
-            realm = try Realm(configuration: realmConfig)
+            return try Realm(configuration: config)
         } catch {
             fatalError("Failed to initialize Device Realm: \(error)")
         }
-        
-        return realm
+    }
+    
+    init() {
+        seedProjectProductsIfNeeded()
+    }
+
+    private func seedProjectProductsIfNeeded() {
+        let existing = realmDevice.objects(Product.self)
+        guard existing.isEmpty else { return }
+
+        let projectProducts = realmProject.objects(Product.self)
+
+        writeDeviceRealm {
+            for p in projectProducts {
+                let copy = Product()
+                copy._id = ObjectId.generate()
+                copy.name = p.name
+                copy.protein = p.protein
+                copy.fats = p.fats
+                copy.carbohydrates = p.carbohydrates
+                copy.calories = p.calories
+                copy.date = p.date
+                copy.weight = p.weight
+                copy.index = p.index
+                copy.color = p.color
+                realmDevice.add(copy)
+            }
+        }
+
+        print("✅ Продукты из сидера добавлены в рабочий Realm: \(projectProducts.count)")
     }
     
     func fetchAllProducts(completion: @escaping (Results<Product>) -> Void) {

@@ -6,22 +6,26 @@
 //
 
 import SwiftUI
+import RealmSwift
 
 struct ProductsListView: View {
     @EnvironmentObject private var coordinator: Coordinator
-    @EnvironmentObject private var viewModel: HomeViewModel
-    
+
+    @ObservedResults(
+        Product.self,
+        sortDescriptor: SortDescriptor(keyPath: "index", ascending: true)
+    ) var products
+
     var body: some View {
-        ScrollView {
-            LazyVStack(alignment: .leading, spacing: 6) {
-                ForEach(viewModel.filteredProducts, id: \.self) { product in
-                    ProductCellView(product: product)
-                        .onTapGesture {
-                            coordinator.present(sheet: .addProduct(product))
-                        }
-                }
+        List {
+            ForEach(products, id: \.self) { product in
+                ProductCellView(product: product)
+                    .onTapGesture {
+                        coordinator.present(sheet: .addProduct(product))
+                    }
             }
         }
+        .listStyle(.plain)
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(BackgroundListView())
@@ -53,8 +57,6 @@ struct ProductCellView: View {
                     .frame(maxWidth: .infinity, alignment: .center)
             }
             .customFont(size: 13, color: .gray)
-            
-            Divider()
         }
     }
 }
